@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Family &amp; Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px; border-bottom:1px solid var(--line);}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:680px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:64px 24px;}
+  .section-head{max-width:640px; margin-bottom:36px;}
+  .section-head h2{font-size:clamp(1.5rem,2.8vw,2rem); margin-top:12px;}
+
+  /* current offer cards */
+  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .offer-card{background:var(--paper); padding:28px 24px; display:flex; flex-direction:column; gap:10px;}
+  .offer-card h3{font-size:1.1rem;}
+  .offer-card p{font-size:.9rem;}
+  @media (max-width:820px){ .offer-grid{grid-template-columns:1fr;} }
+
+  /* TRACK RECORD — interspersed narrative, not a directory */
+  .track{background:var(--ink); padding:72px 24px;}
+  .track-inner{max-width:820px; margin:0 auto;}
+  .track-inner .eyebrow{color:var(--brass);}
+  .track-inner .section-head-title{color:var(--white); font-size:clamp(1.5rem,2.8vw,2rem); margin-top:12px;}
+  .track-inner .lede{color:rgba(255,255,255,.65); margin-top:14px; max-width:560px;}
+
+  .story{
+    display:grid; grid-template-columns:90px 1fr; gap:24px;
+    padding:30px 0; border-top:1px solid rgba(255,255,255,.12);
+  }
+  .story:last-child{border-bottom:1px solid rgba(255,255,255,.12);}
+  .story .year{font-family:'IBM Plex Mono',monospace; color:var(--brass); font-size:.85rem; padding-top:4px;}
+  .story h3{color:var(--white); font-size:1.15rem;}
+  .story p{color:rgba(255,255,255,.68); margin-top:8px; font-size:.92rem; max-width:520px;}
+  @media (max-width:560px){ .story{grid-template-columns:1fr; gap:6px;} }
+
+  /* SIGNATURE: the causal policy-change moment */
+  .signature{background:var(--sage-tint); border:1px solid var(--line); border-radius:2px; padding:48px 40px; margin-top:56px;}
+  .signature .eyebrow{color:var(--sage);}
+  .signature h2{font-size:clamp(1.4rem,2.6vw,1.85rem); margin-top:12px; max-width:640px;}
+  .chain{display:flex; align-items:stretch; gap:0; margin-top:32px; flex-wrap:wrap;}
+  .chain-step{flex:1; min-width:200px; padding:20px 22px; position:relative;}
+  .chain-step + .chain-step{border-left:1px dashed var(--line);}
+  .chain-step .y{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--brass); letter-spacing:.06em;}
+  .chain-step h4{font-family:'Fraunces',serif; font-size:1.05rem; margin-top:8px; font-weight:500;}
+  .chain-step p{font-size:.85rem; margin-top:6px;}
+  @media (max-width:700px){ .chain-step + .chain-step{border-left:none; border-top:1px dashed var(--line);} }
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html" class="current">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Family &amp; Community</span>
+  <h1 style="margin-top:14px;">Support for families, and a track record of what community can do.</h1>
+  <p>Direct support for people visiting, preparing for, or maintaining a relationship through a family member's incarceration — alongside a decade-long record of programs built with the community, for families affected by imprisonment.</p>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">Support available now</span>
+    <h2>If someone you love is in Risdon Prison</h2>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="ph-img" style="height:110px;">Image — Family Engagement Worker</div>
+      <h3>Family Engagement Worker</h3>
+      <p>A dedicated worker in Risdon Prison working directly with offenders and their families to build and maintain healthy relationships.</p>
+    </div>
+    <div class="offer-card">
+      <div class="ph-img" style="height:110px;">Image — visiting / video visit</div>
+      <h3>Visiting Prison</h3>
+      <p>Practical guidance on getting there, video visits, and visiting with children — plus links to TPS and partner resources.</p>
+    </div>
+    <div class="offer-card">
+      <div class="ph-img" style="height:110px;">Image — family preparing / support</div>
+      <h3>Preparing for Prison</h3>
+      <p>A step-by-step guide covering court, the first days inside, and what family on the outside can expect — adapted from CRC NSW.</p>
+    </div>
+  </div>
+</section>
+
+<section class="track">
+  <div class="track-inner">
+    <span class="eyebrow">Track record</span>
+    <div class="section-head-title">What community has made possible</div>
+    <p class="lede">Onesimus has been building programs alongside families and prisons for over a decade. Some of this work continues; some belongs to a particular season — but all of it shows what's possible.</p>
+
+    <div class="story">
+      <span class="year">2012</span>
+      <div><h3>Kids Days</h3><p>A revived Father's Day programme, based on the UK's "Kids VIP" model, offering themed family visit days across Risdon's prisons — later run in partnership with Save the Children.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">c. 2012</span>
+      <div><h3>Hillside Haven</h3><p>A house built on the church property to accommodate families travelling from regional Tasmania to visit a loved one in prison — inexpensive accommodation that let families double their number of visits without the round trip in a single day.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">2013</span>
+      <div><h3>Video Visits &amp; Regional Visit Centres</h3><p>A network of visit centres hosted in churches across Tasmania and interstate, connecting families who couldn't travel to the prison with an incarcerated loved one.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">2016</span>
+      <div><h3>Ron Barwick Playground</h3><p>A $50,000 playground funded by the Tasmanian Community Fund, letting incarcerated fathers watch their children play during visits.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">Ongoing</span>
+      <div><h3>Onesimus Bear Program</h3><p>Recording an offender's voice in the paw of a teddy bear — a small, tangible way for a child to stay connected to an incarcerated parent.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">Ongoing</span>
+      <div><h3>Second Bite &amp; Loaves and Fishes</h3><p>A prison garden where offenders grow produce to give back to the community — developed with TPS as a way to "pay back" through constructive work.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">Ongoing</span>
+      <div><h3>Church-facilitated care packages</h3><p>Toiletry packs for women entering prison, pamper packs for women leaving, and clothing for men leaving — coordinated through a national network of churches.</p></div>
+    </div>
+    <div class="story">
+      <span class="year">Ongoing</span>
+      <div><h3>Student placements &amp; volunteer FEWs</h3><p>Onesimus has long provided placements for university criminology and social work students, many of whom volunteer as Family Engagement Workers and go on to careers in the justice system. India O'Dowd volunteered as a near-full-time FEW in 2018 while completing her Honours in Criminology — she later joined Tasmania Prison Service as a Planning and Reintegration Officer, became a Correctional Officer, and is today an Acting Superintendent, leading the response to the "Constrained to Capable" report.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="signature" id="chain">
+    <span class="eyebrow">A track record with government</span>
+    <h2>How one Fellowship became a Tasmanian government strategy</h2>
+    <div class="chain">
+      <div class="chain-step">
+        <span class="y">2014</span>
+        <h4>Churchill Fellowship</h4>
+        <p>Norm Reed visits 21 prisons across Singapore, France, Belgium, England, Wales and Scotland to study family-support practice.</p>
+      </div>
+      <div class="chain-step">
+        <span class="y">2014–16</span>
+        <h4>Hidden Sentence Training</h4>
+        <p>Findings become a training program, engaging over 1,000 professionals in understanding families of offenders.</p>
+      </div>
+      <div class="chain-step">
+        <span class="y">2016</span>
+        <h4>Breaking the Cycle</h4>
+        <p>Hidden Sentence is adopted as a key strategy in the Department of Justice's "Breaking the Cycle" corrections plan.</p>
+      </div>
+      <div class="chain-step">
+        <span class="y">2016</span>
+        <h4>Family Worker role</h4>
+        <p>Tasmania Prison Service introduces a Family Worker role in Risdon Prison — a direct outcome of the Fellowship's findings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

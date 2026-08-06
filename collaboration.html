@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Collaboration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A;
+    --sage:#4B7A5E;
+    --paper:#F6F3ED;
+    --brass:#B8894A;
+    --slate:#6B7280;
+    --line:#DDD6C9;
+    --white:#FFFFFF;
+    --sage-tint:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--sage); font-weight:500;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  /* NAV — same as homepage */
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75; transition:opacity .15s;}
+  nav a:hover, nav a:focus-visible{opacity:1;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  /* PAGE HEADER */
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head .eyebrow{margin-bottom:14px; display:block;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:680px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  /* LAYOUT: sticky index + content */
+  .layout{max-width:1180px; margin:0 auto; padding:0 24px 100px; display:grid; grid-template-columns:220px 1fr; gap:56px; border-top:1px solid var(--line);}
+  .index{padding-top:48px;}
+  .index-sticky{position:sticky; top:90px; display:flex; flex-direction:column; gap:2px;}
+  .index a{
+    font-size:.85rem; text-decoration:none; color:var(--slate); padding:9px 0 9px 16px;
+    border-left:2px solid var(--line); transition:all .15s;
+  }
+  .index a:hover, .index a:focus-visible{color:var(--ink); border-left-color:var(--sage);}
+  @media (max-width:820px){ .layout{grid-template-columns:1fr;} .index{display:none;} }
+
+  .content{padding-top:48px;}
+  .group{
+    padding:52px 0; border-bottom:1px solid var(--line); scroll-margin-top:90px;
+    display:grid; grid-template-columns:1fr; gap:28px;
+  }
+  .group:first-child{padding-top:0;}
+  .group-head{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .group-num{font-family:'IBM Plex Mono',monospace; color:var(--brass); font-size:.85rem; letter-spacing:.06em;}
+  .group h2{font-size:clamp(1.5rem,2.6vw,2.05rem);}
+  .status-pill{
+    font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--sage-tint); color:var(--sage); padding:4px 10px; border-radius:100px; margin-left:auto;
+  }
+  .group p.lede{max-width:640px; font-size:1rem;}
+
+  .meta-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); max-width:760px;
+  }
+  .meta-cell{background:var(--paper); padding:18px 20px;}
+  .meta-cell .k{font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); display:block; margin-bottom:6px;}
+  .meta-cell .v{font-size:.92rem; color:var(--ink); font-weight:500;}
+  @media (max-width:600px){ .meta-grid{grid-template-columns:1fr;} }
+
+  .who-label{
+    font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--slate); display:block; margin-top:6px;
+  }
+  .reveal-list{display:flex; flex-wrap:wrap; gap:8px; max-width:760px;}
+  details.reveal{
+    background:var(--white); border:1px solid var(--line); border-radius:100px;
+  }
+  details.reveal[open]{border-radius:14px; width:100%;}
+  details.reveal summary{
+    font-size:.82rem; color:var(--ink); padding:7px 14px; cursor:pointer;
+    list-style:none; display:flex; align-items:center; gap:6px;
+  }
+  details.reveal summary::-webkit-details-marker{display:none;}
+  details.reveal summary::after{
+    content:"+"; color:var(--brass); font-weight:600; margin-left:2px;
+  }
+  details.reveal[open] summary::after{content:"–";}
+  details.reveal .reveal-body{
+    padding:0 16px 14px 16px; font-size:.85rem;
+  }
+  details.reveal .reveal-body a{
+    color:var(--sage); font-weight:500; text-decoration:underline; text-underline-offset:2px;
+  }
+  details.reveal .reveal-body .tbc{color:var(--slate); font-style:italic;}
+
+  .light-mention{
+    max-width:640px; padding:24px 26px; background:var(--sage-tint);
+    border-left:3px solid var(--sage); border-radius:2px;
+  }
+  .light-mention .eyebrow{color:var(--sage);}
+  .light-mention h3{font-size:1.1rem; margin-top:8px;}
+  .light-mention p{margin-top:8px; font-size:.92rem;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html" class="current">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Collaboration</span>
+  <h1>The networks we convene, and the partners we work alongside.</h1>
+  <p>Effective justice reform depends on organisations understanding one another's work and building on complementary strengths. These are the practitioner groups Onesimus facilitates, and the partnerships that stand behind them.</p>
+</section>
+
+<div class="layout">
+  <div class="index">
+    <div class="index-sticky">
+      <a href="#jwg">Justice Working Group</a>
+      <a href="#rvpn">Responding to Violence Practitioners Network</a>
+      <a href="#jd">Just Desserts</a>
+      <a href="#jiep">Justice-Involved Reference Panel</a>
+      <a href="#church">Church &amp; Chaplaincy</a>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="group" id="jwg">
+      <div class="group-head">
+        <span class="group-num">01</span>
+        <h2>Justice Working Group</h2>
+        <span class="status-pill">Active</span>
+      </div>
+      <p class="lede">A practitioner forum for organisations delivering direct services inside Tasmania's prison system or to people under community corrections — meeting to identify barriers and build practical, collaborative responses.</p>
+      <div class="meta-grid">
+        <div class="meta-cell"><span class="k">Meets</span><span class="v">Every 6 weeks, working lunch</span></div>
+        <div class="meta-cell"><span class="k">Who's involved</span><span class="v">Community providers &amp; senior TPS staff</span></div>
+        <div class="meta-cell"><span class="k">Focus</span><span class="v">Direct service delivery, operational only</span></div>
+      </div>
+      <div>
+        <span class="who-label">Participating organisations &amp; sectors — click to expand</span>
+        <div class="reveal-list" style="margin-top:10px;">
+          <details class="reveal"><summary>Community corrections &amp; justice practitioners</summary>
+            <div class="reveal-body">Tasmania <a href="https://www.justice.tas.gov.au/justice-system/corrections-prisons-and-parole" target="_blank" rel="noopener">Community Corrections</a></div>
+          </details>
+          <details class="reveal"><summary>Men's behaviour change &amp; reintegration providers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Brain injury &amp; cognitive disability support</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Homelessness &amp; housing support</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Chaplaincy &amp; faith-based welfare</summary>
+            <div class="reveal-body">TPS Chaplaincy &amp; Prison Fellowship — <span class="tbc">links to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Clothing &amp; material aid</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Youth justice practitioners</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Senior Tasmania Prison Service personnel</summary>
+            <div class="reveal-body"><a href="https://www.justice.tas.gov.au/prisonservice" target="_blank" rel="noopener">Tasmania Prison Service</a></div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="group" id="rvpn">
+      <div class="group-head">
+        <span class="group-num">02</span>
+        <h2>Responding to Violence Practitioners Network</h2>
+        <span class="status-pill">Active</span>
+      </div>
+      <p class="lede">Formerly the Working with Men's Network. A monthly professional gathering for practitioners, researchers and students working with people who use violence — building a stronger, evidence-informed sector across Tasmania.</p>
+      <div class="meta-grid">
+        <div class="meta-cell"><span class="k">Meets</span><span class="v">Monthly, 7:30am breakfast</span></div>
+        <div class="meta-cell"><span class="k">Who's involved</span><span class="v">Cross-sector practitioners &amp; researchers</span></div>
+        <div class="meta-cell"><span class="k">Focus</span><span class="v">Research, practice &amp; networking</span></div>
+      </div>
+      <div>
+        <span class="who-label">Who attends — click to expand</span>
+        <div class="reveal-list" style="margin-top:10px;">
+          <details class="reveal"><summary>Men's behaviour change practitioners</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Family violence frontline workers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Police, corrections &amp; justice staff</summary>
+            <div class="reveal-body"><a href="https://www.justice.tas.gov.au/prisonservice" target="_blank" rel="noopener">Tasmania Prison Service</a> &amp; <a href="https://www.justice.tas.gov.au/justice-system/corrections-prisons-and-parole" target="_blank" rel="noopener">Community Corrections</a></div>
+          </details>
+          <details class="reveal"><summary>Child safety &amp; protection workers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Youth justice workers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Counsellors, psychologists &amp; allied health</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Housing &amp; homelessness support workers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>Researchers &amp; students</summary>
+            <div class="reveal-body"><a href="https://www.utas.edu.au/social-sciences" target="_blank" rel="noopener">UTAS School of Social Sciences</a></div>
+          </details>
+          <details class="reveal"><summary>Volunteers</summary>
+            <div class="reveal-body"><span class="tbc">Specific member organisations to be confirmed</span></div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="group" id="jd">
+      <div class="group-head">
+        <span class="group-num">03</span>
+        <h2>Just Desserts</h2>
+        <span class="status-pill">Active</span>
+      </div>
+      <p class="lede">A community support group for the Drug Court's Mandated Diversion (CMD) program, founded by Board member Jess Long (formerly known as Jess Smith) and dedicated to promoting therapeutic jurisprudence and alternatives to imprisonment. The committee meets monthly to discuss the program, upcoming graduations, and emerging research, and funds tangible incentives for participants responding well to the program.</p>
+      <div class="meta-grid">
+        <div class="meta-cell"><span class="k">Founded by</span><span class="v">Jess Long (Board member)</span></div>
+        <div class="meta-cell"><span class="k">Supports</span><span class="v">Drug Court Mandated Diversion (CMD)</span></div>
+        <div class="meta-cell"><span class="k">Includes</span><span class="v">UTAS Criminology &amp; sector partners</span></div>
+      </div>
+
+      <div>
+        <span class="who-label">Committee &amp; partner organisations — click to expand</span>
+        <div class="reveal-list" style="margin-top:10px;">
+          <details class="reveal"><summary>Rob White — former head, UTAS Criminology</summary>
+            <div class="reveal-body"><a href="https://www.utas.edu.au/social-sciences/sc/criminology" target="_blank" rel="noopener">UTAS Criminology</a></div>
+          </details>
+          <details class="reveal"><summary>Tasmania Community Corrections</summary>
+            <div class="reveal-body">Court Diversion Officers from Hobart, Launceston &amp; the North West case-manage CMD participants — <a href="https://www.justice.tas.gov.au/justice-system/corrections-prisons-and-parole" target="_blank" rel="noopener">justice.tas.gov.au</a></div>
+          </details>
+          <details class="reveal"><summary>Magistrates Court of Tasmania</summary>
+            <div class="reveal-body">Partners with Just Desserts on promoting the Drug Court &amp; incentives — <span class="tbc">link to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>The Salvation Army</summary>
+            <div class="reveal-body">Many CMD participants are assisted by Salvation Army community programs — <span class="tbc">link to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>ATDC (Alcohol, Tobacco &amp; other Drugs Council)</summary>
+            <div class="reveal-body">Peak body for reducing AOD-related harm in Tasmania — <a href="https://atdc.org.au/" target="_blank" rel="noopener">atdc.org.au</a></div>
+          </details>
+          <details class="reveal"><summary>City Mission — Missiondale Therapeutic Community</summary>
+            <div class="reveal-body">Residential rehabilitation offering a therapeutic approach to drug-free living — <a href="https://www.citymission.org.au/" target="_blank" rel="noopener">citymission.org.au</a></div>
+          </details>
+          <details class="reveal"><summary>JusTas</summary>
+            <div class="reveal-body">Promotes reconciliation, mutual respect &amp; tolerance for people in the justice system — <span class="tbc">link to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>DEN</summary>
+            <div class="reveal-body">Community wellbeing &amp; safe-relationship resourcing — <span class="tbc">link to be confirmed</span></div>
+          </details>
+          <details class="reveal"><summary>UTAS</summary>
+            <div class="reveal-body">Research into the Tasmanian criminal justice system — <a href="https://www.utas.edu.au/social-sciences" target="_blank" rel="noopener">UTAS Social Sciences</a></div>
+          </details>
+        </div>
+      </div>
+
+      <div class="light-mention" style="margin-top:8px;">
+        <span class="eyebrow">Support Just Desserts directly</span>
+        <h3>Direct account transfer</h3>
+        <p>Donations may also be made directly via bank transfer, with funds allocated to the Just Desserts Committee's most pressing needs unless a specific project or region is nominated. Bank details to be confirmed for the new site — currently held on the old site's JD Donate page.</p>
+      </div>
+    </div>
+
+    <div class="group" id="jiep">
+      <div class="group-head">
+        <span class="group-num">04</span>
+        <h2>Justice-Involved Reference Panel</h2>
+        <span class="status-pill">Forming</span>
+      </div>
+      <p class="lede">A new advisory panel bringing the lived experience of people with justice involvement, families, carers, and bereaved families directly into policy advice and service design. Still forming — more detail to follow as the panel establishes itself.</p>
+    </div>
+
+    <div class="group" id="church" style="border-bottom:none;">
+      <div class="light-mention">
+        <span class="eyebrow">Church &amp; Chaplaincy</span>
+        <h3>Prison Fellowship and the TPS Chaplaincy are active JWG participants</h3>
+        <p>Church facilities support both TPS activity and in-prison group work. See <a href="family-community.html" style="text-decoration:underline;">Family &amp; Community</a> for the fuller story of our church and faith partnerships.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:700px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  /* ORIGIN — two-column, CFC on one side, name meaning on the other */
+  .origin{max-width:1180px; margin:0 auto; padding:8px 24px 72px; border-bottom:1px solid var(--line);}
+  .origin-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px;}
+  .origin-grid h2{font-size:clamp(1.4rem,2.6vw,1.9rem);}
+  .origin-grid p{margin-top:14px; font-size:.98rem;}
+  .name-block{background:var(--ink); color:var(--white); padding:32px 28px; border-radius:2px;}
+  .name-block .eyebrow{color:var(--brass);}
+  .name-block h3{color:var(--white); font-size:1.3rem; margin-top:10px;}
+  .name-block p{color:rgba(255,255,255,.7); margin-top:10px; font-size:.92rem;}
+  @media (max-width:820px){ .origin-grid{grid-template-columns:1fr;} }
+
+  /* MISSION strip */
+  .mission-strip{max-width:1180px; margin:0 auto; padding:56px 24px; display:flex; gap:48px; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+  .mission-strip .item{flex:1; min-width:220px;}
+  .mission-strip .item .eyebrow{margin-bottom:8px; display:block;}
+  .mission-strip .item p{font-size:.95rem;}
+
+  /* Churchill Fellowship condensed nod */
+  .nod{max-width:1180px; margin:0 auto; padding:56px 24px; border-bottom:1px solid var(--line);}
+  .nod-box{background:var(--sage-tint); border-left:3px solid var(--sage); padding:26px 28px; border-radius:2px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+  .nod-box h3{font-size:1.05rem;}
+  .nod-box p{font-size:.9rem; margin-top:6px; max-width:520px;}
+  .nod-box a.link{font-size:.85rem; font-weight:600; color:var(--ink); white-space:nowrap; text-decoration:underline; text-underline-offset:2px;}
+
+  /* BOARD */
+  .board{max-width:1180px; margin:0 auto; padding:64px 24px 90px;}
+  .section-head{max-width:640px; margin-bottom:36px;}
+  .section-head h2{font-size:clamp(1.5rem,2.8vw,2rem); margin-top:12px;}
+  .board-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .board-card{background:var(--paper); padding:26px 22px; display:flex; flex-direction:column; gap:8px; position:relative;}
+  .board-card .avatar{
+    width:56px; height:56px; border-radius:4px; margin-bottom:6px;
+    background:repeating-linear-gradient(45deg, var(--sage-tint), var(--sage-tint) 6px, var(--paper) 6px, var(--paper) 12px);
+    border:1px dashed var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:.5rem; color:var(--sage); text-align:center; line-height:1.1;
+  }
+  .board-card h3{font-size:1rem;}
+  .board-card .role{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--brass);}
+  .board-card p{font-size:.83rem; margin-top:4px;}
+  .board-card.new::before{
+    content:"New"; position:absolute; top:18px; right:18px;
+    font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--brass); color:var(--white); padding:3px 8px; border-radius:100px;
+  }
+  @media (max-width:960px){ .board-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .board-grid{grid-template-columns:1fr;} }
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html" class="current">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">About Us</span>
+  <h1 style="margin-top:14px;">A church's care for families, grown into a statewide foundation.</h1>
+  <p>Onesimus works alongside people in the justice system, their families, and the professionals who support them — nurturing connection during incarceration and building a path back into community life.</p>
+</section>
+
+<section class="origin">
+  <div class="origin-grid">
+    <div>
+      <span class="eyebrow">Where we started</span>
+      <h2 style="margin-top:10px;">Onesimus had its genesis in the Christian Family Centre.</h2>
+      <p>A local church adjacent to Risdon Prison, the Christian Family Centre supported children and families of offenders through its CFC Care Services long before Onesimus existed as a separate foundation. That relationship continues today — Onesimus and CFC remain close partners, and much of the Foundation's early family-support work, including the Regional Visit Centre network, grew directly out of church-based care.</p>
+      <div class="ph-img" style="height:160px; margin-top:20px;">Image — Christian Family Centre / church exterior</div>
+    </div>
+    <div class="name-block">
+      <span class="eyebrow">What "Onesimus" means</span>
+      <h3>Useful, or profitable.</h3>
+      <p>A Greek name from the biblical book of Philemon: a man once written off as useless finds, through a chance meeting in prison, a way back to being valued by the people around him. It's the story this Foundation takes its name from.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mission-strip">
+  <div class="item">
+    <span class="eyebrow">Our vision</span>
+    <p>Creating healthy relationships. Transforming lives. Changing communities.</p>
+  </div>
+  <div class="item">
+    <span class="eyebrow">Our mission</span>
+    <p>We work with people with convictions, their families, and communities to create healthy family relationships during incarceration — so that on release, they are welcomed home as useful, profitable, and fulfilled members of society, with a reduced risk of reoffending.</p>
+  </div>
+  <div class="item">
+    <span class="eyebrow">Strategic directions</span>
+    <p>In May 2024 the Board approved Strategic Directions 2024–2027, organised around four priorities: Collaboration, Relationships, Innovative Solutions, and Sustainability. <a href="#" style="text-decoration:underline;">Download the document</a>.</p>
+  </div>
+</section>
+
+<section class="nod">
+  <div class="nod-box">
+    <div>
+      <span class="eyebrow">A Fellowship that changed government policy</span>
+      <h3 style="margin-top:8px;">From a 2014 Churchill Fellowship to a 2016 state corrections strategy.</h3>
+      <p>Norm Reed's study of 21 prisons overseas led directly to the "Breaking the Cycle" strategy and a new Family Worker role in Risdon Prison.</p>
+    </div>
+    <a href="family-community.html#chain" class="link">Read the full story →</a>
+  </div>
+</section>
+
+<section class="board">
+  <div class="section-head">
+    <span class="eyebrow">Governance</span>
+    <h2>Our Board</h2>
+  </div>
+  <div class="board-grid">
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Founder &amp; Executive Officer</span>
+      <h3>Norm Reed</h3>
+      <p>Retired pastor of the Christian Family Centre. Founded Onesimus following a 2014 Churchill Fellowship studying family support services in prisons across Europe and Singapore.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Chairman</span>
+      <h3>Paul Parks</h3>
+      <p>Special Educator and retired Director of Schools (NSW), with experience in juvenile justice settings. An inaugural Board member.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Rosalie Martin</h3>
+      <p>Speech Pathologist and Criminologist, founder of Connect42, and 2017 Tasmanian Australian of the Year for her work on prison literacy.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Claire Crouch</h3>
+      <p>Former Coordinator, Family and Child Support at Risdon Prison. Extensive experience in foster family support, community engagement, and program facilitation.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Neale Buchanan</h3>
+      <p>Former senior executive across the Department of Justice, including Director of Community Corrections. Governance experience with TasPlan and TasBuild.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Kate Ibbott</h3>
+      <p>Assistant Director for Community Corrections Tasmania, managing the Tasmanian Training Consortium. Teaches criminology at UTAS and developed &amp; delivers Professional Boundaries — Safeguarding Ethics in the Justice System.</p>
+    </div>
+    <div class="board-card">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Jess Long</h3>
+      <p>Practitioner across prison, community, and child protection settings. Former Onesimus Project Officer, and founder of Just Desserts. Passionate about restorative justice and therapeutic jurisprudence.</p>
+    </div>
+    <div class="board-card new">
+      <div class="avatar">Photo</div>
+      <span class="role">Director</span>
+      <h3>Ian Thomas</h3>
+      <p>Former Director of the Prison, with experience across the UK, Victoria, and Tasmania. Joined the Board in 2026.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

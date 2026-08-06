@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:700px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  /* SIGNATURE: Singapore / Yellow Ribbon */
+  .signature-strip{background:var(--ink); padding:64px 24px;}
+  .sig-inner{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:48px;}
+  .sig-inner .eyebrow{color:var(--brass);}
+  .sig-inner h2{color:var(--white); font-size:clamp(1.5rem,2.8vw,2.1rem); margin-top:12px;}
+  .sig-inner p{color:rgba(255,255,255,.68); margin-top:14px; font-size:.95rem;}
+  .sig-stats{display:flex; flex-direction:column; gap:22px; justify-content:center;}
+  .sig-stat .num{font-family:'Fraunces',serif; color:var(--brass); font-size:2.2rem;}
+  .sig-stat .label{color:rgba(255,255,255,.6); font-size:.85rem; margin-top:2px;}
+  @media (max-width:820px){ .sig-inner{grid-template-columns:1fr;} }
+
+  .section{max-width:1180px; margin:0 auto; padding:72px 24px;}
+  .section-head{max-width:640px; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+
+  /* EVIDENCE SHELF */
+  .shelf{border-top:1px solid var(--line);}
+  .shelf-item{
+    display:grid; grid-template-columns:140px 1fr 100px; gap:24px; align-items:start;
+    padding:24px 0; border-bottom:1px solid var(--line);
+  }
+  .shelf-item .kind{font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--brass); letter-spacing:.06em; padding-top:3px;}
+  .shelf-item h3{font-size:1.05rem;}
+  .shelf-item p{font-size:.88rem; margin-top:6px; max-width:520px;}
+  .shelf-item .tag{
+    justify-self:end; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--sage-tint); color:var(--sage); padding:4px 10px; border-radius:100px; height:fit-content;
+  }
+  @media (max-width:640px){ .shelf-item{grid-template-columns:1fr;} .shelf-item .tag{justify-self:start;} }
+
+  /* nod back to Churchill Fellowship */
+  .nod-box{
+    max-width:1180px; margin:0 auto 0; padding:0 24px 72px;
+  }
+  .nod-inner{
+    background:var(--sage-tint); border-left:3px solid var(--sage); padding:22px 26px; border-radius:2px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .nod-inner p{font-size:.9rem; color:var(--ink); max-width:520px;}
+  .nod-inner a{font-size:.85rem; font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html" class="current">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Research</span>
+  <h1 style="margin-top:14px;">The evidence and ideas shaping what's possible.</h1>
+  <p>From local inspection reports to international models of reform, this is the research that informs Onesimus's advocacy — and the case for what Tasmania's justice system could become.</p>
+</section>
+
+<section class="signature-strip">
+  <div class="sig-inner">
+    <div>
+      <span class="eyebrow">An international model</span>
+      <h2>Singapore fell from 18,000 prisoners to 8,000. Could Tasmania learn from how?</h2>
+      <p>Conceived by former Deputy Director Jason Wong, Singapore's Yellow Ribbon Project reshaped a prison system around Chua Chin Kiat's "Captains of Lives" vision — treating rehabilitation, not punishment, as the organising purpose of custody. Tasmania's size and community feel may make it uniquely placed to learn from this model. Jason is visiting Tasmania in December 2026 to meet with the Minister for Corrections.</p>
+      <div class="ph-img" style="height:130px; margin-top:16px; border-color:rgba(255,255,255,.3); color:rgba(255,255,255,.6); background:repeating-linear-gradient(45deg, rgba(255,255,255,.05), rgba(255,255,255,.05) 10px, transparent 10px, transparent 20px);">Image — Yellow Ribbon Project / Singapore</div>
+    </div>
+    <div class="sig-stats">
+      <div class="sig-stat"><div class="num">18,000 → 8,000</div><div class="label">Singapore's prison population, early 2000s to today</div></div>
+      <div class="sig-stat"><div class="num">44.4% → ~20%</div><div class="label">Two-year recidivism rate over the same period</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">The evidence base</span>
+    <h2>Local reports informing our advocacy</h2>
+  </div>
+  <div class="shelf">
+    <div class="shelf-item">
+      <span class="kind">Report</span>
+      <div><h3>Constrained to Capable</h3><p>Addresses lockdown challenges inside Risdon Prison. Onesimus sits as the community representative on the committee responding to its recommendations, chaired by the Deputy Secretary.</p></div>
+      <span class="tag">Active</span>
+    </div>
+    <div class="shelf-item">
+      <span class="kind">Report</span>
+      <div><h3>Custodial Inspector reports</h3><p>Independent oversight of Tasmania's prison conditions — a recurring source Onesimus draws on in policy submissions and advisory work.</p></div>
+      <span class="tag">Ongoing</span>
+    </div>
+    <div class="shelf-item">
+      <span class="kind">Report</span>
+      <div><h3>Review of Government Services (ROGS)</h3><p>National benchmarking data on corrections outcomes, used to compare Tasmania's performance against other states.</p></div>
+      <span class="tag">Reference</span>
+    </div>
+    <div class="shelf-item">
+      <span class="kind">Inquiry</span>
+      <div><h3>Parliamentary Inquiry — Adult Imprisonment &amp; Youth Detention</h3><p>Tasmanian Legislative Council inquiry into the state's custodial systems, drawing on submissions including from Onesimus.</p></div>
+      <span class="tag">Reference</span>
+    </div>
+  </div>
+</section>
+
+<div class="nod-box">
+  <div class="nod-inner">
+    <p><strong>Where this research began:</strong> the 2014 Churchill Fellowship that led Norm Reed to 21 prisons across Europe and Singapore — and, eventually, to a change in Tasmanian government policy.</p>
+    <a href="family-community.html#chain">Read the full story →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

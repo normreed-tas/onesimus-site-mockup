@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A;
+    --sage:#4B7A5E;
+    --paper:#F6F3ED;
+    --brass:#B8894A;
+    --slate:#6B7280;
+    --line:#DDD6C9;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--sage);
+    font-weight:500;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    margin:0;
+    line-height:1.05;
+  }
+  p{line-height:1.6;color:var(--slate);}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,237,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{
+    font-size:.88rem; font-weight:500; text-decoration:none;
+    color:var(--ink); opacity:.75; transition:opacity .15s;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1;}
+  .nav-cta{
+    background:var(--ink); color:var(--white)!important; opacity:1!important;
+    padding:9px 18px; border-radius:100px; font-size:.82rem;
+  }
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  /* ===== HERO / FORK ===== */
+  .hero{max-width:1180px; margin:0 auto; padding:64px 24px 0;}
+  .hero-top{max-width:640px; margin-bottom:44px;}
+  .hero-top h1{font-size:clamp(2.2rem,4.4vw,3.4rem); letter-spacing:-.01em;}
+  .hero-top p{font-size:1.08rem; margin-top:18px; max-width:520px;}
+
+  .fork{
+    display:grid; grid-template-columns:1fr 1fr; position:relative;
+    border-top:1px solid var(--line);
+  }
+  .fork::before{
+    content:"";
+    position:absolute; left:50%; top:0; bottom:0; width:1px;
+    background:var(--line); transform:translateX(-50%);
+  }
+  .fork::after{
+    content:"ONESIMUS";
+    position:absolute; left:50%; top:-14px; transform:translateX(-50%);
+    background:var(--paper); padding:0 14px;
+    font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.18em;
+    color:var(--ink); opacity:.5;
+  }
+  .path{
+    padding:56px 40px 64px;
+    text-decoration:none;
+    display:flex; flex-direction:column; gap:14px;
+    transition:background .25s;
+    position:relative; overflow:hidden;
+  }
+  .path:hover, .path:focus-visible{background:rgba(75,122,94,0.06);}
+  .path .num{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--brass); letter-spacing:.1em;}
+  .path h2{font-size:clamp(1.5rem,2.6vw,2rem); color:var(--ink);}
+  .path p{max-width:360px;}
+  .path .go{
+    margin-top:8px; font-size:.85rem; font-weight:600; color:var(--ink);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .path .go svg{transition:transform .2s;}
+  .path:hover .go svg{transform:translateX(4px);}
+  .path--left{border-right:none;}
+  @media (max-width:720px){
+    .fork{grid-template-columns:1fr;}
+    .fork::before{display:none;}
+    .path--left{border-bottom:1px solid var(--line);}
+  }
+
+  /* ===== MISSION STRIP ===== */
+  .mission{
+    background:var(--ink); color:var(--white);
+    padding:72px 24px;
+  }
+  .mission-inner{max-width:820px; margin:0 auto; text-align:center;}
+  .mission-inner .eyebrow{color:var(--brass); justify-content:center;}
+  .mission-inner h2{
+    color:var(--white); font-size:clamp(1.6rem,3.2vw,2.3rem); margin-top:16px;
+  }
+  .mission-inner p{color:rgba(255,255,255,.72); margin-top:18px; max-width:600px; margin-left:auto; margin-right:auto;}
+
+  /* ===== SECTION GRID ===== */
+  .sections{max-width:1180px; margin:0 auto; padding:80px 24px;}
+  .sections-head{max-width:600px; margin-bottom:40px;}
+  .card-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .card{
+    background:var(--paper); padding:32px 26px; display:flex; flex-direction:column; gap:12px;
+  }
+  .card .tag{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.1em; color:var(--slate); text-transform:uppercase;}
+  .card h3{font-size:1.15rem;}
+  .card p{font-size:.92rem;}
+  @media (max-width:920px){ .card-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .card-grid{grid-template-columns:1fr;} }
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--line); padding:48px 24px 32px;
+  }
+  .footer-inner{
+    max-width:1180px; margin:0 auto; display:flex; justify-content:space-between;
+    flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);
+  }
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-top">
+    <span class="eyebrow">Onesimus Foundation · Risdon Vale, Tasmania</span>
+    <h1 style="margin-top:14px;">Creating healthy relationships. Transforming lives. Changing communities.</h1>
+    <p>We work alongside people in the justice system, their families, and the professionals who support them — nurturing connection during incarceration and building a path back into community life.</p>
+  </div>
+
+  <div class="fork">
+    <a href="family-community.html" class="path path--left">
+      <span class="num">01 — Families</span>
+      <h2>Supporting your family through incarceration</h2>
+      <p>Visiting Risdon Prison, preparing for court and custody, and keeping children connected to an incarcerated parent.</p>
+      <div class="ph-img" style="height:140px; margin-top:6px;">Image — family visiting / connection</div>
+      <span class="go">Start here
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+    <a href="collaboration.html" class="path path--right">
+      <span class="num">02 — Professionals</span>
+      <h2>Working with people in the justice system</h2>
+      <p>Training, practitioner forums, and cross-agency collaboration — from the Justice Working Group to Professional Boundaries training.</p>
+      <div class="ph-img" style="height:140px; margin-top:6px;">Image — practitioner forum / training</div>
+      <span class="go">Start here
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="mission-inner">
+    <span class="eyebrow">What "Onesimus" means</span>
+    <h2>A Greek name meaning "useful, or profitable."</h2>
+    <p>From the biblical book of Philemon: a man once written off as useless finds, through a chance meeting in prison, a way back to being valued by the people around him. Our mission is to help people leaving prison find that same welcome — to work with people with convictions, their families, and communities, so that on release they come home as useful, profitable, and fulfilled members of society.</p>
+  </div>
+</section>
+
+<section class="sections">
+  <div class="sections-head">
+    <span class="eyebrow">Where to look next</span>
+    <h2 style="margin-top:14px; font-size:clamp(1.5rem,2.8vw,2rem);">Four ways we work</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">Collaboration</span>
+      <h3>Networks &amp; partners</h3>
+      <p>The Justice Working Group, RVPN, Just Desserts, and our emerging Justice-Involved Reference Panel.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Resourcing &amp; Training</span>
+      <h3>For practitioners</h3>
+      <p>Professional Boundaries, the Renew model, and a growing library of recorded training on our YouTube channel.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Family &amp; Community</span>
+      <h3>Direct support</h3>
+      <p>Family Engagement Workers, visiting guidance, and a long history of connecting children with an incarcerated parent.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Research</span>
+      <h3>Evidence &amp; ideas</h3>
+      <p>From the Churchill Fellowship to international models like Singapore's Yellow Ribbon Project.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

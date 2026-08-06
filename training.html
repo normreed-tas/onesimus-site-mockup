@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Resourcing &amp; Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:700px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:640px; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+
+  /* ACTIVE TRAINING CARDS */
+  .train-card{
+    display:grid; grid-template-columns:1fr 260px; gap:0; border:1px solid var(--line);
+    margin-bottom:1px; background:var(--white);
+  }
+  .train-main{padding:32px 34px;}
+  .train-main .who{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--brass); letter-spacing:.06em; margin-bottom:10px; display:block;}
+  .train-main h3{font-size:1.4rem;}
+  .train-main p{margin-top:12px; font-size:.95rem; max-width:520px;}
+  .train-side{
+    background:var(--sage-tint); padding:32px 26px; display:flex; flex-direction:column; gap:16px; justify-content:center;
+  }
+  .stat{}
+  .stat .k{font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage);}
+  .stat .v{font-family:'Fraunces',serif; font-size:1.15rem; color:var(--ink); margin-top:3px;}
+  @media (max-width:760px){ .train-card{grid-template-columns:1fr;} }
+
+  /* YOUTUBE STRIP */
+  .yt{background:var(--ink); border-radius:2px; padding:44px 40px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; justify-content:space-between; margin-top:1px;}
+  .yt-text .eyebrow{color:var(--brass);}
+  .yt-text h3{color:var(--white); font-size:1.3rem; margin-top:10px;}
+  .yt-text p{color:rgba(255,255,255,.65); margin-top:8px; max-width:440px; font-size:.9rem;}
+  .yt-btn{
+    background:var(--brass); color:var(--white); text-decoration:none; padding:12px 24px;
+    border-radius:100px; font-size:.85rem; font-weight:600; white-space:nowrap;
+  }
+
+  /* UNDER REVIEW */
+  .review-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .review-card{background:var(--paper); padding:28px 26px; display:flex; flex-direction:column; gap:10px;}
+  .review-card .status{
+    align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--brass-tint); color:var(--brass); padding:4px 10px; border-radius:100px;
+  }
+  .review-card h3{font-size:1.1rem;}
+  .review-card p{font-size:.88rem;}
+  @media (max-width:700px){ .review-grid{grid-template-columns:1fr;} }
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html" class="current">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Resourcing &amp; Training</span>
+  <h1 style="margin-top:14px;">Training that's earned real credibility across the sector.</h1>
+  <p>Training has been one of Onesimus's strengths for many years, in different forms. Professional Boundaries is our current flagship program — alongside a growing library of recorded sessions, and training we're actively considering bringing back.</p>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">Current program</span>
+    <h2>Delivered regularly, at no cost</h2>
+  </div>
+
+  <div class="train-card">
+    <div class="train-main">
+      <span class="who">Delivered by Kate Ibbott, Board Director</span>
+      <h3>Professional Boundaries — Safeguarding Ethics in the Justice System</h3>
+      <p>Onesimus's flagship, currently-running training program. It has developed genuine credibility with community organisations, justice-sector workers, and government departments — for professionals navigating the boundaries of care in justice and community work.</p>
+      <div class="ph-img" style="height:120px; margin-top:16px; max-width:400px;">Image — training session in progress</div>
+    </div>
+    <div class="train-side">
+      <div class="stat"><span class="k">Capacity</span><span class="v">Recently lifted 30 → 40</span></div>
+      <div class="stat"><span class="k">Demand</span><span class="v">Regularly fully subscribed</span></div>
+    </div>
+  </div>
+
+  <div class="yt">
+    <div class="yt-text">
+      <span class="eyebrow">Recorded &amp; growing</span>
+      <h3>Watch our training on YouTube</h3>
+      <p>Recorded sessions, including past special presentations, are published for free so the sector can access them beyond the room.</p>
+    </div>
+    <a href="https://www.youtube.com/@onesimusfoundation" target="_blank" rel="noopener" class="yt-btn">youtube.com/@onesimusfoundation</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">Past special sessions</span>
+    <h2>One-off training &amp; presentations</h2>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <span class="status" style="background:var(--sage-tint); color:var(--sage);">Delivered once</span>
+      <h3>The Renew Model</h3>
+      <p>A half-day session led by Dr David Burck of Brisbane's Talera Centre, on the Renew model of rebuilding mother–adolescent relationships. A one-off presentation, not a currently recurring Onesimus program — recording available via YouTube.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">In scope, currently under review</span>
+    <h2>What may come next</h2>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <span class="status">Under review</span>
+      <h3>Hidden Sentence Training</h3>
+      <p>Developed from Barnardo's UK model and adapted for Australia, Hidden Sentence has engaged more than 1,000 professionals — including Roadshow presentations to regional areas — in understanding the challenges faced by families of offenders.</p>
+    </div>
+    <div class="review-card">
+      <span class="status">Under review</span>
+      <h3>Practitioner's Training</h3>
+      <p>Training for professionals working directly with children of offenders — status relative to current offerings still being confirmed.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

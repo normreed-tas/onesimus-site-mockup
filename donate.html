@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Donate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+  @media (max-width:860px){ nav ul{display:none;} }
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:680px;}
+  .page-head p{margin-top:18px; max-width:600px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 90px;}
+
+  /* MAIN GIVING PANEL */
+  .give-panel{
+    background:var(--ink); border-radius:2px; padding:48px 44px;
+    display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
+  }
+  .give-panel .eyebrow{color:var(--brass);}
+  .give-panel h2{color:var(--white); font-size:1.6rem; margin-top:10px;}
+  .give-panel p{color:rgba(255,255,255,.65); margin-top:10px; max-width:460px; font-size:.92rem;}
+  .give-btn{
+    background:var(--brass); color:var(--white); text-decoration:none; padding:14px 30px;
+    border-radius:100px; font-size:.92rem; font-weight:600; white-space:nowrap;
+  }
+  @media (max-width:700px){ .give-panel{grid-template-columns:1fr;} }
+
+  /* WHY IT MATTERS strip */
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:1px;}
+  .why-card{background:var(--paper); padding:28px 24px;}
+  .why-card .num{font-family:'Fraunces',serif; color:var(--brass); font-size:1.6rem;}
+  .why-card p{font-size:.88rem; margin-top:8px;}
+  @media (max-width:760px){ .why-grid{grid-template-columns:1fr;} }
+
+  /* JUST DESSERTS separate giving */
+  .jd-note{
+    margin-top:56px; background:var(--sage-tint); border-left:3px solid var(--sage);
+    border-radius:2px; padding:30px 32px; display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:center;
+  }
+  .jd-note h3{font-size:1.1rem;}
+  .jd-note p{font-size:.88rem; margin-top:6px; max-width:480px;}
+  .jd-note a{font-size:.85rem; font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint, #EAF0EB), var(--sage-tint, #EAF0EB) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <li><a href="training.html">Resourcing &amp; Training</a></li>
+        <li><a href="family-community.html">Family &amp; Community</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <a href="donate.html" class="nav-cta" style="opacity:1; border-bottom:2px solid var(--white);">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Donate</span>
+  <h1 style="margin-top:14px;">Help someone go home useful, profitable, and welcomed.</h1>
+  <p>Onesimus is a registered public benevolent institution and approved deductible gift recipient — donations over $2 are tax deductible.</p>
+</section>
+
+<section class="section">
+  <div class="give-panel">
+    <div>
+      <span class="eyebrow">General giving</span>
+      <h2>Support the Foundation's work</h2>
+      <p>Your donation supports Family Engagement Workers, practitioner training, and the networks that keep Tasmania's justice system connected to community.</p>
+      <div class="ph-img" style="height:80px; margin-top:14px; max-width:380px; border-color:rgba(255,255,255,.3); color:rgba(255,255,255,.6); background:repeating-linear-gradient(45deg, rgba(255,255,255,.05), rgba(255,255,255,.05) 10px, transparent 10px, transparent 20px);">Image — family / community moment</div>
+    </div>
+    <a href="#" class="give-btn">Donate now</a>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card"><div class="num">ABN</div><p>89 610 863 280 — registered charity &amp; approved DGR</p></div>
+    <div class="why-card"><div class="num">10+ yrs</div><p>Working alongside Tasmania Prison Service and families since 2016</p></div>
+    <div class="why-card"><div class="num">100%</div><p>Training delivered free to the sector, at no cost to attendees</p></div>
+  </div>
+
+  <div class="jd-note">
+    <div>
+      <span class="eyebrow" style="color:var(--sage);">A specific program</span>
+      <h3>Support Just Desserts directly</h3>
+      <p>Fund positive incentives for people in the Drug Court's Mandated Diversion program, via direct bank transfer. Funds go to the Committee's most pressing needs unless a project or region is nominated.</p>
+    </div>
+    <a href="#">Bank transfer details →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>
