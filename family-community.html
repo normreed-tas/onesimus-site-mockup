@@ -84,6 +84,17 @@
     color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
     padding:12px; min-height:80px;
   }
+
+  /* DROPDOWN (two-audience menu) */
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
 </style>
 </head>
 <body>
@@ -94,9 +105,17 @@
     <nav>
       <ul>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="collaboration.html">Collaboration</a></li>
-        <li><a href="training.html">Resourcing &amp; Training</a></li>
-        <li><a href="family-community.html" class="current">Family &amp; Community</a></li>
+        <li><a href="family-community.html" class="current">For Families</a></li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
         <li><a href="research.html">Research</a></li>
         <li><a href="survey.html">The Survey</a></li>
         <li><a href="events.html">Events</a></li>
