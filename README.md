@@ -1,7 +1,7 @@
 # Onesimus Foundation — Website Design Mockup
 
 This is a clickable, static HTML mockup of the proposed Onesimus Foundation
-website — eleven pages, fully linked, for stakeholder review. It is a design
+website — twelve pages, fully linked, for stakeholder review. It is a design
 concept only: no real forms, payments, or CMS are wired up.
 
 ## Pages included
@@ -12,6 +12,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `family-community.html` — Family & Community
 - `research.html` — Research
 - `youth-justice.html` — Youth Justice (under For Professionals)
+- `key-documents.html` — Key documents (links to official sources; linked from Research)
 - `survey.html` — Understanding Our Prisons survey (pre-launch)
 - `events.html` — Events
 - `donate.html` — Donate
