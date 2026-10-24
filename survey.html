@@ -27,7 +27,7 @@
   nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
   nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
   .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
-  @media (max-width:860px){ nav ul{display:none;} }
+  
 
   .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
   .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:720px;}
@@ -110,6 +110,25 @@
   nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
   nav .sub a:hover{background:var(--sage-tint); opacity:1;}
   nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  /* MOBILE MENU */
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
 </style>
 </head>
 <body>
@@ -136,6 +155,7 @@
         <li><a href="events.html">Events</a></li>
       </ul>
     </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
     <a href="donate.html" class="nav-cta">Donate</a>
   </div>
 </header>
