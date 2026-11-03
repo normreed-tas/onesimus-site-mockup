@@ -1,7 +1,7 @@
 # Onesimus Foundation — Website Design Mockup
 
 This is a clickable, static HTML mockup of the proposed Onesimus Foundation
-website — twelve pages, fully linked, for stakeholder review. It is a design
+website — thirteen pages, fully linked, for stakeholder review. It is a design
 concept only: no real forms, payments, or CMS are wired up.
 
 ## Pages included
@@ -11,6 +11,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `training.html` — Resourcing & Training
 - `family-community.html` — Family & Community
 - `research.html` — Research
+- `justice-figures.html` — Tasmanian justice figures (data explorer; linked from Research)
 - `youth-justice.html` — Youth Justice (under For Professionals)
 - `key-documents.html` — Key documents (links to official sources; linked from Research)
 - `survey.html` — Understanding Our Prisons survey (pre-launch)
@@ -19,7 +20,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `contact.html` — Contact
 
 ## What's real vs placeholder
-- All internal navigation between these nine pages is fully wired and
+- All internal navigation between these thirteen pages is fully wired and
   clickable.
 - Content is drawn from real source material (board bios, program
   descriptions, historical records) gathered during the design process —
