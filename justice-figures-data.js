@@ -356,7 +356,7 @@ var Q=[
 
 {src:'aihw',age:'youth',id:'yyear',topic:'Through the year',q:'How many young Tasmanians go through the youth justice system in a year?',
  fig:'266',unit:'young people under supervision at some point during 2024–25',
- plain:'Although only about 162 young people are under supervision on an average day, 266 passed through the system at some point during the year — 257 under community supervision and 70 in detention. The average-day figure substantially understates how many young people are affected.',
+ plain:'Although only about 163 young people are under supervision on an average day, 266 passed through the system at some point during the year — 257 under community supervision and 70 in detention. The average-day figure substantially understates how many young people are affected.',
  series:null,
  breakdown:{label:'Tasmania, 2024–25: average day against during the year',total:266,nopct:true,
    rows:[['Under supervision, during the year',266],['Under supervision, average day',162.5],['In detention, during the year',70],['In detention, average day',15.8]]},
