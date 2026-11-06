@@ -107,7 +107,7 @@ var Q=[
  series:{years:YRS8,tas:[69.7,64.1,53.8,55.6,60.7,70.3,69.0,85.5],aust:[80.5,80.3,81.4,80.7,80.1,81.4,79.1,80.4],ylabel:'Per cent of eligible prisoners'},
  bars:{vals:[85.7,91.5,65.9,81.4,77.6,85.5,90.1,78.5],label:'Prisoners employed, 2024–25',fmt:function(v){return v.toFixed(1)+'%'}},
  counts:'The share of eligible prisoners in prison employment, counted as a monthly average on the first business day of each month against the average prisoner population. Of those employed in Tasmania, two-thirds are in service industries and about a fifth in commercial industries.',
- caveats:['Tasmania changed its data collection method in 2024–25 and the figure is not directly comparable with earlier years. A sixteen-point rise in one year is far more likely to reflect that change than a transformation in prison industry.','"Employment" here includes unpaid or token-rate work inside the prison. It is not employment in the ordinary sense and is not a measure of job readiness.'],
+ caveats:['Tasmania changed its data collection method in 2024–25 and the figure is not directly comparable with earlier years. A sixteen-point rise in one year is far more likely to reflect that change than a transformation in prison industry.','"Employment" here means work in prison industries — commercial or service work inside the prison — or on work release, as a share of prisoners eligible to work. Prisoners who are ill, on short sentences, in full-time education or programs, or on remand and choosing not to work are left out. It says nothing about pay, skills or work after release.'],
  table:'8A.12'},
 
 {src:'rogs',id:'spend',topic:'Money',q:'How much does Tasmania spend on justice per person?',
