@@ -13,6 +13,8 @@ concept only: no real forms, payments, or CMS are wired up.
 - `research.html` — Research
 - `justice-figures.html` — Tasmanian justice figures, adults (data explorer; linked from Research)
 - `youth-justice.html` — Youth Justice (under For Professionals), including the youth figures explorer. Both explorers share `justice-figures-data.js` and link to each other for adult/youth comparisons
+- `figures-register.html` — Sources and checks: the source record for every figure and what the evidence labels mean (linked from both figures pages)
+- `justice-figures-records.js` — evidence labels (LV) and source records (REC) for every figure; loaded before `justice-figures-data.js`. Bump the `?v=` on the script tags when either file changes
 - `key-documents.html` — Key documents (links to official sources; linked from Research)
 - `survey.html` — Understanding Our Prisons survey (pre-launch)
 - `events.html` — Events

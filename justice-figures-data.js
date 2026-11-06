@@ -23,7 +23,7 @@ var Q=[
  counts:'The average daily prisoner population divided by the adult population, per 100,000 adults. This is the crude rate; ROGS also publishes an age-standardised rate adjusting for differently aged populations between states.',
  caveats:['The Northern Territory figure of 1,325 is genuine, not an error. It compresses the scale of the chart and makes the other jurisdictions look closer together than they are.','A lower imprisonment rate is not the same as less crime, fewer victims, or a better system. It reflects policing, bail, sentencing and parole practice as much as offending.'],
  xref:'The ABS reports 172 per 100,000 for Tasmania on the same broad measure, because it counts one night rather than a yearly average. Both are right.',gotoId:'absrate',
- table:'8A.5, 8A.8'},
+ table:'8A.5'},
 
 {src:'rogs',id:'pop',topic:'Prisons',q:'How many people are in prison in Tasmania?',
  fig:'784',unit:'people in prison on an average day across 2024–25',
@@ -61,7 +61,7 @@ var Q=[
  series:{years:YRS8,tas:[8.6,7.9,7.1,8.0,7.7,7.3,7.5,7.0],aust:[9.9,9.7,9.6,9.4,8.7,8.8,9.0,8.9],ylabel:'Hours per day'},
  bars:{vals:[8.0,10.1,8.2,9.3,9.0,7.0,8.8,12.1],label:'Average hours out of cells per day, 2024–25',fmt:function(v){return v.toFixed(1)+' hr'}},
  counts:'The average hours per day prisoners are not confined to their cells, across open and secure custody combined. It is the measure most closely tied to daily lived experience, and is affected by staffing, lockdowns and infrastructure.',
- caveats:['Tasmania holds 97.9 per cent of its prisoners in secure custody — the highest proportion in the country apart from the ACT. Secure custody always produces lower out-of-cell hours, so part of this gap reflects the mix of custody types rather than how any one prison is run.','The figure is an average across the year and across all prisoners. It conceals both better and considerably worse individual experience.'],
+ caveats:['Tasmania holds 97.9 per cent of its prisoners in secure custody — the highest proportion in the country. Secure custody always produces lower out-of-cell hours, so part of this gap reflects the mix of custody types rather than how any one prison is run.','The figure is an average across the year and across all prisoners. It conceals both better and considerably worse individual experience.'],
  table:'8A.13'},
 
 {src:'rogs',id:'indig',topic:'Equity',q:'Are Aboriginal Tasmanians over-represented in prison?',
@@ -80,12 +80,12 @@ var Q=[
  series:{years:['2022-23','2023-24','2024-25'],tas:[75.7,85.5,87.2],aust:null,ylabel:'Per cent of capacity'},
  bars:{vals:[86.0,72.4,96.6,97.3,100.0,87.2,93.8,92.7],label:'Prison capacity utilisation, 2024–25',fmt:function(v){return v.toFixed(1)+'%'}},
  counts:'Average daily prisoner population measured against average available capacity. Capacity is what the system reports as usable, which is not the same as the design capacity of the buildings and can be adjusted.',
- caveats:['The indicator changed for the 2024 edition of the report. Figures before 2022–23 are measured differently and are not shown.','Utilisation near capacity constrains everything else — classification, programs, out-of-cell hours, and the ability to separate people who should be kept apart.','No national average is published, because each jurisdiction defines its own capacity.'],
+ caveats:['The indicator changed for the 2024 edition of the report. Figures before 2022–23 are measured differently and are not shown.','Utilisation near capacity constrains everything else — classification, programs, out-of-cell hours, and the ability to separate people who should be kept apart.','The Productivity Commission publishes no national average for this measure.'],
  table:'8A.3, 8A.15'},
 
 {src:'rogs',id:'cc',topic:'Community',q:'How many people are serving sentences in the community?',
  fig:'2,098',unit:'people on community corrections orders on an average day',
- plain:'Nearly 2,100 Tasmanians were under community corrections supervision on an average day in 2024–25 — around two and a half times the number in prison. The rate of 454 per 100,000 adults is above the national average of 388.',
+ plain:'Nearly 2,100 Tasmanians were under community corrections supervision on an average day in 2024–25 — more than two and a half times the number in prison. The rate of 454 per 100,000 adults is above the national average of 388.',
  series:{years:YRS8,tas:[462.5,471.9,463.5,435.3,458.3,428.1,417.9,453.6],aust:[360.9,384.4,416.5,392.6,398.7,390.2,389.9,387.7],ylabel:'Per 100,000 adults'},
  bars:{vals:[545.8,161.4,424.5,284.8,527.9,453.6,223.4,838.4],label:'Community corrections rate per 100,000 adults, 2024–25',fmt:function(v){return v.toFixed(1)}},
  counts:'People subject to supervision, reparation or restricted-movement orders managed by community corrections. A person can hold more than one order; in Tasmania those with both reparation and supervision conditions are counted in each category, so categories sum to more than the total.',
@@ -98,7 +98,7 @@ var Q=[
  series:{years:YRS8,tas:[25.1,24.8,19.4,19.8,17.6,21.5,21.7,17.6],aust:[34.0,35.1,32.2,29.9,23.9,26.0,25.7,24.0],ylabel:'Per cent of eligible prisoners'},
  bars:{vals:[14.8,28.7,31.9,15.8,48.3,17.6,41.8,12.9],label:'Prisoners in education and training, 2024–25',fmt:function(v){return v.toFixed(1)+'%'}},
  counts:'The share of eligible prisoners enrolled in pre-certificate, secondary, vocational or higher education. Tasmania calculates this as an average of monthly participation over ten months, excluding December and January.',
- caveats:['Tasmania changed its data collection method in 2024–25, and the Commission states the figure is not directly comparable with earlier years. The apparent four-point fall should not be read as a real decline.','The Commission advises this measure is not comparable across jurisdictions at all, because eligibility is defined differently in each. The state-by-state chart shows the spread, not a ranking.','Participation says nothing about completion, or about whether the course led anywhere.'],
+ caveats:['Tasmania changed its data collection method in 2024–25, and the Commission states the figure is not directly comparable with earlier years. The apparent four-point fall should not be read as a real decline.','The Commission advises this measure is not comparable across jurisdictions, and its footnotes show eligibility is defined differently in each. The state-by-state chart shows the spread, not a ranking.','Participation says nothing about completion, or about whether the course led anywhere.'],
  table:'8A.11'},
 
 {src:'rogs',id:'work',topic:'Programs',q:'How many prisoners are employed?',
@@ -121,7 +121,7 @@ var Q=[
 
 {src:'rogs',id:'cwork',topic:'Community',q:'How much of the community work ordered by courts actually gets done?',
  fig:'82.4%',unit:'of imposed unpaid community work hours were acquitted — the highest in the country',
- plain:'On orders finalised during the year, Tasmania acquitted a higher share of imposed community work hours than any other jurisdiction, at 82.4 per cent against a national 72.2 per cent. The figure has improved steadily since 2020–21.',
+ plain:'On orders finalised during the year, Tasmania acquitted a higher share of imposed community work hours than any other jurisdiction, at 82.4 per cent against a national 72.2 per cent. The figure rose from 72.5 per cent in 2020–21, held near 78 per cent for three years, then rose again.',
  series:{years:['2019-20','2020-21','2021-22','2022-23','2023-24','2024-25'],tas:[79.5,72.5,78.8,78.5,78.4,82.4],aust:[65.6,77.0,72.2,67.6,69.6,72.2],ylabel:'Per cent of hours acquitted'},
  bars:{vals:[74.2,67.9,80.3,59.2,62.4,82.4,80.4,65.1],label:'Community work hours acquitted, 2024–25',fmt:function(v){return v.toFixed(1)+'%'}},
  counts:'For orders discharged during the year, the proportion of imposed unpaid community work hours acquitted. Hours are generally acquitted by doing the unpaid work, but in some jurisdictions they can also be acquitted through other approved programs or activities. A discharged order is one finalised during the year, either because it was completed or because it was revoked or breached, so unworked hours on revoked orders count against the result.',
@@ -149,14 +149,14 @@ var Q=[
  table:'17A.10, 17A.20, 17A.21'},
 
 {src:'rogs',age:'youth',id:'ysuper',topic:'Supervision',q:'How many young Tasmanians are under youth justice supervision?',
- fig:'20.4',unit:'per 10,000 young people aged 10–17 — the highest rate in the country',
- plain:'On an average day, 110 young Tasmanians aged 10 to 17 were under youth justice supervision: 96 on community-based orders and 14 in detention. At 20.4 per 10,000 that is the highest supervision rate of any jurisdiction, against a national 11.9 — but it is lower than Tasmania’s own rate of 23.4 in 2018–19.',
+ fig:'20.4',unit:'per 10,000 young people aged 10–17 — the highest of the jurisdictions that reported',
+ plain:'On an average day, 110 young Tasmanians aged 10 to 17 were under youth justice supervision: 96 on community-based orders and 14 in detention. At 20.4 per 10,000 that is the highest supervision rate of any jurisdiction that reported (the Northern Territory did not), against a national 11.9 — but it is lower than Tasmania’s own rate of 23.4 in 2018–19.',
  series:{years:YRS8,tas:[20.5,23.4,22.0,15.2,12.2,14.7,17.3,20.4],aust:null,ylabel:'Per 10,000 aged 10–17'},
  breakdown:{label:'Young people under supervision on an average day, Tasmania, 2024–25',total:110,nopct:true,
    rows:[['Community-based supervision',96],['Detention',14],['Total (not the sum)',110]]},
  counts:'The average number of young people aged 10 to 17 under supervision on any given day. The total is not the sum of the two categories, because a young person can be under both on the same day. Being an average, a young person supervised for part of the year counts as a fraction.',
  caveats:['Tasmania’s rate is high because of community-based supervision, not detention. Its detention rate of 2.6 is at the national average of 2.7.','The rate fell sharply to 12.2 in 2021–22 and has climbed since. A series that moves this much in a jurisdiction this small should be read as a band, not a line.','The Report explicitly names Tasmania as a jurisdiction whose rates should be used with caution because of small population numbers, and does not calculate rates where a cell is under five.','The national figure excludes the Northern Territory, which did not supply community supervision data.'],
- xref:'Tasmania’s adult imprisonment rate runs below the national average, while its youth supervision rate is the highest in the country. The two systems are not pointing the same way.',gotoId:'rate',
+ xref:'Tasmania’s adult imprisonment rate runs below the national average, while its youth supervision rate is the highest reported in the country. The two systems are not pointing the same way.',gotoId:'rate',
  table:'17A.1'},
 
 {src:'rogs',age:'youth',id:'ycap',topic:'Detention',q:'How full is Tasmania’s youth detention centre?',
@@ -171,7 +171,7 @@ var Q=[
 
 {src:'rogs',age:'youth',id:'yreturn',topic:'Returns',q:'Do young people come back into the youth justice system?',
  fig:'63.9%',unit:'returned to sentenced supervision within 12 months — against 56.7% nationally',
- plain:'Of young Tasmanians released from sentenced supervision in 2022–23, almost two-thirds were back under sentenced supervision within a year. That is well above the national rate, and a sharp rise on Tasmania’s own 50.0 per cent the year before.',
+ plain:'Of young Tasmanians aged 10–16 released from sentenced supervision in 2022–23, almost two-thirds were back under sentenced supervision within a year. That is well above the national rate, and a sharp rise on Tasmania’s own 50.0 per cent the year before.',
  series:{years:['2015-16','2016-17','2017-18','2018-19','2019-20','2020-21','2021-22','2022-23'],tas:[57.7,51.8,58.3,53.3,49.2,51.1,50.0,63.9],aust:[56.5,56.5,59.1,54.9,50.8,57.9,57.0,56.7],ylabel:'Per cent returning'},
  counts:'Young people released from sentenced supervision who return to sentenced supervision within 12 months. The twelve-month window is much shorter than the two years used for adults, and supervision includes community orders as well as detention, so this figure is not comparable with the adult recidivism rate.',
  caveats:['The most recent cohort is 2022–23, not 2024–25. Following people forward for twelve months means the measure always lags the rest of the report by two years.','A fourteen-point jump in one year, in a jurisdiction with this few young people, may reflect the composition of one small release cohort rather than a change in how the system performs.','The Commission flags this table as not comparable across jurisdictions and incomplete for the current period.'],
@@ -179,7 +179,7 @@ var Q=[
  table:'17A.26'},
 
 {src:'rogs',age:'youth',id:'yorders',topic:'Community',q:'Do young people complete their community orders?',
- fig:'77.6%',unit:'of community-based supervised orders completed successfully, against 88.1% nationally',
+ fig:'77.6%',unit:'of sentenced community-based orders completed successfully, against 88.1% nationally',
  plain:'About three-quarters of young Tasmanians completed their community-based orders successfully in 2024–25 — 180 of 232. The national figure is 88 per cent, and the gap between Tasmania and the rest of the country has widened over the past decade.',
  series:{years:YRS8,tas:[76.1,84.1,79.5,81.7,80.1,78.9,72.1,77.6],aust:[79.9,80.7,82.9,84.7,85.0,84.8,86.1,88.1],ylabel:'Per cent completed successfully'},
  breakdown:{label:'Community-based supervised orders, Tasmania, 2024–25',total:232,
@@ -190,8 +190,8 @@ var Q=[
  table:'17A.25'},
 
 {src:'rogs',age:'youth',id:'ycase',topic:'Programs',q:'Do young people get a case plan?',
- fig:'50.9%',unit:'of sentenced community orders had a case plan within six weeks, against 77.1% nationally',
- plain:'Just over half of young Tasmanians on a sentenced community order had a case plan within six weeks of starting it — 58 of 114. For those in sentenced detention the figure was 5 of 8. Both sit well below national practice, where 95 per cent of detention orders have a plan in place.',
+ fig:'50.9%',unit:'of sentenced community orders had a case plan in time (Tasmania allows seven weeks, the standard is six), against 77.1% nationally',
+ plain:'Just over half of young Tasmanians on a sentenced community order had a case plan in time — 58 of 114, though Tasmania counts seven weeks for community orders where the national measure uses six. For those in sentenced detention the figure was 5 of 8. Both sit well below national practice, where 95 per cent of detention orders have a plan in place.',
  series:null,
  breakdown:{label:'Case plan within six weeks of commencing a sentenced order, 2024–25',total:100,nopct:true,
    rows:[['Tasmania, community orders',50.9],['Australia, community orders',77.1],['Tasmania, detention orders',62.5],['Australia, detention orders',95.3]]},
@@ -227,12 +227,12 @@ var Q=[
  breakdown:{label:'Self-harm and attempted suicide in Tasmanian youth detention, 2024–25',total:9,nopct:true,
    rows:[['Incidents requiring treatment',9],['Incidents requiring hospitalisation',0]]},
  counts:'Incidents recorded in youth detention, divided between those requiring hospitalisation and those receiving psychological or medical treatment without hospitalisation. The rate is expressed per 10,000 custody nights, at 16.0 for Tasmania overall.',
- caveats:['Nationally in 2024–25 the Productivity Commission reports 28 incidents requiring hospitalisation and 218 (excluding the ACT) requiring treatment without hospitalisation. It also states that the data is not comparable across jurisdictions, because states collect it in different ways — some from case files, some from electronic incident reports — so Tasmania should not be ranked against those totals.','These are counts of incidents, not of young people. A small number of young people may account for several incidents, and the figure says nothing about how many individuals were involved.','Against 5,640 custody nights and an average of about fifteen young people, nine incidents is not a small number. The figure covers only incidents recorded under the reporting rules.'],
+ caveats:['Nationally in 2024–25 the Productivity Commission reports 28 incidents requiring hospitalisation and 218 (excluding the ACT) requiring treatment without hospitalisation. It also states that the data is not comparable across jurisdictions, because states collect it in different ways — some from case files, some from electronic incident reports — so Tasmania should not be ranked against those totals.','These are counts of incidents, not of young people. A small number of young people may account for several incidents, and the table shows eight young people received treatment across the nine incidents.','Against 5,640 custody nights and an average of about fifteen young people, nine incidents is not a small number. The figure covers only incidents recorded under the reporting rules.'],
  support:'If this is affecting you or someone you know, Lifeline is available 24 hours a day on 13 11 14, and Kids Helpline on 1800 55 1800.',
  table:'17A.19'},
 
 {src:'rogs',age:'youth',id:'ydeaths',topic:'Conditions',q:'Have any young people died in Tasmanian youth detention?',
- fig:'0',unit:'deaths in Tasmanian youth detention in every year of the past decade',
+ fig:'0',unit:'deaths in Tasmanian youth justice custody in every year of the past decade',
  plain:'There have been no deaths in Tasmanian youth detention in any year from 2015–16 to 2024–25. Nationally there has been one death in each of the last two years, after eight years with none.',
  series:null,
  counts:'Deaths of young people in youth detention. The Productivity Commission flags this as one of the few youth justice measures that is comparable across jurisdictions and over time, and complete for the current period.',
@@ -334,9 +334,9 @@ var Q=[
 /* ============ AIHW — young people ============ */
 {src:'aihw',age:'youth',id:'yremand',topic:'Remand',q:'How many young Tasmanians in detention have not been sentenced?',
  fig:'85%',unit:'of young people in Tasmanian detention were unsentenced — 13.4 of 15.8 on an average day',
- plain:'The great majority of young people held in Tasmanian detention have not been sentenced. On an average day 13.4 were on remand and 2.7 were serving a sentence. The remand figure has doubled in five years while the sentenced figure has fallen.',
+ plain:'The great majority of young people held in Tasmanian detention have not been sentenced. On an average day 13.4 were on remand and 2.7 were serving a sentence. The remand figure has doubled since 2020–21 while the sentenced figure has fallen.',
  series:{years:['2020-21','2021-22','2022-23','2023-24','2024-25'],tas:[6.7,6.9,11.7,13.1,13.4],aust:null,ylabel:'Unsentenced, average day'},
- breakdown:{label:'Young people in detention by legal status, Tasmania, average day 2024–25',total:16.1,
+ breakdown:{label:'Young people in detention by legal status, Tasmania, average day 2024–25 (the two need not sum to the published total of 15.8)',total:16.1,nopct:true,
    rows:[['Unsentenced (remand)',13.4],['Sentenced',2.7]]},
  counts:'Young people held in detention awaiting the outcome of their matter, as against those serving a sentence. The AIHW notes the two may not sum to the total, because a young person can change legal status during the same day.',
  caveats:['The AIHW attaches a specific warning to the Tasmanian figures here: they should be read with caution because of potential issues recording and updating custodial order details in Tasmania. That caution applies to the trend as well as the single year.','Detention is the most expensive and most disruptive part of the system, and five-sixths of it is being used on young people who have not been found guilty. That is the finding; what should follow from it is a policy argument, not a statistical one.','These are averages of a very small population. Thirteen young people is a number that moves.'],
@@ -344,14 +344,14 @@ var Q=[
  table:'Tables S108a, S114a, S120a'},
 
 {src:'aihw',age:'youth',id:'ylength',topic:'Supervision',q:'How long do young people spend under supervision?',
- fig:'223',unit:'days on average in Tasmania, against 177 nationally',
- plain:'Young Tasmanians spend an average of 223 days under youth justice supervision during the year, well above the national 177. Time in detention averages 80 days against a national 66. The AIHW gives a largely procedural reason for this, explained below.',
+ fig:'223',unit:'days on average in Tasmania, against 177 nationally (excluding the Northern Territory)',
+ plain:'Young Tasmanians spend an average of 223 days under youth justice supervision during the year, well above the national 177 (which excludes the Northern Territory). Time in detention averages 80 days against a national 66. The AIHW gives a largely procedural reason for this, explained below.',
  series:null,
  breakdown:{label:'Average days under supervision during the year, 2024–25',total:223,nopct:true,
-   rows:[['Tasmania, all supervision',223.1],['Australia, all supervision',176.9],['Tasmania, detention only',80.2],['Australia, detention only',66.1]]},
+   rows:[['Tasmania, all supervision',223.1],['Australia excl. NT, all supervision',176.9],['Tasmania, detention only',80.2],['Australia, detention only',66.1]]},
  counts:'The average number of days a young person spent under supervision across the year. In notes to its tables S29 and S30, the AIHW records a Tasmania-specific explanation: sentenced community supervision orders in Tasmania are generally specified by the courts to default to twelve months, which lengthens supervision for Tasmania.',
- caveats:['This describes court practice, as the AIHW reports it. It lengthens supervision, and it may contribute to Tasmania having the highest supervision rate in the country, but how much it contributes cannot be established from these figures alone. It does not by itself mean young Tasmanians are more heavily involved in offending.','Longer supervision is not straightforwardly good or bad. It can mean more sustained support, or more prolonged exposure to the system. The number alone does not say which.','The AIHW gives two medians for supervision periods completed in 2024–25 (table S29). Counting only the days that fell within 2024–25, the Tasmanian median is 98 days (national 40). Counting each period from its start, including time before July 2024, it is 269 days (national 84) — the longest in the country. Quote the one that matches your question.'],
- xref:'Longer supervision periods raise the number of young people under supervision on any given day, which may help explain why Tasmania’s supervision rate is the highest in the country.',gotoId:'ysuper',
+ caveats:['This describes court practice, as the AIHW reports it. It lengthens supervision, and it may contribute to Tasmania having the highest reported supervision rate in the country, but how much it contributes cannot be established from these figures alone. It does not by itself mean young Tasmanians are more heavily involved in offending.','Longer supervision is not straightforwardly good or bad. It can mean more sustained support, or more prolonged exposure to the system. The number alone does not say which.','The AIHW gives two medians for supervision periods completed in 2024–25 (table S29). Counting only the days that fell within 2024–25, the Tasmanian median is 98 days (national 40, excluding the Northern Territory). Counting each period from its start, including time before July 2024, it is 269 days (national 84) — the longest in the country. Quote the one that matches your question.'],
+ xref:'Longer supervision periods raise the number of young people under supervision on any given day, which may help explain why Tasmania’s supervision rate is the highest reported in the country.',gotoId:'ysuper',
  table:'Tables S29, S30, S101, S102'},
 
 {src:'aihw',age:'youth',id:'yyear',topic:'Through the year',q:'How many young Tasmanians go through the youth justice system in a year?',
@@ -361,7 +361,7 @@ var Q=[
  breakdown:{label:'Tasmania, 2024–25: average day against during the year',total:266,nopct:true,
    rows:[['Under supervision, during the year',266],['Under supervision, average day',162.5],['In detention, during the year',70],['In detention, average day',15.8]]},
  counts:'Counts of distinct young people, all ages, supervised at any time in the year, as against the average number under supervision on a single day. The gap between the two is a measure of turnover: many supervision periods are short, so far more individuals are touched by the system than any single day suggests.',
- caveats:['The detention contrast is the striking one: an average of 16 young people in detention on any day, but 70 individuals passing through across the year.','The during-the-year figures include young people aged 18 and over. Tasmania’s count of 18-plus young people in detention during the year is suppressed because the numbers are too small to publish.','The AIHW changed how it counts receptions from 2024–25, so reception figures are not comparable with earlier years.'],
+ caveats:['The detention contrast is the striking one: an average of 16 young people in detention on any day, but 70 individuals passing through across the year.','The during-the-year figures include young people aged 18 and over. Tasmania’s 18-plus young people in detention during the year are excluded from the published figure because the numbers are small, so the 70 in detention counts under-18s only.','The AIHW changed how it counts receptions from 2024–25, so reception figures are not comparable with earlier years.'],
  table:'Tables S1b, S34b, S72b'},
 
 {src:'aihw',age:'youth',id:'yage',topic:'Age',q:'How old are the young people under supervision?',
@@ -371,17 +371,17 @@ var Q=[
  breakdown:{label:'Young people under supervision on an average day by age, Tasmania, 2024–25',total:110.2,
    rows:[['Age 17',44.4],['Age 16',32.5],['Age 15',21.1],['Age 14',8.6],['Age 10–13',3.7]]},
  counts:'Average daily numbers by single year of age. Age is calculated day by day, so a young person who has a birthday during a supervision period contributes to both ages. A further 52 young people aged 18 and over were under supervision, having entered the system as children.',
- caveats:['Because age is calculated day by day, these figures are not comparable with AIHW releases before 2019–20.','The AIHW does not publish rates where there were fewer than five young people, which is why the youngest ages appear only in grouped form.','The concentration at 16 and 17 matters for program design, and it also means a change in how 17-year-olds are handled would move the Tasmanian totals substantially.'],
+ caveats:['Because age is calculated day by day, these figures are not comparable with AIHW releases before 2019–20.','Ages 10 to 13 are grouped here for readability. The AIHW publishes them separately (table S1a): together they account for fewer than four young people on an average day.','The concentration at 16 and 17 matters for program design, and it also means a change in how 17-year-olds are handled would move the Tasmanian totals substantially.'],
  table:'Tables S1a, S7a, S137a'},
 
 {src:'aihw',age:'youth',id:'yfn',topic:'Equity',q:'How many Aboriginal young Tasmanians are under supervision?',
  fig:'70.1',unit:'per 10,000 Aboriginal young people aged 10–17, against 14.0 for non-Indigenous',
- plain:'On an average day, 42.7 Aboriginal young Tasmanians aged 10 to 17 were under supervision, a rate of 70.1 per 10,000 against 14.0 for non-Indigenous young people. Across the whole year the Aboriginal rate reaches 131.4 per 10,000. The Aboriginal supervision rate has risen by more than half in five years.',
+ plain:'On an average day, 42.7 Aboriginal young Tasmanians aged 10 to 17 were under supervision, a rate of 70.1 per 10,000 against 14.0 for non-Indigenous young people. Across the whole year the Aboriginal rate reaches 131.4 per 10,000. The Aboriginal supervision rate has risen by more than half since 2020–21.',
  series:{years:['2020-21','2021-22','2022-23','2023-24','2024-25'],tas:[45.1,38.8,39.5,54.4,70.1],aust:null,ylabel:'Per 10,000 Aboriginal 10–17'},
  breakdown:{label:'Supervision rate per 10,000 aged 10–17, Tasmania, average day 2024–25',total:70.1,nopct:true,
    rows:[['Aboriginal young people',70.1],['Non-Indigenous young people',14.0],['All young people',20.4]]},
  counts:'Average daily numbers of Aboriginal and Torres Strait Islander young people under supervision, expressed per 10,000 Aboriginal young people aged 10 to 17. The AIHW publishes the two rates side by side and does not calculate a ratio between them.',
- caveats:['The rise from 45.1 to 70.1 over five years is steep, and steeper than the equivalent non-Indigenous rise from 11.0 to 14.0. The gap is widening.','These rates rest on roughly 43 young people. The AIHW does not publish rates where fewer than five young people are involved, and at this scale a small change in the count moves the rate noticeably.','Aboriginal population denominators come from ABS estimates that are sensitive to Census identification. Changes at either end can move a rate without any change in who is supervised.'],
+ caveats:['The rise from 45.1 to 70.1 since 2020–21 is steep, and steeper than the equivalent non-Indigenous rise from 11.0 to 14.0. The gap is widening.','These rates rest on roughly 43 young people. The AIHW does not publish rates where fewer than five young people are involved, and at this scale a small change in the count moves the rate noticeably.','Aboriginal population denominators come from ABS estimates that are sensitive to Census identification. Changes at either end can move a rate without any change in who is supervised.'],
  xref:'ROGS expresses the same concern as a ratio: 3.9 to one in detention, the lowest in the country.',gotoId:'yindig',
  table:'Tables S3a, S4a, S4b, S12a'}
 ];
@@ -452,7 +452,24 @@ function breakdownChart(b){
   return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+b.label+'">'+g+'</svg>';
 }
 
+/* ---------- evidence labels and source records ---------- */
+/* LV and REC are defined in justice-figures-records.js, loaded before this file. */
+var LVNAME={f:'Official figure',n:'Official note',i:'Interpretation',q:'Our question'};
+function lvPill(c){return c&&LVNAME[c]?'<span class="lvl lvl-'+c+'">'+LVNAME[c]+'</span>':'';}
+/* Split a paragraph into sentences, keeping very short ones ("No.") with the next. */
+function sentences(t){
+  var raw=t.split(/(?<=[.?!])\s+(?=[A-Z0-9"‘“$])/),out=[];
+  raw.forEach(function(x){if(out.length&&out[out.length-1].length<12)out[out.length-1]+=' '+x;else out.push(x);});
+  return out;
+}
+function recTable(r){
+  if(!r)return '';
+  var rows=[['Publication',r.pub],['Tables',r.tables],['What is counted',r.what],['Who',r.who],['Period',r.period],['Footnotes relied on',r.notes],['Comparable between states?',r.cmp],['Last checked',r.checked]];
+  return '<table>'+rows.filter(function(x){return x[1];}).map(function(x){return '<tr><th scope="row">'+x[0]+'</th><td>'+x[1]+'</td></tr>';}).join('')+'</table>';
+}
+
 /* ---------- render ---------- */
+if(document.getElementById('figures'))(function(){
 var list=document.getElementById('qlist'),box=document.getElementById('q'),
     sheet=document.getElementById('sheet'),nomatch=document.getElementById('nomatch'),
     tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
@@ -503,6 +520,7 @@ function gotoButton(id){
 
 function renderSheet(id,scroll){
   var d=find(id); if(!d||ageOf(d)!==AGE)return;
+  var lv=LV[d.id]||{};
   if(d.src!==SRC){
     SRC=d.src;
     tabs.forEach(function(o){o.setAttribute('aria-pressed',String(o.dataset.src===SRC));});
@@ -517,12 +535,13 @@ function renderSheet(id,scroll){
     +'<span class="eyebrow">'+SRCHEAD[d.src]+'</span>'
     +'<h2>'+d.q+'</h2>'
     +'<div class="headline"><span class="figure">'+d.fig+'</span><span class="figure-unit">'+d.unit+'</span></div>'
-    +'<p class="plain">'+d.plain+'</p>'
+    +(lv.p?'<div class="claims">'+sentences(d.plain).map(function(t,i){return '<p class="plain">'+lvPill(lv.p.charAt(i))+t+'</p>';}).join('')+'</div>':'<p class="plain">'+d.plain+'</p>')
     +(charts.length?'<div class="charts">'+charts.join('')+'</div>':'')
     +'<div class="block"><span class="eyebrow">What this number counts</span><p class="counts">'+d.counts+'</p></div>'
-    +'<div class="block"><span class="eyebrow">Read it carefully</span><ul class="caveats">'+d.caveats.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul></div>'
+    +'<div class="block"><span class="eyebrow">Read it carefully</span><ul class="caveats">'+d.caveats.map(function(c,i){return '<li>'+lvPill((lv.c||'').charAt(i))+c+'</li>';}).join('')+'</ul></div>'
     +(d.support?'<p class="support">'+d.support+'</p>':'')
-    +(d.xref?'<div class="xref"><span class="eyebrow">Compare across sources</span><p>'+d.xref+'</p>'+(d.gotoId?gotoButton(d.gotoId):'')+'</div>':'')
+    +(d.xref?'<div class="xref"><span class="eyebrow">Compare across sources</span><p>'+lvPill(lv.x)+d.xref+'</p>'+(d.gotoId?gotoButton(d.gotoId):'')+'</div>':'')
+    +(REC[d.id]?'<details class="rec"><summary>Source record</summary>'+recTable(REC[d.id])+'<p><a href="figures-register.html">All source records &rarr;</a></p></details>':'')
     +'<p class="source">Source: '+SRCLINE[d.src](d)+'</p>'
     +'</div>';
   if(scroll!==false)sheet.scrollIntoView({behavior:'smooth',block:'start'});
@@ -548,3 +567,4 @@ box.addEventListener('input',function(){renderList(box.value);});
 window.addEventListener('hashchange',openFromHash);
 renderList('');
 if(!openFromHash())renderSheet(FIRST[AGE],false);
+})();

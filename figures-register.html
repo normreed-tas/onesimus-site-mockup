@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Justice Figures: Sources and Checks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB;
+    --flag:#9A5533;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 28px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:620px; font-size:1.05rem;}
+  .crumb{margin-bottom:10px;}
+  .crumb a{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sage); text-decoration:none;}
+  .crumb a:hover{text-decoration:underline;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .col{max-width:860px;}
+  #figures,#sheet{scroll-margin-top:80px;}
+
+  /* Source switch */
+  .switch{margin-top:8px;}
+  .switch .eyebrow{display:block; margin-bottom:10px;}
+  .tabs{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden;}
+  .tab{background:var(--white); border:0; cursor:pointer; text-align:left; padding:15px 17px; font-family:'Inter',sans-serif; color:var(--slate); border-top:3px solid transparent;}
+  .tab strong{display:block; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; color:var(--ink); margin-bottom:4px;}
+  .tab span{font-size:.78rem; line-height:1.45; display:block;}
+  .tab[aria-pressed="true"]{border-top-color:var(--brass); background:var(--sage-tint);}
+  .tab[aria-pressed="true"] strong{color:var(--sage);}
+  .tab:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  @media (max-width:760px){ .tabs{grid-template-columns:1fr;} }
+
+  /* Orientation */
+  details.orient{margin-top:26px; border:1px solid var(--line); background:var(--white); border-radius:2px;}
+  details.orient summary{cursor:pointer; padding:16px 20px; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--ink); list-style:none; display:flex; justify-content:space-between; gap:14px; align-items:center;}
+  details.orient summary::-webkit-details-marker{display:none;}
+  details.orient summary::after{content:"Read this first \25BE"; font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.09em; text-transform:uppercase; color:var(--brass); white-space:nowrap;}
+  details.orient[open] summary::after{content:"Hide \25B4";}
+  .orient-body{padding:0 20px 22px; border-top:1px solid var(--line);}
+  .orient-body>p{margin:16px 0 0; font-size:.92rem; max-width:62ch;}
+  .standing{margin-top:16px; display:grid; gap:11px;}
+  .note{border-left:3px solid var(--brass); padding:10px 0 10px 15px; font-size:.86rem; color:var(--ink); line-height:1.6;}
+  .note strong{color:var(--brass);}
+
+  .clash{margin-top:18px; border:1px solid var(--line); background:var(--sage-tint); border-radius:2px;}
+  .clash h3{font-family:'Inter',sans-serif; font-size:.85rem; font-weight:600; padding:12px 15px 0;}
+  .clash .pair{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); margin-top:12px;}
+  .clash .half{background:var(--white); padding:13px 15px;}
+  .clash .n{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--brass); line-height:1; font-variant-numeric:tabular-nums;}
+  .clash .half p{margin:6px 0 0; font-size:.8rem; line-height:1.45;}
+  .clash>p{margin:0; padding:12px 15px; font-size:.85rem; border-top:1px solid var(--line); color:var(--ink);}
+  @media (max-width:520px){ .clash .pair{grid-template-columns:1fr;} }
+
+  /* Question index */
+  .ask{margin-top:30px;}
+  .ask .eyebrow{display:block; margin-bottom:9px;}
+  .ask input{width:100%; padding:14px 16px; font-family:'Inter',sans-serif; font-size:1rem; background:var(--white); color:var(--ink); border:1px solid var(--line); border-bottom:2px solid var(--sage); border-radius:2px 2px 0 0;}
+  .ask input:focus{outline:2px solid var(--brass); outline-offset:1px;}
+  .qlist{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .qlist li{background:var(--white);}
+  .qlist li.grouphead{background:var(--sage-tint); padding:9px 17px; font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.11em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  .qlist button{width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:12px 17px; font-family:'Inter',sans-serif; font-size:.94rem; color:var(--ink); display:flex; gap:14px; align-items:baseline; line-height:1.45;}
+  .qlist button:hover{background:var(--paper); color:var(--sage);}
+  .qlist button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .qlist .topic{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brass); flex:0 0 96px;}
+  @media (max-width:440px){ .qlist button{flex-direction:column; gap:3px;} .qlist .topic{flex:none;} }
+  .nomatch{padding:18px 17px; font-size:.88rem; color:var(--slate); background:var(--white); border:1px solid var(--line); margin-top:14px;}
+
+  /* Answer sheet */
+  .sheet{margin-top:40px; border-top:2px solid var(--ink); padding-top:24px;}
+  .sheet .eyebrow{display:block; margin-bottom:12px; color:var(--brass);}
+  .sheet h2{font-size:clamp(1.4rem,3.2vw,2rem); max-width:26ch;}
+  .headline{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 18px; margin-top:20px;}
+  .figure{font-family:'Fraunces',serif; font-size:clamp(2.4rem,7vw,3.5rem); line-height:1; color:var(--brass); font-variant-numeric:tabular-nums;}
+  .figure-unit{font-size:.92rem; color:var(--slate); max-width:32ch; line-height:1.5;}
+  .plain{margin-top:16px; max-width:62ch; font-size:1.02rem; color:var(--ink); line-height:1.6;}
+  .charts{display:grid; gap:26px; margin-top:28px;}
+  .chart{border:1px solid var(--line); background:var(--white); padding:15px 15px 11px; border-radius:2px;}
+  .chart h3{font-family:'Inter',sans-serif; font-size:.82rem; font-weight:600; color:var(--ink);}
+  .chart .sub{font-size:.76rem; margin:3px 0 11px;}
+  .chart-scroll{overflow-x:auto;}
+  .chart svg{display:block; width:100%; min-width:300px; height:auto; max-width:100%;}
+  .key{display:flex; gap:18px; flex-wrap:wrap; margin-top:9px;}
+  .key span{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); display:flex; align-items:center; gap:7px;}
+  .swatch{width:15px; height:3px; display:inline-block;}
+
+  .block{margin-top:28px;}
+  .block .eyebrow{display:block; margin-bottom:9px;}
+  .counts{font-size:.94rem; max-width:62ch; color:var(--ink); margin:0;}
+  .caveats{margin:0; padding:0; list-style:none; display:grid; gap:11px;}
+  .caveats li{font-size:.9rem; padding-left:19px; position:relative; max-width:62ch; color:var(--ink); line-height:1.6;}
+  .caveats li::before{content:""; position:absolute; left:0; top:9px; width:7px; height:7px; background:var(--flag); border-radius:50%;}
+  .xref{margin-top:26px; border:1px solid var(--brass); background:var(--white); padding:14px 16px; border-radius:2px;}
+  .xref .eyebrow{display:block; color:var(--brass); margin-bottom:7px;}
+  .xref p{margin:0; font-size:.9rem; color:var(--ink); max-width:62ch;}
+  .xref button,.xref a.goto{display:inline-block; margin-top:11px; background:none; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; padding:8px 13px; cursor:pointer; border-radius:2px; text-decoration:none;}
+  .xref button:hover,.xref a.goto:hover{background:var(--brass); color:var(--white);}
+  .page-head .elsewhere{margin-top:14px; font-size:.92rem;}
+  .elsewhere a{color:var(--sage); font-weight:500;}
+  .support{margin-top:22px; background:var(--sage-tint); border-left:3px solid var(--sage); padding:13px 16px; border-radius:2px; font-size:.86rem; color:var(--ink); max-width:62ch;}
+  .source{margin-top:28px; padding-top:15px; border-top:1px solid var(--line); font-size:.82rem; color:var(--slate); max-width:70ch;}
+  .source a{color:var(--sage); font-weight:500;}
+  .source code{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--brass);}
+
+  /* Evidence labels and source record (see justice-figures-records.js) */
+  .lvl{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; font-weight:500; padding:2px 7px; border-radius:2px; margin-right:8px; vertical-align:2px; white-space:nowrap;}
+  .lvl-f,.lvl-n{background:var(--sage-tint); color:var(--sage);}
+  .lvl-n{background:transparent; box-shadow:inset 0 0 0 1px var(--sage);}
+  .lvl-i{background:#F3E9DA; color:#7E5A26;}
+  .lvl-q{background:#F4E2D8; color:var(--flag);}
+  .claims .plain{margin-top:12px;}
+  .claims .plain:first-child{margin-top:16px;}
+  .lvl-key{margin-top:18px; font-size:.8rem; line-height:2.1; color:var(--slate);}
+  .lvl-key a{color:var(--sage); font-weight:500;}
+  details.rec{margin-top:26px; border:1px solid var(--line); background:var(--white); border-radius:2px;}
+  details.rec summary{cursor:pointer; padding:11px 15px; font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  details.rec table{width:100%; border-collapse:collapse; font-size:.84rem;}
+  details.rec th,details.rec td{text-align:left; vertical-align:top; padding:8px 15px; border-top:1px solid var(--line); line-height:1.5;}
+  details.rec th{font-weight:500; color:var(--slate); width:34%;}
+  details.rec td{color:var(--ink);}
+  details.rec p{margin:0; padding:10px 15px; border-top:1px solid var(--line); font-size:.82rem;}
+  details.rec p a{color:var(--sage); font-weight:500;}
+  @media (max-width:520px){ details.rec th,details.rec td{display:block; width:auto;} details.rec td{border-top:0; padding-top:0;} }
+
+  .closing{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .closing-inner{background:var(--white); border:1px solid var(--line); padding:22px 26px; border-radius:2px; max-width:860px;}
+  .closing-inner p{font-size:.85rem; margin:0 0 10px;}
+  .closing-inner p:last-child{margin-bottom:0;}
+  .closing-inner strong{color:var(--ink);}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  /* DROPDOWN (two-audience menu) */
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  /* MOBILE MENU */
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
+
+  /* Register page */
+  .labels{display:grid; gap:12px; margin-top:6px;}
+  .labels p{margin:0; font-size:.92rem; color:var(--ink); max-width:68ch;}
+  .reg-group{margin-top:40px;}
+  .reg-group h2{font-size:clamp(1.3rem,2.4vw,1.7rem); margin:8px 0 6px;}
+  .reg-group>p{margin:0 0 16px; font-size:.92rem;}
+  table.reg{width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--line); font-size:.82rem;}
+  table.reg th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.09em; text-transform:uppercase; color:var(--sage); font-weight:500; padding:10px 12px; border-bottom:2px solid var(--ink); background:var(--paper);}
+  table.reg td{vertical-align:top; padding:11px 12px; border-top:1px solid var(--line); line-height:1.5; color:var(--ink);}
+  table.reg td a{color:var(--ink); font-weight:500;}
+  table.reg td a:hover{color:var(--sage);}
+  table.reg .fig{font-family:'Fraunces',serif; font-size:1.05rem; color:var(--brass); white-space:nowrap;}
+  table.reg .muted{color:var(--slate);}
+  table.reg .pending{color:var(--flag); font-style:italic;}
+  @media (max-width:860px){
+    table.reg thead{display:none;}
+    table.reg,table.reg tbody,table.reg tr,table.reg td{display:block; width:100%;}
+    table.reg tr{border-top:2px solid var(--line); padding:6px 0;}
+    table.reg td{border-top:0; padding:4px 14px;}
+    table.reg td[data-h]::before{content:attr(data-h); display:block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.09em; text-transform:uppercase; color:var(--sage);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="family-community.html">For Families</a></li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html" class="current">Research</a></li>
+        <li><a href="survey.html">The Survey</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="crumb"><a href="research.html">&larr; Research</a></div>
+  <span class="eyebrow">Tasmanian justice figures</span>
+  <h1 style="margin-top:14px;">Sources and checks.</h1>
+  <p>Every figure on our <a href="justice-figures.html" style="text-decoration:underline;">adult</a> and <a href="youth-justice.html#figures" style="text-decoration:underline;">youth</a> justice figures pages, with where it comes from, who it counts, the period it covers, whether the source says it can be compared between states, and when we last checked it against the original.</p>
+</section>
+
+<section class="section">
+<div class="col" id="labels">
+  <span class="eyebrow">What the labels mean</span>
+  <div class="labels">
+    <p><span class="lvl lvl-f">Official figure</span>A number or fact published by the source &mdash; the Productivity Commission, the ABS or the AIHW &mdash; reproduced as published, or worked out directly from published numbers.</p>
+    <p><span class="lvl lvl-n">Official note</span>The source's own definition, footnote or warning about a figure.</p>
+    <p><span class="lvl lvl-i">Interpretation</span>Our reading of the figures. It is supported by the numbers, the counting method or the source's footnotes, but the source itself does not say it.</p>
+    <p><span class="lvl lvl-q">Our question</span>A judgement or question the Foundation is raising. It is not a finding, and the figures alone do not settle it.</p>
+  </div>
+</div>
+<div id="register"></div>
+</section>
+
+<div class="closing">
+  <div class="closing-inner">
+    <p><strong>How these were checked.</strong> Figures were transcribed from the published data tables of the 2026 Report on Government Services, AIHW Youth Justice in Australia 2024&ndash;25 and ABS Prisoners in Australia 2025 and Recorded Crime &ndash; Offenders 2024&ndash;25, then checked again against those tables and the reports' own text in November 2026.</p>
+    <p>Where a record says "not yet recorded", that figure's details have not yet been confirmed against the source. Corrections are welcome: <a href="contact.html" style="color:var(--sage);font-weight:500;">contact us</a>.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+<script src="justice-figures-records.js?v=20261106"></script>
+<script src="justice-figures-data.js?v=20261106"></script>
+<script>
+/* Builds the register from the same data and records the figures pages use. */
+(function(){
+  var groups=[
+    {age:'adult',title:'Adults',page:'justice-figures.html',intro:'Prison, community corrections and policing. From the Report on Government Services and the ABS.'},
+    {age:'youth',title:'Young people',page:'youth-justice.html',intro:'Youth justice supervision, detention and police contact. From the Report on Government Services, the AIHW and the ABS.'}
+  ];
+  var order={rogs:0,aihw:1,abs:2};
+  function cell(h,v,cls){return '<td data-h="'+h+'"'+(cls?' class="'+cls+'"':'')+'>'+v+'</td>';}
+  var pending='<span class="pending">Not yet recorded</span>';
+  document.getElementById('register').innerHTML=groups.map(function(g){
+    var rows=Q.filter(function(d){return (d.age==='youth'?'youth':'adult')===g.age;})
+      .sort(function(x,y){return order[x.src]-order[y.src];})
+      .map(function(d){
+        var r=REC[d.id]||{};
+        return '<tr>'
+          +cell('Question','<a href="'+g.page+'#fig-'+d.id+'">'+d.q+'</a>')
+          +cell('Figure',d.fig,'fig')
+          +cell('Source',(r.pub||({rogs:'Report on Government Services 2026',abs:'Australian Bureau of Statistics',aihw:'AIHW Youth Justice in Australia 2024–25'})[d.src])+'<br><span class="muted">'+(r.tables||d.table)+'</span>')
+          +cell('Who and when',r.who?(r.who+'<br><span class="muted">'+(r.period||'')+'</span>'):pending)
+          +cell('Comparable between states?',r.cmp||pending)
+          +cell('Last checked',r.checked||pending)
+          +'</tr>';
+      }).join('');
+    return '<div class="reg-group"><span class="eyebrow">'+g.title+'</span><h2>'+g.title+' &mdash; '+Q.filter(function(d){return (d.age==='youth'?'youth':'adult')===g.age;}).length+' figures</h2><p>'+g.intro+' Select a question to open its answer.</p>'
+      +'<table class="reg"><thead><tr><th>Question</th><th>Figure</th><th>Source</th><th>Who and when</th><th>Comparable between states?</th><th>Last checked</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

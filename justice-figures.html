@@ -124,6 +124,26 @@
   .source a{color:var(--sage); font-weight:500;}
   .source code{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--brass);}
 
+  /* Evidence labels and source record (see justice-figures-records.js) */
+  .lvl{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; font-weight:500; padding:2px 7px; border-radius:2px; margin-right:8px; vertical-align:2px; white-space:nowrap;}
+  .lvl-f,.lvl-n{background:var(--sage-tint); color:var(--sage);}
+  .lvl-n{background:transparent; box-shadow:inset 0 0 0 1px var(--sage);}
+  .lvl-i{background:#F3E9DA; color:#7E5A26;}
+  .lvl-q{background:#F4E2D8; color:var(--flag);}
+  .claims .plain{margin-top:12px;}
+  .claims .plain:first-child{margin-top:16px;}
+  .lvl-key{margin-top:18px; font-size:.8rem; line-height:2.1; color:var(--slate);}
+  .lvl-key a{color:var(--sage); font-weight:500;}
+  details.rec{margin-top:26px; border:1px solid var(--line); background:var(--white); border-radius:2px;}
+  details.rec summary{cursor:pointer; padding:11px 15px; font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  details.rec table{width:100%; border-collapse:collapse; font-size:.84rem;}
+  details.rec th,details.rec td{text-align:left; vertical-align:top; padding:8px 15px; border-top:1px solid var(--line); line-height:1.5;}
+  details.rec th{font-weight:500; color:var(--slate); width:34%;}
+  details.rec td{color:var(--ink);}
+  details.rec p{margin:0; padding:10px 15px; border-top:1px solid var(--line); font-size:.82rem;}
+  details.rec p a{color:var(--sage); font-weight:500;}
+  @media (max-width:520px){ details.rec th,details.rec td{display:block; width:auto;} details.rec td{border-top:0; padding-top:0;} }
+
   .closing{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
   .closing-inner{background:var(--white); border:1px solid var(--line); padding:22px 26px; border-radius:2px; max-width:860px;}
   .closing-inner p{font-size:.85rem; margin:0 0 10px;}
@@ -240,6 +260,8 @@
   </div>
 </details>
 
+<p class="lvl-key">Each statement in an answer is labelled: <span class="lvl lvl-f">Official figure</span><span class="lvl lvl-n">Official note</span><span class="lvl lvl-i">Interpretation</span><span class="lvl lvl-q">Our question</span> <a href="figures-register.html#labels">What the labels mean</a></p>
+
 <div class="ask">
   <span class="eyebrow">Find a question</span>
   <label for="q" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Find a question</label>
@@ -258,6 +280,7 @@
     <p><strong>About this page.</strong> It answers a set of questions drawn from two official sources. It does not interpret free text. Every answer names its source table so the original can be checked.</p>
     <p>Figures are reproduced for public information. Where the Foundation's own interpretation appears, it is in the "what this counts" and "read it carefully" sections, not in the figures themselves.</p>
     <p>Data current to the 2026 Report on Government Services, ABS Prisoners in Australia 2025, and ABS Recorded Crime &ndash; Offenders 2024&ndash;25. Checked against the publications available on 6 November 2026; reference periods vary by question.</p>
+    <p>Every figure has a source record &mdash; table, population, period, comparability and when it was last checked. <a href="figures-register.html" style="color:var(--sage);font-weight:500;">See all source records</a>.</p>
   </div>
 </div>
 
@@ -269,6 +292,7 @@
   </div>
 </footer>
 
-<script src="justice-figures-data.js"></script>
+<script src="justice-figures-records.js?v=20261106"></script>
+<script src="justice-figures-data.js?v=20261106"></script>
 </body>
 </html>
