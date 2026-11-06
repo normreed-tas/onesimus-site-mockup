@@ -38,11 +38,12 @@
 
   .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
   .col{max-width:860px;}
+  #figures,#sheet{scroll-margin-top:80px;}
 
   /* Source switch */
   .switch{margin-top:8px;}
   .switch .eyebrow{display:block; margin-bottom:10px;}
-  .tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden;}
+  .tabs{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden;}
   .tab{background:var(--white); border:0; cursor:pointer; text-align:left; padding:15px 17px; font-family:'Inter',sans-serif; color:var(--slate); border-top:3px solid transparent;}
   .tab strong{display:block; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; color:var(--ink); margin-bottom:4px;}
   .tab span{font-size:.78rem; line-height:1.45; display:block;}
@@ -114,8 +115,10 @@
   .xref{margin-top:26px; border:1px solid var(--brass); background:var(--white); padding:14px 16px; border-radius:2px;}
   .xref .eyebrow{display:block; color:var(--brass); margin-bottom:7px;}
   .xref p{margin:0; font-size:.9rem; color:var(--ink); max-width:62ch;}
-  .xref button{margin-top:11px; background:none; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; padding:8px 13px; cursor:pointer; border-radius:2px;}
-  .xref button:hover{background:var(--brass); color:var(--white);}
+  .xref button,.xref a.goto{display:inline-block; margin-top:11px; background:none; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; padding:8px 13px; cursor:pointer; border-radius:2px; text-decoration:none;}
+  .xref button:hover,.xref a.goto:hover{background:var(--brass); color:var(--white);}
+  .page-head .elsewhere{margin-top:14px; font-size:.92rem;}
+  .elsewhere a{color:var(--sage); font-weight:500;}
   .support{margin-top:22px; background:var(--sage-tint); border-left:3px solid var(--sage); padding:13px 16px; border-radius:2px; font-size:.86rem; color:var(--ink); max-width:62ch;}
   .source{margin-top:28px; padding-top:15px; border-top:1px solid var(--line); font-size:.82rem; color:var(--slate); max-width:70ch;}
   .source a{color:var(--sage); font-weight:500;}
@@ -195,26 +198,23 @@
   <div class="crumb"><a href="research.html">&larr; Research</a></div>
   <span class="eyebrow">Tasmanian justice figures</span>
   <h1 style="margin-top:14px;">The official numbers, plainly.</h1>
-  <p>Straight answers to questions about prison, youth justice and policing in Tasmania. Pick a question and you get the figure, what it really counts, what to watch out for, and a link to the government report it came from.</p>
+  <p>Straight answers to questions about adult prisons, community corrections and policing in Tasmania. Pick a question and you get the figure, what it really counts, what to watch out for, and a link to the government report it came from.</p>
+  <p class="elsewhere">Figures on young people are on the <a href="youth-justice.html#figures">Youth Justice page</a>. Where an adult figure has a youth equivalent, the answer links straight to it.</p>
 </section>
 
 <section class="section">
-<div class="col">
+<div class="col" id="figures" data-age="adult">
 
 <div class="switch">
   <span class="eyebrow" id="srclabel">Choose a source</span>
   <div class="tabs" role="group" aria-labelledby="srclabel">
     <button class="tab" type="button" data-src="rogs" aria-pressed="true">
       <strong>ROGS</strong>
-      <span>Productivity Commission. What the system costs and how it performs, and how Tasmania compares with other states. Adults and young people.</span>
+      <span>Productivity Commission. What the system costs and how it performs, and how Tasmania compares with other states.</span>
     </button>
     <button class="tab" type="button" data-src="abs" aria-pressed="false">
       <strong>ABS</strong>
-      <span>Bureau of Statistics. Who is in prison on one night, and who police deal with across a year. Adults and young people.</span>
-    </button>
-    <button class="tab" type="button" data-src="aihw" aria-pressed="false">
-      <strong>AIHW</strong>
-      <span>Institute of Health and Welfare. The detail on young people — remand, age, and how long supervision lasts.</span>
+      <span>Bureau of Statistics. Who is in prison on one night, and who police deal with across a year.</span>
     </button>
   </div>
 </div>
@@ -222,7 +222,7 @@
 <details class="orient">
   <summary>Why these sources give different numbers</summary>
   <div class="orient-body">
-    <p>All three sources are official, current and correct. They disagree because they count different things, and knowing which question you are asking decides which one to use.</p>
+    <p>Both sources are official, current and correct. They disagree because they count different things, and knowing which question you are asking decides which one to use.</p>
     <div class="clash">
       <h3>The same question, asked two ways: how many people are in Tasmanian prisons?</h3>
       <div class="pair">
@@ -232,10 +232,9 @@
       <p>Neither is wrong. An average across a year smooths out the peaks; a headcount catches one particular night, including whatever was unusual about it.</p>
     </div>
     <div class="standing">
-      <p class="note"><strong>ROGS is for comparing.</strong> It was built so states can be measured against each other the same way &mdash; what things cost, how full the prisons are, how many people come back. Published each January, covering adults and young people in separate sections.</p>
+      <p class="note"><strong>ROGS is for comparing.</strong> It was built so states can be measured against each other the same way &mdash; what things cost, how full the prisons are, how many people come back. Published each January. Its youth justice section is on the Youth Justice page.</p>
       <p class="note"><strong>ABS is for describing.</strong> Two publications sit here. One counts everyone in prison on a single night in June and says what they are held for. The other counts everyone police dealt with across the whole year, adults and children alike.</p>
-      <p class="note"><strong>AIHW is for young people.</strong> It carries the detail the other two leave out &mdash; how many are on remand, how old they are, how long supervision lasts. Tasmania's youth picture is close to the reverse of its adult one.</p>
-      <p class="note"><strong>Small numbers jump about.</strong> Tasmania holds under 800 adults in prison and about fifteen young people in detention. Thirty adults either way moves the imprisonment rate six points. A change from one year to the next often means less than it looks.</p>
+      <p class="note"><strong>Small numbers jump about.</strong> Tasmania holds under 800 adults in prison. Thirty adults either way moves the imprisonment rate six points. A change from one year to the next often means less than it looks.</p>
       <p class="note"><strong>Counting methods change.</strong> When a government improves how it counts something, the new number cannot be compared with the old one. Tasmania changed several counting methods in 2024&ndash;25. Where that matters, it is flagged on the answer.</p>
     </div>
   </div>
@@ -244,7 +243,7 @@
 <div class="ask">
   <span class="eyebrow">Find a question</span>
   <label for="q" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Find a question</label>
-  <input id="q" type="text" autocomplete="off" placeholder="Type a few words &mdash; cost, remand, Aboriginal, detention&hellip;">
+  <input id="q" type="text" autocomplete="off" placeholder="Type a few words &mdash; cost, remand, Aboriginal, police&hellip;">
   <ul class="qlist" id="qlist"></ul>
   <div class="nomatch" id="nomatch" hidden></div>
 </div>
@@ -256,9 +255,9 @@
 
 <div class="closing">
   <div class="closing-inner">
-    <p><strong>About this page.</strong> It answers a set of questions drawn from three official sources. It does not interpret free text. Every answer names its source table so the original can be checked.</p>
+    <p><strong>About this page.</strong> It answers a set of questions drawn from two official sources. It does not interpret free text. Every answer names its source table so the original can be checked.</p>
     <p>Figures are reproduced for public information. Where the Foundation's own interpretation appears, it is in the "what this counts" and "read it carefully" sections, not in the figures themselves.</p>
-    <p>Data current to the 2026 Report on Government Services, ABS Prisoners in Australia 2025, and AIHW Youth Justice in Australia 2024&ndash;25. Reviewed annually.</p>
+    <p>Data current to the 2026 Report on Government Services, ABS Prisoners in Australia 2025, and ABS Recorded Crime &ndash; Offenders 2024&ndash;25. Reviewed annually.</p>
   </div>
 </div>
 

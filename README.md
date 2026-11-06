@@ -11,8 +11,8 @@ concept only: no real forms, payments, or CMS are wired up.
 - `training.html` — Resourcing & Training
 - `family-community.html` — Family & Community
 - `research.html` — Research
-- `justice-figures.html` — Tasmanian justice figures (data explorer; linked from Research)
-- `youth-justice.html` — Youth Justice (under For Professionals)
+- `justice-figures.html` — Tasmanian justice figures, adults (data explorer; linked from Research)
+- `youth-justice.html` — Youth Justice (under For Professionals), including the youth figures explorer. Both explorers share `justice-figures-data.js` and link to each other for adult/youth comparisons
 - `key-documents.html` — Key documents (links to official sources; linked from Research)
 - `survey.html` — Understanding Our Prisons survey (pre-launch)
 - `events.html` — Events

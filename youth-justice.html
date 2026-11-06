@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Onesimus Foundation — Youth Justice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
-    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA; --flag:#9A5533;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -83,6 +83,91 @@
   .cta-inner h2{font-size:1.5rem; max-width:580px;}
   .cta-inner p{margin:10px 0 0; max-width:580px;}
   .btn-dark{background:var(--ink); color:var(--white); text-decoration:none; padding:12px 24px; border-radius:100px; font-size:.85rem; font-weight:600; white-space:nowrap;}
+
+  /* FIGURES (same explorer as justice-figures.html; script is justice-figures-data.js) */
+  .col{max-width:860px;}
+  #figures,#sheet{scroll-margin-top:80px;}
+  /* Source switch */
+  .switch{margin-top:8px;}
+  .switch .eyebrow{display:block; margin-bottom:10px;}
+  .tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden;}
+  .tab{background:var(--white); border:0; cursor:pointer; text-align:left; padding:15px 17px; font-family:'Inter',sans-serif; color:var(--slate); border-top:3px solid transparent;}
+  .tab strong{display:block; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; color:var(--ink); margin-bottom:4px;}
+  .tab span{font-size:.78rem; line-height:1.45; display:block;}
+  .tab[aria-pressed="true"]{border-top-color:var(--brass); background:var(--sage-tint);}
+  .tab[aria-pressed="true"] strong{color:var(--sage);}
+  .tab:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  @media (max-width:760px){ .tabs{grid-template-columns:1fr;} }
+
+  /* Orientation */
+  details.orient{margin-top:26px; border:1px solid var(--line); background:var(--white); border-radius:2px;}
+  details.orient summary{cursor:pointer; padding:16px 20px; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--ink); list-style:none; display:flex; justify-content:space-between; gap:14px; align-items:center;}
+  details.orient summary::-webkit-details-marker{display:none;}
+  details.orient summary::after{content:"Read this first \25BE"; font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.09em; text-transform:uppercase; color:var(--brass); white-space:nowrap;}
+  details.orient[open] summary::after{content:"Hide \25B4";}
+  .orient-body{padding:0 20px 22px; border-top:1px solid var(--line);}
+  .orient-body>p{margin:16px 0 0; font-size:.92rem; max-width:62ch;}
+  .standing{margin-top:16px; display:grid; gap:11px;}
+  .note{border-left:3px solid var(--brass); padding:10px 0 10px 15px; font-size:.86rem; color:var(--ink); line-height:1.6;}
+  .note strong{color:var(--brass);}
+
+  .clash{margin-top:18px; border:1px solid var(--line); background:var(--sage-tint); border-radius:2px;}
+  .clash h3{font-family:'Inter',sans-serif; font-size:.85rem; font-weight:600; padding:12px 15px 0;}
+  .clash .pair{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); margin-top:12px;}
+  .clash .half{background:var(--white); padding:13px 15px;}
+  .clash .n{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--brass); line-height:1; font-variant-numeric:tabular-nums;}
+  .clash .half p{margin:6px 0 0; font-size:.8rem; line-height:1.45;}
+  .clash>p{margin:0; padding:12px 15px; font-size:.85rem; border-top:1px solid var(--line); color:var(--ink);}
+  @media (max-width:520px){ .clash .pair{grid-template-columns:1fr;} }
+
+  /* Question index */
+  .ask{margin-top:30px;}
+  .ask .eyebrow{display:block; margin-bottom:9px;}
+  .ask input{width:100%; padding:14px 16px; font-family:'Inter',sans-serif; font-size:1rem; background:var(--white); color:var(--ink); border:1px solid var(--line); border-bottom:2px solid var(--sage); border-radius:2px 2px 0 0;}
+  .ask input:focus{outline:2px solid var(--brass); outline-offset:1px;}
+  .qlist{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .qlist li{background:var(--white);}
+  .qlist li.grouphead{background:var(--sage-tint); padding:9px 17px; font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.11em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  .qlist button{width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:12px 17px; font-family:'Inter',sans-serif; font-size:.94rem; color:var(--ink); display:flex; gap:14px; align-items:baseline; line-height:1.45;}
+  .qlist button:hover{background:var(--paper); color:var(--sage);}
+  .qlist button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .qlist .topic{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brass); flex:0 0 96px;}
+  @media (max-width:440px){ .qlist button{flex-direction:column; gap:3px;} .qlist .topic{flex:none;} }
+  .nomatch{padding:18px 17px; font-size:.88rem; color:var(--slate); background:var(--white); border:1px solid var(--line); margin-top:14px;}
+
+  /* Answer sheet */
+  .sheet{margin-top:40px; border-top:2px solid var(--ink); padding-top:24px;}
+  .sheet .eyebrow{display:block; margin-bottom:12px; color:var(--brass);}
+  .sheet h2{font-size:clamp(1.4rem,3.2vw,2rem); max-width:26ch;}
+  .headline{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 18px; margin-top:20px;}
+  .figure{font-family:'Fraunces',serif; font-size:clamp(2.4rem,7vw,3.5rem); line-height:1; color:var(--brass); font-variant-numeric:tabular-nums;}
+  .figure-unit{font-size:.92rem; color:var(--slate); max-width:32ch; line-height:1.5;}
+  .plain{margin-top:16px; max-width:62ch; font-size:1.02rem; color:var(--ink); line-height:1.6;}
+  .charts{display:grid; gap:26px; margin-top:28px;}
+  .chart{border:1px solid var(--line); background:var(--white); padding:15px 15px 11px; border-radius:2px;}
+  .chart h3{font-family:'Inter',sans-serif; font-size:.82rem; font-weight:600; color:var(--ink);}
+  .chart .sub{font-size:.76rem; margin:3px 0 11px;}
+  .chart-scroll{overflow-x:auto;}
+  .chart svg{display:block; width:100%; min-width:300px; height:auto; max-width:100%;}
+  .key{display:flex; gap:18px; flex-wrap:wrap; margin-top:9px;}
+  .key span{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); display:flex; align-items:center; gap:7px;}
+  .swatch{width:15px; height:3px; display:inline-block;}
+
+  .block{margin-top:28px;}
+  .block .eyebrow{display:block; margin-bottom:9px;}
+  .counts{font-size:.94rem; max-width:62ch; color:var(--ink); margin:0;}
+  .caveats{margin:0; padding:0; list-style:none; display:grid; gap:11px;}
+  .caveats li{font-size:.9rem; padding-left:19px; position:relative; max-width:62ch; color:var(--ink); line-height:1.6;}
+  .caveats li::before{content:""; position:absolute; left:0; top:9px; width:7px; height:7px; background:var(--flag); border-radius:50%;}
+  .xref{margin-top:26px; border:1px solid var(--brass); background:var(--white); padding:14px 16px; border-radius:2px;}
+  .xref .eyebrow{display:block; color:var(--brass); margin-bottom:7px;}
+  .xref p{margin:0; font-size:.9rem; color:var(--ink); max-width:62ch;}
+  .xref button,.xref a.goto{display:inline-block; margin-top:11px; background:none; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; padding:8px 13px; cursor:pointer; border-radius:2px; text-decoration:none;}
+  .xref button:hover,.xref a.goto:hover{background:var(--brass); color:var(--white);}
+  .support{margin-top:22px; background:var(--sage-tint); border-left:3px solid var(--sage); padding:13px 16px; border-radius:2px; font-size:.86rem; color:var(--ink); max-width:62ch;}
+  .source{margin-top:28px; padding-top:15px; border-top:1px solid var(--line); font-size:.82rem; color:var(--slate); max-width:70ch;}
+  .source a{color:var(--sage); font-weight:500;}
+  .source code{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--brass);}
 
   footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
   .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
@@ -197,6 +282,70 @@
   </div>
 </section>
 
+<section class="section" id="figures" data-age="youth">
+  <div class="section-head">
+    <span class="eyebrow">Youth justice figures</span>
+    <h2>The official numbers on young people, plainly.</h2>
+    <p>Straight answers about young Tasmanians in the youth justice system. Pick a question and you get the figure, what it really counts, what to watch out for, and a link to the report it came from. Where a figure has an adult equivalent, the answer links to it on the <a href="justice-figures.html" style="text-decoration:underline;">Tasmanian justice figures</a> page.</p>
+  </div>
+
+<div class="col">
+
+<div class="switch">
+  <span class="eyebrow" id="srclabel">Choose a source</span>
+  <div class="tabs" role="group" aria-labelledby="srclabel">
+    <button class="tab" type="button" data-src="rogs" aria-pressed="true">
+      <strong>ROGS</strong>
+      <span>Productivity Commission. What youth justice costs and how it performs, and how Tasmania compares with other states.</span>
+    </button>
+    <button class="tab" type="button" data-src="aihw" aria-pressed="false">
+      <strong>AIHW</strong>
+      <span>Institute of Health and Welfare. The detail &mdash; remand, age, and how long supervision lasts.</span>
+    </button>
+    <button class="tab" type="button" data-src="abs" aria-pressed="false">
+      <strong>ABS</strong>
+      <span>Bureau of Statistics. How many young people police deal with across a year, and what for.</span>
+    </button>
+  </div>
+</div>
+
+<details class="orient">
+  <summary>Why these sources give different numbers</summary>
+  <div class="orient-body">
+    <p>All three sources are official, current and correct. They disagree because they count different things, and knowing which question you are asking decides which one to use.</p>
+    <div class="clash">
+      <h3>The same question, asked two ways: how many young Tasmanians are under supervision on an average day?</h3>
+      <div class="pair">
+        <div class="half"><div class="n">110</div><p>ROGS: young people aged 10&ndash;17 only.</p></div>
+        <div class="half"><div class="n">162</div><p>AIHW: everyone under youth justice supervision, including about 52 aged 18 and over who entered the system as children.</p></div>
+      </div>
+      <p>Neither is wrong. They draw the age line in different places, so always check which age range a youth figure covers.</p>
+    </div>
+    <div class="standing">
+      <p class="note"><strong>ROGS is for comparing.</strong> Its youth justice section measures every state the same way &mdash; what detention costs, how full it is, how many young people come back. Published each January.</p>
+      <p class="note"><strong>AIHW is for detail.</strong> It carries what the others leave out &mdash; how many are on remand, how old they are, how long supervision lasts, and how many pass through in a year.</p>
+      <p class="note"><strong>ABS casts the widest net.</strong> It counts every young person police formally dealt with across the year. Most of them never come under youth justice supervision at all.</p>
+      <p class="note"><strong>Small numbers jump about.</strong> Tasmania holds about fifteen young people in detention on an average night. One or two young people either way can move a rate or a percentage by several points.</p>
+      <p class="note"><strong>Tasmania's twelve-month orders.</strong> Tasmanian courts generally set youth community orders to run for twelve months by default. That lengthens supervision and lifts the supervision rate, without necessarily meaning young Tasmanians offend more.</p>
+    </div>
+  </div>
+</details>
+
+<div class="ask">
+  <span class="eyebrow">Find a question</span>
+  <label for="q" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Find a question</label>
+  <input id="q" type="text" autocomplete="off" placeholder="Type a few words &mdash; detention, remand, Aboriginal, age&hellip;">
+  <ul class="qlist" id="qlist"></ul>
+  <div class="nomatch" id="nomatch" hidden></div>
+</div>
+
+<div id="sheet"></div>
+
+<p class="source">Data current to the 2026 Report on Government Services, AIHW Youth Justice in Australia 2024&ndash;25, and ABS Recorded Crime &ndash; Offenders 2024&ndash;25. Every answer names its source table so the original can be checked. Reviewed annually.</p>
+
+</div>
+</section>
+
 <section class="section" id="resources">
   <div class="section-head">
     <span class="eyebrow">Resources</span>
@@ -286,5 +435,6 @@
   </div>
 </footer>
 
+<script src="justice-figures-data.js"></script>
 </body>
 </html>

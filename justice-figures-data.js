@@ -1,6 +1,10 @@
 /* Tasmanian Justice Figures — question data and page logic.
    Figures transcribed from: ROGS 2026 (PC), ABS Prisoners in Australia 2025,
-   AIHW Youth Justice in Australia 2024-25. Each entry names its source table. */
+   AIHW Youth Justice in Australia 2024-25. Each entry names its source table.
+   Shared by two pages: justice-figures.html shows the adult questions, and the
+   figures section of youth-justice.html shows those marked age:'youth'. The page
+   says which via data-age on #figures. Cross-links between the two open the other
+   page at #fig-<id>. */
 
 var YRS8=['2017-18','2018-19','2019-20','2020-21','2021-22','2022-23','2023-24','2024-25'];
 var J=['NSW','Vic','Qld','WA','SA','Tas','ACT','NT'];
@@ -296,7 +300,7 @@ var Q=[
  xref:'For the forward-looking measure — what share of released people return — ROGS follows released prisoners for two years.',gotoId:'recid',
  table:'Prisoners in Australia 2025, Australia'},
 
-{src:'abs',pub:'offenders',id:'oyouth',topic:'Young people',q:'How many young Tasmanians come to police attention?',
+{src:'abs',pub:'offenders',age:'youth',id:'oyouth',topic:'Young people',q:'How many young Tasmanians come to police attention?',
  fig:'1,018',unit:'people aged 10–17 proceeded against by police in Tasmania during 2024–25',
  plain:'Just over a thousand young Tasmanians were proceeded against by police in 2024–25, a rate of 1,884 per 100,000 young people — about 13 per cent above the national rate of 1,660. They made up 13 per cent of all Tasmanian offenders. Almost none of them end up in detention.',
  series:null,
@@ -307,7 +311,7 @@ var Q=[
  xref:'Of these young people, about 266 came under youth justice supervision at some point during the year.',gotoId:'yyear',
  table:'Recorded Crime – Offenders 2024–25, Tasmania'},
 
-{src:'abs',pub:'offenders',id:'ooffence',topic:'Young people',q:'What do young Tasmanians get into trouble with police for?',
+{src:'abs',pub:'offenders',age:'youth',id:'ooffence',topic:'Young people',q:'What do young Tasmanians get into trouble with police for?',
  fig:'29%',unit:'of young Tasmanian offenders were proceeded against for acts intended to cause injury',
  plain:'For young Tasmanians dealt with by police in 2024–25, the two leading offence categories were acts intended to cause injury at 295 young people and theft at 253. Together those account for more than half.',
  series:null,
@@ -328,7 +332,7 @@ var Q=[
  table:'Recorded Crime – Offenders 2024–25, Tasmania'},
 
 /* ============ AIHW — young people ============ */
-{src:'aihw',id:'yremand',topic:'Remand',q:'How many young Tasmanians in detention have not been sentenced?',
+{src:'aihw',age:'youth',id:'yremand',topic:'Remand',q:'How many young Tasmanians in detention have not been sentenced?',
  fig:'85%',unit:'of young people in Tasmanian detention were unsentenced — 13.4 of 15.8 on an average day',
  plain:'The great majority of young people held in Tasmanian detention have not been sentenced. On an average day 13.4 were on remand and 2.7 were serving a sentence. The remand figure has doubled in five years while the sentenced figure has fallen.',
  series:{years:['2020-21','2021-22','2022-23','2023-24','2024-25'],tas:[6.7,6.9,11.7,13.1,13.4],aust:null,ylabel:'Unsentenced, average day'},
@@ -339,7 +343,7 @@ var Q=[
  xref:'Among adults, 43 per cent of the Tasmanian prison population was unsentenced. The youth proportion is roughly double that.',gotoId:'remand',
  table:'Tables S108a, S114a, S120a'},
 
-{src:'aihw',id:'ylength',topic:'Supervision',q:'How long do young people spend under supervision?',
+{src:'aihw',age:'youth',id:'ylength',topic:'Supervision',q:'How long do young people spend under supervision?',
  fig:'223',unit:'days on average in Tasmania, against 177 nationally',
  plain:'Young Tasmanians spend an average of 223 days under youth justice supervision during the year, well above the national 177. Time in detention averages 80 days against a national 66. There is a specific and largely procedural reason for this.',
  series:null,
@@ -350,7 +354,7 @@ var Q=[
  xref:'Tasmania’s high supervision rate is driven by community-based orders, and this is a large part of why.',gotoId:'ysuper',
  table:'Tables S29, S30, S101, S102'},
 
-{src:'aihw',id:'yyear',topic:'Through the year',q:'How many young Tasmanians go through the youth justice system in a year?',
+{src:'aihw',age:'youth',id:'yyear',topic:'Through the year',q:'How many young Tasmanians go through the youth justice system in a year?',
  fig:'266',unit:'young people under supervision at some point during 2024–25',
  plain:'Although only about 162 young people are under supervision on an average day, 266 passed through the system at some point during the year — 257 under community supervision and 70 in detention. The average-day figure substantially understates how many young people are affected.',
  series:null,
@@ -360,7 +364,7 @@ var Q=[
  caveats:['The detention contrast is the striking one: an average of 16 young people in detention on any day, but 70 individuals passing through across the year.','The during-the-year figures include young people aged 18 and over. Tasmania’s count of 18-plus young people in detention during the year is suppressed because the numbers are too small to publish.','The AIHW changed how it counts receptions from 2024–25, so reception figures are not comparable with earlier years.'],
  table:'Tables S1b, S34b, S72b'},
 
-{src:'aihw',id:'yage',topic:'Age',q:'How old are the young people under supervision?',
+{src:'aihw',age:'youth',id:'yage',topic:'Age',q:'How old are the young people under supervision?',
  fig:'44',unit:'of the 110 young Tasmanians supervised on an average day were aged 17',
  plain:'Youth justice supervision in Tasmania is concentrated at the older end. On an average day, 17-year-olds accounted for 44 of the 110 supervised young people aged 10 to 17, and 16-year-olds a further 33. Children aged 13 and under accounted for fewer than four.',
  series:null,
@@ -370,7 +374,7 @@ var Q=[
  caveats:['Because age is calculated day by day, these figures are not comparable with AIHW releases before 2019–20.','The AIHW does not publish rates where there were fewer than five young people, which is why the youngest ages appear only in grouped form.','The concentration at 16 and 17 matters for program design, and it also means a change in how 17-year-olds are handled would move the Tasmanian totals substantially.'],
  table:'Tables S1a, S7a, S137a'},
 
-{src:'aihw',id:'yfn',topic:'Equity',q:'How many Aboriginal young Tasmanians are under supervision?',
+{src:'aihw',age:'youth',id:'yfn',topic:'Equity',q:'How many Aboriginal young Tasmanians are under supervision?',
  fig:'70.1',unit:'per 10,000 Aboriginal young people aged 10–17, against 14.0 for non-Indigenous',
  plain:'On an average day, 42.7 Aboriginal young Tasmanians aged 10 to 17 were under supervision, a rate of 70.1 per 10,000 against 14.0 for non-Indigenous young people. Across the whole year the Aboriginal rate reaches 131.4 per 10,000. The Aboriginal supervision rate has risen by more than half in five years.',
  series:{years:['2020-21','2021-22','2022-23','2023-24','2024-25'],tas:[45.1,38.8,39.5,54.4,70.1],aust:null,ylabel:'Per 10,000 Aboriginal 10–17'},
@@ -452,7 +456,10 @@ function breakdownChart(b){
 var list=document.getElementById('qlist'),box=document.getElementById('q'),
     sheet=document.getElementById('sheet'),nomatch=document.getElementById('nomatch'),
     tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
-var SRC='rogs';
+var AGE=document.getElementById('figures').dataset.age==='youth'?'youth':'adult';
+var OTHERPAGE={adult:'youth-justice.html',youth:'justice-figures.html'};
+var FIRST={adult:'rate',youth:'ysuper'};
+var SRC=tabs[0].dataset.src;
 var SRCNAME={rogs:'ROGS',abs:'ABS',aihw:'AIHW'};
 var SRCHEAD={
   rogs:'Answer · Report on Government Services 2026',
@@ -467,18 +474,16 @@ var SRCLINE={
   aihw:function(d){return AIHW_SRC+', <code>'+d.table+'</code>. Check the original at <a href="https://www.aihw.gov.au/reports/youth-justice/youth-justice-in-australia-2024-25" target="_blank" rel="noopener">aihw.gov.au</a>.';}
 };
 
-function pool(){return Q.filter(function(d){return d.src===SRC;});}
+function ageOf(d){return d.age==='youth'?'youth':'adult';}
+function find(id){return Q.filter(function(x){return x.id===id;})[0];}
+function pool(){return Q.filter(function(d){return d.src===SRC&&ageOf(d)===AGE;});}
 
 function renderList(filter){
   var f=(filter||'').trim().toLowerCase();
   var hits=f?pool().filter(function(d){return (d.q+' '+d.topic+' '+d.plain+' '+d.counts).toLowerCase().indexOf(f)>-1;}):pool();
   var row=function(d){return '<li><button type="button" data-id="'+d.id+'"><span class="topic">'+d.topic+'</span><span>'+d.q+'</span></button></li>';};
   var html;
-  if(SRC==='rogs'){
-    var adults=hits.filter(function(d){return d.age!=='youth';}),youth=hits.filter(function(d){return d.age==='youth';});
-    html=(adults.length?'<li class="grouphead">Adults in the justice system</li>'+adults.map(row).join(''):'')
-        +(youth.length?'<li class="grouphead">Young people aged 10–17</li>'+youth.map(row).join(''):'');
-  }else if(SRC==='abs'){
+  if(SRC==='abs'&&AGE==='adult'){
     var prison=hits.filter(function(d){return d.pub!=='offenders';}),off=hits.filter(function(d){return d.pub==='offenders';});
     html=(prison.length?'<li class="grouphead">In prison on one night — Prisoners in Australia</li>'+prison.map(row).join(''):'')
         +(off.length?'<li class="grouphead">Dealt with by police across the year — Recorded Crime</li>'+off.map(row).join(''):'');
@@ -489,13 +494,15 @@ function renderList(filter){
   if(none)nomatch.textContent='Nothing matches "'+filter.trim()+'" in the '+SRCNAME[SRC]+' questions. Try another source, or clear the box to see them all.';
 }
 
-function gotoLabel(id){
-  var t=Q.filter(function(x){return x.id===id;})[0];
-  return t?'See the '+SRCNAME[t.src]+' answer →':'See the other answer →';
+function gotoButton(id){
+  var t=find(id); if(!t)return '';
+  if(ageOf(t)!==AGE)
+    return '<a class="goto" href="'+OTHERPAGE[AGE]+'#fig-'+id+'">See the '+(AGE==='adult'?'youth':'adult')+' figure →</a>';
+  return '<button type="button" data-goto="'+id+'">See the '+SRCNAME[t.src]+' answer →</button>';
 }
 
-function renderSheet(id){
-  var d=Q.filter(function(x){return x.id===id;})[0]; if(!d)return;
+function renderSheet(id,scroll){
+  var d=find(id); if(!d||ageOf(d)!==AGE)return;
   if(d.src!==SRC){
     SRC=d.src;
     tabs.forEach(function(o){o.setAttribute('aria-pressed',String(o.dataset.src===SRC));});
@@ -515,10 +522,17 @@ function renderSheet(id){
     +'<div class="block"><span class="eyebrow">What this number counts</span><p class="counts">'+d.counts+'</p></div>'
     +'<div class="block"><span class="eyebrow">Read it carefully</span><ul class="caveats">'+d.caveats.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul></div>'
     +(d.support?'<p class="support">'+d.support+'</p>':'')
-    +(d.xref?'<div class="xref"><span class="eyebrow">Compare across sources</span><p>'+d.xref+'</p>'+(d.gotoId?'<button type="button" data-goto="'+d.gotoId+'">'+gotoLabel(d.gotoId)+'</button>':'')+'</div>':'')
+    +(d.xref?'<div class="xref"><span class="eyebrow">Compare across sources</span><p>'+d.xref+'</p>'+(d.gotoId?gotoButton(d.gotoId):'')+'</div>':'')
     +'<p class="source">Source: '+SRCLINE[d.src](d)+'</p>'
     +'</div>';
-  sheet.scrollIntoView({behavior:'smooth',block:'start'});
+  if(scroll!==false)sheet.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* A link from the other page arrives as #fig-<id>; otherwise open the first question without scrolling. */
+function openFromHash(){
+  var m=/^#fig-([a-z0-9]+)$/.exec(location.hash), d=m&&find(m[1]);
+  if(d&&ageOf(d)===AGE){renderSheet(d.id);return true;}
+  return false;
 }
 
 tabs.forEach(function(t){t.addEventListener('click',function(){
@@ -531,5 +545,6 @@ tabs.forEach(function(t){t.addEventListener('click',function(){
 list.addEventListener('click',function(e){var b=e.target.closest('button[data-id]');if(b)renderSheet(b.dataset.id);});
 sheet.addEventListener('click',function(e){var b=e.target.closest('button[data-goto]');if(b)renderSheet(b.dataset.goto);});
 box.addEventListener('input',function(){renderList(box.value);});
+window.addEventListener('hashchange',openFromHash);
 renderList('');
-renderSheet('rate');
+if(!openFromHash())renderSheet(FIRST[AGE],false);
