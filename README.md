@@ -1,7 +1,7 @@
 # Onesimus Foundation — Website Design Mockup
 
 This is a clickable, static HTML mockup of the proposed Onesimus Foundation
-website — thirteen pages, fully linked, for stakeholder review. It is a design
+website — fourteen pages, fully linked, for stakeholder review. It is a design
 concept only: no real forms, payments, or CMS are wired up.
 
 ## Pages included
@@ -14,15 +14,26 @@ concept only: no real forms, payments, or CMS are wired up.
 - `justice-figures.html` — Tasmanian justice figures, adults (data explorer; linked from Research)
 - `youth-justice.html` — Youth Justice (under For Professionals), including the youth figures explorer. Both explorers share `justice-figures-data.js` and link to each other for adult/youth comparisons
 - `figures-register.html` — Sources and checks: the source record for every figure and what the evidence labels mean (linked from both figures pages)
-- `justice-figures-records.js` — evidence labels (LV) and source records (REC) for every figure; loaded before `justice-figures-data.js`. Bump the `?v=` on the script tags when either file changes
 - `key-documents.html` — Key documents (links to official sources; linked from Research)
 - `survey.html` — Understanding Our Prisons survey (pre-launch)
 - `events.html` — Events
 - `donate.html` — Donate
 - `contact.html` — Contact
 
+## Justice figures (data explorer)
+
+Three pages share two script files:
+
+- `justice-figures-data.js` — the 37 questions and answers (figures, charts, caveats, comparisons) and the explorer logic. Adult questions show on `justice-figures.html`; questions marked `age:'youth'` show in the figures section of `youth-justice.html`. Each page says which half it shows with `data-age` on `#figures`. Adult/youth comparison buttons link across pages to `#fig-<id>`.
+- `justice-figures-records.js` — `LV`, the evidence label for every statement (Official figure, Official note, Interpretation, Our question), and `REC`, the source record for every figure (publication, tables, who, period, footnotes, comparability, date checked). Loaded before the data file. If an answer's main paragraph is reworded, its `LV` letters must still match its sentence count.
+- `figures-register.html` builds its table from both files.
+
+When either script changes, bump the `?v=` on the script tags in all three pages, or returning visitors may see a stale copy.
+
+**Annual update.** Each source is replaced once a year: ROGS (Productivity Commission) each January; ABS *Prisoners in Australia* each December; ABS *Recorded Crime – Offenders* each March; AIHW *Youth justice in Australia* mid-year. Update the figures, re-check each answer's caveats, and update the source records' "Last checked" date. All figures were last checked against the source tables on 6 November 2026.
+
 ## What's real vs placeholder
-- All internal navigation between these thirteen pages is fully wired and
+- All internal navigation between these fourteen pages is fully wired and
   clickable.
 - Content is drawn from real source material (board bios, program
   descriptions, historical records) gathered during the design process —
