@@ -24,6 +24,10 @@ concept only: no real forms, payments, or CMS are wired up.
 - `donate.html` — Donate
 - `contact.html` — Contact
 
+## Draft marking
+
+Every page links `draft.css` (books use `../draft.css`), which adds a faint diagonal "DRAFT" watermark and a fixed corner label: "Draft · work in progress — not the finished website". Neither blocks clicks. To remove the marking, delete that one line from a page, or delete the file.
+
 ## Justice figures (data explorer)
 
 Three pages share two script files:

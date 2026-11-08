@@ -47,6 +47,7 @@ Each of these is `href="#"` in the mockup:
 
 ## Before going public
 
+- Every mockup page is marked as a draft by `draft.css` (a faint diagonal "DRAFT" watermark and a corner label). It is linked by one line per page, so do not carry it over to the Wix build.
 - Remove the mockup notes addressed to Norm on `family-journey.html`, `family-resources.html` and `practitioners-guide.html`.
 - Resolve the purple "to confirm" chips on `family-journey.html` with the Tasmania Prison Service.
 
