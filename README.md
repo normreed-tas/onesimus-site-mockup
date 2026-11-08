@@ -1,7 +1,7 @@
 # Onesimus Foundation — Website Design Mockup
 
 This is a clickable, static HTML mockup of the proposed Onesimus Foundation
-website — seventeen pages, fully linked, for stakeholder review. It is a design
+website — eighteen pages, fully linked, for stakeholder review. It is a design
 concept only: no real forms, payments, or CMS are wired up.
 
 ## Pages included
@@ -9,6 +9,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `about.html` — About Us
 - `collaboration.html` — Collaboration
 - `practitioners-guide.html` — The Onesimus Practitioner's Guide (under For Professionals)
+- `phone-guides.html` — Phone Guides: the phone apps Onesimus builds and hosts (Getting Out, Stay Connected), with QR codes, and an offer to other organisations (under For Professionals)
 - `training.html` — Resourcing & Training
 - `family-community.html` — Family & Community (under For Families)
 - `family-resources.html` — Resources for Families (under For Families)
@@ -36,7 +37,7 @@ When either script changes, bump the `?v=` on the script tags in all three pages
 **Annual update.** Each source is replaced once a year: ROGS (Productivity Commission) each January; ABS *Prisoners in Australia* each December; ABS *Recorded Crime – Offenders* each March; AIHW *Youth justice in Australia* mid-year. Update the figures, re-check each answer's caveats, and update the source records' "Last checked" date. All figures were last checked against the source tables on 6 November 2026.
 
 ## What's real vs placeholder
-- All internal navigation between these seventeen pages is fully wired and
+- All internal navigation between these eighteen pages is fully wired and
   clickable.
 - Content is drawn from real source material (board bios, program
   descriptions, historical records) gathered during the design process —

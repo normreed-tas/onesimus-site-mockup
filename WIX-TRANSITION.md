@@ -20,6 +20,7 @@ These decisions are already made (see Norm's rebuild brief):
 | `family-resources.html` | Resources for Families landing page | Contains mockup notes for Norm — remove before going public |
 | `family-journey.html` | Step-by-step guide for families, arrest to community support | Deliberately simple: no site menu, "Bigger text" and "Help now" buttons, readable at about age 12. Operational detail links to Tasmania Prison Service pages rather than copying them. Purple chips mark items still to confirm with TPS. Contains a mockup note — remove before going public |
 | `collaboration.html` | Networks and partners | Several partner links still to be confirmed |
+| `phone-guides.html` | Phone Guides: Getting Out and Stay Connected, with QR codes, and an offer to other organisations | The apps themselves stay on GitHub Pages (normreed-tas.github.io/getting-out/ and /stay-connected/); the QR codes point there, so those addresses must not change |
 | `practitioners-guide.html` | The Onesimus Practitioner's Guide: provenance, four practice chapters, tools, archived 2018 PDF, training | Contains a mockup note — remove before going public |
 | `training.html` | Resourcing and training | "Bookings open soon" buttons are placeholders |
 | `youth-justice.html` | Youth justice resources and the youth figures section | See *Justice figures* below |
@@ -32,7 +33,7 @@ These decisions are already made (see Norm's rebuild brief):
 | `donate.html` | Donate | Platform still to be decided; bank details are a placeholder |
 | `contact.html` | Contact | Wix form |
 
-**Menu:** About Us | For Families (Family & Community, Resources for Families) | For Professionals (Collaboration, Practitioner's Guide, Resourcing & Training, Youth Justice) | Research | The Survey | Events | Donate. Key Documents and the figures pages are reached from Research, not from the menu. Below 1024px wide, the menu collapses behind a "Menu" button.
+**Menu:** About Us | For Families (Family & Community, Resources for Families) | For Professionals (Collaboration, Practitioner's Guide, Phone Guides, Resourcing & Training, Youth Justice) | Research | The Survey | Events | Donate. Key Documents and the figures pages are reached from Research, not from the menu. Below 1024px wide, the menu collapses behind a "Menu" button.
 
 ## Placeholders to wire up in Wix
 
