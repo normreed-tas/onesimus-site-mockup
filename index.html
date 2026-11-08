@@ -158,6 +158,15 @@
   .fig .l{font-size:.88rem; color:rgba(255,255,255,.76); line-height:1.5;}
   .fig .src{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em;
             text-transform:uppercase; color:rgba(255,255,255,.42); margin-top:auto; padding-top:8px;}
+  .fighead{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:40px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,.14);}
+  .fighead h3{font-family:'Fraunces',serif; font-weight:500; font-size:1.25rem; color:var(--white);}
+  .fighead h3 small{font-family:'Inter',sans-serif; font-size:.8rem; color:rgba(255,255,255,.55); margin-left:8px; font-weight:400;}
+  .fighead a{font-size:.84rem; font-weight:600; color:#E0B978; text-decoration:none; white-space:nowrap;}
+  .fighead a:hover{text-decoration:underline;}
+  .fighead + .figs{margin-top:0; border-top:0;}
+  .figband .mores{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;}
+  .figband .mores .more{margin-top:0;}
+  .figband .more.ghost{background:transparent; border:1px solid rgba(255,255,255,.35);}
   .figband .more{display:inline-flex; align-items:center; gap:8px; margin-top:28px;
                  background:var(--brass); color:var(--white); text-decoration:none;
                  padding:12px 22px; border-radius:100px; font-size:.86rem; font-weight:600;}
@@ -345,8 +354,9 @@
   <div class="figband-inner">
     <span class="eyebrow">Tasmanian justice figures</span>
     <h2>The official numbers, plainly.</h2>
-    <p>Straight answers to 37 questions about prisons, community corrections and youth justice in Tasmania &mdash; what each figure actually counts, what to watch out for, and a link to the government report it came from.</p>
+    <p>Straight answers to 37 questions about Tasmania&rsquo;s justice system &mdash; 20 about adults (prisons, community corrections and policing) and 17 about young people &mdash; what each figure actually counts, what to watch out for, and a link to the government report it came from.</p>
 
+    <div class="fighead"><h3>Adults<small>20 questions</small></h3><a href="justice-figures.html">Adult figures &rarr;</a></div>
     <div class="figs">
       <a class="fig" href="justice-figures.html#fig-pop" id="fig-home-pop">
         <span class="n" data-fig="pop">784</span>
@@ -370,9 +380,38 @@
       </a>
     </div>
 
-    <a class="more" href="justice-figures.html">See all 37 questions
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    </a>
+<div class="fighead"><h3>Young people<small>17 questions</small></h3><a href="youth-justice.html#figures">Youth figures &rarr;</a></div>
+    <div class="figs">
+      <a class="fig" href="youth-justice.html#fig-ysuper" id="fig-home-ysuper">
+        <span class="n" data-fig="ysuper">20.4</span>
+        <span class="l">young Tasmanians in every 10,000 are under youth justice supervision &mdash; the highest rate reported</span>
+        <span class="src">ROGS 2026</span>
+      </a>
+      <a class="fig" href="youth-justice.html#fig-yremand" id="fig-home-yremand">
+        <span class="n" data-fig="yremand">85%</span>
+        <span class="l">of young people in detention have not been sentenced</span>
+        <span class="src">AIHW 2024&ndash;25</span>
+      </a>
+      <a class="fig" href="youth-justice.html#fig-ycost" id="fig-home-ycost">
+        <span class="n" data-fig="ycost">$5,121</span>
+        <span class="l">a day to hold one young person in detention</span>
+        <span class="src">ROGS 2026</span>
+      </a>
+      <a class="fig" href="youth-justice.html#fig-yindig" id="fig-home-yindig">
+        <span class="n" data-fig="yindig">3.9&times;</span>
+        <span class="l">the detention rate for Aboriginal young Tasmanians, against non-Indigenous</span>
+        <span class="src">ROGS 2026</span>
+      </a>
+    </div>
+
+    <div class="mores">
+      <a class="more" href="justice-figures.html">Adult figures
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="more ghost" href="youth-justice.html#figures">Youth figures
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
