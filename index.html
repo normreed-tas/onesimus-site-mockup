@@ -142,6 +142,45 @@
   @media (max-width:920px){ .card-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:560px){ .card-grid{grid-template-columns:1fr;} }
 
+
+  /* ===== FIGURES BAND ===== */
+  .figband{background:var(--ink); padding:68px 24px;}
+  .figband-inner{max-width:1180px; margin:0 auto;}
+  .figband .eyebrow{color:var(--brass);}
+  .figband h2{color:var(--white); font-size:clamp(1.5rem,3vw,2.1rem); margin-top:14px; max-width:640px;}
+  .figband > .figband-inner > p{color:rgba(255,255,255,.7); margin-top:16px; max-width:600px; font-size:.98rem;}
+  .figs{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+        background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.14); margin-top:36px;}
+  .fig{background:var(--ink); padding:28px 24px; text-decoration:none; display:flex;
+       flex-direction:column; gap:9px;}
+  .fig:hover{background:#223447;}
+  .fig .n{font-family:'Fraunces',serif; font-size:clamp(1.9rem,3.4vw,2.6rem); color:var(--white); line-height:1;}
+  .fig .l{font-size:.88rem; color:rgba(255,255,255,.76); line-height:1.5;}
+  .fig .src{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em;
+            text-transform:uppercase; color:rgba(255,255,255,.42); margin-top:auto; padding-top:8px;}
+  .figband .more{display:inline-flex; align-items:center; gap:8px; margin-top:28px;
+                 background:var(--brass); color:var(--white); text-decoration:none;
+                 padding:12px 22px; border-radius:100px; font-size:.86rem; font-weight:600;}
+  @media (max-width:920px){ .figs{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .figs{grid-template-columns:1fr;} }
+
+  /* cards become links */
+  a.card{text-decoration:none; color:inherit;}
+  a.card:hover{background:var(--white);}
+  a.card .go{margin-top:auto; padding-top:8px; font-size:.82rem; font-weight:600; color:var(--sage);}
+
+  /* ===== QUICK LINKS ===== */
+  .quick{max-width:1180px; margin:0 auto; padding:0 24px 80px;}
+  .quick h2{font-size:1.3rem; margin-top:12px;}
+  .quick-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:24px;}
+  .quick-grid a{display:flex; flex-direction:column; gap:4px; text-decoration:none;
+                background:var(--white); border:1px solid var(--line); padding:16px 18px; color:var(--ink);}
+  .quick-grid a:hover{border-color:var(--sage); background:var(--sage-tint);}
+  .quick-grid b{font-size:.95rem; font-weight:600;}
+  .quick-grid span{font-size:.83rem; color:var(--slate); line-height:1.5;}
+  @media (max-width:860px){ .quick-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .quick-grid{grid-template-columns:1fr;} }
+
   /* ===== FOOTER ===== */
   footer{
     border-top:1px solid var(--line); padding:48px 24px 32px;
@@ -259,6 +298,7 @@
   </div>
 </section>
 
+
 <section class="mission">
   <div class="mission-inner">
     <span class="eyebrow">What "Onesimus" means</span>
@@ -273,26 +313,79 @@
     <h2 style="margin-top:14px; font-size:clamp(1.5rem,2.8vw,2rem);">Four ways we work</h2>
   </div>
   <div class="card-grid">
-    <div class="card">
+    <a class="card" href="collaboration.html">
       <span class="tag">Collaboration</span>
       <h3>Networks &amp; partners</h3>
       <p>The Justice Working Group, RVPN, Just Desserts, and our emerging Justice-Involved Reference Panel.</p>
-    </div>
-    <div class="card">
+    <span class="go">Read more &rarr;</span>
+    </a>
+    <a class="card" href="training.html">
       <span class="tag">Resourcing &amp; Training</span>
       <h3>For practitioners</h3>
       <p>Professional Boundaries training, plus a growing library of recorded training on our YouTube channel.</p>
-    </div>
-    <div class="card">
+    <span class="go">Read more &rarr;</span>
+    </a>
+    <a class="card" href="family-community.html">
       <span class="tag">Family &amp; Community</span>
       <h3>Direct support</h3>
       <p>Family Engagement Workers, visiting guidance, and a long history of connecting children with an incarcerated parent.</p>
-    </div>
-    <div class="card">
+    <span class="go">Read more &rarr;</span>
+    </a>
+    <a class="card" href="research.html">
       <span class="tag">Research</span>
       <h3>Evidence &amp; ideas</h3>
       <p>From the Churchill Fellowship to international models like Singapore's Yellow Ribbon Project.</p>
+    <span class="go">Read more &rarr;</span>
+    </a>
+  </div>
+</section>
+
+
+<section class="figband">
+  <div class="figband-inner">
+    <span class="eyebrow">Tasmanian justice figures</span>
+    <h2>The official numbers, plainly.</h2>
+    <p>Straight answers to 37 questions about prisons, community corrections and youth justice in Tasmania &mdash; what each figure actually counts, what to watch out for, and a link to the government report it came from.</p>
+
+    <div class="figs">
+      <a class="fig" href="justice-figures.html#fig-pop" id="fig-home-pop">
+        <span class="n" data-fig="pop">784</span>
+        <span class="l">people in prison in Tasmania on an average day</span>
+        <span class="src">ROGS 2026</span>
+      </a>
+      <a class="fig" href="justice-figures.html#fig-recid" id="fig-home-recid">
+        <span class="n" data-fig="recid">46.6%</span>
+        <span class="l">return to prison within two years of release</span>
+        <span class="src">ROGS 2026</span>
+      </a>
+      <a class="fig" href="justice-figures.html#fig-remand" id="fig-home-remand">
+        <span class="n" data-fig="remand">343</span>
+        <span class="l">are waiting for court, not yet sentenced</span>
+        <span class="src">ABS 2025</span>
+      </a>
+      <a class="fig" href="justice-figures.html#fig-indig" id="fig-home-indig">
+        <span class="n" data-fig="indig">6.7&times;</span>
+        <span class="l">over-representation of Aboriginal Tasmanians in prison</span>
+        <span class="src">ROGS 2026</span>
+      </a>
     </div>
+
+    <a class="more" href="justice-figures.html">See all 37 questions
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="quick">
+  <span class="eyebrow">Go straight there</span>
+  <h2>Key places on this site</h2>
+  <div class="quick-grid">
+    <a href="family-journey.html"><b>Someone has gone to prison</b><span>Step by step, from arrest to coming home. Also a phone app that works with no signal.</span></a>
+    <a href="family-resources.html"><b>Resources for families</b><span>Two picture books to read with a child, and practical help by stage.</span></a>
+    <a href="practitioners-guide.html"><b>Practitioner's Guide</b><span>Working with children and families affected by a family member's offending.</span></a>
+    <a href="justice-figures.html"><b>Tasmanian justice figures</b><span>37 questions answered from ROGS, ABS and AIHW, with every source named.</span></a>
+    <a href="youth-justice.html"><b>Youth justice</b><span>Young Tasmanians in the system, and the generational thread back to families.</span></a>
+    <a href="phone-guides.html"><b>Phone guides</b><span>The apps we build and host, and an open offer to other organisations.</span></a>
   </div>
 </section>
 
@@ -303,6 +396,23 @@
     <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
   </div>
 </footer>
+
+
+<!-- Keep the home page figures in step with the figures page. The numbers above are
+     correct as written; this reads the same data file justice-figures.html uses and
+     silently corrects them if that file is updated, so the two can never disagree. -->
+<script src="justice-figures-data.js?v=20261106c" defer></script>
+<script defer>
+  window.addEventListener('load', function () {
+    if (typeof Q === 'undefined') return;
+    var by = {};
+    Q.forEach(function (r) { by[r.id] = r.fig; });
+    document.querySelectorAll('[data-fig]').forEach(function (el) {
+      var v = by[el.getAttribute('data-fig')];
+      if (v && el.textContent.trim() !== v) el.textContent = v;
+    });
+  });
+</script>
 
 </body>
 </html>

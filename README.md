@@ -32,7 +32,7 @@ Three pages share two script files:
 - `justice-figures-records.js` — `LV`, the evidence label for every statement (Official figure, Official note, Interpretation, Our question), and `REC`, the source record for every figure (publication, tables, who, period, footnotes, comparability, date checked). Loaded before the data file. If an answer's main paragraph is reworded, its `LV` letters must still match its sentence count.
 - `figures-register.html` builds its table from both files.
 
-When either script changes, bump the `?v=` on the script tags in all three pages, or returning visitors may see a stale copy.
+When either script changes, bump the `?v=` on the script tags in all three pages and on `index.html` (whose homepage figures read the same data file), or returning visitors may see a stale copy.
 
 **Annual update.** Each source is replaced once a year: ROGS (Productivity Commission) each January; ABS *Prisoners in Australia* each December; ABS *Recorded Crime – Offenders* each March; AIHW *Youth justice in Australia* mid-year. Update the figures, re-check each answer's caveats, and update the source records' "Last checked" date. All figures were last checked against the source tables on 6 November 2026.
 
