@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Onesimus Foundation — Someone you love has gone to prison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --paper:#F6F3ED; --slate:#5E6672; --line:#DDD6C9; --white:#FFFFFF;
+    --sage:#4B7A5E; --brass:#B8894A;
+    /* journey phases */
+    --p1:#B5523E; --p1-t:#FBEDEA;   /* the first days  */
+    --p2:#B07D24; --p2-t:#FBF2DF;   /* finding them    */
+    --p3:#3F7A5E; --p3-t:#E8F2EB;   /* staying in touch*/
+    --p4:#2E6B8C; --p4-t:#E6F0F6;   /* visiting        */
+    --p5:#71508A; --p5-t:#F1ECF6;   /* your family     */
+    --urgent:#9B2F22; --urgent-t:#FAE8E5;
+    --body:1.02rem; --r:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink);
+       font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; font-size:var(--body);}
+  body.big{--body:1.22rem;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.14;}
+  p{line-height:1.75; margin:0 0 14px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.14em;
+           text-transform:uppercase; font-weight:500;}
+  .wrap{max-width:660px; margin:0 auto; padding:0 16px;}
+  svg{display:block;}
+
+  /* ---------- BAR ---------- */
+  .bar{position:sticky; top:0; z-index:60; background:rgba(246,243,237,.97);
+       backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  .bar-in{max-width:660px; margin:0 auto; padding:10px 16px; display:flex;
+          align-items:center; gap:8px; justify-content:space-between;}
+  .bar .home{display:flex; align-items:center; gap:7px; font-family:'Fraunces',serif;
+             font-weight:600; font-size:.92rem; text-decoration:none; color:var(--ink);}
+  .bar .tools{display:flex; gap:7px; align-items:center;}
+  .bar button{display:flex; align-items:center; gap:5px; background:var(--white);
+              border:1px solid var(--line); border-radius:100px; padding:8px 13px;
+              font:600 .76rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  .bar button[aria-pressed="true"]{background:var(--ink); color:var(--white); border-color:var(--ink);}
+  .bar a.help{display:flex; align-items:center; gap:6px; background:var(--urgent);
+              color:var(--white); text-decoration:none; padding:9px 15px; border-radius:100px;
+              font-size:.76rem; font-weight:700; white-space:nowrap;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:36px 0 6px;}
+  .hero h1{font-size:clamp(1.85rem,5.8vw,2.45rem);}
+  .hero .lede{margin-top:16px; font-size:1.07rem; color:var(--ink);}
+  .hero .lede b{font-weight:650;}
+  .note{background:#FDF6E7; border:1px solid #E8D9AE; border-radius:var(--r);
+        padding:15px 17px; font-size:.85rem; color:var(--ink); margin:24px 0; line-height:1.65;}
+
+  /* ---------- ENTRY TILES ---------- */
+  .entry{margin:10px 0 44px;}
+  .entry h2{font-size:1.3rem;}
+  .entry p.sm{font-size:.93rem; color:var(--slate); margin:9px 0 18px;}
+  .routes{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .routes a{display:flex; flex-direction:column; gap:9px; text-decoration:none;
+            background:var(--white); border:1px solid var(--line); border-radius:var(--r);
+            padding:16px 15px; color:var(--ink); min-height:112px;}
+  .routes a:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(27,42,58,.09);}
+  .routes a .ic{width:38px; height:38px; border-radius:11px; display:flex;
+                align-items:center; justify-content:center; flex:none;}
+  .routes a b{font-weight:650; font-size:.95rem; line-height:1.3;}
+  .routes a span{font-size:.82rem; color:var(--slate); line-height:1.5;}
+  .routes a.wide{grid-column:1 / -1; flex-direction:row; align-items:center; min-height:0;}
+  .routes a.wide .txt{display:flex; flex-direction:column; gap:2px;}
+  .routes a.urgent{background:var(--urgent-t); border-color:#E8BDB5;}
+  @media (max-width:420px){ .routes{grid-template-columns:1fr;} .routes a{min-height:0; flex-direction:row; align-items:center;}
+    .routes a .txt{display:flex; flex-direction:column; gap:2px;} }
+
+  /* ---------- PHASE ---------- */
+  .phase{margin:38px 0 0;}
+  .phase-head{display:flex; align-items:center; gap:11px; padding:0 2px 14px;}
+  .phase-head .dot{width:34px; height:34px; border-radius:11px; display:flex;
+                   align-items:center; justify-content:center; flex:none;}
+  .phase-head h2{font-size:1.12rem;}
+  .phase-head .eyebrow{display:block; margin-bottom:2px;}
+
+  /* ---------- STEP CARDS ---------- */
+  .step{background:var(--white); border:1px solid var(--line); border-radius:var(--r);
+        padding:22px 20px 18px; margin-bottom:12px; scroll-margin-top:74px;
+        border-left:5px solid var(--c);}
+  .step:target{box-shadow:0 0 0 3px var(--ct), 0 8px 24px rgba(27,42,58,.10);}
+  .step-head{display:flex; align-items:flex-start; gap:12px; margin-bottom:6px;}
+  .step-head .ic{width:40px; height:40px; border-radius:12px; display:flex;
+                 align-items:center; justify-content:center; flex:none; background:var(--ct);}
+  .step .n{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.1em;
+           color:var(--c); text-transform:uppercase; display:block; margin-bottom:3px;}
+  .step h3{font-size:1.28rem; font-family:'Fraunces',serif; font-weight:500;}
+  .step h4{font-size:.9rem; font-family:'Inter',sans-serif; font-weight:700;
+           margin:20px 0 8px; color:var(--c); letter-spacing:.01em;}
+  .step ul{margin:0 0 14px; padding-left:19px;}
+  .step li{line-height:1.7; margin-bottom:7px;}
+  .step > p:first-of-type{margin-top:4px;}
+
+  .plain{background:var(--ct); border-radius:12px; padding:15px 17px; margin:14px 0;}
+  .plain b{display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace;
+           font-size:.65rem; letter-spacing:.08em; text-transform:uppercase;
+           color:var(--c); margin-bottom:8px;}
+  .plain p{margin:0; font-size:.96rem;}
+  .plain p + p{margin-top:9px;}
+
+  .alert{background:var(--urgent-t); border:1px solid #E8BDB5; border-radius:12px;
+         padding:15px 17px; margin:16px 0;}
+  .alert b{display:flex; align-items:center; gap:7px; font-weight:700; font-size:.88rem;
+           color:var(--urgent); margin-bottom:8px;}
+  .alert p{margin:0; font-size:.96rem;}
+  .alert p + p{margin-top:9px;}
+
+  .official{display:inline-flex; align-items:center; gap:8px; background:var(--c);
+            color:var(--white); text-decoration:none; padding:11px 18px; border-radius:100px;
+            font-size:.84rem; font-weight:650; margin:8px 0 2px;}
+  .official:hover{filter:brightness(.92);}
+  .tel{font-weight:700; white-space:nowrap;}
+  .chip{display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace;
+        font-size:.63rem; letter-spacing:.07em; text-transform:uppercase; padding:5px 11px;
+        border-radius:100px; background:#F0ECF5; color:#6B5280; margin:8px 6px 0 0;}
+
+  /* ---------- HELP NOW ---------- */
+  .helpnow{background:var(--urgent); color:var(--white); border-radius:var(--r);
+           padding:26px 24px; margin:40px 0 10px; scroll-margin-top:74px;}
+  .helpnow h2{font-size:1.25rem; color:var(--white); display:flex; align-items:center; gap:10px;}
+  .helpnow p{color:rgba(255,255,255,.9);}
+  .helpnow ul{margin:14px 0 0; padding-left:20px;}
+  .helpnow li{margin-bottom:9px; line-height:1.7; color:rgba(255,255,255,.95);}
+
+  footer{border-top:1px solid var(--line); margin-top:36px; padding:30px 0 48px;
+         font-size:.85rem; color:var(--slate); line-height:1.7;}
+  footer strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i-door"><path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h16"/><circle cx="13" cy="12" r="1"/></g>
+<g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g>
+<g id="i-fence"><path d="M3 21h18"/><path d="M6 21V8l3-3 3 3 3-3 3 3v13"/><path d="M4 12h16M4 16h16"/></g>
+<g id="i-layers"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 14 9 5 9-5"/></g>
+<g id="i-phone"><path d="M6 3h5l2 5-2.5 1.5a12 12 0 0 0 5 5L17 12l5 2v5a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></g>
+<g id="i-mail"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g>
+<g id="i-id"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16.5c.8-1.6 2-2.2 3.5-2.2s2.7.6 3.5 2.2M15 10h4M15 14h4"/></g>
+<g id="i-book"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h5"/><circle cx="7.5" cy="6.5" r=".6"/></g>
+<g id="i-scan"><path d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3"/><path d="M3 12h18"/></g>
+<g id="i-child"><circle cx="12" cy="6" r="2.6"/><path d="M12 9v6M8.5 11.5 12 10l3.5 1.5M9 21l3-5 3 5"/></g>
+<g id="i-house"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"/><path d="M9.5 21v-6h5v6"/></g>
+<g id="i-hands"><path d="M12 20s-7-4.2-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.8-7 9-7 9Z"/></g>
+<g id="i-alert"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4.5M12 17.2v.1"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></g>
+<g id="i-info"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8.2v.1"/></g>
+<g id="i-text"><path d="M4 7h16M4 12h11M4 17h7"/></g>
+<g id="i-arrow"><path d="M5 12h13M13 6l6 6-6 6"/></g>
+</defs></svg>
+
+<div class="bar">
+  <div class="bar-in">
+    <a class="home" href="family-resources.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 6l-6 6 6 6"/></svg>
+      Onesimus
+    </a>
+    <div class="tools">
+      <button type="button" aria-pressed="false"
+        onclick="var b=document.body.classList.toggle('big');this.setAttribute('aria-pressed',b);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M4 12h7M17 10v9M13.5 13.5 17 10l3.5 3.5"/></svg>
+        Bigger text
+      </button>
+      <a class="help" href="#help-now">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-alert"/></svg>
+        Help now
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow" style="color:var(--p1);">For families</span>
+    <h1 style="margin-top:12px;">Someone you love has gone to prison.</h1>
+    <p class="lede">This page walks you through what happens, step by step. You do not need to read all of it. Find where you are now and start there.</p>
+    <p class="lede"><b>Nothing here is a judgement about you or about them.</b> You have not done anything wrong, and you are allowed to ask for help.</p>
+
+    <div class="note"><strong>Mockup note for Norm.</strong> Written to be read by a twelve-year-old &mdash; reading age drops under stress, so every piece of jargon is explained. The five colours track the stages of the journey, so a family can see where they are and that there is a way through. Anything operational links out to the Tasmania Prison Service rather than being copied, so it cannot go stale. Purple chips mark what is still to confirm.</div>
+  </section>
+
+  <section class="entry">
+    <h2>Where are you right now?</h2>
+    <p class="sm">Tap the one that fits.</p>
+    <div class="routes">
+
+      <a href="#step-1" style="--c:var(--p1);--ct:var(--p1-t);">
+        <span class="ic" style="background:var(--p1-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-door"/></svg></span>
+        <span class="txt"><b>They have just been arrested</b><span>Today, or the last day or two</span></span>
+      </a>
+
+      <a href="#step-2" style="--c:var(--p1);--ct:var(--p1-t);">
+        <span class="ic" style="background:var(--p1-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>
+        <span class="txt"><b>Waiting to go to court</b><span>You may hear the word "remand"</span></span>
+      </a>
+
+      <a href="#step-3" style="--c:var(--p2);--ct:var(--p2-t);">
+        <span class="ic" style="background:var(--p2-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p2)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-fence"/></svg></span>
+        <span class="txt"><b>They are at Risdon</b><span>Finding out where they are</span></span>
+      </a>
+
+      <a href="#step-5" style="--c:var(--p3);--ct:var(--p3-t);">
+        <span class="ic" style="background:var(--p3-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p3)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-phone"/></svg></span>
+        <span class="txt"><b>Waiting to hear from them</b><span>Phone, letters and email</span></span>
+      </a>
+
+      <a href="#step-7" style="--c:var(--p4);--ct:var(--p4-t);">
+        <span class="ic" style="background:var(--p4-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p4)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-id"/></svg></span>
+        <span class="txt"><b>I want to visit</b><span>Getting approved, then booking</span></span>
+      </a>
+
+      <a href="#step-10" style="--c:var(--p5);--ct:var(--p5-t);">
+        <span class="ic" style="background:var(--p5-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-child"/></svg></span>
+        <span class="txt"><b>Telling the children</b><span>What to say, and taking them</span></span>
+      </a>
+
+      <a href="#step-11" class="wide" style="--c:var(--p5);--ct:var(--p5-t);">
+        <span class="ic" style="background:var(--p5-t);"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-house"/></svg></span>
+        <span class="txt"><b>Money, rent and the house</b><span>Centrelink, bills, school, the car</span></span>
+      </a>
+
+      <a href="#help-now" class="wide urgent">
+        <span class="ic" style="background:#F4D8D3;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--urgent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-alert"/></svg></span>
+        <span class="txt"><b style="color:var(--urgent);">I am worried about them right now</b><span>If you think they are not safe</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ======== PHASE 1 ======== -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="dot" style="background:var(--p1-t);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clock"/></svg></span>
+      <div><span class="eyebrow" style="color:var(--p1);">Phase one</span><h2>The first days</h2></div>
+    </div>
+
+    <section class="step" id="step-1" style="--c:var(--p1);--ct:var(--p1-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-door"/></svg></span>
+        <div><span class="n">Step 1</span><h3>They have been arrested</h3></div>
+      </div>
+      <p>The police hold them first. If the police or a court let them out on bail, they come home and wait for court there.</p>
+      <p>If they are not let out, they are taken to a reception prison. This is a small prison where people go first.</p>
+      <ul>
+        <li><strong>Hobart Reception Prison</strong> &mdash; 27&ndash;29 Liverpool Street, Hobart</li>
+        <li><strong>Launceston Reception Prison</strong> &mdash; 125&ndash;127 Cimitiere Street, inside the Launceston Police Station</li>
+      </ul>
+      <p>Both have the same phone number: <span class="tel">(03) 6165 8052</span>.</p>
+
+      <div class="plain"><b><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>What "bail" means</b><p>Bail means the court lets someone stay in the community while they wait for their court date. They usually have to follow rules, like living at a certain address.</p></div>
+
+      <h4>What you can do now</h4>
+      <ul>
+        <li>Ring the reception prison and ask if they are there.</li>
+        <li>Expect staff to tell you very little. There are privacy rules. It is not personal, and it is not because of anything you have done.</li>
+        <li>Write down the date and anything you are told. You will be asked for it later.</li>
+      </ul>
+      <span class="chip">Check with TPS &mdash; what staff can confirm to a family member</span>
+    </section>
+
+    <section class="step" id="step-2" style="--c:var(--p1);--ct:var(--p1-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p1)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>
+        <div><span class="n">Step 2</span><h3>Waiting for court</h3></div>
+      </div>
+      <div class="plain"><b><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>What "remand" means</b><p>Remand means waiting. They have not been found guilty of anything yet. They are in prison because the court has not agreed to let them out until the case is heard.</p><p>People on remand can be in prison for weeks or months before a court decides anything.</p></div>
+      <p>Men on remand in the south are usually held at the Southern Remand Centre at Risdon Vale.</p>
+      <h4>What you can do now</h4>
+      <ul>
+        <li>Find out who their lawyer is. If they do not have one, Legal Aid or a community legal service may be able to help.</li>
+        <li>Ask the lawyer when the next court date is. Court dates often move.</li>
+        <li>You can usually go to court and sit in the public seats. You do not have to.</li>
+      </ul>
+      <span class="chip">Onesimus to write &mdash; the court section</span>
+    </section>
+  </div>
+
+  <!-- ======== PHASE 2 ======== -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="dot" style="background:var(--p2-t);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-fence"/></svg></span>
+      <div><span class="eyebrow" style="color:var(--p2);">Phase two</span><h2>Finding out where they are</h2></div>
+    </div>
+
+    <section class="step" id="step-3" style="--c:var(--p2);--ct:var(--p2-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p2)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-fence"/></svg></span>
+        <div><span class="n">Step 3</span><h3>Moved to Risdon</h3></div>
+      </div>
+      <p>There are four prisons on one site at 672 East Derwent Highway, Risdon Vale.</p>
+      <ul>
+        <li><strong>Risdon Prison Complex</strong> &mdash; men, higher security</li>
+        <li><strong>Ron Barwick Prison</strong> &mdash; men, lower security</li>
+        <li><strong>Mary Hutchinson Women's Prison</strong> &mdash; women</li>
+        <li><strong>Southern Remand Centre</strong> &mdash; men waiting for court</li>
+      </ul>
+      <p>Which one they are in matters, because visits work differently at each one.</p>
+      <h4>What happens when they arrive</h4>
+      <ul>
+        <li>A health check, and questions about their safety and wellbeing.</li>
+        <li>Their own clothes and belongings are put away. Any cash goes into a prison account.</li>
+        <li>Paperwork, and someone explains the rules and the daily routine.</li>
+        <li>They are given prison clothes and toiletries.</li>
+        <li>They are given a security rating, then moved to the right part of the prison.</li>
+      </ul>
+      <a class="official" href="https://www.justice.tas.gov.au/prisonservice/contact-and-visits/visiting" target="_blank" rel="noopener">Prison Service: visiting pages
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+      <span class="chip">Check with TPS &mdash; which prison holds whom</span>
+    </section>
+
+    <section class="step" id="step-4" style="--c:var(--p2);--ct:var(--p2-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p2)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>
+        <div><span class="n">Step 4</span><h3>Where they will live in the prison</h3></div>
+      </div>
+      <div class="plain"><b><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>What "classification" means</b><p>Classification is the prison deciding two things. How closely someone needs to be supervised, and which part of the prison they will live in.</p></div>
+      <p>A group of staff makes the decision. They look at:</p>
+      <ul>
+        <li>how long the sentence is</li>
+        <li>what the offence was, and any other charges</li>
+        <li>whether there is any risk to safety or security</li>
+        <li>how the person behaves</li>
+        <li>whether they join in with work, education and programs</li>
+      </ul>
+      <p>This can change over time. If someone does well, it can change in their favour. That matters to you, because it can change what visits they are allowed.</p>
+    </section>
+  </div>
+
+  <!-- ======== PHASE 3 ======== -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="dot" style="background:var(--p3-t);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-phone"/></svg></span>
+      <div><span class="eyebrow" style="color:var(--p3);">Phase three</span><h2>Staying in touch</h2></div>
+    </div>
+
+    <section class="step" id="step-5" style="--c:var(--p3);--ct:var(--p3-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p3)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-phone"/></svg></span>
+        <div><span class="n">Step 5</span><h3>The first phone call</h3></div>
+      </div>
+      <p><strong>They have to ring you. You cannot ring them.</strong> This is the thing families find hardest at the start.</p>
+      <h4>How they get you on their phone list</h4>
+      <ul>
+        <li>They can put up to five personal numbers on a list. They get five more for lawyers and professional people.</li>
+        <li>The prison will ring each number to check who you are, and to check that you are happy to take calls.</li>
+        <li>So answer calls from numbers you do not know for the first week or two. That call may be the prison.</li>
+      </ul>
+      <p>Calls cost money. The money comes out of their prison account.</p>
+      <h4>Putting money in their account</h4>
+      <p>You can do this at Service Tasmania, at the Visitor Reception Centre, at the Hobart Reception Prison, or by bank cheque or Australia Post money order.</p>
+      <p>They can use it for phone credit and for the canteen.</p>
+      <a class="official" href="https://www.justice.tas.gov.au/prisonservice/contact-and-visits/contact/phone-calls-and-messages" target="_blank" rel="noopener">Prison Service: phone calls and messages
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+    </section>
+
+    <section class="step" id="step-6" style="--c:var(--p3);--ct:var(--p3-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p3)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>
+        <div><span class="n">Step 6</span><h3>Letters and email</h3></div>
+      </div>
+      <h4>Letters</h4>
+      <p>Write their full name on the envelope. For the Risdon Vale site, post to:</p>
+      <p style="font-weight:650;">PO Box 24, Lindisfarne TAS 7015</p>
+      <h4>Email</h4>
+      <p>You can send an email through <strong>emailaprisoner.com.au</strong>. There is a small cost.</p>
+      <h4>Things children send</h4>
+      <p>Children often want to send drawings. Some kinds of drawing are not allowed in, and it is better to know before your child makes one.</p>
+      <span class="chip">Check with TPS &mdash; what children can and cannot send</span>
+    </section>
+  </div>
+
+  <!-- ======== PHASE 4 ======== -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="dot" style="background:var(--p4-t);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-id"/></svg></span>
+      <div><span class="eyebrow" style="color:var(--p4);">Phase four</span><h2>Visiting</h2></div>
+    </div>
+
+    <section class="step" id="step-7" style="--c:var(--p4);--ct:var(--p4-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p4)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-id"/></svg></span>
+        <div><span class="n">Step 7</span><h3>Becoming an approved visitor</h3></div>
+      </div>
+      <p><strong>You cannot just turn up.</strong> There are two steps, and both take time.</p>
+      <h4>Step one: apply</h4>
+      <ul>
+        <li>Fill in a Visitor Application Form.</li>
+        <li><strong>Put your children on the form too.</strong> If a child is not on your form, they cannot come with you.</li>
+        <li>If you want to bring a child who is not yours, you need a separate form and permission from their parent or guardian.</li>
+      </ul>
+      <h4>Step two: get registered at the prison</h4>
+      <p>Once you are approved, the prison has to put you in their system before you can get through the doors.</p>
+      <p>That means a scan of your <strong>palm</strong> and a scan of your <strong>eye</strong>. The scans are how the doors know it is you. Every time you visit after that, you will scan again to get in.</p>
+      <div class="plain"><b><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>What the scans are for</b><p>It is not a test and there is no right or wrong result. It just means the prison can be sure the person going in is the person who was approved. It takes a few minutes.</p></div>
+      <p><strong>Children are not scanned.</strong> Only adults. Your child comes in with you, which is one of the reasons anyone under 18 has to be with an adult.</p>
+      <a class="official" href="https://www.justice.tas.gov.au/prisonservice/contact-and-visits/visiting" target="_blank" rel="noopener">Prison Service: become an approved visitor
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+      <span class="chip">Check with TPS &mdash; how long approval takes, and when registration happens</span>
+    </section>
+
+    <section class="step" id="step-8" style="--c:var(--p4);--ct:var(--p4-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p4)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>
+        <div><span class="n">Step 8</span><h3>Booking a visit</h3></div>
+      </div>
+      <p>Book <strong>at least one day before</strong>, and <strong>no more than a week before</strong>.</p>
+      <h4>Who to ring</h4>
+      <p>There are only two numbers. Which one you use depends on where they are.</p>
+      <ul>
+        <li><strong>Risdon Vale site</strong> &mdash; Visitor Reception Centre, <span class="tel">(03) 6165 7400</span>, option 1.<br>This covers the Risdon Prison Complex, Ron Barwick Prison, Mary Hutchinson Women's Prison and the Southern Remand Centre.</li>
+        <li><strong>Hobart Reception Prison</strong> and <strong>Launceston Reception Prison</strong> &mdash; <span class="tel">(03) 6165 8052</span>.</li>
+      </ul>
+      <h4>Three kinds of visit</h4>
+      <ul>
+        <li><strong>Contact visit</strong> &mdash; you sit at a table together. You can usually hug hello and goodbye.</li>
+        <li><strong>Box visit</strong> &mdash; you talk through a glass window. You cannot touch.</li>
+        <li><strong>Zoom visit</strong> &mdash; a video call, which you can do from home.</li>
+      </ul>
+      <p>Which one you get depends on the prison, on their classification, and on how things are going for them.</p>
+      <p>A Zoom visit is worth asking about if you live a long way away, or if a long drive with small children is too much.</p>
+      <span class="chip">Check with TPS &mdash; current Zoom arrangements</span>
+    </section>
+
+    <section class="step" id="step-9" style="--c:var(--p4);--ct:var(--p4-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p4)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scan"/></svg></span>
+        <div><span class="n">Step 9</span><h3>What happens when you get there</h3></div>
+      </div>
+
+      <div class="alert">
+        <b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clock"/></svg>Get there early</b>
+        <p><strong>Arrive at least 30 minutes before your visit time.</strong> If you get there later than that, you will be turned away and you will lose the visit.</p>
+        <p>Plan for traffic, parking, and a child who needs the toilet. Half an hour early is the latest you should aim for, not the earliest.</p>
+      </div>
+
+      <p>Then there is waiting, and there is a search before you go in.</p>
+      <ul>
+        <li>You scan your palm and your eye, the same as when you registered. Children do not have to.</li>
+        <li>You hand in everything you are carrying. It goes in a locker, including jewellery.</li>
+        <li>You walk through a scanner that beeps if you have metal on you.</li>
+        <li>An officer may wave a hand-held scanner around you.</li>
+        <li>A dog may come and sniff you. You are not allowed to pat it.</li>
+        <li>Doors are heavy and they bang. It is loud. Children often find this the worst part.</li>
+      </ul>
+      <p>None of this means anyone thinks badly of you. Every visitor goes through it.</p>
+      <a class="official" href="https://www.justice.tas.gov.au/prisonservice/contact-and-visits/visiting" target="_blank" rel="noopener">Prison Service: what to expect
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+      <span class="chip">Check with TPS &mdash; current search process</span>
+    </section>
+  </div>
+
+  <!-- ======== PHASE 5 ======== -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="dot" style="background:var(--p5-t);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hands"/></svg></span>
+      <div><span class="eyebrow" style="color:var(--p5);">Phase five</span><h2>Your family</h2></div>
+    </div>
+
+    <section class="step" id="step-10" style="--c:var(--p5);--ct:var(--p5-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-child"/></svg></span>
+        <div><span class="n">Step 10</span><h3>Children</h3></div>
+      </div>
+      <h4>Bringing a child to a visit</h4>
+      <ul>
+        <li><strong>Bring ID for every child, every single time.</strong> A Medicare card, a Healthcare or Concession card, or a birth certificate with their name on it.</li>
+        <li>Anyone under 18 has to come with an adult.</li>
+        <li>Babies can bring one bottle. No other food.</li>
+        <li>There are some toys and books in the visits area, but not many.</li>
+        <li>Plan to spend most of the visit playing with your children. If you need to talk about adult things, it is better to arrange care for them.</li>
+      </ul>
+
+      <div class="alert">
+        <b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-alert"/></svg>The two things that lose people a visit</b>
+        <p>No ID for a child, and arriving less than 30 minutes before. Families drive a long way and get turned away at the gate for both.</p>
+        <p>Put the cards in the car now. With children, leave even earlier than you think.</p>
+      </div>
+
+      <p>Your child will not be scanned. The palm and eye scans are for adults only, so there is nothing you need to prepare them for there.</p>
+      <a class="official" href="https://www.justice.tas.gov.au/prisonservice/contact-and-visits/visiting/children" target="_blank" rel="noopener">Prison Service: children visiting
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+
+      <h4>Telling the children</h4>
+      <p>Most people's first instinct is to say nothing, to protect the child. Children almost always know something is wrong. When nobody tells them what it is, they usually imagine something worse, and often decide it is their fault.</p>
+      <p>You do not have to tell them everything. You do have to tell them something true.</p>
+      <p>We have two picture books you can read with a child &mdash; one about what a visit is actually like, and one for older children about telling a friend.</p>
+      <a class="official" href="family-resources.html">Books and resources for children
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+    </section>
+
+    <section class="step" id="step-11" style="--c:var(--p5);--ct:var(--p5-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-house"/></svg></span>
+        <div><span class="n">Step 11</span><h3>Keeping your own household going</h3></div>
+      </div>
+      <p>This is the part nobody warns you about, and for most families it is the hardest part of the first fortnight.</p>
+      <p>If the person who went to prison earned money, paid rent, drove the car or looked after the children, all of that lands on you at once, in the same week you are trying to work out where they are.</p>
+      <h4>Worth sorting early</h4>
+      <ul>
+        <li>Rent or mortgage &mdash; tell them early rather than late</li>
+        <li>Centrelink &mdash; what you are entitled to may have changed</li>
+        <li>Bills and any loans in their name</li>
+        <li>The car, if it is in their name</li>
+        <li>School &mdash; you decide what to tell them, but a teacher who knows something is going on can help a child</li>
+      </ul>
+      <span class="chip">Onesimus to write &mdash; not covered anywhere by TPS</span>
+    </section>
+
+    <section class="step" id="step-12" style="--c:var(--p5);--ct:var(--p5-t);">
+      <div class="step-head">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--p5)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hands"/></svg></span>
+        <div><span class="n">Step 12</span><h3>Help near you</h3></div>
+      </div>
+      <p>You do not have to do this on your own. These services help families in this situation, and they will not judge you.</p>
+      <ul>
+        <li><strong>Onesimus Foundation</strong> &mdash; <span class="tel">0401 690 954</span>, info@onesimus.org.au</li>
+        <li><strong>Hobart</strong> &mdash; City Mission (03) 6215 4200 &middot; Community Legal Service (03) 6223 2500 &middot; Salvation Army (03) 6231 5400 &middot; St Vincent de Paul (03) 6234 8609</li>
+        <li><strong>Launceston</strong> &mdash; City Mission (03) 6335 3000 &middot; Salvation Army (03) 6323 7500 &middot; St Vincent de Paul (03) 6333 0822</li>
+        <li><strong>Burnie</strong> &mdash; City Mission (03) 6432 2543 &middot; Salvation Army (03) 6430 4100 &middot; St Vincent de Paul (03) 6435 2323</li>
+        <li><strong>Statewide</strong> &mdash; Anglicare 1800 243 232</li>
+      </ul>
+      <p style="font-size:.89rem; color:var(--slate);">These contacts are listed in the Prison Service guide <em>Someone has gone to prison</em>.</p>
+    </section>
+  </div>
+
+  <!-- HELP NOW -->
+  <section class="helpnow" id="help-now">
+    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><use href="#i-alert"/></svg>If you are worried about them right now</h2>
+    <p style="margin-top:14px;">If you think the person in prison is not safe, or they have said something that frightens you, tell the prison. You do not need proof and you will not get them into trouble for it.</p>
+    <ul>
+      <li>Visitor Reception Centre &mdash; <span class="tel">(03) 6165 7400</span>, option 1</li>
+      <li>Hobart and Launceston Reception Prisons &mdash; <span class="tel">(03) 6165 8052</span></li>
+    </ul>
+    <p style="margin-top:14px;">If you are struggling yourself, that counts too. Lifeline is <span class="tel">13 11 14</span>, any time of the day or night.</p>
+    <span class="chip" style="background:rgba(255,255,255,.17); color:#fff;">Check with TPS &mdash; the right number for a welfare concern</span>
+  </section>
+
+  <footer>
+    <p><strong>Onesimus Foundation Ltd</strong> &middot; 550 East Derwent Hwy, Risdon Vale, TAS 7016 &middot; 0401 690 954 &middot; info@onesimus.org.au</p>
+    <p>Information about prison rules comes from the Tasmania Prison Service. Rules change, and staff instructions always come before anything written here. Check the Prison Service pages for the current rule.</p>
+  </footer>
+</div>
+
+</body>
+</html>

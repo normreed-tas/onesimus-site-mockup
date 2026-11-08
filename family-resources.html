@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Resources for Families</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:720px;}
+  .page-head p{margin-top:18px; max-width:620px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:660px; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  /* STATUS CHIPS */
+  .status{
+    align-self:flex-start; display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+    letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+    background:var(--sage-tint); color:var(--sage); white-space:nowrap;
+  }
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+  .status.check{background:#EFE6F0; color:#7A5080;}
+
+  /* JOURNEY — the three moments */
+  .journey{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .leg{background:var(--white); padding:30px 28px; display:flex; flex-direction:column; gap:12px;}
+  .leg .when{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brass);}
+  .leg h3{font-size:1.2rem;}
+  .leg p{font-size:.9rem; margin:0;}
+  .leg ul{margin:4px 0 0; padding-left:18px; color:var(--slate); font-size:.88rem; line-height:1.7;}
+  .leg ul li{margin-bottom:4px;}
+  .leg .status{margin-top:auto;}
+  .kid-card .status{margin-top:auto;}
+  @media (max-width:860px){ .journey{grid-template-columns:1fr;} }
+
+  /* CHILD RESOURCES */
+  .kid-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .kid-card{background:var(--white); padding:28px 28px; display:flex; flex-direction:column; gap:11px;}
+  .kid-card h3{font-size:1.1rem;}
+  .kid-card p{font-size:.9rem; margin:0;}
+  .kid-card .age{font-family:'IBM Plex Mono',monospace; font-size:.68rem; color:var(--slate); letter-spacing:.04em;}
+  @media (max-width:760px){ .kid-grid{grid-template-columns:1fr;} }
+
+  /* NOT ALONE band */
+  .alone{background:var(--ink); padding:52px 44px; margin-top:1px;}
+  .alone .eyebrow{color:var(--brass);}
+  .alone h2{color:var(--white); font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:12px; max-width:620px;}
+  .alone p{color:rgba(255,255,255,.68); margin-top:14px; max-width:600px; font-size:.97rem;}
+  .alone a.more{color:var(--brass); text-decoration:underline; font-weight:600;}
+
+  /* ROADMAP */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .road-col{background:var(--paper); padding:28px 26px;}
+  .road-col h3{font-size:1.05rem; margin:12px 0 14px;}
+  .road-col ul{margin:0; padding-left:18px; font-size:.88rem; color:var(--slate); line-height:1.75;}
+  .road-col li{margin-bottom:8px;}
+  @media (max-width:860px){ .road{grid-template-columns:1fr;} }
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  .ph-img{
+    background:repeating-linear-gradient(45deg, var(--sage-tint), var(--sage-tint) 10px, var(--paper) 10px, var(--paper) 20px);
+    border:1px dashed var(--sage); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.04em;
+    padding:12px; min-height:80px;
+  }
+
+  /* DROPDOWN */
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  /* MOBILE MENU */
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+    .alone{padding:40px 26px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle current" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html" class="current">Resources for Families</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html">Practitioner's Guide</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="survey.html">The Survey</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Resources for Families</span>
+  <h1 style="margin-top:14px;">Nobody hands you a map for this.</h1>
+  <p>When someone you love goes to prison, you are expected to work out court, visits, phone calls, money and what to tell the children — mostly on your own, mostly from strangers. These pages are the things we wish someone had given you on the first day.</p>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">Start here</span>
+    <h2>Three moments families tell us are the hardest</h2>
+    <p>You do not have to read all of this. Find where you are now.</p>
+    <p style="margin-top:14px;"><a href="family-journey.html" style="color:var(--sage); font-weight:600;">Start here: someone you love has gone to prison &rarr;</a></p>
+  </div>
+
+  <div class="journey">
+    <div class="leg">
+      <span class="when">First</span>
+      <h3>Court, remand and the first days</h3>
+      <p>The period when least is known and most is decided.</p>
+      <ul>
+        <li>What happens at court, and what you can expect to be told</li>
+        <li>Where someone goes first, and how to find out</li>
+        <li>The first phone call — when it comes and what it costs</li>
+        <li>Who to tell, including school, and what you are not obliged to say</li>
+        <li>Money, bills and Centrelink in the first fortnight</li>
+      </ul>
+      <span class="status dev">In development</span>
+    </div>
+    <div class="leg">
+      <span class="when">Then</span>
+      <h3>Visiting and keeping in touch</h3>
+      <p>The practical business of staying a family across a wall.</p>
+      <ul>
+        <li>Getting on the visitor list, booking, and what to bring</li>
+        <li>Getting to Risdon, and what the trip costs from the north and north-west</li>
+        <li>What a visit is actually like, including the search</li>
+        <li>Taking children — what helps, and what to tell them first</li>
+        <li>Video visits, phone calls, letters and what children can send</li>
+      </ul>
+      <span class="status check">Checking current detail with TPS</span>
+    </div>
+    <div class="leg">
+      <span class="when">Later</span>
+      <h3>Coming home</h3>
+      <p>The stage families are least prepared for, and the one most likely to go wrong.</p>
+      <ul>
+        <li>What release conditions can mean for your household</li>
+        <li>Housing, work and money in the first months</li>
+        <li>Children and a returning parent — what is normal, and what takes time</li>
+        <li>If you are not looking forward to it: who you can talk to</li>
+      </ul>
+      <span class="status check">Checking current detail with TPS</span>
+    </div>
+  </div>
+
+  <p class="note"><strong>Mockup note.</strong> Each of these opens into a short, plain-language page built on the <em>Getting Out</em> pattern — phone-first, searchable, with a "help now" route. Content is drawn from Onesimus's Practitioner's Guide and from the Churchill Fellowship findings, with Tasmanian detail confirmed with Tasmania Prison Service before publication.</p>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="section-head">
+    <span class="eyebrow">For children</span>
+    <h2>Things to use with a child, not just read about them</h2>
+    <p>Most of these are for an adult and a child to use together. A few a child can open on their own.</p>
+  </div>
+
+  <div class="kid-grid">
+    <div class="kid-card">
+      <span class="age">Around 4–10</span>
+      <h3>My Diary</h3>
+      <p>A child's diary for the time a parent is away — somewhere to put the days, the visits and the things they want to say. Onesimus produced a web edition; it has been out of print for some years.</p>
+      <span class="status dev">Being rebuilt for the web</span>
+    </div>
+    <div class="kid-card">
+      <span class="age">Any age</span>
+      <h3>The Onesimus Bear</h3>
+      <p>A parent's voice recorded in the paw of a teddy bear, so a young child can hear them between visits. One of the few things that works for a child too small to use a phone.</p>
+      <span class="status">Available now</span>
+    </div>
+    <div class="kid-card">
+      <span class="age">For the adult</span>
+      <h3>Telling the children</h3>
+      <p>What to say, when, and what happens when children are told nothing. Families are often advised to protect a child with silence; children almost always know something is wrong and fill the gap with something worse.</p>
+      <span class="status dev">In development</span>
+    </div>
+    <div class="kid-card">
+      <span class="age">For the adult</span>
+      <h3>The questions children ask</h3>
+      <p>Is it my fault. When is he coming back. Can I ring him. Is he in a cage. Drawn from the children's questions set out in our Practitioner's Guide, with answers you can actually use.</p>
+      <span class="status dev">In development</span>
+    </div>
+  </div>
+
+  <p class="note"><strong>Mockup note.</strong> Several printed resources in the CAPO archive were produced by other organisations and would need permission before republishing. The items shown here are ones Onesimus holds or produced. Rights to be confirmed item by item as the source register is built.</p>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="alone">
+    <span class="eyebrow">You are not the only one</span>
+    <h2>Roughly one in three people entering prison has children depending on them. Nobody counts those children.</h2>
+    <p>Australian prisons do not routinely record whether the people they receive have children, so there is no official figure — nationally or for Tasmania. That absence is part of why families are left to work this out alone, and it is one of the things Onesimus is trying to change.</p>
+    <p style="margin-top:18px;"><a href="family-community.html#numbers" class="more">See what the numbers say &rarr;</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">What we are working towards</span>
+    <h2>Where this section is going</h2>
+    <p>Onesimus is not currently a principal service provider in this space. What we hold is thirty years of practice knowledge, a published guide and the relationships to keep it accurate. This is how we intend to put it to work.</p>
+  </div>
+
+  <div class="road">
+    <div class="road-col">
+      <span class="status">Now</span>
+      <h3>Get it accurate</h3>
+      <ul>
+        <li>Confirm current Tasmanian practice with Tasmania Prison Service</li>
+        <li>Build the source register — what exists, where, and whether it is still current</li>
+        <li>Rebuild the child's diary as a web edition</li>
+      </ul>
+    </div>
+    <div class="road-col">
+      <span class="status dev">Next</span>
+      <h3>Publish the family pages</h3>
+      <ul>
+        <li>The three stages above, in plain language, phone-first</li>
+        <li>The children's material, usable on a screen rather than reprinted</li>
+        <li>A clear route to the people who can actually help, inside and outside the prison</li>
+      </ul>
+    </div>
+    <div class="road-col">
+      <span class="status dev">Then</span>
+      <h3>Keep it alive</h3>
+      <ul>
+        <li>An annual check against Tasmania Prison Service practice, as we already do for the justice figures</li>
+        <li>Material offered to any Tasmanian service that wants it, under our name or theirs</li>
+        <li>The generational thread carried into youth justice work</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

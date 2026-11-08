@@ -1,15 +1,18 @@
 # Onesimus Foundation — Website Design Mockup
 
 This is a clickable, static HTML mockup of the proposed Onesimus Foundation
-website — fourteen pages, fully linked, for stakeholder review. It is a design
+website — seventeen pages, fully linked, for stakeholder review. It is a design
 concept only: no real forms, payments, or CMS are wired up.
 
 ## Pages included
 - `index.html` — Home
 - `about.html` — About Us
 - `collaboration.html` — Collaboration
+- `practitioners-guide.html` — The Onesimus Practitioner's Guide (under For Professionals)
 - `training.html` — Resourcing & Training
-- `family-community.html` — Family & Community
+- `family-community.html` — Family & Community (under For Families)
+- `family-resources.html` — Resources for Families (under For Families)
+- `family-journey.html` — "Someone you love has gone to prison": a step-by-step guide for families, written for a reading age of about 12. A deliberately simple page with no site menu, reached from Resources for Families
 - `research.html` — Research
 - `justice-figures.html` — Tasmanian justice figures, adults (data explorer; linked from Research)
 - `youth-justice.html` — Youth Justice (under For Professionals), including the youth figures explorer. Both explorers share `justice-figures-data.js` and link to each other for adult/youth comparisons
@@ -33,7 +36,7 @@ When either script changes, bump the `?v=` on the script tags in all three pages
 **Annual update.** Each source is replaced once a year: ROGS (Productivity Commission) each January; ABS *Prisoners in Australia* each December; ABS *Recorded Crime – Offenders* each March; AIHW *Youth justice in Australia* mid-year. Update the figures, re-check each answer's caveats, and update the source records' "Last checked" date. All figures were last checked against the source tables on 6 November 2026.
 
 ## What's real vs placeholder
-- All internal navigation between these fourteen pages is fully wired and
+- All internal navigation between these seventeen pages is fully wired and
   clickable.
 - Content is drawn from real source material (board bios, program
   descriptions, historical records) gathered during the design process —

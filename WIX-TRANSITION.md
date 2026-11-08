@@ -17,7 +17,10 @@ These decisions are already made (see Norm's rebuild brief):
 | `index.html` | Home, with a two-audience entry (families / professionals) | Standard page |
 | `about.html` | Story, Board, Churchill Fellowship background | Strategic Directions PDF link is a placeholder |
 | `family-community.html` | Support for families, track record, "What the numbers say" | Keep the three figures, their sources and the "What isn't known" panel as written |
+| `family-resources.html` | Resources for Families landing page | Contains mockup notes for Norm — remove before going public |
+| `family-journey.html` | Step-by-step guide for families, arrest to community support | Deliberately simple: no site menu, "Bigger text" and "Help now" buttons, readable at about age 12. Operational detail links to Tasmania Prison Service pages rather than copying them. Purple chips mark items still to confirm with TPS. Contains a mockup note — remove before going public |
 | `collaboration.html` | Networks and partners | Several partner links still to be confirmed |
+| `practitioners-guide.html` | The Onesimus Practitioner's Guide: provenance, four practice chapters, tools, archived 2018 PDF, training | Contains a mockup note — remove before going public |
 | `training.html` | Resourcing and training | "Bookings open soon" buttons are placeholders |
 | `youth-justice.html` | Youth justice resources and the youth figures section | See *Justice figures* below |
 | `research.html` | Research shelf | Links to Key Documents and Justice Figures |
@@ -29,7 +32,7 @@ These decisions are already made (see Norm's rebuild brief):
 | `donate.html` | Donate | Platform still to be decided; bank details are a placeholder |
 | `contact.html` | Contact | Wix form |
 
-**Menu:** About Us | For Families | For Professionals (Collaboration, Resourcing & Training, Youth Justice) | Research | The Survey | Events | Donate. Key Documents and the figures pages are reached from Research, not from the menu. Below 1024px wide, the menu collapses behind a "Menu" button.
+**Menu:** About Us | For Families (Family & Community, Resources for Families) | For Professionals (Collaboration, Practitioner's Guide, Resourcing & Training, Youth Justice) | Research | The Survey | Events | Donate. Key Documents and the figures pages are reached from Research, not from the menu. Below 1024px wide, the menu collapses behind a "Menu" button.
 
 ## Placeholders to wire up in Wix
 
@@ -40,6 +43,11 @@ Each of these is `href="#"` in the mockup:
 - "Bookings open soon" training buttons (`training.html`)
 - Strategic Directions document (`about.html`)
 - Survey link (`survey.html`), once the survey is approved to open
+
+## Before going public
+
+- Remove the mockup notes addressed to Norm on `family-journey.html`, `family-resources.html` and `practitioners-guide.html`.
+- Resolve the purple "to confirm" chips on `family-journey.html` with the Tasmania Prison Service.
 
 ## Files to carry over
 
