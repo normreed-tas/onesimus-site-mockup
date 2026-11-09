@@ -119,6 +119,26 @@
   .xref button:hover,.xref a.goto:hover{background:var(--brass); color:var(--white);}
   .page-head .elsewhere{margin-top:14px; font-size:.92rem;}
   .elsewhere a{color:var(--sage); font-weight:500;}
+  /* Latest Tasmanian figures — newer than the national comparative series */
+  .latest{margin-top:26px; border:1px solid var(--brass); border-top:3px solid var(--brass); background:var(--white); border-radius:2px; padding:15px 17px;}
+  .latest .eyebrow{display:block; color:var(--brass); margin-bottom:10px;}
+  .latest .lfig{font-family:'Fraunces',serif; font-size:1.75rem; line-height:1; color:var(--brass); font-variant-numeric:tabular-nums; display:block; margin-bottom:10px;}
+  .latest p{margin:0 0 9px; font-size:.9rem; color:var(--ink); max-width:62ch; line-height:1.6;}
+  .latest p:last-of-type{margin-bottom:0;}
+  .latest .lsrc{font-size:.78rem; color:var(--slate); margin-top:11px;}
+  details.ci{margin-top:14px; border-top:1px solid var(--line); padding-top:12px;}
+  details.ci summary{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.09em; text-transform:uppercase; color:var(--sage); font-weight:500; list-style:none;}
+  details.ci summary::-webkit-details-marker{display:none;}
+  details.ci summary::after{content:" \25BE";}
+  details.ci[open] summary::after{content:" \25B4";}
+  .cibody{padding-top:12px;}
+  .cibody p{font-size:.88rem;}
+  .citable{width:100%; border-collapse:collapse; font-size:.8rem; margin:12px 0; font-variant-numeric:tabular-nums;}
+  .citable th,.citable td{text-align:left; padding:6px 10px 6px 0; border-bottom:1px solid var(--line);}
+  .citable th{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); font-weight:400;}
+  .citable td:not(:first-child),.citable th:not(:first-child){text-align:right;}
+  .citable tr.hl td{color:var(--flag); font-weight:500;}
+  .citable-wrap{overflow-x:auto;}
   .support{margin-top:22px; background:var(--sage-tint); border-left:3px solid var(--sage); padding:13px 16px; border-radius:2px; font-size:.86rem; color:var(--ink); max-width:62ch;}
   .source{margin-top:28px; padding-top:15px; border-top:1px solid var(--line); font-size:.82rem; color:var(--slate); max-width:70ch;}
   .source a{color:var(--sage); font-weight:500;}
@@ -266,6 +286,7 @@
       <p class="note"><strong>ROGS is for comparing &mdash; mostly.</strong> It provides a common framework for comparing justice systems across the states: what things cost, how full the prisons are, how many people come back. Published each January; its youth justice section is on the Youth Justice page. But the completeness and comparability of individual measures vary, so always check the qualifications on each answer.</p>
       <p class="note"><strong>ABS is for describing.</strong> Two publications sit here. One counts everyone in prison on a single night in June and says what they are held for. The other counts everyone police dealt with across the whole year, adults and children alike.</p>
       <p class="note"><strong>Small numbers jump about.</strong> Tasmania holds under 800 adults in prison. Thirty adults either way moves the imprisonment rate by about six and a half per 100,000. A change from one year to the next often means less than it looks.</p>
+      <p class="note"><strong>Two reporting years sit side by side.</strong> The national reports compare states using 2024&ndash;25 figures. Tasmania&rsquo;s own reports &mdash; from the Department of Justice and the Custodial Inspector &mdash; are a year ahead at 2025&ndash;26, but cover only Tasmania, so nothing in them can be compared interstate. Where a newer Tasmanian figure exists it is shown under &ldquo;Latest Tasmanian figures&rdquo;, with the comparable national figure kept above it.</p>
       <p class="note"><strong>Counting methods change.</strong> When a government improves how it counts something, the new number cannot be compared with the old one. Tasmania changed several counting methods in 2024&ndash;25. Where that matters, it is flagged on the answer.</p>
     </div>
   </div>
@@ -303,7 +324,7 @@
   </div>
 </footer>
 
-<script src="justice-figures-records.js?v=20261106c"></script>
-<script src="justice-figures-data.js?v=20261106c"></script>
+<script src="justice-figures-records.js?v=20261109a"></script>
+<script src="justice-figures-data.js?v=20261109a"></script>
 </body>
 </html>

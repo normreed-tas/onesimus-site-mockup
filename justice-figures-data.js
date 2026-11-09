@@ -33,6 +33,13 @@ var Q=[
  counts:'The average number held across the whole year, including people on remand who have not been sentenced. Tasmania operates five prisons, all government-run, with an average capacity of 899 places.',
  caveats:['Raw counts cannot be compared between states of different sizes. For that, use the imprisonment rate.','The ABS headcount for 30 June 2025 is 797. The gap between the two is the difference between an average and a snapshot, not an error in either.'],
  xref:'The ABS counts the same population a different way: a headcount of 797 on one night, with what people are held for and how many have not yet been sentenced.',gotoId:'absnight',
+ latest:{fig:'845',
+   note:['The average prisoner population for 2025\u201326 was 845, a 7.9 per cent increase on the previous year.','The population reached a new high of 882 in April 2026 \u2014 the third year in a row that it has risen.'],
+   src:'Department of Justice Annual Report 2025\u201326, p. 40. The Department publishes no breakdown by sex, by sentenced or remand status, or by Aboriginal and Torres Strait Islander status.',
+   ci:{points:[
+     'The Custodial Inspector tracks the same population monthly rather than as a single annual average, and records a rise from an average of 793 in June 2025 to 862 in June 2026.',
+     'He plots those monthly averages against the design capacity of the prison service\u2019s facilities \u2014 a comparison the Department does not publish.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, p. 10 and Figures 10\u201312, pp. 35\u201336.'}},
  table:'8A.4, 8A.5'},
 
 {src:'rogs',id:'cost',topic:'Money',q:'What does it cost to keep someone in prison for a day?',
@@ -62,6 +69,16 @@ var Q=[
  bars:{vals:[8.0,10.1,8.2,9.3,9.0,7.0,8.8,12.1],label:'Average hours out of cells per day, 2024–25',fmt:function(v){return v.toFixed(1)+' hr'}},
  counts:'The average hours per day prisoners are not confined to their cells, across open and secure custody combined. It is the measure most closely tied to daily lived experience, and is affected by staffing, lockdowns and infrastructure.',
  caveats:['Tasmania holds 97.9 per cent of its prisoners in secure custody — the highest proportion in the country. Secure custody always produces lower out-of-cell hours, so part of this gap reflects the mix of custody types rather than how any one prison is run.','The figure is an average across the year and across all prisoners. It conceals both better and considerably worse individual experience.'],
+ latest:{fig:'6.6 hours',
+   note:['Tasmania Prison Service reported an average of 6.6 hours out of cells per prisoner per day in 2025\u201326, down from 7.0 hours the year before.','The Department says lockdowns have been a significant issue across its facilities throughout the year and remain an ongoing challenge, and that its focus on reducing them will continue in 2026\u201327.'],
+   src:'Department of Justice Annual Report 2025\u201326, p. 41. Tasmania only; not comparable with other states.',
+   ci:{points:[
+     'The Custodial Inspector heads this section \u201cOut of cell hours are the worst in the country\u201d, and records that Tasmania has held that position for three years running, with the latest year the worst.',
+     'The Inspector measures each facility against the prison service\u2019s own Director\u2019s Standing Order 1.19 Core Day \u2014 the hours the prison plans to unlock. The statewide average is held up by Ron Barwick Prison. In the maximum units and the Southern Remand Centre, people are out of their cells for around two hours a day.',
+     'He states that reaching averages this low requires multiple full and half day lockdowns each month, and calls lockdowns a significant human rights issue occurring in Tasmanian prisons.',
+     'He also notes that the lockdown data he is given is the prison\u2019s scheduled lock and unlock times rather than what actually happened, and that December 2024 is missing from his series because a complete set was not supplied.'],
+   tableAfter:1,table:'<div class="citable-wrap"><table class="citable"><tr><th>Facility</th><th>Planned</th><th>Actual</th><th>Short by</th></tr><tr class="hl"><td>Risdon maximum units</td><td>8h 15m</td><td>2h 02m</td><td>6h 13m</td></tr><tr class="hl"><td>Southern Remand Centre</td><td>9h 00m</td><td>2h 51m</td><td>6h 09m</td></tr><tr class="hl"><td>Risdon medium units</td><td>8h 20m</td><td>3h 16m</td><td>5h 04m</td></tr><tr><td>Mary Hutchinson maximum</td><td>9h 15m</td><td>5h 16m</td><td>3h 59m</td></tr><tr><td>Mary Hutchinson medium</td><td>9h 22m</td><td>7h 23m</td><td>1h 59m</td></tr><tr><td>Mary Hutchinson minimum</td><td>10h 22m</td><td>10h 14m</td><td>8m</td></tr><tr><td>Ron Barwick Prison</td><td>15h 30m</td><td>14h 53m</td><td>37m</td></tr></table></div>',
+   src:'Custodial Inspector Annual Report 2025\u201326, Figures 1 and 2, pp. 8\u201310 and p. 31. The facility breakdown is the Inspector\u2019s own calculation and is not published by the prison service.'}},
  table:'8A.13'},
 
 {src:'rogs',id:'indig',topic:'Equity',q:'Are Aboriginal Tasmanians over-represented in prison?',
@@ -81,6 +98,14 @@ var Q=[
  bars:{vals:[86.0,72.4,96.6,97.3,100.0,87.2,93.8,92.7],label:'Prison capacity utilisation, 2024–25',fmt:function(v){return v.toFixed(1)+'%'}},
  counts:'Average daily prisoner population measured against average available capacity. Capacity is what the system reports as usable, which is not the same as the design capacity of the buildings and can be adjusted.',
  caveats:['The indicator changed for the 2024 edition of the report. Figures before 2022–23 are measured differently and are not shown.','Utilisation near capacity constrains everything else — classification, programs, out-of-cell hours, and the ability to separate people who should be kept apart.','The Productivity Commission publishes no national average for this measure.'],
+ latest:{fig:'26 beds, 30 people',
+   note:['The Custodial Inspector reports that Launceston Reception Prison has a specified design capacity of 26, plus eight temporary beds, and that its average monthly population reached 30 by the end of 2025\u201326 \u2014 roughly double the average of 14.7 two years earlier.','The Department of Justice annual report publishes no prison capacity, bed number or utilisation figure of any kind.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, p. 10; Department of Justice Annual Report 2025\u201326.',
+   ci:{points:[
+     'The Inspector records instances of people sleeping in an internal exercise yard because there were not enough beds, and says doubling up in cells has been common, with some people sleeping on mattresses on the floor.',
+     'He reports this alongside accounts of rats emerging from toilets in cells, with some people blocking their toilets with towels to keep them out, and describes the overcrowding as particularly concerning in that context.',
+     'The 2026\u201327 Budget funds a business case for a replacement prison at $300,000. The Inspector notes it will likely be years before a new prison is built.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, pp. 10 and 54.'}},
  table:'8A.3, 8A.15'},
 
 {src:'rogs',id:'cc',topic:'Community',q:'How many people are serving sentences in the community?',
@@ -136,6 +161,9 @@ var Q=[
  bars:{vals:[6,4,3,11,2,0,0,0],label:'Deaths from apparent unnatural causes, 2024–25',fmt:function(v){return String(v)}},
  counts:'Deaths assessed as resulting from unnatural causes, excluding those recorded as "unknown cause" where a coroner has not yet determined the matter. Figures for past years are revised as coronial findings are handed down, so an earlier year’s number can change in a later edition.',
  caveats:['Deaths from natural causes are not counted here, and in an ageing prison population they are the larger number.','At these counts a rate per 100 prisoners is close to meaningless for a jurisdiction of Tasmania’s size. A single death would move it substantially.','A zero in one year carries no information about the following year.'],
+ latest:{fig:'3',
+   note:['There were three deaths from apparent natural causes in Tasmanian prison custody in 2025\u201326. Each death is subject to investigation by the coroner.','The figure above counts deaths from apparent unnatural causes only, so the two numbers do not describe the same thing and should not be compared.','The Custodial Inspector\u2019s 2025\u201326 annual report does not address deaths in custody.'],
+   src:'Department of Justice Annual Report 2025\u201326, p. 41.'},
  table:'8A.16'},
 
 /* ============ ROGS — young people (Section 17) ============ */
@@ -218,6 +246,15 @@ var Q=[
    rows:[['Tasmania',5],['Rest of Australia',3]]},
  counts:'Escapes from a youth detention centre, counted as incidents rather than as individual young people, with a rate per 10,000 custody nights. Escapes from escorted movements outside the centre are counted separately and were nil for Tasmania.',
  caveats:['Five incidents is a very small number carrying a very large share. With only 5,640 custody nights in the year, Tasmania’s rate is high principally because its denominator is small. One or two fewer incidents would change the national picture.','Tasmania recorded three escapes in 2023–24, a suppressed figure in 2022–23 and nil in 2021–22. There is no stable trend in a series this short and this small.','The Indigenous breakdown is suppressed under Tasmania’s small-number policy.','An escape is a failure of physical security. It is not a measure of how young people are treated or of whether detention is achieving anything.'],
+ latest:{fig:'8',
+   note:['Eight young people escaped from Ashley Youth Detention Centre in December 2025, in an incident that also involved a serious assault of staff.','The Custodial Inspector records that this single incident was the largest number of escapes from any Australian youth detention centre since 2016\u201317, and that across the whole country there were eight or fewer escapes in each year from 2017\u201318 to 2024\u201325.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, pp. 11\u201312, citing Report on Government Services 2026, table 17A.23.',
+   ci:{points:[
+     'The Inspector also records a major incident in October 2025 in which young people assaulted staff and caused considerable property damage to several buildings.',
+     'He reports that the two incidents left staff deeply affected and numbers diminished, and that in early February 2026 the two unions active at the centre led joint stop-work action over staff safety and security.',
+     'The Department for Education, Children and Young People commissioned an independent review of both incidents, which reported in May 2026 with four recommendations.',
+     'He notes that staffing recovered through the first half of 2026, and that nearly all the youth workers recruited and trained since October 2025 were still employed at the end of June \u2014 but says the challenge will be maintaining those improvements.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, pp. 11\u201313.'}},
  table:'17A.23'},
 
 {src:'rogs',age:'youth',id:'yharm',topic:'Conditions',q:'Do young people self-harm in Tasmanian detention?',
@@ -260,6 +297,13 @@ var Q=[
  counts:'Unsentenced prisoners are those held in custody awaiting the outcome of their matter — not yet convicted, or convicted but not yet sentenced. Those not yet convicted are presumed innocent; those awaiting sentence have already been found guilty. The ABS does not split the two groups in this count.',
  caveats:['People on remand generally have limited access to programs, education and work, because those are usually structured around a known sentence length. A rising remand share therefore changes what a prison can do, not just who is in it.','This is one night’s count. Remand populations move faster than sentenced ones, so a single night can sit above or below the year’s typical level.','The published sentenced and unsentenced figures sum to 798 against a reported total of 797, a result of the small adjustments the ABS makes to protect confidentiality.'],
  xref:'Among young people in Tasmanian detention the unsentenced share is roughly double this, at about 85 per cent.',gotoId:'yremand',
+ latest:{fig:'39.4%',
+   note:['Averaged across the whole of 2025\u201326, the Custodial Inspector reports that 39.4 per cent of people in Tasmanian prisons were on remand and 60.6 per cent were serving a sentence.','The Department of Justice annual report publishes no remand figure at all.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, Figure 13, p. 37. Tasmania only.',
+   ci:{points:[
+     'The Inspector\u2019s figure is an average across July 2025 to June 2026; the ABS figure above is a headcount on the single night of 30 June 2025. They cover different periods and are counted differently, so one cannot be used to check the other.',
+     'He reports that the population of Launceston Reception Prison, which holds a high proportion of people on remand, roughly doubled over two years \u2014 from an average of 14.7 in July 2024 to 30 by the end of 2025\u201326.'],
+   src:'Custodial Inspector Annual Report 2025\u201326, pp. 10 and 37.'}},
  table:'Prisoners in Australia 2025, Tables 16 and 30'},
 
 {src:'abs',id:'absnight',topic:'Headcount',q:'How many people were in prison on one night in Tasmania?',
@@ -464,9 +508,25 @@ function sentences(t){
   raw.forEach(function(x){if(out.length&&out[out.length-1].length<12)out[out.length-1]+=' '+x;else out.push(x);});
   return out;
 }
+/* "Latest Tasmanian figures" — a newer Tasmania-only figure, with the Custodial
+   Inspector's commentary folded in behind a disclosure rather than a fourth tab. */
+function latestBlock(L,lv){
+  var h='<div class="latest"><span class="eyebrow">Latest Tasmanian figures</span>';
+  if(L.fig)h+='<span class="lfig">'+L.fig+'</span>';
+  h+=L.note.map(function(t,i){return '<p>'+lvPill((lv.l||'').charAt(i))+t+'</p>';}).join('');
+  h+='<p class="lsrc">'+L.src+'</p>';
+  if(L.ci){
+    var pts=L.ci.points.map(function(t,i){return '<p>'+lvPill((lv.ci||'').charAt(i))+t+'</p>';});
+    if(L.ci.table)pts.splice(typeof L.ci.tableAfter==='number'?L.ci.tableAfter:pts.length,0,L.ci.table);
+    h+='<details class="ci"><summary>What the Custodial Inspector says</summary>'
+      +'<div class="cibody">'+pts.join('')+'<p class="lsrc">'+L.ci.src+'</p></div></details>';
+  }
+  return h+'</div>';
+}
+
 function recTable(r){
   if(!r)return '';
-  var rows=[['Publication',r.pub],['Tables',r.tables],['What is counted',r.what],['Who',r.who],['Period',r.period],['Footnotes relied on',r.notes],['Comparable between states?',r.cmp],['Last checked',r.checked]];
+  var rows=[['Publication',r.pub],['Tables',r.tables],['What is counted',r.what],['Who',r.who],['Period',r.period],['Footnotes relied on',r.notes],['Comparable between states?',r.cmp],['Newer Tasmanian source',r.latest],['Last checked',r.checked]];
   return '<table>'+rows.filter(function(x){return x[1];}).map(function(x){return '<tr><th scope="row">'+x[0]+'</th><td>'+x[1]+'</td></tr>';}).join('')+'</table>';
 }
 
@@ -538,6 +598,7 @@ function renderSheet(id,scroll){
     +'<h2>'+d.q+'</h2>'
     +'<div class="headline"><span class="figure">'+d.fig+'</span><span class="figure-unit">'+d.unit+'</span></div>'
     +(lv.p?'<div class="claims">'+sentences(d.plain).map(function(t,i){return '<p class="plain">'+lvPill(lv.p.charAt(i))+t+'</p>';}).join('')+'</div>':'<p class="plain">'+d.plain+'</p>')
+    +(d.latest?latestBlock(d.latest,lv):'')
     +(charts.length?'<div class="charts">'+charts.join('')+'</div>':'')
     +'<div class="block"><span class="eyebrow">What this number counts</span><p class="counts">'+d.counts+'</p></div>'
     +'<div class="block"><span class="eyebrow">Read it carefully</span><ul class="caveats">'+d.caveats.map(function(c,i){return '<li>'+lvPill((lv.c||'').charAt(i))+c+'</li>';}).join('')+'</ul></div>'

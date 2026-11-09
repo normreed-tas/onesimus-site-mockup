@@ -3,7 +3,8 @@
 
    LV labels each statement in an answer, one letter per item, in order:
      p = the sentences of the main paragraph ("plain"), c = the "Read it carefully" caveats,
-     x = the comparison box.
+     x = the comparison box, l = the "Latest Tasmanian figures" block,
+     ci = the points inside "What the Custodial Inspector says".
    f  Official figure   a number or fact the source publishes
    n  Official note     the source's own definition, footnote or warning
    i  Interpretation    our reading, supported by the figures, the method or the footnotes
@@ -14,18 +15,18 @@
 
 var LV={
   rate:{p:'ff',c:'ii',x:'f'},
-  pop:{p:'ff',c:'ii',x:'f'},
+  pop:{p:'ff',c:'ii',x:'f',l:'ff',ci:'fn'},
   cost:{p:'ff',c:'nini',x:'f'},
   recid:{p:'fff',c:'nni',x:'i'},
-  cells:{p:'fff',c:'ii'},
+  cells:{p:'fff',c:'ii',l:'ff',ci:'finn'},
   indig:{p:'ff',c:'qfi',x:'f'},
-  cap:{p:'ff',c:'nin'},
+  cap:{p:'ff',c:'nin',l:'fi',ci:'nnf'},
   cc:{p:'ff',c:'ni'},
   edu:{p:'ff',c:'nni'},
   work:{p:'ff',c:'ni'},
   spend:{p:'ff',c:'ii'},
   cwork:{p:'ff',c:'iq',x:'i'},
-  deaths:{p:'fff',c:'iii'},
+  deaths:{p:'fff',c:'iii',l:'fni'},
 
   ycost:{p:'ff',c:'inf',x:'f'},
   ysuper:{p:'ff',c:'iinn',x:'i'},
@@ -34,12 +35,12 @@ var LV={
   yorders:{p:'ff',c:'nni',x:'i'},
   ycase:{p:'fff',c:'nnni'},
   yindig:{p:'fff',c:'inq',x:'f'},
-  yescape:{p:'fff',c:'ifni'},
+  yescape:{p:'fff',c:'ifni',l:'ff',ci:'fffn'},
   yharm:{p:'ff',c:'nni'},
   ydeaths:{p:'ff',c:'i',x:'f'},
 
   offence:{p:'iff',c:'innn'},
-  remand:{p:'ff',c:'iin',x:'f'},
+  remand:{p:'ff',c:'iin',x:'f',l:'fi',ci:'if'},
   absnight:{p:'ff',c:'iin',x:'f'},
   absrate:{p:'ff',c:'if',x:'i'},
   absindig:{p:'ff',c:'ni',x:'f'},
@@ -71,6 +72,7 @@ var REC={
     period:'2024–25 financial year, average daily',
     notes:'8A.5 note (d): includes unknown Indigenous status; 8A.3 capacity is annual average, facility count at 30 June',
     cmp:'Not rated by ROGS for this table',
+    latest:'Department of Justice Annual Report 2025\u201326 (845 average, p. 40); Custodial Inspector Annual Report 2025\u201326 (monthly series, p. 10)',
     checked:'6 November 2026'},
   cost:{pub:'Productivity Commission, Report on Government Services 2026, Section 8',
     tables:'8A.19 (also 8A.20); notes from 8A.1, 8A.2',
@@ -95,6 +97,7 @@ var REC={
     period:'2024–25 financial year, annual average',
     notes:'8A.13 note (c): Tas 2019–20 based on eight months only',
     cmp:'Yes, with caveats (ROGS rating)',
+    latest:'Department of Justice Annual Report 2025\u201326 (6.6 hours, p. 41); Custodial Inspector Annual Report 2025\u201326 (per-facility breakdown, Fig. 2, p. 9)',
     checked:'6 November 2026'},
   indig:{pub:'Productivity Commission, Report on Government Services 2026, Section 8',
     tables:'8A.5, 8A.8',
@@ -111,6 +114,7 @@ var REC={
     period:'2024–25 financial year, annual average',
     notes:'8A.15 note (a): indicator changed for 2024 Report; earlier years not comparable',
     cmp:'Yes, with caveats (ROGS rating)',
+    latest:'Custodial Inspector Annual Report 2025\u201326 (Launceston Reception Prison capacity and population, p. 10)',
     checked:'6 November 2026'},
   cc:{pub:'Productivity Commission, Report on Government Services 2026, Section 8',
     tables:'8A.6, 8A.7',
@@ -159,6 +163,7 @@ var REC={
     period:'2024–25 financial year',
     notes:'8A.16 note (a): excludes unknown cause; past years revised on coronial findings',
     cmp:'Yes, with caveats (ROGS rating)',
+    latest:'Department of Justice Annual Report 2025\u201326 (3 deaths, apparent natural causes, p. 41)',
     checked:'6 November 2026'},
   ycost:{pub:'Productivity Commission, Report on Government Services 2026, Section 17',
     tables:'17A.10, 17A.20, 17A.21, 17A.2',
@@ -223,6 +228,7 @@ var REC={
     period:'2024–25, during year',
     notes:'Tas small-number suppression (np) for Indigenous split and 2022-23.',
     cmp:'Yes, with caveats. Incomplete for 2024–25 (ROGS rating)',
+    latest:'Custodial Inspector Annual Report 2025\u201326 (December 2025 escape in national context, pp. 11\u201312)',
     checked:'6 November 2026'},
   yharm:{pub:'Productivity Commission, Report on Government Services 2026, Section 17',
     tables:'17A.19, 17A.18',
@@ -295,6 +301,7 @@ var REC={
     period:'30 June 2025 (one night)',
     notes:'Unsentenced = remanded awaiting trial outcome, includes convicted awaiting sentence; perturbed small cells.',
     cmp:'ABS: some jurisdictional comparability issues remain (legislation, recording); preliminary ANZSOC 2023 offence coding, caution comparing across states; rates revised from 2016.',
+    latest:'Custodial Inspector Annual Report 2025\u201326 (39.4% on remand, twelve-month average, Fig. 13, p. 37)',
     checked:'6 November 2026, against the ABS data tables'},
   absnight:{pub:'ABS, Prisoners in Australia, 2025',
     tables:'Table 16 (data cube 2)',

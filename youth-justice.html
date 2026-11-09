@@ -164,6 +164,26 @@
   .xref p{margin:0; font-size:.9rem; color:var(--ink); max-width:62ch;}
   .xref button,.xref a.goto{display:inline-block; margin-top:11px; background:none; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; padding:8px 13px; cursor:pointer; border-radius:2px; text-decoration:none;}
   .xref button:hover,.xref a.goto:hover{background:var(--brass); color:var(--white);}
+  /* Latest Tasmanian figures — newer than the national comparative series */
+  .latest{margin-top:26px; border:1px solid var(--brass); border-top:3px solid var(--brass); background:var(--white); border-radius:2px; padding:15px 17px;}
+  .latest .eyebrow{display:block; color:var(--brass); margin-bottom:10px;}
+  .latest .lfig{font-family:'Fraunces',serif; font-size:1.75rem; line-height:1; color:var(--brass); font-variant-numeric:tabular-nums; display:block; margin-bottom:10px;}
+  .latest p{margin:0 0 9px; font-size:.9rem; color:var(--ink); max-width:62ch; line-height:1.6;}
+  .latest p:last-of-type{margin-bottom:0;}
+  .latest .lsrc{font-size:.78rem; color:var(--slate); margin-top:11px;}
+  details.ci{margin-top:14px; border-top:1px solid var(--line); padding-top:12px;}
+  details.ci summary{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.09em; text-transform:uppercase; color:var(--sage); font-weight:500; list-style:none;}
+  details.ci summary::-webkit-details-marker{display:none;}
+  details.ci summary::after{content:" \25BE";}
+  details.ci[open] summary::after{content:" \25B4";}
+  .cibody{padding-top:12px;}
+  .cibody p{font-size:.88rem;}
+  .citable{width:100%; border-collapse:collapse; font-size:.8rem; margin:12px 0; font-variant-numeric:tabular-nums;}
+  .citable th,.citable td{text-align:left; padding:6px 10px 6px 0; border-bottom:1px solid var(--line);}
+  .citable th{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); font-weight:400;}
+  .citable td:not(:first-child),.citable th:not(:first-child){text-align:right;}
+  .citable tr.hl td{color:var(--flag); font-weight:500;}
+  .citable-wrap{overflow-x:auto;}
   .support{margin-top:22px; background:var(--sage-tint); border-left:3px solid var(--sage); padding:13px 16px; border-radius:2px; font-size:.86rem; color:var(--ink); max-width:62ch;}
   .source{margin-top:28px; padding-top:15px; border-top:1px solid var(--line); font-size:.82rem; color:var(--slate); max-width:70ch;}
   .source a{color:var(--sage); font-weight:500;}
@@ -359,6 +379,7 @@
       <p class="note"><strong>Small numbers jump about.</strong> Tasmania holds about fifteen young people in detention on an average night. That matters most for detention and for Aboriginal young people in detention, where one or two young people either way can move a percentage or ratio by several points. The overall supervision rate, built on about 110 young people, moves much less.</p>
       <p class="note"><strong>Average day or whole year?</strong> About 163 young people are under supervision on an average day, but 266 were supervised at some point during 2024&ndash;25. Check which one a figure counts before comparing it with another.</p>
       <p class="note"><strong>Tasmania's twelve-month orders.</strong> The AIHW notes that Tasmanian courts generally set sentenced youth community orders to default to twelve months. Longer supervision periods may contribute to higher average daily supervision numbers, but how much they contribute cannot be established from these figures alone.</p>
+      <p class="note"><strong>Two reporting years sit side by side.</strong> The national reports compare states using 2024&ndash;25 figures. The Custodial Inspector&rsquo;s annual report is a year ahead at 2025&ndash;26 but covers only Tasmania. Where it adds something newer it is shown under &ldquo;Latest Tasmanian figures&rdquo;, with the comparable national figure kept above it. Note that Ashley Youth Detention Centre sits with the Department for Education, Children and Young People, so the Department of Justice annual report carries no youth figures at all.</p>
     </div>
   </div>
 </details>
@@ -469,7 +490,7 @@
   </div>
 </footer>
 
-<script src="justice-figures-records.js?v=20261106c"></script>
-<script src="justice-figures-data.js?v=20261106c"></script>
+<script src="justice-figures-records.js?v=20261109a"></script>
+<script src="justice-figures-data.js?v=20261109a"></script>
 </body>
 </html>
