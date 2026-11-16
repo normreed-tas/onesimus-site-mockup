@@ -9,6 +9,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `about.html` — About Us
 - `collaboration.html` — Collaboration
 - `practitioners-guide.html` — The Onesimus Practitioner's Guide (under For Professionals)
+- `practitioners-guide-2.html` to `practitioners-guide-5.html` — Chapters 2 to 5 of the guide, as drafts for review. Each is `noindex` and keeps its review flags visible. They are built from the drafting project's chapter files, so don't edit them by hand
 - `phone-guides.html` — Phone Guides: the phone apps Onesimus builds and hosts (Getting Out, Stay Connected, The Blokes' Book, Field Guide, Living With an Order), with QR codes, and an offer to other organisations (under For Professionals)
 - `training.html` — Resourcing & Training
 - `family-community.html` — Family & Community (under For Families)

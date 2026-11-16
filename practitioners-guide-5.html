@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Onesimus Foundation — Practitioner's Guide, Chapter 5: Supporting children and young people</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{
+    display:inline-block; align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+    letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+    background:var(--sage-tint); color:var(--sage); white-space:nowrap;
+  }
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+  .status.check{background:#EFE6F0; color:#7A5080;}
+
+  /* PROVENANCE STRIP */
+  .prov{display:grid; grid-template-columns:1fr 300px; border:1px solid var(--line); background:var(--white);}
+  .prov-main{padding:34px 36px;}
+  .prov-main h2{font-size:1.45rem;}
+  .prov-main p{margin-top:14px; font-size:.95rem; max-width:560px;}
+  .prov-side{background:var(--sage-tint); padding:34px 28px; display:flex; flex-direction:column; gap:18px; justify-content:center;}
+  .fact .k{display:block; font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage);}
+  .fact .v{display:block; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--ink); margin-top:4px; line-height:1.3;}
+  @media (max-width:820px){ .prov{grid-template-columns:1fr;} }
+
+  /* CHAPTER CARDS */
+  .chapters{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .chap{background:var(--white); padding:28px 30px; display:flex; flex-direction:column; gap:10px;}
+  .chap .num{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; color:var(--brass);}
+  .chap h3{font-size:1.15rem;}
+  .chap p{font-size:.9rem; margin:0;}
+  .chap ul{margin:6px 0 0; padding-left:18px; font-size:.86rem; color:var(--slate); line-height:1.7;}
+  .chap .status{margin-top:auto; padding-top:0;}
+  .chap h3 a{text-decoration:none;}
+  .chap h3 a:hover{text-decoration:underline;}
+  .chap-link{font-size:.88rem; font-weight:600; color:var(--sage); margin-top:6px;}
+  .tool a{color:var(--sage); font-size:.86rem; font-weight:600;}
+  @media (max-width:760px){ .chapters{grid-template-columns:1fr;} }
+
+  /* TOOLS */
+  .tools{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .tool{background:var(--paper); padding:24px 24px; display:flex; flex-direction:column; gap:8px;}
+  .tool h3{font-size:1rem;}
+  .tool p{font-size:.86rem; margin:0;}
+  @media (max-width:880px){ .tools{grid-template-columns:1fr 1fr;} }
+  @media (max-width:620px){ .tools{grid-template-columns:1fr;} }
+
+  /* INTERNATIONAL CALLOUT */
+  .intl{border-left:4px solid var(--brass); background:var(--brass-tint); padding:22px 26px; margin-top:28px; max-width:760px;}
+  .intl .eyebrow{color:var(--brass);}
+  .intl p{margin-top:10px; font-size:.92rem; color:var(--ink); opacity:.82;}
+
+  /* ARCHIVE + TRAINING BAND */
+  .band{background:var(--ink); padding:44px 40px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; justify-content:space-between;}
+  .band-text .eyebrow{color:var(--brass);}
+  .band-text h3{color:var(--white); font-size:1.3rem; margin-top:10px;}
+  .band-text p{color:rgba(255,255,255,.65); margin-top:10px; max-width:520px; font-size:.9rem;}
+  .band-btn{background:var(--brass); color:var(--white); text-decoration:none; padding:12px 24px; border-radius:100px; font-size:.85rem; font-weight:600; white-space:nowrap;}
+
+  /* ROADMAP */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .road-col{background:var(--paper); padding:28px 26px;}
+  .road-col h3{font-size:1.05rem; margin:12px 0 14px;}
+  .road-col ul{margin:0; padding-left:18px; font-size:.88rem; color:var(--slate); line-height:1.75;}
+  .road-col li{margin-bottom:8px;}
+  @media (max-width:860px){ .road{grid-template-columns:1fr;} }
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+    .band{padding:34px 26px;}
+  }
+
+  /* CHAPTER PAGE */
+  .crumb{font-size:.86rem; color:var(--slate);}
+  .crumb a{color:var(--sage);}
+  .draftline{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; font-size:.9rem; color:var(--slate); max-width:680px;}
+  .chapter{max-width:780px; margin:0 auto; padding:0 24px 72px;}
+  .chapter h2{font-size:clamp(1.35rem,2.6vw,1.75rem); margin:44px 0 14px; padding-top:30px; border-top:1px solid var(--line); scroll-margin-top:84px; line-height:1.2;}
+  .chapter h3{font-size:1.15rem; margin:30px 0 10px; scroll-margin-top:84px; line-height:1.25;}
+  .chapter h4{font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; margin:26px 0 6px; scroll-margin-top:84px;}
+  .chapter p, .chapter li, .chapter td{color:#3A4654;}
+  .chapter p{font-size:1rem; line-height:1.7; margin:0 0 14px;}
+  .chapter ul, .chapter ol{padding-left:22px; margin:8px 0 18px;}
+  .chapter li{font-size:1rem; line-height:1.65; margin-bottom:7px;}
+  .chapter a{color:var(--sage); text-underline-offset:2px;}
+  .chapter a.tel{white-space:nowrap; font-weight:600;}
+  .chapter .toc{background:var(--white); border:1px solid var(--line); padding:18px 22px; margin-bottom:28px;}
+  .chapter .toc ul{list-style:none; padding:0; margin:10px 0 0;}
+  .chapter .toc li{margin-bottom:6px; font-size:.94rem;}
+  .pull{margin:22px 0; padding:18px 22px; border-left:4px solid var(--brass); background:var(--brass-tint);}
+  .pull p{font-family:'Fraunces',serif; font-size:1.1rem; color:var(--ink); margin:0; line-height:1.5;}
+  .pull cite{display:block; margin-top:8px; font-style:normal; font-size:.82rem; color:var(--slate);}
+  .callout{margin:20px 0; padding:18px 22px 6px; border:1px solid var(--line); background:var(--white);}
+  .fgl{font-size:.86rem !important; margin:-2px 0 10px !important;}
+  .src{font-size:.86rem !important; color:var(--slate) !important;}
+  .q{font-family:'Inter',sans-serif !important; font-weight:600 !important; font-size:1rem !important; margin:24px 0 6px !important;}
+  .credit{font-size:.84rem !important; color:var(--slate) !important; margin-top:40px !important; padding-top:20px; border-top:1px solid var(--line);}
+  .flag{background:#F0ECF5; color:#6B5280; border-radius:3px; padding:1px 6px; font-size:.86em;}
+  .flag b{font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.82em; letter-spacing:.06em; text-transform:uppercase;}
+  .flag.block{display:block; padding:10px 14px; margin:10px 0 0; border-left:3px solid #6B5280; border-radius:0; line-height:1.55;}
+  .flag.new{background:var(--sage-tint); color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:100px; vertical-align:middle; white-space:nowrap; font-weight:500;}
+  details.orig{margin:18px 0 8px; border:1px solid var(--line); background:var(--white);}
+  details.orig summary{cursor:pointer; padding:12px 16px; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brass);}
+  details.orig summary span{color:var(--slate);}
+  details.orig .obody{padding:6px 18px 12px; border-top:1px solid var(--line);}
+  details.orig p{font-size:.9rem; color:var(--slate); line-height:1.65; margin:0 0 10px; overflow-wrap:anywhere;}
+  details.orig h4{font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); margin:14px 0 8px;}
+  details.orig .dnote{font-style:italic;}
+  .tbl{width:100%; border-collapse:collapse; margin:16px 0 20px; background:var(--white); border:1px solid var(--line);}
+  .tbl th{text-align:left; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); background:var(--sage-tint); padding:10px 12px; vertical-align:bottom;}
+  .tbl td{padding:12px; border-top:1px solid var(--line); vertical-align:top; font-size:.92rem; line-height:1.55;}
+  @media (max-width:700px){
+    .tbl{border:none; background:none;}
+    .tbl thead{display:none;}
+    .tbl, .tbl tbody, .tbl tr, .tbl td{display:block; width:100%;}
+    .tbl tr{border:1px solid var(--line); background:var(--white); margin-bottom:12px; padding:6px 0;}
+    .tbl td{border:none; padding:7px 14px;}
+    .tbl td:empty{display:none;}
+    .tbl td::before{content:attr(data-label); display:block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); margin-bottom:2px;}
+  }
+  .chapnav{display:flex; justify-content:space-between; gap:14px 24px; flex-wrap:wrap; margin-top:44px; padding-top:20px; border-top:1px solid var(--line); font-size:.9rem;}
+  @media print{ header, .chapnav, .toc{display:none;} .chapter{max-width:none;} }
+</style>
+<link rel="stylesheet" href="draft.css">
+</head>
+<body id="top">
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html">Resources for Families</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle current" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html" class="current">Practitioner's Guide</a></li>
+              <li><a href="phone-guides.html">Phone Guides</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="survey.html">The Survey</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <p class="crumb" style="margin:0 0 14px;"><a href="practitioners-guide.html">&larr; Practitioner's Guide</a></p>
+  <span class="eyebrow">Practitioner's Guide · Chapter 5</span>
+  <h1 style="margin-top:14px;">Supporting children and young people</h1>
+  <div class="draftline"><span class="status check">Draft for review</span><span>Not final. The purple notes mark points still to confirm or verify. Each section ends with the 2018 guide's own wording.</span></div>
+</section>
+
+<article class="chapter">
+  <div class="toc"><span class="eyebrow">In this chapter</span><ul><li><a href="#s5-1">5.1 Assessing needs and planning support</a></li><li><a href="#s5-2">5.2 Exploring feelings</a></li><li><a href="#s5-3">5.3 Providing information</a></li><li><a href="#s5-4">5.4 Facilitating contact with someone in prison</a></li><li><a href="#s5-5">5.5 Coping with changes at home</a></li><li><a href="#s5-6">5.6 Managing behaviour</a></li><li><a href="#questions-children-ask">Questions children ask</a></li><li><a href="#taking-a-child-to-visit-step-by-step">Taking a child to visit: step by step</a></li></ul></div>
+  <blockquote class="pull"><p>"It's affecting you not them, they have to know how you feel not how they think you feel…"</p><cite>Young person, quoted in the 2018 guide</cite></blockquote>
+  <p>When someone in a family goes to prison, the children are often the last to be asked how they are. This chapter is about asking them, and then helping: with their feelings, with what they know, with keeping in touch, with the changes at home, and with behaviour.</p>
+  <p><strong>On your phone:</strong> the <a href="https://normreed-tas.github.io/field-guide/#wheel-child">Child / Young Person Support Wheel</a>, the <a href="https://normreed-tas.github.io/field-guide/#visit">visit flowchart</a> and the <a href="https://normreed-tas.github.io/field-guide/#telling.asks">children's questions</a> are in the <a href="https://normreed-tas.github.io/field-guide/">Field Guide</a>.</p>
+  <h2 id="s5-1">5.1 Assessing needs and planning support</h2>
+  <p>Children may need help to:</p>
+  <ul><li><strong>name, share and manage their feelings</strong> (<a href="#s5-2">5.2</a>);</li><li><strong>get the right information</strong> for their worries (<a href="#s5-3">5.3</a>);</li><li><strong>keep in contact</strong> with the person in prison, where that's possible and safe (<a href="#s5-4">5.4</a>);</li><li><strong>cope with changes</strong> at home, with friends and in routines (<a href="#s5-5">5.5</a>); and</li><li><strong>manage their own behaviour</strong> (<a href="#s5-6">5.6</a>).</li></ul>
+  <p>Children have the right to a say in everything that affects them (<a href="practitioners-guide-2.html#s2-1">Chapter 2.1</a>). That starts with asking.</p>
+  <h3 id="asking-the-difficult-questions">Asking the difficult questions</h3>
+  <ul><li><em>What has changed for you since Mum / Dad / [name] went to prison?</em></li><li><em>What would make things better for you?</em></li><li><em>How do things feel for you?</em></li></ul>
+  <p>For some families, prison brings relief as well as loss. That can leave a child torn between loyalty and guilt. Let them know that both feelings can be true at once.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 36</span></summary><div class="obody"><p>5. Supporting children and young people. 'It's affecting you not them, they have to know how you feel not how they think you feel…'— Young person. 5.1 Assessing needs and planning support. Children may need various types of support around a family member's offending, such as support to: identify, share and manage their feelings (5.2); receive appropriate information to address their anxieties (5.3); maintain contact with imprisoned or absent family members (5.4); cope with changes to family/home environment and in relationships with peers (5.5); manage their own behaviour (5.6). Asking the difficult questions – children. See below for some suggestions of questions you might ask children during assessments and support planning. Remember: children have the right to have a say in all matters affecting them (See 2.1). See Child/Young Person Support Wheel on page 37 for one example of how the impact of offending has been addressed in assessments with children. What has changed for you since Mum/Dad/name went to prison? What would make things better for you? How do things feel for you? For some families, custody has a positive impact. This can create conflicting feelings in children around loyalty and guilt.</p></div></details>
+  <h3 id="the-child-young-person-support-wheel">The Child / Young Person Support Wheel</h3>
+  <p>The wheel gives a child a simple way to show how things are going in twelve areas of their life, from school and friends to health and home. Each area is rated from 1 ("I feel good about this") to 5 ("Crises I need help with"). Two spaces are left for the child to name something else that matters to them. It's in the <a href="https://normreed-tas.github.io/field-guide/#wheel-child">Field Guide</a>, to fill in on a phone and print.</p>
+  <p>Tell the child what the wheel is for and who will see it. Let them do the marking if they want to. They don't have to answer everything.</p>
+  <h3 id="a-support-plan">A support plan</h3>
+  <p>Ask the child which area they'd most like help with. Agree one small step, and who will do it.</p>
+  <table class="tbl"><thead><tr><th>Area of support</th><th>Outcome to achieve</th><th>Action(s)</th><th>By whom?</th><th>When / where</th></tr></thead><tbody><tr><td data-label="Area of support">Remembering Dad</td><td data-label="Outcome to achieve">Have ways to think about Dad and feel happy</td><td data-label="Action(s)">Start thinking about happy things I've done with Dad to put in my memory box</td><td data-label="By whom?">Sam</td><td data-label="When / where">At home, this week</td></tr><tr><td data-label="Area of support"></td><td data-label="Outcome to achieve"></td><td data-label="Action(s)">Find a box to bring to the next session that we can decorate as a memory box</td><td data-label="By whom?">Worker</td><td data-label="When / where">This week</td></tr></tbody></table>
+  <details class="orig"><summary>2018 guide wording <span>p. 38</span></summary><div class="obody"><p>Example support plan for a child. Area of support: Remembering Dad. Outcome to achieve: Have ways to think about Dad and feel happy. Action/s: Start to think about happy things I have done with Dad that I can put in my memory box. By who? Sam. When/where: At home this week. Action/s: Find a box to bring to the next session that we can decorate as a 'memory box'. By who? Worker. When/where: This week.</p></div></details>
+  <h2 id="s5-2">5.2 Exploring feelings</h2>
+  <blockquote class="pull"><p>"If you do nothing but strive for the deepest possible understanding of a child and if you communicate that understanding, that experience can be life-changing."</p><cite>Kahn (1991), quoted in the 2018 guide</cite></blockquote>
+  <p>Every child needs help to name, share and manage their feelings, and a family member's offending makes that more important.</p>
+  <p>You can help by <strong>staying with a child's distress, and holding it,</strong> so it becomes bearable, then <strong>giving their feelings back to them in small pieces</strong> they can manage. This is called emotional containment. It helps children feel safe when they're upset and confused. Over time, it helps them learn to bear hard feelings and to calm themselves.</p>
+  <p>You already have the skills for this. The communication skills, training and experience you use with children every day are the same ones you need here.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 39</span></summary><div class="obody"><p>5.2 Exploring feelings. 'If you do nothing but strive for the deepest possible understanding of a child and if you communicate that understanding, that experience can be life-changing' (Kahn, 1991). All children need support to identify, share and manage their feelings and this is likely to be important around a family member's offending. Professionals can play an important role in this by staying with and 'holding' a child's distress so it can be coped with, then 'giving back' their feelings in bite size pieces. This is termed emotional containment and can enable children to cope with feelings of upset and confusion, crucial in helping them to feel safe. Receiving this containment can help children to better tolerate difficult feelings later in life and become able to soothe themselves and regulate their feelings. As a practitioner, you regularly draw on your communication skills as well as your training and experience to explore complex situations with children and/or families. These same skills can be used to broach the feelings associated with a family member's offending. See the Dudley the Dog tool on page 40, and several more in the appendices, for practical techniques to explore feelings with children. See Appendix 4 Tools: Three Islands, Faces, Three Houses. See Appendix 2: Exploring Feelings.</p></div></details>
+  <h3 id="tools-for-exploring-feelings">Tools for exploring feelings</h3>
+  <h4 id="dudley-the-dog">Dudley the Dog (younger children)</h4><p class="fgl"><a href="https://normreed-tas.github.io/field-guide/#kidtools.dudley">Open this tool in the Field Guide &rarr;</a></p>
+  <p>Dudley helps young children talk about their thoughts and feelings. You need flipchart paper, pens, and a toy dog or a picture of one.</p>
+  <ol><li>Introduce the child to Dudley the Dog.</li><li>Ask them to draw Dudley, nice and big, in the middle of the paper.</li><li>Explain that someone in Dudley's family has gone to prison.</li><li>Ask the child to write, inside Dudley, any feelings they think he might be having.</li><li>Ask them to write, around Dudley, any questions he might have.</li></ol>
+  <p>Because it's about Dudley and not about "me", it feels less intrusive, and children are more likely to join in. Once the subject is open, you can ask whether they feel any of Dudley's feelings, and talk about their own questions.</p>
+  <h4 id="three-islands">Three Islands</h4><p class="fgl"><a href="https://normreed-tas.github.io/field-guide/#kidtools.islands">Open this tool in the Field Guide &rarr;</a></p>
+  <p>A way to learn about a child's world without a question-and-answer interview. On a large sheet, draw two islands joined by a bridge with a gate, and a third island further away. The child lives on the first island and adds whoever and whatever they want close. The second island is for things they want to see sometimes, and only the child has the key to the gate. The third is for things they want far away. Ask about each thing as they add it, but don't question where they put it. Be careful not to read a drawing too literally.</p><p class="src"><em>Developed by Kate Iwi, RESPECT (UK), and used with her permission, as in the 2017 guide.</em></p>
+  <h4 id="faces">Faces</h4><p class="fgl"><a href="https://normreed-tas.github.io/field-guide/#kidtools.faces">Open this tool in the Field Guide &rarr;</a></p>
+  <p>The child draws the people in their family, then gives each one a facial expression (happy, sad, angry and so on) and explains why. Use only two or three expressions with younger children. What matters most is the child's reasons.</p>
+  <h4 id="three-houses">Three Houses</h4><p class="fgl"><a href="https://normreed-tas.github.io/field-guide/#kidtools.houses">Open this tool in the Field Guide &rarr;</a></p>
+  <p>Three sheets, three houses: a <strong>house of worries</strong>, a <strong>house of strengths</strong>, and a <strong>house of hopes and dreams</strong>. Inside each house the child, or the family, writes their own worries, strengths and hopes. Outside, they write what comes from around them: family, friends, school. Then talk about what would help with the worries, build on the strengths and reach the hopes, starting with what the family already has.</p><p class="src"><em>Sourced from</em> Community Care <em>(UK), and used on the same terms as the 2017 guide.</em></p>
+  <p><strong>On your phone:</strong> all of these, with the letter template and the memory box, are in the Field Guide under <a href="https://normreed-tas.github.io/field-guide/#kidtools"><em>Tools for talking with children</em></a>.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 40</span></summary><div class="obody"><p>Tool: Exploring difficult thoughts and feelings with Dudley the Dog. Dudley the dog can help young children to talk about their thoughts and feelings. All you will need is flipchart paper and pens, and a toy dog or picture. Simply follow these 5 easy steps... 1. Introduce the child to Dudley the dog. 2. Ask them to draw Dudley nice and big in the centre of the flip chart paper. 3. Explain that Dudley's family member has gone to prison. 4. Ask the child to write down inside Dudley any feelings they think he may be experiencing. 5. Ask the child to write any questions Dudley may have in the space around Dudley. This is a great way to get young children to talk about what's going on. By using Dudley the child will feel like 'I' is less intrusive and you are more likely to get positive engagement. Now that you have opened up the subject of imprisonment you can ask the child if they can relate to any of these feelings and explore any questions they may have. It's a great place to start.</p></div></details>
+  <h2 id="s5-3">5.3 Providing information</h2>
+  <p>Answering children's questions as they come up helps them feel secure, and helps them trust the adults caring for them. That can feel hard when the subject carries as much stigma as prison.</p>
+  <p>Children cope better with the uncertain loss of a parent in prison when communication is open and they're given an explanation for the parent's absence (<a href="practitioners-guide-3.html#s3-2">Chapter 3.2</a>).</p>
+  <ul><li><strong>Think about age.</strong> How much does this child need to know, and in what words?</li><li><strong>Younger children:</strong> there are few resources made for pre-schoolers. Try a picture book meant for an older child, and follow the pictures, making the story simpler as you go.</li></ul>
+  <h3 id="resources-to-use-with-a-child">Resources to use with a child</h3>
+  <p>From the Onesimus website, <a href="family-resources.html"><em>Resources for families</em></a>:</p>
+  <ul><li><a href="books/visiting-my-dad.html"><strong><em>Visiting My Dad in Prison</em></strong></a> (younger children, with an adult): what a visit is really like, photographed inside Risdon and acted out by soft toys. © Save the Children, reproduced with permission.</li><li><a href="books/waiting-for-dad.html"><strong><em>Waiting for Dad</em></strong></a> (about 9–12): how you tell a friend, and what a good friend does next. © The Salvation Army, reproduced with permission.</li><li><strong><em>My Diary</em></strong> (about 4–10): a child's diary for the time a parent is away. Being rebuilt for the web.</li></ul>
+  <p>The questions children most often ask, and how to answer them, are at the end of this chapter.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 39</span></summary><div class="obody"><p>5.3 Providing information. Answering children's questions as they arise is vital to ensure they feel secure and develop positive and trusting relationships with their care givers. This can feel challenging when the topic is something as stigmatised as offending. When it comes to imprisonment in particular, evidence suggests that children deal more effectively with ambiguous loss if communication is open and they are provided with explanations for their parent's absence (see Chapter 3.2). It's important to think through the age-appropriateness of the information you provide and consider how much the child needs to know and how to phrase it in terms they can understand. There are many resources to support you in this. See Appendix 2: Age-Appropriate Information. See the diagram on page 44 — Children's FAQs — for some examples of questions children are likely to ask about a family member's offending and some pointers to assist you in planning a response, or supporting a carer to. There are fewer resources designed specifically for pre-school children. Try using a storybook for an older child to guide you but follow the pictures, adapting and simplifying the story.</p></div></details>
+  <h2 id="s5-4">5.4 Facilitating contact with someone in prison</h2>
+  <p>For many children, keeping in touch with someone in prison really matters. It reminds them they are loved, and it helps them cope. Where it's in their best interests, it is also their right (<a href="practitioners-guide-2.html#s2-1">Chapter 2.1</a>). But contact isn't always in a child's best interests, and sometimes it's restricted (see <em>Restricted contact</em> below).</p>
+  <h3 id="phone-calls">Phone calls</h3>
+  <p>Children can't ring someone in prison: people in prison can't receive calls. They can phone out to the numbers on their approved list. Times vary, and phones can be limited. Money for calls goes into the prisoner's account. The Tasmania Prison Service explains how phone calls and deposits work.</p>
+  <h3 id="letters-and-drawings">Letters and drawings</h3>
+  <p>People in prison can send and receive letters, and children can post drawings. Children of any age can be helped to write to someone they're close to. A <a href="https://normreed-tas.github.io/field-guide/#kidtools.letter">simple template</a> helps:</p>
+  <div class="callout"><p>Dear … / Last weekend I… / This weekend I hope to… / My favourite thing at school this week was… / My least favourite thing was… / I felt happy about… / I didn't feel happy about… / I'm looking forward to… / I would like to ask you… / Looking forward to hearing from you soon. From …</p></div>
+  <h4 id="to-confirm-with-tps-whether-drawings-in-wax-crayon-are-still-not-accepted-by-post"><span class="flag block"><b>TO CONFIRM</b> with TPS: whether drawings in wax crayon are still not accepted by post.</span></h4>
+  <h3 id="video-visits">Video visits</h3>
+  <p>Video (Zoom) visits run in Tasmanian prisons. They can suit a family who live far from Risdon Vale, or a child who finds the visits room hard.</p>
+  <h3 id="prison-visits">Prison visits</h3>
+  <p>Some adults are wary of taking children into a prison, but children visit every week. A visit can be hard for some children, so it's worth preparing them. The visit flowchart at the end of this chapter, also in the <a href="https://normreed-tas.github.io/field-guide/#visit">Field Guide</a>, goes step by step.</p>
+  <p>Families can't take anything into the visits room, including children's drawings, presents and photos. Don't encourage a child to bring something for the person in prison: it will be taken off them at the door.</p>
+  <h3 id="practice-example-the-homework-club">Practice example: the Homework Club</h3>
+  <p>Onesimus Family Engagement Workers ran a Homework Club, which helped children stay connected to a parent in prison through schoolwork. By video and during contact visits, the parent helped the child with homework and assignments, with a focus on learning, school attendance and family connection. It is not running at present; Onesimus hopes to start it again.</p>
+  <p>One grandmother, caring for her granddaughter during her son's sentence, wrote that the girl's maths results had gone from struggling to pass to full marks, that she now looked forward to school, and that she and her father had "a more normal relationship". The following week the girl was named the school's most improved student.</p>
+  <h3 id="restricted-contact">Restricted contact</h3>
+  <p>Contact with someone in prison isn't always in a child's best interests. Sometimes it's restricted, for example where there has been a sexual offence against a child (<a href="practitioners-guide-2.html#s2-4">Chapter 2.4</a>).</p>
+  <p>When a child wants contact and can't have it, that's very hard for them to understand and accept. Depending on the offence, it can be hard for the carer to talk about too. Helping the child with their feelings and the loss matters all the more. <strong>Make sure the child is told that the restriction is not their fault.</strong></p>
+  <p>Where visits aren't allowed, other contact may sometimes be possible, but only after careful safeguarding checks. Talk to the prison, or ring the Advice and Referral Line on <a class="tel" href="tel:1800000123">1800 000 123</a>.</p>
+  <details class="orig"><summary>2018 guide wording <span>pp. 41–42</span></summary><div class="obody"><p>5.4 Facilitating contact with someone in prison. Maintaining contact with a family member who has gone to prison is really important for many children's wellbeing; contact can remind children that they are loved and help them cope. Furthermore, it is a child's right to maintain contact with a parent they have been separated from if they wish to and it's in their best interests (see Chapter 2.1). However, contact is not always in a child's best interests and is sometimes restricted – see 'Restricted contact' later in the chapter. See Appendices 1 &amp; 2: Keeping in touch. Phone calls. Children can't phone someone in prison; incoming calls are not allowed. Prisoners can phone people on their phone call list but the time of day may vary and there may be limited phones to use at some prisons. Letters. Prisoners can send and receive letters. Rules regarding mail may vary from state to state, so ensure you check with your loved ones facility. Children and young people of all ages can be supported to write a letter to someone they're close to who is in prison. See Appendix 4 Tool: Letter Writing Template. Homework Club. A team of Family Engagement workers in Tasmania Australia support children to engage with their incarcerated parent with a focus on education. Via video, and during contact visits, children participate in the Homework Club. During the Homework Club children are supported by their incarcerated parent to work through school assignments and homework tasks, encouraging a focus on academic achievment, school attendance and familial connection. See Appendicies 5: The Benefits in Education centered contact - A Case Study. Prison visits. Some people are apprehensive about taking children to visit someone in prison, yet it is not an uncommon occurrence: Many prisons have play facilities for children in the visit rooms and visit centres where families are greeted and provided with information on arrival. But not all prisons have these facilities and it is worth preparing children and young people for the prison visit experience which can be challenging for some. See our Professionals' Flowchart on page 46 — which outlines how to emotionally and practically prepare children and families for a visit. Families are generally not allowed to take personal items into the prison visit room with them. Children should not be encouraged to bring drawings, presents, photos, etc. for the prisoner as these may be taken off them during the entry process. See Appendix 2: Prison Visits. Restricted contact. Having contact with a family member in prison is not always deemed to be in a child's best interests and in some cases it is restricted, for example where a sexual offence has taken place against a child (See Chapter 2.4). See Appendices 1 &amp; 2: Partners/Children of Sex Offenders. If a child wants to have contact with a family member in prison, it can be very challenging for them to understand and accept when it isn't possible. Depending on the offence, it can also feel difficult for carers to address. In such cases, exploring emotions with children and supporting them to cope with the loss is all the more important. It is vital that children are told that any restrictions are not their fault. See Appendix 2: Exploring Feelings; Loss and Grief. Where prison visits are not allowed, it may be appropriate in some cases (where rigorous safeguarding checks have been made) to explore other forms of contact. You could try phoning or writing to the Prison if appropriate. There may be alternatives such as video visits which run in Tasmania, Australia, or third party correspondence.</p></div></details>
+  <h2 id="s5-5">5.5 Coping with changes at home</h2>
+  <p>A child's home life can change a great deal when a family member offends (<a href="practitioners-guide-3.html#s3-2">Chapter 3.2</a>). Even where contact is possible, it is limited: how often, how close, and what kind. Helping a child cope with the distance, and keep the person in mind until the next contact, is a good way to meet that reality.</p>
+  <h3 id="making-a-memory-box">Making a memory box</h3><p class="fgl"><a href="https://normreed-tas.github.io/field-guide/#kidtools.memory">Open this tool in the Field Guide &rarr;</a></p>
+  <ol><li><strong>Find a box.</strong> Decorate it if you like.</li><li><strong>Collect memories.</strong> When something happens that the child wants to share (a joke, a receipt from an outing, a photo with friends, a note, a small toy), they pop it in the box.</li><li><strong>Share them.</strong> At the next call, letter or visit, the box reminds the child what they wanted to say. It helps both of them feel part of each other's lives.</li></ol>
+  <h3 id="changes-whether-or-not-there-s-contact">Changes, whether or not there's contact</h3>
+  <p>Children need support with changes to their home, relationships, responsibilities and routines. That's just as true when the person comes <strong>home from prison</strong> as when they go in. As with any big change, it can help to:</p>
+  <ul><li>hold the child's feelings of loss (<a href="#s5-2">5.2</a>);</li><li>prepare them in advance for further changes, where you can; and</li><li>help them build new routines.</li></ul>
+  <details class="orig"><summary>2018 guide wording <span>p. 48</span></summary><div class="obody"><p>5.5 Coping with changes to family/home environment. As we saw in Chapter 3.2, a child's home life can change dramatically as a result of a family member's offending. While there are several ways to maintain contact with absent family members where possible, contact is still limited in frequency, proximity and, in many ways, quality. Supporting a child to cope with the distance and remember their family member until the next possible contact is a good way of tackling this reality. Try making a memory box with a child where they can store significant items and make notes of events to tell their family member about when they next have the opportunity. See Appendix 4 Tool: Making a Memory Box. Whether or not contact is possible, children and young people need support to cope with the possible changes to their home environment, relationships, responsibilities and routines that can arise following a family member's offending. Remember, this could be just as true when an offender is released back to the family home as it is when they are imprisoned. As during other transitions, it may be helpful to: contain feelings of loss (see 5.2); prepare children in advance of further changes where possible; support them to create new routines. See Appendix 2: Coping with changes to home/family environment &amp; Appendix 3: Transitions.</p></div></details>
+  <h2 id="s5-6">5.6 Managing behaviour</h2>
+  <p>Research has found that a parent's offending and imprisonment is the strongest predictor of offending passing down through a family. Australian researchers Catherine Flynn, Nina Van Dyke and Karen Gelb (2017), drawing on Farrington (2011), put it this way: <em>"parental offending, conviction and imprisonment is the strongest predictor of intergenerational offending."</em> Understandably, carers and workers worry about this.</p>
+  <p><strong>But a predictor is not a prediction.</strong> The same researchers point out that most children whose parents offend do <em>not</em> go on to offend themselves, and that a range of things protect them. Their case is for understanding those protective factors, and building on them. The steps below are part of that.</p>
+  <ul><li><strong>Look for the feeling behind the behaviour.</strong> Exploring feelings such as anger (<a href="#s5-2">5.2</a>) can help a child feel understood, and that can change things.</li><li><strong>Act early.</strong> When behaviour becomes more serious, early help is the key to stopping it getting worse.</li><li><strong>Look at the rest of the child's life.</strong> Support with mental health, home life or school can make a difference to behaviour.</li><li><strong>Support the parent or carer.</strong> Where behaviour is challenging, help with parenting approaches can make it manageable. Parent Line Tasmania is on <a class="tel" href="tel:1300808178">1300 808 178</a>, at any time.</li></ul>
+  <details class="orig"><summary>2018 guide wording <span>p. 48</span></summary><div class="obody"><p>5.6 Managing behaviour. Some research has suggested that offenders' children are more at risk of becoming involved in anti-social behaviour and even in crime themselves (Murray 2005). This is understandably a common area of concern for carers and practitioners alike. Identifying and exploring any feelings (5.2) behind a child's behaviour, such as anger, may help them to feel understood and could improve things. When misbehaviour becomes more serious, early intervention is key in preventing it from escalating. Supporting children and young people with other needs in their life may make a difference to their behaviour, for example around their mental health, home environment, or academic life. Where behaviour is challenging, supporting parents with their parenting approaches and strategies could help them to manage it. See Appendix 1: Parenting Support &amp; Appendix 2: Exploring Feelings.</p></div></details>
+  <h2 id="questions-children-ask">Questions children ask</h2>
+  <div class="qa"><h3 class="q">Where is Mum / Dad?</h3><p>Work with what the carer has told the child and, where it's right, encourage the carer to think about the benefits of being open (<a href="practitioners-guide-4.html#s4-2">Chapter 4.2</a>). Even if a child doesn't know the truth, and thinks their parent is working away, you can still help them with the feelings of missing them.</p></div>
+  <div class="qa"><h3 class="q">Why did they do it?</h3><p>It depends a great deal on the offence. Simple answers often help: <em>Good people sometimes do bad things.</em> <em>People make mistakes.</em></p></div>
+  <div class="qa"><h3 class="q">What happens at court? Can I go too?</h3><p>Explain simply what a court is for, using information that suits the child's age. Check with the court before taking a child. There are usually no child-friendly spaces or childcare in court buildings.</p><p><span class="flag block"><b>TO CONFIRM</b>: the Tasmanian rule on children in the public gallery. The 2018 "under 14" rule is the UK one.</span></p></div>
+  <div class="qa"><h3 class="q">When are they coming home?</h3><p>Release dates often move, and younger children can't hold long stretches of time. Bear that in mind when you reassure them that it's normal to miss someone. For some children, release is frightening, for example if the person was abusive.</p></div>
+  <div class="qa"><h3 class="q">How can I speak to them?</h3><p>Children can't ring the person in prison; calls only go out. Offer to help them keep in touch in other ways: a letter, or a drawing sent by post. Nothing can be taken in on a visit.</p></div>
+  <div class="qa"><h3 class="q">What's it like in prison? Are they OK?</h3><p>Children often have frightening ideas about prison, and news stories about violence can make them worse. Give honest information that suits their age.</p></div>
+  <div class="qa"><h3 class="q">What will it be like visiting?</h3><p><a href="books/visiting-my-dad.html"><em>Visiting My Dad in Prison</em></a> shows a visit at Risdon step by step. It's fine if you've never been inside a prison yourself. <strong>Hidden Sentence</strong> training has included a tour of Risdon Prison, so workers could see the visit process for themselves. The training is currently under review.</p></div>
+  <div class="qa"><h3 class="q">Am I bad like Mum / Dad?</h3><p>Children feel the stigma, and it can affect how they see themselves. Help them name the things they're good at, to build their confidence.</p></div>
+  <div class="qa"><h3 class="q">Do they still love me?</h3><p>Some children worry that they're not loved, and some blame themselves. Make it clear that the distance and the limits on contact are not the child's fault, and not because they're unloved. That's harder when the person in prison isn't keeping in touch.</p></div>
+  <div class="qa"><h3 class="q">What will it be like when they come home? Will they go away again? Will it be different?</h3><p>Release brings new worries for the child, the family and the person coming home. You can't promise how it will go. You can help the child talk through their feelings and plan how they'll cope with the changes. For some children, release is frightening, for example if the person was abusive.</p></div>
+  <details class="orig"><summary>2018 guide wording <span>pp. 44–45</span></summary><div class="obody"><p>Children's FAQs. Where is Mum/Dad? Work with the information children have been given by their carer and, where appropriate, encourage carers to consider the benefits of openness (see Chapter 4.2). Even if a child does not know the truth, e.g. thinks their family member is working away, you can still support them with their feelings around it. Why did they do it? A discussion with a child around this will depend very much on the circumstances of the offence. Sometimes responses such as 'good people sometimes do bad things' or 'people make mistakes' can be helpful. What happens at court? Can I go too? Children under 14 are not usually allowed to sit in public galleries without a Judge's permission and there are generally no child-friendly spaces or childcare facilities in court buildings. See Appendix 3: Stages of the CJS to guide your answer with age-appropriate information. When are they coming home? Release dates are often not set in stone and younger children may not be able to understand the periods of time involved in a prison sentence. Bear this in mind when reassuring them it's normal to miss their family member and supporting them to cope with the loss, see Chapter 5.5 and Appendix 2: Loss and Grief. NB: For some children, release is a fearful time if their family member has been abusive, for example. How can I speak to them? See Chapter 5.2 for information and Appendices 1&amp;2 for resources on keeping in touch. Phone calls from prison are limited; you could offer to support the child to keep in touch by other means like writing a letter or drawing a picture for their family member. NB: pictures in wax crayon are not allowed and children can't take anything into prison with them on visits but pictures can be sent in the post. What's it like in prison? Children and young people often have negative ideas and fears about what life in prison will be like for their family member. Media stories about violence in prison can make this worse, causing children to wonder if their loved one is okay. See Appendix 2 for sources of age-appropriate information on prison to share with children. What will it be like visiting prison? Watching a short video together with a child can be a great way to help them visualise what a prison visit might be like, see Appendix 2: Prison visits. It's ok if you haven't been to a prison and do not know the exact set up but you could consider going on 'Hidden Sentence' training which is sometimes held at prisons and attendees can walk through the prison visit process (See Appendix 3: Training). Am I bad like Dad/Mum? Children of offenders feel the effects of stigma which can impact on their self-image. Watch the short Families Outside video, 'Reversible Writing' (Appendix 3: Awareness-raising), to think about this further. Encourage children to think about things they are good at to boost their self-esteem and confidence. Do they still love me? Some children worry about whether their family member loves them, and some experience feelings of self-blame and guilt. It must be made clear that the distance and restrictions on contact are not the child's fault or because they are unloved. This can be difficult if an imprisoned family member, for example, is not reciprocating efforts to keep in touch. What will it be like when they come home? Will they leave again? Will it be different? Release can bring new anxieties for children and families, as well as for the offender themselves. You cannot predict the future for a family, but you can support a child's ability to cope by talking through their feelings and concerns with them and exploring ways for them to cope with upcoming changes. NB: For some children, release is a fearful time if their family member has been abusive, for example.</p></div></details>
+  <h2 id="taking-a-child-to-visit-step-by-step">Taking a child to visit: step by step</h2>
+  <ol><li><strong>Does the child want to visit?</strong> Never force a child to visit. Talk with them about what they want, how they feel and what worries them. Don't promise anything until you know a visit is possible. Some children don't know the truth, and may think they're visiting somewhere else, such as a workplace.</li><li><strong>Is the child allowed to visit?</strong> For safeguarding reasons, some people in prison can't have visits from children. The carer will usually know. If not, ask the prison, or ring the Advice and Referral Line on <a class="tel" href="tel:1800000123">1800 000 123</a> for safeguarding advice. If the child can't visit, other contact may still be possible. If none is, the child needs help to cope with that (see <em>Restricted contact</em>).</li><li><strong>Is there an approved adult to take them?</strong> In Tasmania, anyone under 18 must come with an approved adult. Sometimes the carer isn't the right person, for example after family violence; another family member or friend may be. Few workers can take a child on a visit. Workers from the Department for Education, Children and Young People (DECYP) can, but special arrangements have to be made with the prison first. At Hobart Reception Prison, the adult must be the child's parent or legal guardian.</li><li><strong>Get approved.</strong> Everyone visiting, children included, must be approved, and the person in prison has to agree to the visit, before it can be booked. You can write to the person in prison to raise a visit.</li><li><strong>Book the visit.</strong> Visits are booked by the visitor. At Risdon Prison Complex, up to three visitors at a time, children included. The Visitor Reception Centre is on (03) 6165 7400, option 1.</li><li><strong>Plan the day.</strong> Risdon Vale is hard to reach by public transport. The adult needs photo ID, plus a Medicare, Healthcare or concession card for each child. Nothing can be taken in. If the visit is in school hours, the family may tell the school so the absence is approved, but only if they're comfortable with the school knowing.</li><li><strong>Prepare the child.</strong> Talk about what to expect, especially the security check, and any worries. Older children can't take phones in; it helps to think beforehand about what they'd like to talk about.</li><li><strong>After the visit.</strong> Children are often tired or emotional afterwards, and schools may notice a change around visit times. Check in with the child, or make sure the carer does.</li></ol>
+  <details class="orig"><summary>2018 guide wording <span>pp. 46–47</span></summary><div class="obody"><p>Supporting a child to visit a prison: A Professionals' Flowchart. Does the child want to visit? Children who don't want to visit should not be forced to. Talk to the child about their wishes, feelings and any fears. Don't make any promises at this stage if you are unsure if a visit will be possible. NB: some children may not know the truth about prison and may think they're visiting somewhere else, e.g. a workplace. Is other contact an option? Children who do not want to visit, or who have no one to take them, might want to keep in touch by other means, such as letter. If a child is not allowed to visit, other contact may be an option. Children who want contact but are not allowed any will need support to cope with this (see Chapter 5.4: Restricted contact). Is the child allowed to visit? For safeguarding reasons, some prisoners are not allowed to have children visit them. It is likely the child's carer will know this, but if not, you could contact the prison to discuss the visit, or Child Safety Services for safeguarding advice. Do they have an adult to take them? Under18s must be accompanied by an adult on prison visits. Sometimes it is not appropriate for their carer to take them, e.g. domestic abuse cases. Other adult family members or friends can also take them. Professionals are allowed to accompany children on prison visits where carers and the prisoner agree. Discuss the visit with the prisoner. They have to agree to it and add all potential visitors to their visit list, including children, before you can book. If you are making first contact with a prisoner to discuss a visit, you can write to them (see Chapter 5.4). Book the visit. Most prisons allow you to book visits by phone or online. Different rules apply at different prisons and depending on whether the prisoner is convicted or on remand. You must have the prisoners' details to book, including their prisoner number, and you must be on their visit list. Organise the visit. Prisons can be difficult to reach on public transport — plan the journey in advance. Inform the school. If the visit is in school hours, it is advisable for the family to inform the school of the absence as they can log it as authorised. However, it is important to be mindful of confidentiality as some families may not want the school to be aware of their family members incarceration. Prepare the child for the visit. Emotional preparation is important ahead of a prison visit. Talk to children about their expectations and any worries. It would be useful to prepare them for the security process. See Appendix 2: Prison visits for worksheets, leaflets &amp; videos to use with children. NB: Families usually can't bring anything into prison visits with them, e.g. drawings done by children. During the visit. Visit centers can be challenging places for children to sit for a long time. For young children, there may be play facilities but not in every prison. Older children can't bring their phones and might find it helpful to think in advance about things they'd like to talk about. After the visit. Children often have emotional reactions to visits and may be tired afterwards. Schools might notice a change in behaviour around the time of the visit. Children may need a 'debrief' from a professional or carer who can check in on their feelings.</p></div></details>
+  <p class="credit"><em>Adapted from</em> Supporting children and families affected by a family member's offending: A Practitioner's Guide (Australia), <em>by Lindsay Sutherland and Polly Wright (NICCO and Barnardo's, 2017), adapted for Australia in August 2017 by Jessica Smith, Onesimus Foundation, with the Tasmanian CAPO working group. Tasmanian edition, 2026.</em></p>
+  <div class="chapnav"><a href="practitioners-guide-4.html">&larr; Chapter 4: Supporting parents and carers</a><a href="practitioners-guide.html">All chapters</a><span></span></div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

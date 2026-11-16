@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Onesimus Foundation — Practitioner's Guide, Chapter 4: Supporting parents and carers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.08;}
+  p{line-height:1.65; color:var(--slate);}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--ink));flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{
+    display:inline-block; align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+    letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+    background:var(--sage-tint); color:var(--sage); white-space:nowrap;
+  }
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+  .status.check{background:#EFE6F0; color:#7A5080;}
+
+  /* PROVENANCE STRIP */
+  .prov{display:grid; grid-template-columns:1fr 300px; border:1px solid var(--line); background:var(--white);}
+  .prov-main{padding:34px 36px;}
+  .prov-main h2{font-size:1.45rem;}
+  .prov-main p{margin-top:14px; font-size:.95rem; max-width:560px;}
+  .prov-side{background:var(--sage-tint); padding:34px 28px; display:flex; flex-direction:column; gap:18px; justify-content:center;}
+  .fact .k{display:block; font-family:'IBM Plex Mono',monospace; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage);}
+  .fact .v{display:block; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--ink); margin-top:4px; line-height:1.3;}
+  @media (max-width:820px){ .prov{grid-template-columns:1fr;} }
+
+  /* CHAPTER CARDS */
+  .chapters{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .chap{background:var(--white); padding:28px 30px; display:flex; flex-direction:column; gap:10px;}
+  .chap .num{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; color:var(--brass);}
+  .chap h3{font-size:1.15rem;}
+  .chap p{font-size:.9rem; margin:0;}
+  .chap ul{margin:6px 0 0; padding-left:18px; font-size:.86rem; color:var(--slate); line-height:1.7;}
+  .chap .status{margin-top:auto; padding-top:0;}
+  .chap h3 a{text-decoration:none;}
+  .chap h3 a:hover{text-decoration:underline;}
+  .chap-link{font-size:.88rem; font-weight:600; color:var(--sage); margin-top:6px;}
+  .tool a{color:var(--sage); font-size:.86rem; font-weight:600;}
+  @media (max-width:760px){ .chapters{grid-template-columns:1fr;} }
+
+  /* TOOLS */
+  .tools{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .tool{background:var(--paper); padding:24px 24px; display:flex; flex-direction:column; gap:8px;}
+  .tool h3{font-size:1rem;}
+  .tool p{font-size:.86rem; margin:0;}
+  @media (max-width:880px){ .tools{grid-template-columns:1fr 1fr;} }
+  @media (max-width:620px){ .tools{grid-template-columns:1fr;} }
+
+  /* INTERNATIONAL CALLOUT */
+  .intl{border-left:4px solid var(--brass); background:var(--brass-tint); padding:22px 26px; margin-top:28px; max-width:760px;}
+  .intl .eyebrow{color:var(--brass);}
+  .intl p{margin-top:10px; font-size:.92rem; color:var(--ink); opacity:.82;}
+
+  /* ARCHIVE + TRAINING BAND */
+  .band{background:var(--ink); padding:44px 40px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; justify-content:space-between;}
+  .band-text .eyebrow{color:var(--brass);}
+  .band-text h3{color:var(--white); font-size:1.3rem; margin-top:10px;}
+  .band-text p{color:rgba(255,255,255,.65); margin-top:10px; max-width:520px; font-size:.9rem;}
+  .band-btn{background:var(--brass); color:var(--white); text-decoration:none; padding:12px 24px; border-radius:100px; font-size:.85rem; font-weight:600; white-space:nowrap;}
+
+  /* ROADMAP */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .road-col{background:var(--paper); padding:28px 26px;}
+  .road-col h3{font-size:1.05rem; margin:12px 0 14px;}
+  .road-col ul{margin:0; padding-left:18px; font-size:.88rem; color:var(--slate); line-height:1.75;}
+  .road-col li{margin-bottom:8px;}
+  @media (max-width:860px){ .road{grid-template-columns:1fr;} }
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+    .band{padding:34px 26px;}
+  }
+
+  /* CHAPTER PAGE */
+  .crumb{font-size:.86rem; color:var(--slate);}
+  .crumb a{color:var(--sage);}
+  .draftline{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; font-size:.9rem; color:var(--slate); max-width:680px;}
+  .chapter{max-width:780px; margin:0 auto; padding:0 24px 72px;}
+  .chapter h2{font-size:clamp(1.35rem,2.6vw,1.75rem); margin:44px 0 14px; padding-top:30px; border-top:1px solid var(--line); scroll-margin-top:84px; line-height:1.2;}
+  .chapter h3{font-size:1.15rem; margin:30px 0 10px; scroll-margin-top:84px; line-height:1.25;}
+  .chapter h4{font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; margin:26px 0 6px; scroll-margin-top:84px;}
+  .chapter p, .chapter li, .chapter td{color:#3A4654;}
+  .chapter p{font-size:1rem; line-height:1.7; margin:0 0 14px;}
+  .chapter ul, .chapter ol{padding-left:22px; margin:8px 0 18px;}
+  .chapter li{font-size:1rem; line-height:1.65; margin-bottom:7px;}
+  .chapter a{color:var(--sage); text-underline-offset:2px;}
+  .chapter a.tel{white-space:nowrap; font-weight:600;}
+  .chapter .toc{background:var(--white); border:1px solid var(--line); padding:18px 22px; margin-bottom:28px;}
+  .chapter .toc ul{list-style:none; padding:0; margin:10px 0 0;}
+  .chapter .toc li{margin-bottom:6px; font-size:.94rem;}
+  .pull{margin:22px 0; padding:18px 22px; border-left:4px solid var(--brass); background:var(--brass-tint);}
+  .pull p{font-family:'Fraunces',serif; font-size:1.1rem; color:var(--ink); margin:0; line-height:1.5;}
+  .pull cite{display:block; margin-top:8px; font-style:normal; font-size:.82rem; color:var(--slate);}
+  .callout{margin:20px 0; padding:18px 22px 6px; border:1px solid var(--line); background:var(--white);}
+  .fgl{font-size:.86rem !important; margin:-2px 0 10px !important;}
+  .src{font-size:.86rem !important; color:var(--slate) !important;}
+  .q{font-family:'Inter',sans-serif !important; font-weight:600 !important; font-size:1rem !important; margin:24px 0 6px !important;}
+  .credit{font-size:.84rem !important; color:var(--slate) !important; margin-top:40px !important; padding-top:20px; border-top:1px solid var(--line);}
+  .flag{background:#F0ECF5; color:#6B5280; border-radius:3px; padding:1px 6px; font-size:.86em;}
+  .flag b{font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.82em; letter-spacing:.06em; text-transform:uppercase;}
+  .flag.block{display:block; padding:10px 14px; margin:10px 0 0; border-left:3px solid #6B5280; border-radius:0; line-height:1.55;}
+  .flag.new{background:var(--sage-tint); color:var(--sage); font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:100px; vertical-align:middle; white-space:nowrap; font-weight:500;}
+  details.orig{margin:18px 0 8px; border:1px solid var(--line); background:var(--white);}
+  details.orig summary{cursor:pointer; padding:12px 16px; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brass);}
+  details.orig summary span{color:var(--slate);}
+  details.orig .obody{padding:6px 18px 12px; border-top:1px solid var(--line);}
+  details.orig p{font-size:.9rem; color:var(--slate); line-height:1.65; margin:0 0 10px; overflow-wrap:anywhere;}
+  details.orig h4{font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); margin:14px 0 8px;}
+  details.orig .dnote{font-style:italic;}
+  .tbl{width:100%; border-collapse:collapse; margin:16px 0 20px; background:var(--white); border:1px solid var(--line);}
+  .tbl th{text-align:left; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); background:var(--sage-tint); padding:10px 12px; vertical-align:bottom;}
+  .tbl td{padding:12px; border-top:1px solid var(--line); vertical-align:top; font-size:.92rem; line-height:1.55;}
+  @media (max-width:700px){
+    .tbl{border:none; background:none;}
+    .tbl thead{display:none;}
+    .tbl, .tbl tbody, .tbl tr, .tbl td{display:block; width:100%;}
+    .tbl tr{border:1px solid var(--line); background:var(--white); margin-bottom:12px; padding:6px 0;}
+    .tbl td{border:none; padding:7px 14px;}
+    .tbl td:empty{display:none;}
+    .tbl td::before{content:attr(data-label); display:block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); margin-bottom:2px;}
+  }
+  .chapnav{display:flex; justify-content:space-between; gap:14px 24px; flex-wrap:wrap; margin-top:44px; padding-top:20px; border-top:1px solid var(--line); font-size:.9rem;}
+  @media print{ header, .chapnav, .toc{display:none;} .chapter{max-width:none;} }
+</style>
+<link rel="stylesheet" href="draft.css">
+</head>
+<body id="top">
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html">Resources for Families</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle current" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html" class="current">Practitioner's Guide</a></li>
+              <li><a href="phone-guides.html">Phone Guides</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="survey.html">The Survey</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <p class="crumb" style="margin:0 0 14px;"><a href="practitioners-guide.html">&larr; Practitioner's Guide</a></p>
+  <span class="eyebrow">Practitioner's Guide · Chapter 4</span>
+  <h1 style="margin-top:14px;">Supporting parents and carers</h1>
+  <div class="draftline"><span class="status check">Draft for review</span><span>Not final. The purple notes mark points still to confirm or verify. Each section ends with the 2018 guide's own wording.</span></div>
+</section>
+
+<article class="chapter">
+  <div class="toc"><span class="eyebrow">In this chapter</span><ul><li><a href="#s4-1">4.1 Assessing needs, planning support and referrals</a></li><li><a href="#s4-2">4.2 Telling the children</a></li><li><a href="#questions-parents-and-carers-ask">Questions parents and carers ask</a></li></ul></div>
+  <blockquote class="pull"><p>"All we want as a family is just to know what to do, how to go about things, because we don't know. No one tells you anything."</p><cite>Mother, quoted in the 2018 guide</cite></blockquote>
+  <p>When someone goes to prison, the parent or carer left at home takes on everything at once: the children, the money, the house, and the questions. Often they are also dealing with shock, shame or grief, and with a justice system they have never had to understand before.</p>
+  <p>This chapter is about how you can help: finding out what they need, planning support with them, and helping them with one of the hardest questions they face, which is what to tell the children.</p>
+  <p><strong>On your phone:</strong> the tools in this chapter, including the Parent / Carer Support Wheel and a list of checked Tasmanian services, are in the <a href="https://normreed-tas.github.io/field-guide/">Field Guide</a>.</p>
+  <h2 id="s4-1">4.1 Assessing needs, planning support and referrals</h2>
+  <h3 id="what-parents-and-carers-may-need">What parents and carers may need</h3>
+  <p>Every family is different, but the needs tend to fall into the same areas. The most common is simply understanding what is happening in the justice system. That may be new ground for you too.</p>
+  <table class="tbl"><thead><tr><th>Area</th><th>What it can look like</th><th>Where to start</th></tr></thead><tbody><tr><td data-label="Area">Understanding the justice system</td><td data-label="What it can look like">What bail, remand and sentencing mean; where the person is; what happens next</td><td data-label="Where to start">Field Guide: <a href="https://normreed-tas.github.io/field-guide/#stages"><em>The justice system, stage by stage</em></a></td></tr><tr><td data-label="Area">Money</td><td data-label="What it can look like">The loss of an income, debts, Centrelink payments changing</td><td data-label="Where to start">National Debt Helpline <a class="tel" href="tel:1800007007">1800 007 007</a>; Centrelink families line <a class="tel" href="tel:136150">136 150</a></td></tr><tr><td data-label="Area">Housing</td><td data-label="What it can look like">Rent in one name, a lease at risk, having to move</td><td data-label="Where to start">Housing Connect <a class="tel" href="tel:1800800588">1800 800 588</a></td></tr><tr><td data-label="Area">Family violence</td><td data-label="What it can look like">Where the offence was against the family, or harm continues from prison</td><td data-label="Where to start">Family Violence Response and Referral Line <a class="tel" href="tel:1800633937">1800 633 937</a></td></tr><tr><td data-label="Area">Grandparents and relatives caring for children</td><td data-label="What it can look like">Suddenly raising grandchildren, often informally</td><td data-label="Where to start">Supporting Grandparent Carers Program, through the Advice and Referral Line <a class="tel" href="tel:1800000123">1800 000 123</a></td></tr><tr><td data-label="Area">Work and childcare</td><td data-label="What it can look like">Juggling a job, school runs and visits alone</td><td data-label="Where to start">Child and Family Learning Centres (children under five); local Neighbourhood House</td></tr><tr><td data-label="Area">Health</td><td data-label="What it can look like">Stress, anxiety, depression; alcohol or other drugs</td><td data-label="Where to start">Access Mental Health <a class="tel" href="tel:1800332388">1800 332 388</a>; Alcohol and Drug Service <a class="tel" href="tel:1300139641">1300 139 641</a></td></tr><tr><td data-label="Area">Parenting</td><td data-label="What it can look like">Children's behaviour changing; coping alone</td><td data-label="Where to start">Parent Line Tasmania <a class="tel" href="tel:1300808178">1300 808 178</a></td></tr><tr><td data-label="Area">Relationships</td><td data-label="What it can look like">Whether to stay together; how to keep in touch</td><td data-label="Where to start">Relationships Australia Tasmania <a class="tel" href="tel:1300364277">1300 364 277</a></td></tr><tr><td data-label="Area">Aboriginal families <span class="flag new">New</span></td><td data-label="What it can look like">Wanting support from an Aboriginal organisation</td><td data-label="Where to start">Tasmanian Aboriginal Centre <a class="tel" href="tel:1800132260">1800 132 260</a>; Tasmanian Aboriginal Legal Service <a class="tel" href="tel:1800595162">1800 595 162</a>; 13YARN <a class="tel" href="tel:139276">13 92 76</a></td></tr></tbody></table>
+  <p>The full list, grouped by the areas on the Support Wheel, is in the Field Guide under <a href="https://normreed-tas.github.io/field-guide/#help"><em>Where to get help</em></a>.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 27</span></summary><div class="obody"><p>'All we want as a family is just to know what to do, how to go about things, because we don't know. No one tells you anything.'— Mother. 4.1 Assessing needs, planning support and referrals. Parents and carers may need lots of different types of support around a family member's offending (see diagram below for some examples). A common need is support to understand the Criminal Justice System (CJS) and this may initially be an unfamiliar area for practitioners too. [Diagram: Support needs — Finances; Housing; Kinship carers; Employment; Childcare; Health- mental, emotional, physical, addiction; Parenting; Foreign National Offenders; Relationship guidance; Understanding the CJS; Domestic abuse.] See Appendix 1 for lists of resources and services to signpost parents and carers to for each area.</p></div></details>
+  <h3 id="five-dos-and-don-ts">Five dos and don'ts</h3>
+  <ol><li><strong>Do think about the whole family.</strong> One person's situation is bound up with everyone else's, and their needs change as the family's do. Look at the whole picture when you assess and plan.</li><li><strong>Do be patient, and don't judge.</strong> Many families have already felt the stigma of a family member's offending, from neighbours, from services, sometimes from the system itself. Trust can take time. Keep turning up, and listen to their story when they are ready to tell it.</li><li><strong>Don't push.</strong> Depending on where the case is up to, a family may see the offence, or the likely sentence, quite differently from you. Some are in shock or disbelief. Don't press them to accept a version of events they aren't ready for.</li><li><strong>Do ask only what you need to know.</strong> It's natural to be curious about the offence. But it usually has little to do with what the family needs from you.</li><li><strong>Don't add to the load.</strong> Pressure is the last thing a parent or carer needs. Help them set goals that are small and achievable.</li></ol>
+  <p>Keep safeguarding in mind all the way through, not just at the first meeting.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 28</span></summary><div class="obody"><p>Assessments – 5 dos and don'ts. 1. It is important to remember that one family member's situation is wholly connected with that of the rest of their family; their needs will change as their family's do. DO take a whole-family approach to assessment and support planning to ensure the whole picture is considered. 2. Being non-judgmental and understanding is all the more vital to offenders' families who may have already experienced the effects of stigma as a result of their family member's offending. It may take time to build trust, so DO be persistent and listen to their story when they feel able to share it. 3. Depending on the stage of the CJS their family member is at, families may have different understandings to you about the significance of the offence and the likelihood of sentencing and/or release. Some families may be in a state of disbelief or denial so DON'T push them to accept a version of events they're not ready to. 4. DO recognise the difference between the information it is essential to know and the information you might want to know; many people are curious to ask about an individual's offences but this information often has little bearing on the family's needs. 5. Adding to the pressure on parents and carers is the last thing you want to do, so be sure to assist the carer and DON'T set unmanageable or unrealistic goals during support planning. Consider any safeguarding issues throughout the assessment and on an ongoing basis during your intervention.</p></div></details>
+  <h3 id="asking-the-difficult-questions">Asking the difficult questions</h3>
+  <p>Many workers don't feel confident asking about offending and prison. These questions are a good place to start. Each one opens up a different area.</p>
+  <table class="tbl"><thead><tr><th>Ask</th><th>Why it helps</th></tr></thead><tbody><tr><td data-label="Ask"><em>What would make things better for you?</em> / <em>How do things feel for you?</em></td><td data-label="Why it helps">Answers range from needing someone to talk to, through to practical and financial help. They also show you how the rest of the family is going.</td></tr><tr><td data-label="Ask"><em>What do you think the children want to do?</em></td><td data-label="Why it helps">This matters most for visits. A parent's wishes and a child's can differ. Planning around this question keeps the children's views in the picture.</td></tr><tr><td data-label="Ask"><em>What have the children been told?</em> Then: <em>How much do you think they know?</em></td><td data-label="Why it helps">Ask in this order. The second question gives the parent room to think about what the child has actually worked out. Adults trying to protect children often underestimate how much they know.</td></tr><tr><td data-label="Ask"><em>What has changed since [name] went to prison?</em></td><td data-label="Why it helps">For some families, prison brings relief as well as loss: a violent or chaotic person has gone. That can leave relatives with feelings that pull both ways.</td></tr><tr><td data-label="Ask"><em>Have you got someone you can talk to?</em></td><td data-label="Why it helps">A natural point to find out which services are already involved, and how the parent feels about others being involved or information being shared.</td></tr></tbody></table>
+  <details class="orig"><summary>2018 guide wording <span>p. 29</span></summary><div class="obody"><p>Asking the difficult questions – parents and carers. Sometimes professionals do not feel confident asking questions about offending and imprisonment. Here are some example questions to get you started approaching key areas of need. What would make things better for you? How do things feel for you? These questions will generate a wide range of responses from the need for emotional support through to practical and financial help. These can also be used as prompts to aid thinking about the wider impact on the family if necessary. What do you think the children want to do? This can be particularly significant regarding visits and understanding the parents' wishes as well as the child's. Interventions planned around this question can ensure consideration is given to the children's views and opinions. What have the children been told? How much do you think they know? It is important that the second question here is asked after "What have they been told?" as it allows space for the carer to think about the perceptions the child holds. The knowledge and understanding that children have is often underestimated by immediate carers trying to "protect" them from difficult situations. What has changed since (name) went to prison? Remember: For some families, custody has a positive impact. This can create conflicting feelings in relatives. Have you got someone that you can talk to? This is a good opportunity to find out what professional agencies may be involved and how the carer feels about getting others involved, sharing information etc.</p></div></details>
+  <h3 id="using-what-you-already-have">Using what you already have</h3>
+  <p>You don't need a new assessment process to support these families. One question added to the forms you already use is enough to start: <em>Is anyone in your family in prison, on remand or before the courts?</em></p>
+  <p>When that question opens something up, the <strong>Parent / Carer Support Wheel</strong> gives you and the parent a picture of twelve areas of family life, each rated from 1 ("I feel good about this") to 5 ("Crises I need help with"). It's in the <a href="https://normreed-tas.github.io/field-guide/#wheel-parent">Field Guide</a>, ready to fill in on a phone and print.</p>
+  <div class="callout"><p><strong>Practice example: finding families early.</strong> The Tasmania Prison Service has worked to identify prisoners' families at the time of induction, so families can be offered support early. Posters in local schools and services help break down stigma and encourage families to come forward themselves.</p><p><span class="flag block"><b>TO CONFIRM</b> with TPS: is this still current practice, and what happens now when a family is identified?</span></p></div>
+  <details class="orig"><summary>2018 guide wording <span>p. 30</span></summary><div class="obody"><p>See Parent/Carer Support Wheel on page 31 for one example of how the impact of offending on families has been addressed in assessments. You do not need to create a new assessment process in order to identify and support offenders' families. You could add a question to your existing systems. PRACTICE EXAMPLE: IDENTIFYING OFFENDERS' FAMILIES. The Tasmanian Prison Service is intentionally trying to identify the family of prisoners at the time of induction. This allows for early intervention with families who may require support. Posters displayed in local schools and services break down stigma and encourage self-identification. Keep discussions open-ended to gain individual responses from children and families. Be open about sharing information to ensure they understand the benefits of information sharing for themselves and their family. Be prepared and have a range of information to offer, or make a clear offer of support if information is lacking. Asking questions without a practical response can leave people feeling let down. Ensure that you fulfil your offers of support so you are able to develop a trusting relationship with the family and/or child.</p></div></details>
+  <h3 id="following-through">Following through</h3>
+  <ul><li><strong>Keep questions open.</strong> Open questions bring out each person's own answer, children's included.</li><li><strong>Be open about sharing information.</strong> Explain what you'd share, with whom, and how it could help them and their family.</li><li><strong>Have something to offer.</strong> Have information ready, or make a clear offer to find it. Asking questions with nothing practical to follow can leave a family feeling let down.</li><li><strong>Do what you said you'd do.</strong> Following through is how trust is built, with the parent and with the children.</li></ul>
+  <h3 id="making-a-support-plan">Making a support plan</h3>
+  <p>Start with the area the parent or carer most wants to work on. It isn't always the one rated highest. Agree one or two small steps, who will do each, and by when.</p>
+  <table class="tbl"><thead><tr><th>Area of support</th><th>Outcome to achieve</th><th>Action(s)</th><th>By whom?</th><th>When / where</th></tr></thead><tbody><tr><td data-label="Area of support">B. Information about the prison</td><td data-label="Outcome to achieve">Mum feels confident about what visiting her husband in prison will be like</td><td data-label="Action(s)">Read the Tasmania Prison Service's visiting pages, and note any questions</td><td data-label="By whom?">Mum</td><td data-label="When / where">At home, this week</td></tr><tr><td data-label="Area of support"></td><td data-label="Outcome to achieve"></td><td data-label="Action(s)">Find out what family support the prison offers</td><td data-label="By whom?">Worker</td><td data-label="When / where">This week</td></tr></tbody></table>
+  <p>A blank plan prints with the Support Wheel from the <a href="https://normreed-tas.github.io/field-guide/#wheel-parent">Field Guide</a>.</p>
+  <details class="orig"><summary>2018 guide wording <span>p. 30</span></summary><div class="obody"><p>Example support plan for a parent/carer. Area of support: Infomation about the prison. Outcome to achieve: Feel confident about what visiting my husband in prison will be like. Action/s: Mother to read a leaflet about prison visit process and follow links provided by worker. Note down any questions that she has. By who? Mum. When/where: At home this week. Action/s: Worker to contact the prison and find out what they offer in terms of family support. By who? Worker. When/where: This week.</p></div></details>
+  <h2 id="s4-2">4.2 Telling the children</h2>
+  <blockquote class="pull"><p>"I didn't know when he was going to prison. I saw it in the newspaper and came home and found out."</p><cite>14-year-old girl, quoted in the 2018 guide</cite></blockquote>
+  <p>Whether to tell the children about a family member's offence, and what to tell them, is one of the most common worries parents and carers have. Children's questions and fears need answering quickly, especially when someone has been arrested or taken from the home suddenly.</p>
+  <h3 id="it-s-the-parent-s-choice">It's the parent's choice</h3>
+  <p>Parents and carers decide what to tell their children, and when. Your part is to help them:</p>
+  <ul><li>understand why telling the truth usually helps;</li><li>plan what to say; and</li><li>say it, if they'd like you there.</li></ul>
+  <h3 id="why-the-truth-usually-helps">Why the truth usually helps</h3>
+  <ul><li><strong>Children can only get support once they know.</strong></li><li><strong>They notice.</strong> They see the adults around them upset, angry or stressed, and secrecy leaves them confused.</li><li><strong>They find out anyway:</strong> from the playground, the news, social media or an overheard conversation. Often it's a version that isn't accurate.</li><li><strong>Without the truth, children make up their own stories,</strong> and those can be worse than what really happened. Many decide it is somehow their fault.</li><li><strong>Honesty shows children it's all right</strong> to have feelings and to ask questions.</li><li><strong>It takes the pressure off the adults</strong> to keep a secret and hide their own feelings.</li><li><strong>Where it's appropriate, it lets a child keep a real relationship</strong> with the person in prison.</li><li><strong>It can ease a particular kind of grief.</strong> A child whose parent is in prison has lost someone who is still alive, often with no clear end in sight, and without the support people usually give the bereaved. Knowing the truth gives them something solid to grieve and hope around (see <a href="practitioners-guide-3.html">Chapter 3</a>).</li></ul>
+  <h3 id="why-it-can-be-hard-to-tell">Why it can be hard to tell <span class="flag new">New</span></h3>
+  <p>The 2018 guide asks practitioners to think about why parents find this hard. Some of the reasons you will hear:</p>
+  <ul><li><strong>Shame,</strong> and fear of what others will think if the child tells someone.</li><li><strong>Wanting to protect the child</strong> from something painful.</li><li><strong>Not knowing the words</strong> for a child of that age, or not knowing the facts yet themselves.</li><li><strong>The person in prison has asked them not to tell.</strong></li><li><strong>The parent's own feelings:</strong> anger, grief, or relief, which can feel wrong to show.</li><li><strong>Fear that the child will think less of the parent in prison,</strong> or less of the family.</li></ul>
+  <p>Naming these with the parent, gently, often makes the next step easier.</p>
+  <h3 id="helping-a-parent-plan-what-to-say">Helping a parent plan what to say <span class="flag new">New</span></h3>
+  <ul><li><strong>Decide who will tell the child,</strong> and where. Somewhere familiar and private, at a time when there is space afterwards.</li><li><strong>Keep it short, true and suited to the child's age.</strong> Younger children need a few simple words: <em>Dad did something against the law. He has to stay in a place called prison for a while. It's not your fault.</em> Older children can be told more, and will ask.</li><li><strong>Say what stays the same:</strong> who will look after them, where they'll live, that they're still loved.</li><li><strong>Help the child know who they can talk to,</strong> and that some family matters are private. That's different from a secret they must keep from everyone.</li><li><strong>Expect questions again and again,</strong> sometimes days or weeks later. That is how children make sense of things.</li><li><strong>Think about the school.</strong> With the parent's agreement, a teacher or wellbeing worker who knows can keep an eye out.</li></ul>
+  <p><a href="practitioners-guide-5.html">Chapter 5</a> covers exploring feelings with children and giving them information. That applies whether or not a child knows the whole truth.</p>
+  <h3 id="resources-to-read-with-a-child">Resources to read with a child</h3>
+  <p>From the Onesimus website, <a href="family-resources.html"><em>Resources for families</em></a>:</p>
+  <ul><li><a href="books/visiting-my-dad.html"><strong><em>Visiting My Dad in Prison</em></strong></a> (younger children, with an adult): what a visit is really like, photographed inside Risdon and acted out by soft toys. © Save the Children, reproduced with permission.</li><li><a href="books/waiting-for-dad.html"><strong><em>Waiting for Dad</em></strong></a> (about 9–12): Josh tells his mate Max that his dad is in prison, and Max stays. © The Salvation Army, reproduced with permission.</li><li><strong><em>My Diary</em></strong> (about 4–10): a child's diary for the time a parent is away. Being rebuilt for the web.</li></ul>
+  <p>For a family's first steps, the Tasmania Prison Service's leaflet <em>Someone has gone to prison</em> is a good thing to give them.</p>
+  <p><span class="flag block"><b>TO CONFIRM</b>: any Australian resources on telling children worth adding. The 2018 Appendix 1 "Telling the Children" list is UK material.</span></p>
+  <details class="orig"><summary>2018 guide wording <span>p. 32</span></summary><div class="obody"><p>'I didn't know when he was going to prison. I saw it in the newspaper and came home and found out.' — 14 year old girl. Whether to and what to tell the children about a family member's offences is a very common issue that parents and carers worry about. It is vital to address children's questions and anxieties with them quickly, especially when a family member has been arrested or imprisoned and suddenly removed from the home. Parents and carers have the choice as to what they tell their children and when. They may need support to understand why telling their children the truth is important. They might need your support to talk to their children or plan what to say. Why tell children the truth? Once they have been told, they may be able to receive support and advice to cope. If appropriate, they could have a meaningful relationship with someone in prison. Knowing the truth may mitigate feelings of ambiguous loss or disenfranchised grief (see Chapter 3.2). They may notice that the adults around them are upset, angry or stressed, leading to confusion. Honesty teaches children that it is ok to be open with feelings and ask questions. Children might find out through playground chat, media stories, overhearing conversations, social media. Children may hear versions of the truth from others that are not accurate. Telling the truth reduces pressure on parents/carers to keep a secret and hide their feelings. Children may create their own stories (that could be much worse) about why a family member is no longer there. Consider why parents and carers might find it hard to tell children the truth about a family member's offending. See Appendix 1: Telling the Children. Chapter 5 offers guidance on exploring feelings with and providing information to children. These approaches are relevant whether or not a child knows the whole truth about a family member's offending.</p></div></details>
+  <h2 id="questions-parents-and-carers-ask">Questions parents and carers ask</h2>
+  <p>You won't always know the answer. These are the questions you're most likely to hear, and where to point a family.</p>
+  <div class="qa"><h3 class="q">They've been arrested. What happens now?</h3><p>A very tense time, especially if the arrest happened at home and the family saw it. For a family new to the justice system, it's the start of a lot to learn. Take it one stage at a time. The Field Guide's <a href="https://normreed-tas.github.io/field-guide/#stages"><em>The justice system, stage by stage</em></a> walks through each stage.</p></div>
+  <div class="qa"><h3 class="q">What's the difference between remand and sentenced?</h3><p>On remand, the person hasn't been found guilty. They are in prison waiting for their case to be decided. Sentenced means a court has decided the case and set a sentence.</p><p><span class="flag block"><b>TO CONFIRM</b> with TPS: the 2018 guide says people on remand get more visits than sentenced prisoners. Check before saying so.</span></p></div>
+  <div class="qa"><h3 class="q">How long will they actually be inside?</h3><p>Often less than the sentence given. Part of a sentence may be served in the community on parole. Their lawyer is the best person to ask. Where an offence carries a minimum sentence, you may be able to help a family prepare in advance.</p><p><span class="flag block"><b>TO CONFIRM</b>: wording on Tasmanian non-parole periods.</span></p></div>
+  <div class="qa"><h3 class="q">What shall I tell the children?</h3><p>Usually the truth, in words that suit the child's age, and soon. See 4.2 above.</p></div>
+  <div class="qa"><h3 class="q">What if I think they're innocent?</h3><p>Respect the family's story, whatever you think about guilt. Coming to terms with a family member's offence can take time. Help them focus on the parts of their situation they can change.</p></div>
+  <div class="qa"><h3 class="q">What can I send into the prison?</h3><p>There are strict rules. Point the family to the Tasmania Prison Service's own pages on contacting a prisoner, mail and money, rather than to what you remember. Rules change.</p></div>
+  <div class="qa"><h3 class="q">I'm worried about the safety of someone in prison. What do I do?</h3><p>Tell the prison. Families don't need proof, and it is important they pass concerns on. For worry that isn't urgent, a helpline can support the parent too (Lifeline <a class="tel" href="tel:131114">13 11 14</a>). The Visitor Reception Centre at Risdon Vale is on (03) 6165 7400, option 1.</p><p><span class="flag block"><b>TO CONFIRM</b> with TPS: the right number for a welfare concern out of hours.</span></p></div>
+  <div class="qa"><h3 class="q">How do we keep in touch?</h3><p>Visits, video (Zoom) visits, letters and email. The person in prison can phone out to approved numbers, but can't receive calls. Money for calls goes into their account. The Tasmania Prison Service's pages explain each one.</p></div>
+  <div class="qa"><h3 class="q">I need help with… where can I go?</h3><p>Start with the Support Wheel to find the area, then the list of services, which is grouped the same way. See <em>What parents and carers may need</em> above.</p></div>
+  <div class="qa"><h3 class="q">I don't want to see them in prison, but my children do. What can I do?</h3><p>That's understandable, especially if the parent was harmed by the person in prison. It may still be in the children's best interests to visit. In Tasmania, children under 18 must visit with an approved adult. That could be another family member or a friend. Few workers can take a child on a visit. Workers from the Department for Education, Children and Young People (DECYP) can, but special arrangements have to be made with the prison first. At Hobart Reception Prison, the adult must be the child's parent or legal guardian. Talk through any safeguarding worries first with the prison, with the Advice and Referral Line (<a class="tel" href="tel:1800000123">1800 000 123</a>), or with other workers involved. The Field Guide's <a href="https://normreed-tas.github.io/field-guide/#visit"><em>Taking a child to visit</em></a> goes step by step.</p></div>
+  <details class="orig"><summary>2018 guide wording <span>pp. 34–35</span></summary><div class="obody"><p>Parents' FAQs. Just as asking the 'right' questions can feel challenging, some practitioners worry about having the necessary answers to respond. Here are some common questions you may hear. They've been arrested…what happens now? This can be a very tense time for families, especially if the arrest happened at home and they witnessed it. For first time offenders' families this may be the first stage of an ongoing learning process about the Criminal Justice System. See Appendix 1: Understanding the CJS for resources to direct parents to following an arrest. What's the difference between remand and sentenced? If a prisoner is being held on remand, they have not yet been convicted. They therefore have more privileges than convicted prisoners, such as more regular visit allowance. See Appendix 1: Understanding the CJS for resources on CJS processes. How long will the sentence actually be? Most prison sentences include periods of time to be served in prison and periods of time to serve in the community so a prisoner will not spend the whole of their sentence in prison. Some convictions carry minimum sentences in which case you may be able to help prepare a family for a prison sentence in advance. See Appendix 1: Understanding the CJS for resources on CJS processes. What shall I tell the children? This is a common dilemma for parents and carers. See Chapter 4.2 for information on why it is often helpful to tell children the truth about offending. Appendix 1: Telling the Children lists helpful resources to guide conversations about offending with young people. What if I think they're innocent? It's vital to respect the story of the individual you're working with, regardless of your opinion on the guilt of their family member. It can take some families time to come to terms with a family member's offences. Encourage them to focus on aspects of their situation that they can change to help them cope. What can I send into prison? There are many restrictions on what can be sent into prisons. You can direct a family member to the appropriate prison webpage, or contact number for the Visitors Reception. I'm worried about the safety of someone in prison, what do I do? There are several ways to make contact with a prison if there is a serious or immediate safety issue and it is very important that families pass on concerns. For ongoing anxiety or less immediate safety concerns, helpline support for the carer could help. See Appendix 1: Concerned about the welfare of someone in prison. How do we keep in touch? See Appendix 1: Keeping in Touch for resources to pass on to parents and carers trying to make or sustain contact with someone in prison. I need support with…where can I go? See Chapter 4.1 for suggestions on how to approach support needs with parents and carers and identify ways forward in different areas. See Appendix 1 for some ideas on where to signpost carers to for particular issues. I don't want to see them in prison but my children do…what can I do? It is understandable that some parents/carers do not want to visit a family member in prison, especially if they have been the victim of a crime as in cases of domestic abuse. It may still be in children's best interests to visit. Other adults, including professionals, can accompany children on prison visits. Any safeguarding concerns should be discussed with Child Safety Services, the prison, or other professionals involved first. See Chapter 5.4: Prison Visits Flowchart for guidance on facilitating visits where a parent/carer cannot go.</p></div></details>
+  <p class="credit"><em>Adapted from</em> Supporting children and families affected by a family member's offending: A Practitioner's Guide (Australia), <em>by Lindsay Sutherland and Polly Wright (NICCO and Barnardo's, 2017), adapted for Australia in August 2017 by Jessica Smith, Onesimus Foundation, with the Tasmanian CAPO working group. Tasmanian edition, 2026.</em></p>
+  <div class="chapnav"><a href="practitioners-guide-3.html">&larr; Chapter 3: Understanding the impact</a><a href="practitioners-guide.html">All chapters</a><a href="practitioners-guide-5.html">Chapter 5: Supporting children and young people &rarr;</a></div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+</body>
+</html>

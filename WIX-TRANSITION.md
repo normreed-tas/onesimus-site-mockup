@@ -22,6 +22,7 @@ These decisions are already made (see Norm's rebuild brief):
 | `collaboration.html` | Networks and partners | Several partner links still to be confirmed |
 | `phone-guides.html` | Phone Guides: Getting Out, Stay Connected, The Blokes' Book, the Field Guide and Living With an Order, with QR codes, and an offer to other organisations | The apps themselves stay on GitHub Pages (normreed-tas.github.io/getting-out/, /stay-connected/, /blokes-book/, /field-guide/ and /living-with-an-order/); the QR codes point there, so those addresses must not change |
 | `practitioners-guide.html` | The Onesimus Practitioner's Guide: provenance, four practice chapters, tools, archived 2018 PDF, training | Contains a mockup note — remove before going public |
+| `practitioners-guide-2.html` to `-5.html` | Chapters 2 to 5 of the Practitioner's Guide, one page each | Drafts for review (17 Nov 2026): `noindex`, a "Draft for review" label, and purple flags for points still to confirm or verify. Each section has a fold-out with the 2018 guide's wording. Tables stack on a phone and phone numbers are tap-to-call. Don't publish until Norm signs each chapter off |
 | `training.html` | Resourcing and training | "Bookings open soon" buttons are placeholders |
 | `youth-justice.html` | Youth justice resources and the youth figures section | See *Justice figures* below |
 | `research.html` | Research shelf | Links to Key Documents and Justice Figures |
@@ -50,6 +51,7 @@ Each of these is `href="#"` in the mockup:
 - Every mockup page is marked as a draft by `draft.css` (a faint diagonal "DRAFT" watermark and a corner label). It is linked by one line per page, so do not carry it over to the Wix build.
 - Remove the mockup notes addressed to Norm on `family-journey.html`, `family-resources.html` and `practitioners-guide.html`.
 - Resolve the purple "to confirm" chips on `family-journey.html` with the Tasmania Prison Service.
+- On the four chapter pages (`practitioners-guide-2.html` to `-5.html`): resolve every purple flag, then remove the "Draft for review" label and the `noindex` line once Norm has signed the chapter off.
 
 ## Files to carry over
 
