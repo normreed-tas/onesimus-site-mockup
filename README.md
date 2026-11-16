@@ -9,7 +9,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `about.html` — About Us
 - `collaboration.html` — Collaboration
 - `practitioners-guide.html` — The Onesimus Practitioner's Guide (under For Professionals)
-- `phone-guides.html` — Phone Guides: the phone apps Onesimus builds and hosts (Getting Out, Stay Connected, The Blokes' Book, Field Guide), with QR codes, and an offer to other organisations (under For Professionals)
+- `phone-guides.html` — Phone Guides: the phone apps Onesimus builds and hosts (Getting Out, Stay Connected, The Blokes' Book, Field Guide, Living With an Order), with QR codes, and an offer to other organisations (under For Professionals)
 - `training.html` — Resourcing & Training
 - `family-community.html` — Family & Community (under For Families)
 - `family-resources.html` — Resources for Families (under For Families)
