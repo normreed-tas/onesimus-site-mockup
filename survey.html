@@ -49,6 +49,7 @@
     color:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.3); padding:12px 22px; border-radius:100px;
     white-space:nowrap; text-align:center;
   }
+  a.status-pill.live{background:var(--brass); border-color:var(--brass); color:var(--white); text-decoration:none; font-weight:600;}
   @media (max-width:760px){ .status-card{grid-template-columns:1fr;} .status-pill{justify-self:start;} }
 
   .section{max-width:1180px; margin:0 auto; padding:0 24px 90px;}
@@ -180,11 +181,11 @@
 <section class="featured">
   <div class="status-card">
     <div>
-      <span class="eyebrow">Opens December 2026</span>
-      <h2>The survey is not open yet.</h2>
-      <p>It will open in December, during Jason Wong's visit to Tasmania. Opening date <span class="tbc" style="color:rgba(255,255,255,.55);">to be confirmed</span>. The link to take part will appear here, and through the Tasmanian media, when it goes live.</p>
+      <span class="eyebrow">Preview &middot; opens December 2026</span>
+      <h2>Try the survey.</h2>
+      <p>This is a working preview for review. Answers entered now are test data, and will be cleared before the survey opens to the public in December, during Jason Wong's visit to Tasmania. Opening date <span class="tbc" style="color:rgba(255,255,255,.55);">to be confirmed</span>.</p>
     </div>
-    <span class="status-pill">Survey opens in December</span>
+    <a class="status-pill live" href="https://docs.google.com/forms/d/e/1FAIpQLSdzXob6i9RyypXocvZ6SB4kpiACAENrwEhYz75lY9HSUHc_5g/viewform" target="_blank" rel="noopener">Take the survey &rarr;</a>
   </div>
 </section>
 

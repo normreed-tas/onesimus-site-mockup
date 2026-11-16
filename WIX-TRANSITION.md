@@ -29,7 +29,7 @@ These decisions are already made (see Norm's rebuild brief):
 | `justice-figures.html` | Adult justice figures explorer | See *Justice figures* below |
 | `figures-register.html` | Sources and checks for every figure | See *Justice figures* below |
 | `key-documents.html` | Links to official documents | Links only; re-check every few months |
-| `survey.html` | Understanding Our Prisons survey | Pre-launch; no survey link yet |
+| `survey.html` | Understanding Our Prisons survey | Pre-launch. Since 17 Nov 2026 the page links to the live Google Form as a preview for review; test answers must be cleared from the form before the public opening |
 | `events.html` | Events | Wix Events (RSVP or ticketing still to be decided) |
 | `donate.html` | Donate | Platform still to be decided; bank details are a placeholder |
 | `contact.html` | Contact | Wix form |

@@ -20,7 +20,7 @@ concept only: no real forms, payments, or CMS are wired up.
 - `youth-justice.html` — Youth Justice (under For Professionals), including the youth figures explorer. Both explorers share `justice-figures-data.js` and link to each other for adult/youth comparisons
 - `figures-register.html` — Sources and checks: the source record for every figure and what the evidence labels mean (linked from both figures pages)
 - `key-documents.html` — Key documents (links to official sources; linked from Research)
-- `survey.html` — Understanding Our Prisons survey (pre-launch)
+- `survey.html` — Understanding Our Prisons survey (pre-launch; links to the live Google Form as a preview)
 - `events.html` — Events
 - `donate.html` — Donate
 - `contact.html` — Contact
