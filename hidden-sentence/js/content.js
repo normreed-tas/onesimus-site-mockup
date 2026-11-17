@@ -83,7 +83,7 @@ HS.modules.push({ id: "gate", title: "Inside the gate", short: "A tour of Risdon
   { tip: "The photographs for this tour are still to come. Onesimus is arranging with the Tasmania Prison Service for new ones to be taken. Until then, each stop on the walk is described in words." },
   { h: "The complex from the air" },
   "Tap a numbered pin, or a name in the list, to see what each part of the prison is.",
-  { map: { src: "../prison-map/?embed=1", full: "../prison-map/", title: "Aerial map of the Risdon Prison Complex" } },
+  { map: true },
   { h: "The walk in" },
   { tour: [
     { h: "Arriving" },
