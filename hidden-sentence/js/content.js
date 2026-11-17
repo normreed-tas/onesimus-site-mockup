@@ -81,6 +81,10 @@ HS.modules.push({ id: "gate", title: "Inside the gate", short: "A tour of Risdon
   { h: "Before you arrive" },
   ["Visits are booked ahead through the Visitor Reception Centre.", "The adult needs photo ID. Each child needs a Medicare, Healthcare or concession card.", "Up to three visitors at a time, children included.", "Arrive early. You check in before the visit.", "Nothing in, nothing out. Everything goes in a locker.", "There are rules about what you can wear."],
   { tip: "The photographs for this tour are still to come. Onesimus is arranging with the Tasmania Prison Service for new ones to be taken. Until then, each stop on the walk is described in words." },
+  { h: "The complex from the air" },
+  "Tap a numbered pin, or a name in the list, to see what each part of the prison is.",
+  { map: { src: "../prison-map/?embed=1", full: "../prison-map/", title: "Aerial map of the Risdon Prison Complex" } },
+  { h: "The walk in" },
   { tour: [
     { h: "Arriving" },
     { src: "t25", cap: "The road in. The first thing a family sees is a sign." },

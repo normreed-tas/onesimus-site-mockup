@@ -44,6 +44,8 @@
   #editor input, #editor textarea{width:100%; font:inherit; padding:8px; border:1px solid var(--line); border-radius:4px; margin-top:3px;}
   .note{font-size:.84rem; color:var(--slate);}
   footer{margin:22px 0 30px; font-size:.82rem; color:var(--slate);}
+  body.embed header.top, body.embed .intro, body.embed #t-edit, body.embed #editor{display:none;}
+  body.embed{background:#fff;} body.embed .wrap{padding:0 10px;} body.embed .grid{margin-top:10px;} body.embed #map{height:340px; min-height:0;} body.embed footer{margin:12px 0 14px;}
   @media (max-width:800px){ .grid{grid-template-columns:minmax(0,1fr);} #map{height:60vh; min-height:340px;} }
 </style>
 </head>
@@ -80,10 +82,12 @@
 <script src="places.js"></script>
 <script>
 (function () {
+  var EMBED = /[?&]embed=1/.test(location.search);
+  if (EMBED) document.body.classList.add("embed");
   var KEY = "pm.places";
   var published = (window.PRISON_PLACES || []).map(function (p) { return { name: p.name, about: p.about, lat: p.lat, lng: p.lng }; });
   var places = published.slice(), dirty = false, sel = -1, editing = false, markers = [];
-  try { var s = localStorage.getItem(KEY); if (s) { places = JSON.parse(s); dirty = true; } } catch (e) {}
+  try { var s = EMBED ? null : localStorage.getItem(KEY); if (s) { places = JSON.parse(s); dirty = true; } } catch (e) {}
   function keep() { dirty = true; try { localStorage.setItem(KEY, JSON.stringify(places)); } catch (e) {} }
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   var $ = function (id) { return document.getElementById(id); };
