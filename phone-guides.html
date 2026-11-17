@@ -67,7 +67,7 @@
                   display:flex; align-items:center; justify-content:center; text-align:center;
                   font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--slate);
                   letter-spacing:.06em; padding:10px;}
-  @media (max-width:640px){ .guide{grid-template-columns:1fr;} .guide .qrcol{align-items:flex-start;} }
+  @media (max-width:640px){ .guide{grid-template-columns:minmax(0,1fr);} .guide .status{white-space:normal; line-height:1.5;} .guide .qrcol{align-items:flex-start;} }
 
   /* OFFER */
   .offer{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
@@ -264,6 +264,24 @@
       </div>
       <a class="open" href="https://normreed-tas.github.io/living-with-an-order/">Open Living With an Order &rarr;</a>
       <div style="margin-top:14px;"><span class="status dev">Draft &mdash; for review by Tasmania Legal Aid</span></div>
+    </div>
+  </div>
+
+  <div class="guide soon">
+    <div class="qrcol">
+      <div class="pending">Concept<br>no QR code yet</div>
+    </div>
+    <div>
+      <h3>This is me</h3>
+      <p class="strap">A concept: the Child Impact Assessment on a phone.</p>
+      <div class="who">
+        <div><b>For</b><span>A child whose mum, dad or brother has been arrested, is going to court or is in prison, filling it in with an adult they trust</span></div>
+        <div><b>Built on</b><span>The Child Impact Assessment framework and the <i>&ldquo;This is me&rdquo;</i> toolkit, the work of Sarah Beresford and the Prison Reform Trust (UK). This concept is not published or endorsed by the Prison Reform Trust.</span></div>
+        <div><b>Built by</b><span>Onesimus Foundation, as a working sketch for the Prison Reform Trust to consider. The wording is a stand-in.</span></div>
+        <div><b>Includes</b><span>The assessment for a mum, dad or brother, with a drawing space and print; notes for the helper at each stage; the guiding principles; and links to the Trust&rsquo;s own documents. Nothing a child writes is saved or sent. Help numbers are UK numbers.</span></div>
+      </div>
+      <a class="open" href="this-is-me/">Open This is me &rarr;</a>
+      <div style="margin-top:14px;"><span class="status dev">Concept &mdash; offered to the Prison Reform Trust</span></div>
     </div>
   </div>
 
