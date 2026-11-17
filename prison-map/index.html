@@ -31,6 +31,8 @@
   #editor input, #editor textarea{width:100%; font:inherit; padding:8px; border:1px solid var(--line); border-radius:4px; margin-top:3px;}
   .note{font-size:.84rem; color:var(--slate);}
   body.edit .pm-fig img{cursor:crosshair;}
+  body.edit .pm-pin{cursor:grab; touch-action:none;}
+  body.edit .pm-pin.dragging{cursor:grabbing; opacity:.85;}
   footer{margin:18px 0 30px; font-size:.82rem; color:var(--slate);}
 </style>
 </head>
@@ -42,7 +44,7 @@
   <div class="bar"><button class="btn ghost" id="t-edit" type="button" aria-pressed="false">Edit labels</button></div>
   <div id="editor" hidden>
     <h2>Editing labels</h2>
-    <p class="note" id="edhelp">Tap the photograph where a facility is to add a pin. Tap a pin to change it. Your changes stay on this device until you download the labels file.</p>
+    <p class="note" id="edhelp">Tap the photograph where a facility is to add a pin. Tap a pin to change it. Drag a pin to move it. Your changes stay on this device until you download the labels file.</p>
     <div id="edform" hidden>
       <label>Name<input id="f-name" type="text" autocomplete="off"></label>
       <label>What it is<textarea id="f-about" rows="4"></textarea></label>
@@ -85,6 +87,28 @@
     if (moving && PM.places[sel]) { PM.places[sel].x = x; PM.places[sel].y = y; keep(); draw(); return; }
     PM.places.push({ name: "", about: "", x: x, y: y }); sel = PM.places.length - 1; keep(); draw(); $("f-name").focus();
   });
+  /* drag a pin to move it (edit mode only) */
+  var drag = null;
+  $("mount").addEventListener("pointerdown", function (e) {
+    var b = e.target.closest(".pm-pin"); if (!editing || !b) return;
+    drag = { b: b, i: +b.dataset.pmI, moved: false, sx: e.clientX, sy: e.clientY };
+    try { b.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  $("mount").addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    if (!drag.moved && Math.abs(e.clientX - drag.sx) + Math.abs(e.clientY - drag.sy) < 5) return;
+    drag.moved = true; drag.b.classList.add("dragging"); e.preventDefault();
+    var r = $("mount").querySelector(".pm-fig img").getBoundingClientRect();
+    drag.x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); drag.y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    drag.b.style.left = (drag.x * 100).toFixed(2) + "%"; drag.b.style.top = (drag.y * 100).toFixed(2) + "%";
+  });
+  function drop() {
+    if (!drag) return; var d = drag; drag = null; d.b.classList.remove("dragging");
+    if (d.moved && PM.places[d.i]) { PM.places[d.i].x = +d.x.toFixed(4); PM.places[d.i].y = +d.y.toFixed(4); sel = d.i; keep(); draw(); }
+  }
+  $("mount").addEventListener("pointerup", drop);
+  $("mount").addEventListener("pointercancel", drop);
+
   $("f-name").addEventListener("input", function () { var p = PM.places[sel]; if (!p) return; p.name = this.value; keep(); var v = this.value || "(no name yet)"; var b = $("mount").querySelector('.pm-list [data-pm-i="' + sel + '"] span:last-child'); if (b) b.textContent = v; var h = $("mount").querySelector(".pm-detail h3"); if (h) h.textContent = v; });
   $("f-about").addEventListener("input", function () { var p = PM.places[sel]; if (!p) return; p.about = this.value; keep(); var d = $("mount").querySelector(".pm-detail p"); if (d) d.textContent = this.value; });
   $("f-move").addEventListener("click", function () { moving = !moving; this.setAttribute("aria-pressed", moving); this.textContent = moving ? "Now tap its new spot" : "Move this pin"; });
