@@ -1,0 +1,1 @@
+{ "name": "This is me · phone guide concept", "short_name": "This is me", "start_url": "./", "display": "standalone", "background_color": "#F6F3ED", "theme_color": "#2F5D7C", "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }] }
