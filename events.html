@@ -129,7 +129,27 @@
   button.ev-rsvp:hover, button.ev-rsvp:focus-visible{background:var(--sage); border-color:var(--sage);}
   .reg-empty{color:var(--slate); padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .reg-panel{background:var(--white); border:1px solid var(--line); border-top:none; padding:22px 24px;}
-  .reg-title{margin:0 0 14px;}
+  .reg-title{margin:0 0 6px;}
+  .reg-when{margin:0 0 16px; color:var(--slate); font-size:.92rem; line-height:1.5;}
+  .ev-more{font:inherit; font-size:.85rem; font-weight:600; color:var(--sage); background:none; border:none; padding:0; margin-top:8px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+  .ev-more::after{content:" +";}
+  .ev-more[aria-expanded="true"]::after{content:" −";}
+  .ev-details, .more-box{background:var(--white); border:1px solid var(--line); padding:22px 24px;}
+  .ev-details{border-top:none;}
+  .ev-facts{display:grid; grid-template-columns:90px 1fr; gap:8px 16px; margin:0; max-width:680px;}
+  .ev-facts dt{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--slate); padding-top:3px;}
+  .ev-facts dd{margin:0;}
+  .ev-map{margin-left:8px; font-size:.85rem; text-decoration:underline;}
+  .ev-about{margin-top:20px; padding-top:18px; border-top:1px solid var(--line); max-width:680px;}
+  .ev-about h3{font-size:1rem; margin:0 0 10px;}
+  .ev-about p, .more-box p{margin:0 0 12px;}
+  .ev-about ul, .ev-about ol, .more-box ul{margin:0 0 12px; padding-left:20px;}
+  .ev-about li, .more-box li{margin-bottom:10px;}
+  .ev-about a{text-decoration:underline;}
+  .more-box{margin:0 0 28px; max-width:760px;}
+  .more-box summary{cursor:pointer; font-weight:600; color:var(--sage);}
+  .more-box[open] summary{margin-bottom:14px;}
+  .more-box > :last-child{margin-bottom:0;}
   .reg-fields{display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:560px;}
   .reg-fields label{display:flex; flex-direction:column; gap:6px; font-size:.85rem; font-weight:600;}
   .reg-fields label.wide{grid-column:1 / -1;}
@@ -237,6 +257,17 @@
     <h2>Professional Boundaries — 2027 dates</h2>
     <p style="margin-top:12px;">Four sessions are planned next year: three in the south of the state and one in Launceston. Sessions regularly fill, so we recommend booking early once registrations open.</p>
   </div>
+  <details class="more-box">
+    <summary>What the training covers</summary>
+    <p>This course is designed to give volunteers and professionals the tools needed to develop professional relationships and maintain appropriate boundaries when working with clients in the justice system.</p>
+    <p>The training focuses on understanding and setting boundaries (Working Well, Working Safely) and includes:</p>
+    <ul>
+      <li><b>Vicarious trauma</b><br>Working with people who have experienced traumatic events, or have been responsible for causing them, requires a key understanding to ensure that workers themselves are able to manage thoughts and feelings around these events.</li>
+      <li><b>Ethical dilemmas</b><br>Volunteers at times may find themselves uncertain of what is suitable behaviour. This training is to help you make appropriate decisions within a correctional setting.</li>
+      <li><b>Mandatory reporting</b><br>Reporting inappropriate behaviour on the part of offenders, and even co-workers, can be very important. This training explains just what should be reported, and to whom.</li>
+      <li><b>The 'grey' nature of working with offenders</b><br>Sometimes working with offenders can lead volunteers into dubious, or 'grey', territory. Learn how to be aware of these 'grey' areas and how to navigate them successfully.</li>
+    </ul>
+  </details>
   <div class="ev-row" style="border-top:1px solid var(--line);">
     <div class="ev-cadence">Wed 17 February 2027</div>
     <div><div class="ev-name">Professional Boundaries — Safeguarding Ethics in the Justice System</div><p class="ev-desc">Delivered by Board Director Kate Ibbott.</p></div>

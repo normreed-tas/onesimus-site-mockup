@@ -1,6 +1,6 @@
 // Events open for registration, read live from Wix Events.
 // Events are created in the Wix dashboard; nothing here is typed in by hand.
-// Registrations go straight to Wix (guest list, confirmation email, contacts).
+// Registrations go straight to Wix (guest list, contacts).
 import { queryEvents, getEventBySlug } from "./wix/wix-events-browse.js";
 import { createRsvp } from "./wix/wix-events-registration.js";
 
@@ -8,15 +8,28 @@ const box = document.getElementById("wix-events");
 
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-function whenText(ev) {
+// ---- date, time and place ----------------------------------------------------
+
+function whenParts(ev, weekday) {
   const d = ev.dateAndTimeSettings || {};
-  if (d.dateAndTimeTbd || !d.startDate) return "Date to be confirmed";
+  if (d.dateAndTimeTbd || !d.startDate) return null;
   const tz = d.timeZoneId || "Australia/Hobart";
   const start = new Date(d.startDate);
-  const day = new Intl.DateTimeFormat("en-AU", { weekday: "short", day: "numeric", month: "long", year: "numeric", timeZone: tz }).format(start);
+  const day = new Intl.DateTimeFormat("en-AU", { weekday, day: "numeric", month: "long", year: "numeric", timeZone: tz }).format(start);
   const t = (x) => new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: tz }).format(x).replace(":00", "");
   const end = d.endDate ? " to " + t(new Date(d.endDate)) : "";
-  return day + "<br>" + t(start) + end;
+  return { day, time: t(start) + end };
+}
+
+function whenText(ev) {
+  const w = whenParts(ev, "short");
+  return w ? w.day + "<br>" + w.time : "Date to be confirmed";
+}
+
+// One line, for the details box, the registration form and the confirmation.
+function whenLine(ev) {
+  const w = whenParts(ev, "long");
+  return w ? w.day + ", " + w.time : "Date to be confirmed";
 }
 
 function whereText(ev) {
@@ -26,6 +39,56 @@ function whereText(ev) {
   const a = l.address || {};
   return [l.name, a.city].filter(Boolean).map(esc).join(", ");
 }
+
+// Venue name and full street address, as plain text.
+function whereLine(ev) {
+  const l = ev.location || {};
+  if (l.locationTbd) return "Venue to be confirmed";
+  if (l.type === "ONLINE") return "Online";
+  const a = l.address || {};
+  const street = (a.formattedAddress || [a.addressLine, a.city, a.postalCode].filter(Boolean).join(", ")).replace(/,\s*Australia$/, "");
+  if (!l.name) return street;
+  return street && !street.startsWith(l.name) ? l.name + ", " + street : l.name;
+}
+
+function mapLink(ev) {
+  const l = ev.location || {};
+  const a = (l.address || {}).formattedAddress;
+  if (l.locationTbd || l.type === "ONLINE" || !a) return "";
+  return ' <a class="ev-map" href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(a) + '" target="_blank" rel="noopener">Map</a>';
+}
+
+// ---- the event's long description (Wix rich text) ----------------------------
+
+function richText(n) {
+  let t = esc((n.textData && n.textData.text) || "").replace(/\n/g, "<br>");
+  for (const d of (n.textData && n.textData.decorations) || []) {
+    if (d.type === "BOLD") t = "<b>" + t + "</b>";
+    else if (d.type === "ITALIC") t = "<i>" + t + "</i>";
+    else if (d.type === "LINK") {
+      const url = (d.linkData && d.linkData.link && d.linkData.link.url) || "";
+      if (/^(https?:|mailto:|tel:)/i.test(url)) t = '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + t + "</a>";
+    }
+  }
+  return t;
+}
+
+function rich(nodes, inList) {
+  return (nodes || []).map((n) => {
+    const inner = () => rich(n.nodes, inList);
+    switch (n.type) {
+      case "TEXT": return richText(n);
+      case "PARAGRAPH": { const h = inner(); return inList ? h : h ? "<p>" + h + "</p>" : ""; }
+      case "HEADING": return "<h4>" + inner() + "</h4>";
+      case "BULLETED_LIST": return "<ul>" + inner() + "</ul>";
+      case "ORDERED_LIST": return "<ol>" + inner() + "</ol>";
+      case "LIST_ITEM": return "<li>" + rich(n.nodes, true) + "</li>";
+      default: return inner();
+    }
+  }).join("");
+}
+
+// ---- rows, details and form --------------------------------------------------
 
 function rowHtml(ev) {
   const reg = ev.registration || {};
@@ -38,11 +101,25 @@ function rowHtml(ev) {
     '<div class="ev-row" data-row="' + esc(ev.id) + '">' +
     '<div class="ev-cadence">' + whenText(ev) + "</div>" +
     '<div><div class="ev-name">' + esc(ev.title) + "</div>" +
-    (ev.shortDescription ? '<p class="ev-desc">' + esc(ev.shortDescription) + "</p>" : "") + "</div>" +
+    (ev.shortDescription ? '<p class="ev-desc">' + esc(ev.shortDescription) + "</p>" : "") +
+    '<button type="button" class="ev-more" data-id="' + esc(ev.id) + '" aria-expanded="false" aria-controls="det-' + esc(ev.id) + '">Date, place and details</button></div>' +
     '<div class="ev-cadence">' + whereText(ev) + "</div>" +
     action +
     "</div>" +
+    '<div class="ev-details" id="det-' + esc(ev.id) + '" hidden></div>' +
     '<div class="reg-panel" id="reg-' + esc(ev.id) + '" hidden></div>'
+  );
+}
+
+function detailsHtml(ev, full) {
+  const about = full && full.description ? rich(full.description.nodes) : "";
+  return (
+    '<dl class="ev-facts">' +
+    "<dt>When</dt><dd>" + esc(whenLine(ev)) + "</dd>" +
+    "<dt>Where</dt><dd>" + esc(whereLine(ev)) + mapLink(ev) + "</dd>" +
+    "<dt>Cost</dt><dd>Free. Registration is needed.</dd>" +
+    "</dl>" +
+    (about ? '<div class="ev-about"><h3>About this event</h3>' + about + "</div>" : "")
   );
 }
 
@@ -77,6 +154,7 @@ function formHtml(ev, extras) {
   return (
     '<form class="reg-form" data-id="' + id + '" novalidate>' +
     '<p class="reg-title">Register for: <b>' + esc(ev.title) + "</b></p>" +
+    '<p class="reg-when">' + esc(whenLine(ev)) + "<br>" + esc(whereLine(ev)) + "</p>" +
     '<div class="reg-fields">' +
     '<label>First name<input name="firstName" autocomplete="given-name" required></label>' +
     '<label>Last name<input name="lastName" autocomplete="family-name" required></label>' +
@@ -101,6 +179,13 @@ function friendly(err) {
 }
 
 let events = [];
+const fullCache = new Map();
+
+// The full event (long description and registration questions) is fetched once, when first needed.
+function getFull(ev) {
+  if (!fullCache.has(ev.id)) fullCache.set(ev.id, getEventBySlug(ev.slug));
+  return fullCache.get(ev.id);
+}
 
 async function load() {
   try {
@@ -118,6 +203,23 @@ async function load() {
 }
 
 box.addEventListener("click", async (e) => {
+  const moreBtn = e.target.closest(".ev-more");
+  if (moreBtn) {
+    const ev = events.find((x) => x.id === moreBtn.dataset.id);
+    const panel = document.getElementById("det-" + ev.id);
+    if (!panel.hidden) {
+      panel.hidden = true;
+      moreBtn.setAttribute("aria-expanded", "false");
+      return;
+    }
+    moreBtn.setAttribute("aria-expanded", "true");
+    panel.innerHTML = detailsHtml(ev, null);
+    panel.hidden = false;
+    const full = await getFull(ev);
+    if (full) panel.innerHTML = detailsHtml(ev, full);
+    else fullCache.delete(ev.id);
+    return;
+  }
   const openBtn = e.target.closest(".reg-open");
   if (openBtn) {
     const ev = events.find((x) => x.id === openBtn.dataset.id);
@@ -125,9 +227,10 @@ box.addEventListener("click", async (e) => {
     if (!panel.hidden) return;
     panel.innerHTML = '<p class="reg-small" style="margin:0;">Loading the form…</p>';
     panel.hidden = false;
-    const full = await getEventBySlug(ev.slug);
+    const full = await getFull(ev);
     if (panel.hidden) return;
     if (!full) {
+      fullCache.delete(ev.id);
       panel.innerHTML = '<p class="reg-msg" role="alert" style="margin:0;">The registration form could not be loaded just now. Please try again, or phone 0401 690 954.</p>';
       return;
     }
@@ -185,6 +288,7 @@ box.addEventListener("submit", async (e) => {
     form.parentElement.innerHTML =
       '<div class="reg-done" role="status"><b>' + (waitlist ? "You are on the waiting list." : "You are registered.") + "</b> " +
       (waitlist ? "This event is full. We will be in touch if a place opens up." : "Thank you, " + esc(firstName) + ". We have your registration for " + esc(ev.title) + ".") +
+      '<p class="reg-when" style="margin:10px 0 0;">' + esc(whenLine(ev)) + "<br>" + esc(whereLine(ev)) + "</p>" +
       "</div>";
   } catch (err) {
     msg.textContent = friendly(err);
