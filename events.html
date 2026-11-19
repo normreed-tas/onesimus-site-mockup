@@ -134,7 +134,13 @@
   .reg-fields label{display:flex; flex-direction:column; gap:6px; font-size:.85rem; font-weight:600;}
   .reg-fields label.wide{grid-column:1 / -1;}
   .reg-fields input{font:inherit; font-weight:400; padding:11px 12px; border:1px solid var(--slate); border-radius:4px; background:var(--white); color:var(--ink);}
-  .reg-fields input:focus{outline:2px solid var(--sage); outline-offset:1px;}
+  .reg-fields input:focus, .reg-fields select:focus, .reg-fields textarea:focus{outline:2px solid var(--sage); outline-offset:1px;}
+  .reg-fields select, .reg-fields textarea{font:inherit; font-weight:400; padding:11px 12px; border:1px solid var(--slate); border-radius:4px; background:var(--white); color:var(--ink);}
+  .reg-opt{font-weight:400; color:var(--slate);}
+  .reg-choice{grid-column:1 / -1; border:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px 22px;}
+  .reg-choice legend{padding:0; margin-bottom:8px; font-size:.85rem; font-weight:600;}
+  .reg-choice label{flex-direction:row; align-items:center; gap:8px; font-weight:400; font-size:.95rem; cursor:pointer;}
+  .reg-choice input{padding:0; width:18px; height:18px; accent-color:var(--sage);}
   .reg-actions{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;}
   .reg-submit{font:inherit; font-weight:600; cursor:pointer; background:var(--sage); color:var(--white); border:none; border-radius:100px; padding:12px 24px;}
   .reg-submit[disabled]{opacity:.6; cursor:default;}

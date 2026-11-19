@@ -1,7 +1,7 @@
 // Events open for registration, read live from Wix Events.
 // Events are created in the Wix dashboard; nothing here is typed in by hand.
 // Registrations go straight to Wix (guest list, confirmation email, contacts).
-import { queryEvents } from "./wix/wix-events-browse.js";
+import { queryEvents, getEventBySlug } from "./wix/wix-events-browse.js";
 import { createRsvp } from "./wix/wix-events-registration.js";
 
 const box = document.getElementById("wix-events");
@@ -46,7 +46,33 @@ function rowHtml(ev) {
   );
 }
 
-function formHtml(ev) {
+// Extra questions come from the event's own form in Wix (Events > the event > Registration form),
+// so a question added or removed there shows up here without touching this page.
+function extraControls(full) {
+  const controls = (full && full.form && full.form.controls) || [];
+  return controls
+    .filter((c) => !c.system && !c.deleted && ["INPUT", "TEXTAREA", "RADIO", "DROPDOWN", "CHECKBOX"].includes(c.type))
+    .sort((a, b) => (a.orderIndex || 0) - (b.orderIndex || 0));
+}
+
+function extraHtml(c) {
+  const i = (c.inputs || [])[0];
+  if (!i) return "";
+  const name = "x:" + esc(i.name);
+  const req = i.mandatory ? " required" : "";
+  const label = esc(i.label) + (i.mandatory ? "" : ' <span class="reg-opt">(optional)</span>');
+  const max = i.maxLength ? ' maxlength="' + Number(i.maxLength) + '"' : "";
+  if (c.type === "INPUT") return '<label class="wide">' + label + '<input name="' + name + '"' + max + req + "></label>";
+  if (c.type === "TEXTAREA") return '<label class="wide">' + label + '<textarea name="' + name + '" rows="3"' + max + req + "></textarea></label>";
+  if (c.type === "DROPDOWN")
+    return '<label class="wide">' + label + '<select name="' + name + '"' + req + '><option value="">Please choose</option>' +
+      (i.options || []).map((o) => '<option value="' + esc(o) + '">' + esc(o) + "</option>").join("") + "</select></label>";
+  const kind = c.type === "RADIO" ? "radio" : "checkbox";
+  return '<fieldset class="reg-choice wide" data-kind="' + kind + '" data-name="' + esc(i.name) + '"' + (i.mandatory ? ' data-required="1"' : "") + "><legend>" + label + "</legend>" +
+    (i.options || []).map((o) => '<label><input type="' + kind + '" name="' + name + '" value="' + esc(o) + '"> ' + esc(o) + "</label>").join("") + "</fieldset>";
+}
+
+function formHtml(ev, extras) {
   const id = esc(ev.id);
   return (
     '<form class="reg-form" data-id="' + id + '" novalidate>' +
@@ -55,6 +81,7 @@ function formHtml(ev) {
     '<label>First name<input name="firstName" autocomplete="given-name" required></label>' +
     '<label>Last name<input name="lastName" autocomplete="family-name" required></label>' +
     '<label class="wide">Email<input name="email" type="email" autocomplete="email" required></label>' +
+    extras.map(extraHtml).join("") +
     "</div>" +
     '<p class="reg-msg" role="alert" hidden></p>' +
     '<div class="reg-actions"><button type="submit" class="reg-submit">Send registration</button>' +
@@ -90,13 +117,21 @@ async function load() {
   box.innerHTML = events.map(rowHtml).join("");
 }
 
-box.addEventListener("click", (e) => {
+box.addEventListener("click", async (e) => {
   const openBtn = e.target.closest(".reg-open");
   if (openBtn) {
     const ev = events.find((x) => x.id === openBtn.dataset.id);
     const panel = document.getElementById("reg-" + ev.id);
-    panel.innerHTML = formHtml(ev);
+    if (!panel.hidden) return;
+    panel.innerHTML = '<p class="reg-small" style="margin:0;">Loading the form…</p>';
     panel.hidden = false;
+    const full = await getEventBySlug(ev.slug);
+    if (panel.hidden) return;
+    if (!full) {
+      panel.innerHTML = '<p class="reg-msg" role="alert" style="margin:0;">The registration form could not be loaded just now. Please try again, or phone 0401 690 954.</p>';
+      return;
+    }
+    panel.innerHTML = formHtml(ev, extraControls(full));
     panel.querySelector("input").focus();
     return;
   }
@@ -112,11 +147,31 @@ box.addEventListener("submit", async (e) => {
   if (!form) return;
   e.preventDefault();
   const msg = form.querySelector(".reg-msg");
-  const data = Object.fromEntries(new FormData(form).entries());
-  const firstName = data.firstName.trim(), lastName = data.lastName.trim(), email = data.email.trim();
+  const fd = new FormData(form);
+  const firstName = fd.get("firstName").trim(), lastName = fd.get("lastName").trim(), email = fd.get("email").trim();
   msg.hidden = true;
   if (!firstName || !lastName || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     msg.textContent = "Please fill in your first name, last name and a valid email address.";
+    msg.hidden = false;
+    return;
+  }
+  // Answers to the event's extra questions; unanswered optional ones are left out.
+  const extraFields = {};
+  let missing = "";
+  for (const el of form.querySelectorAll('.reg-fields [name^="x:"]')) {
+    const key = el.name.slice(2);
+    if (el.type === "radio" || el.type === "checkbox") continue;
+    const v = el.value.trim();
+    if (v) extraFields[key] = v;
+    else if (el.required && !missing) missing = el.closest("label").firstChild.textContent.trim();
+  }
+  for (const set of form.querySelectorAll(".reg-choice")) {
+    const picked = [...set.querySelectorAll("input:checked")].map((x) => x.value);
+    if (picked.length) extraFields[set.dataset.name] = set.dataset.kind === "radio" ? picked[0] : picked;
+    else if (set.dataset.required && !missing) missing = set.querySelector("legend").firstChild.textContent.trim();
+  }
+  if (missing) {
+    msg.textContent = "Please answer: " + missing + ".";
     msg.hidden = false;
     return;
   }
@@ -124,7 +179,7 @@ box.addEventListener("submit", async (e) => {
   btn.disabled = true;
   btn.textContent = "Sending…";
   try {
-    const rsvp = await createRsvp(form.dataset.id, { firstName, lastName, email });
+    const rsvp = await createRsvp(form.dataset.id, { firstName, lastName, email, extraFields });
     const ev = events.find((x) => x.id === form.dataset.id);
     const waitlist = rsvp && rsvp.status === "WAITLIST";
     form.parentElement.innerHTML =
