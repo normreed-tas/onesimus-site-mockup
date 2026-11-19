@@ -123,6 +123,26 @@
     nav .sub a.current{box-shadow:none;}
     nav .sub-toggle::after{content:"";}
   }
+  /* REGISTRATION (events read live from Wix Events) */
+  #wix-events .ev-row:first-child{border-top:1px solid var(--line);}
+  button.ev-rsvp{cursor:pointer; font-family:inherit; background:var(--ink); color:var(--white); border-color:var(--ink);}
+  button.ev-rsvp:hover, button.ev-rsvp:focus-visible{background:var(--sage); border-color:var(--sage);}
+  .reg-empty{color:var(--slate); padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .reg-panel{background:var(--white); border:1px solid var(--line); border-top:none; padding:22px 24px;}
+  .reg-title{margin:0 0 14px;}
+  .reg-fields{display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:560px;}
+  .reg-fields label{display:flex; flex-direction:column; gap:6px; font-size:.85rem; font-weight:600;}
+  .reg-fields label.wide{grid-column:1 / -1;}
+  .reg-fields input{font:inherit; font-weight:400; padding:11px 12px; border:1px solid var(--slate); border-radius:4px; background:var(--white); color:var(--ink);}
+  .reg-fields input:focus{outline:2px solid var(--sage); outline-offset:1px;}
+  .reg-actions{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;}
+  .reg-submit{font:inherit; font-weight:600; cursor:pointer; background:var(--sage); color:var(--white); border:none; border-radius:100px; padding:12px 24px;}
+  .reg-submit[disabled]{opacity:.6; cursor:default;}
+  .reg-cancel{font:inherit; cursor:pointer; background:none; border:1px solid var(--line); border-radius:100px; padding:12px 20px; color:var(--ink);}
+  .reg-msg{margin:14px 0 0; color:#9B2C2C; font-weight:600;}
+  .reg-small{margin:14px 0 0; font-size:.8rem; color:var(--slate);}
+  .reg-done{background:var(--sage-tint, #EAF0EB); border-left:4px solid var(--sage); padding:16px 18px;}
+  @media (max-width:560px){ .reg-fields{grid-template-columns:1fr;} .reg-panel{padding:18px 16px;} }
 </style>
 <link rel="stylesheet" href="draft.css">
 </head>
@@ -187,6 +207,16 @@
   </div>
 </section>
 
+<section class="section" id="register">
+  <div class="section-head">
+    <span class="eyebrow">Register</span>
+    <h2>Events open for registration</h2>
+    <p style="margin-top:12px;">Registration is free. Choose an event and fill in your name and email.</p>
+  </div>
+  <div id="wix-events" aria-live="polite"><p class="reg-empty">Loading events…</p></div>
+  <noscript><p class="reg-empty">To register, phone 0401 690 954 or email info@onesimus.org.au.</p></noscript>
+</section>
+
 <section class="section">
   <div class="section-head">
     <span class="eyebrow">Ongoing work</span>
@@ -241,5 +271,6 @@
   </div>
 </footer>
 
+<script type="module" src="js/events-register.js"></script>
 </body>
 </html>

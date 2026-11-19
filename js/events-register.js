@@ -1,0 +1,142 @@
+// Events open for registration, read live from Wix Events.
+// Events are created in the Wix dashboard; nothing here is typed in by hand.
+// Registrations go straight to Wix (guest list, confirmation email, contacts).
+import { queryEvents } from "./wix/wix-events-browse.js";
+import { createRsvp } from "./wix/wix-events-registration.js";
+
+const box = document.getElementById("wix-events");
+
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function whenText(ev) {
+  const d = ev.dateAndTimeSettings || {};
+  if (d.dateAndTimeTbd || !d.startDate) return "Date to be confirmed";
+  const tz = d.timeZoneId || "Australia/Hobart";
+  const start = new Date(d.startDate);
+  const day = new Intl.DateTimeFormat("en-AU", { weekday: "short", day: "numeric", month: "long", year: "numeric", timeZone: tz }).format(start);
+  const t = (x) => new Intl.DateTimeFormat("en-AU", { hour: "numeric", minute: "2-digit", timeZone: tz }).format(x).replace(":00", "");
+  const end = d.endDate ? " to " + t(new Date(d.endDate)) : "";
+  return day + "<br>" + t(start) + end;
+}
+
+function whereText(ev) {
+  const l = ev.location || {};
+  if (l.locationTbd) return "Venue to be confirmed";
+  if (l.type === "ONLINE") return "Online";
+  const a = l.address || {};
+  return [l.name, a.city].filter(Boolean).map(esc).join(", ");
+}
+
+function rowHtml(ev) {
+  const reg = ev.registration || {};
+  const open = reg.type === "RSVP" && /^OPEN/.test(reg.status || "");
+  let action;
+  if (open) action = '<button type="button" class="ev-rsvp reg-open" data-id="' + esc(ev.id) + '">Register</button>';
+  else if (reg.type === "EXTERNAL" && reg.external && reg.external.url) action = '<a class="ev-rsvp" href="' + esc(reg.external.url) + '" target="_blank" rel="noopener">Register</a>';
+  else action = '<span class="ev-rsvp full">Registration closed</span>';
+  return (
+    '<div class="ev-row" data-row="' + esc(ev.id) + '">' +
+    '<div class="ev-cadence">' + whenText(ev) + "</div>" +
+    '<div><div class="ev-name">' + esc(ev.title) + "</div>" +
+    (ev.shortDescription ? '<p class="ev-desc">' + esc(ev.shortDescription) + "</p>" : "") + "</div>" +
+    '<div class="ev-cadence">' + whereText(ev) + "</div>" +
+    action +
+    "</div>" +
+    '<div class="reg-panel" id="reg-' + esc(ev.id) + '" hidden></div>'
+  );
+}
+
+function formHtml(ev) {
+  const id = esc(ev.id);
+  return (
+    '<form class="reg-form" data-id="' + id + '" novalidate>' +
+    '<p class="reg-title">Register for: <b>' + esc(ev.title) + "</b></p>" +
+    '<div class="reg-fields">' +
+    '<label>First name<input name="firstName" autocomplete="given-name" required></label>' +
+    '<label>Last name<input name="lastName" autocomplete="family-name" required></label>' +
+    '<label class="wide">Email<input name="email" type="email" autocomplete="email" required></label>' +
+    "</div>" +
+    '<p class="reg-msg" role="alert" hidden></p>' +
+    '<div class="reg-actions"><button type="submit" class="reg-submit">Send registration</button>' +
+    '<button type="button" class="reg-cancel">Cancel</button></div>' +
+    '<p class="reg-small">Registration is free. We use your details only for this event and to let you know about it.</p>' +
+    "</form>"
+  );
+}
+
+function friendly(err) {
+  const text = (err && err.message) || "";
+  if (/already|duplicate|exists/i.test(text)) return "This email address is already registered for this event.";
+  if (/closed|not open/i.test(text)) return "Registration for this event has closed.";
+  if (/limit|full|capacity/i.test(text)) return "Sorry, this event is full.";
+  if (/email/i.test(text)) return "Please check the email address and try again.";
+  return "Sorry, that did not go through. Please try again, or phone 0401 690 954.";
+}
+
+let events = [];
+
+async function load() {
+  try {
+    const res = await queryEvents({ limit: 20 });
+    events = res.events || [];
+  } catch (e) {
+    box.innerHTML = '<p class="reg-empty">The list of events could not be loaded just now. Please try again later, or phone 0401 690 954.</p>';
+    return;
+  }
+  if (!events.length) {
+    box.innerHTML = '<p class="reg-empty">No events are open for registration at the moment.</p>';
+    return;
+  }
+  box.innerHTML = events.map(rowHtml).join("");
+}
+
+box.addEventListener("click", (e) => {
+  const openBtn = e.target.closest(".reg-open");
+  if (openBtn) {
+    const ev = events.find((x) => x.id === openBtn.dataset.id);
+    const panel = document.getElementById("reg-" + ev.id);
+    panel.innerHTML = formHtml(ev);
+    panel.hidden = false;
+    panel.querySelector("input").focus();
+    return;
+  }
+  if (e.target.closest(".reg-cancel")) {
+    const panel = e.target.closest(".reg-panel");
+    panel.hidden = true;
+    panel.innerHTML = "";
+  }
+});
+
+box.addEventListener("submit", async (e) => {
+  const form = e.target.closest(".reg-form");
+  if (!form) return;
+  e.preventDefault();
+  const msg = form.querySelector(".reg-msg");
+  const data = Object.fromEntries(new FormData(form).entries());
+  const firstName = data.firstName.trim(), lastName = data.lastName.trim(), email = data.email.trim();
+  msg.hidden = true;
+  if (!firstName || !lastName || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    msg.textContent = "Please fill in your first name, last name and a valid email address.";
+    msg.hidden = false;
+    return;
+  }
+  const btn = form.querySelector(".reg-submit");
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  try {
+    const rsvp = await createRsvp(form.dataset.id, { firstName, lastName, email });
+    const ev = events.find((x) => x.id === form.dataset.id);
+    const waitlist = rsvp && rsvp.status === "WAITLIST";
+    form.parentElement.innerHTML =
+      '<div class="reg-done" role="status"><b>' + (waitlist ? "You are on the waiting list." : "You are registered.") + "</b> " +
+      (waitlist ? "This event is full. We will be in touch if a place opens up." : "Thank you, " + esc(firstName) + ". We have your registration for " + esc(ev.title) + ".") +
+      "</div>";
+  } catch (err) {
+    msg.textContent = friendly(err);
+    msg.hidden = false;
+    btn.disabled = false;
+    btn.textContent = "Send registration";
+  }
+});
+
+load();
