@@ -34,7 +34,7 @@ function whenLine(ev) {
 
 function whereText(ev) {
   const l = ev.location || {};
-  if (l.locationTbd) return "Venue to be confirmed";
+  if (l.locationTbd) return esc(l.name || "Venue to be confirmed");
   if (l.type === "ONLINE") return "Online";
   const a = l.address || {};
   return [l.name, a.city].filter(Boolean).map(esc).join(", ");
@@ -43,7 +43,7 @@ function whereText(ev) {
 // Venue name and full street address, as plain text.
 function whereLine(ev) {
   const l = ev.location || {};
-  if (l.locationTbd) return "Venue to be confirmed";
+  if (l.locationTbd) return l.name || "Venue to be confirmed";
   if (l.type === "ONLINE") return "Online";
   const a = l.address || {};
   const street = (a.formattedAddress || [a.addressLine, a.city, a.postalCode].filter(Boolean).join(", ")).replace(/,\s*Australia$/, "");
