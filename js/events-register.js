@@ -60,7 +60,7 @@ function extraHtml(c) {
   if (!i) return "";
   const name = "x:" + esc(i.name);
   const req = i.mandatory ? " required" : "";
-  const label = esc(i.label) + (i.mandatory ? "" : ' <span class="reg-opt">(optional)</span>');
+  const label = "<span>" + esc(i.label) + (i.mandatory ? "" : ' <span class="reg-opt">(optional)</span>') + "</span>";
   const max = i.maxLength ? ' maxlength="' + Number(i.maxLength) + '"' : "";
   if (c.type === "INPUT") return '<label class="wide">' + label + '<input name="' + name + '"' + max + req + "></label>";
   if (c.type === "TEXTAREA") return '<label class="wide">' + label + '<textarea name="' + name + '" rows="3"' + max + req + "></textarea></label>";
