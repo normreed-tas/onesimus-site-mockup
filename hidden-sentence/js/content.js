@@ -3,7 +3,7 @@
    training cards, "Supporting children and young people" slides, the visit flowchart.
    "orig" = the course's own wording, shown in a fold-out. "flag" = a review note, shown in Reviewer view. */
 window.HS = { modules: [], cases: [], noPhotos: true };
-HS.FG = "https://normreed-tas.github.io/field-guide/";
+HS.FG = "https://pocketguides.org.au/field-guide/";
 HS.passMark = 6;
 
 HS.modules.push({ id: "welcome", title: "Welcome", short: "What a hidden sentence is", mins: 5, color: "#1B2A3A", icon: "door", blocks: [

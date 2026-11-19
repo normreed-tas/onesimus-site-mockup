@@ -4,7 +4,7 @@
    "orig" = the workshop's own wording, word for word, shown in a fold-out.
    "flag" = a review note, shown in Reviewer view. */
 window.PT = { modules: [] };
-PT.FG = "https://normreed-tas.github.io/field-guide/";
+PT.FG = "https://pocketguides.org.au/field-guide/";
 PT.passMark = 7;
 
 /* ---------- the five workshop case studies, in Tasmanian terms ---------- */
