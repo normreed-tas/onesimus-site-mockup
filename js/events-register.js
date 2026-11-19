@@ -5,6 +5,17 @@ import { queryEvents, getEventBySlug } from "./wix/wix-events-browse.js";
 import { createRsvp } from "./wix/wix-events-registration.js";
 
 const box = document.getElementById("wix-events");
+const cbox = document.getElementById("wix-courses");
+function listen(type, fn) { [box, cbox].forEach((b) => b && b.addEventListener(type, fn)); }
+
+// Standing online courses. Each is a Wix event with no fixed date; the key is the event's slug in Wix.
+// Registering here unlocks the course on this device and supplies the details for the certificate.
+const COURSES = {
+  "hidden-sentence-online-course": { key: "hidden-sentence", url: "hidden-sentence/index.html" },
+  "practitioners-training-online-course": { key: "practitioner-training", url: "practitioner-training/index.html" },
+};
+function getReg(key) { try { return JSON.parse(localStorage.getItem("onesimus.reg." + key)); } catch (e) { return null; } }
+function setReg(key, reg) { try { localStorage.setItem("onesimus.reg." + key, JSON.stringify(reg)); return true; } catch (e) { return false; } }
 
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -23,13 +34,13 @@ function whenParts(ev, weekday) {
 
 function whenText(ev) {
   const w = whenParts(ev, "short");
-  return w ? w.day + "<br>" + w.time : "Date to be confirmed";
+  return w ? w.day + "<br>" + w.time : esc((ev.dateAndTimeSettings || {}).dateAndTimeTbdMessage || "Date to be confirmed");
 }
 
 // One line, for the details box, the registration form and the confirmation.
 function whenLine(ev) {
   const w = whenParts(ev, "long");
-  return w ? w.day + ", " + w.time : "Date to be confirmed";
+  return w ? w.day + ", " + w.time : (ev.dateAndTimeSettings || {}).dateAndTimeTbdMessage || "Date to be confirmed";
 }
 
 function whereText(ev) {
@@ -97,12 +108,14 @@ function rowHtml(ev) {
   if (open) action = '<button type="button" class="ev-rsvp reg-open" data-id="' + esc(ev.id) + '">Register</button>';
   else if (reg.type === "EXTERNAL" && reg.external && reg.external.url) action = '<a class="ev-rsvp" href="' + esc(reg.external.url) + '" target="_blank" rel="noopener">Register</a>';
   else action = '<span class="ev-rsvp full">Registration closed</span>';
+  const course = COURSES[ev.slug];
+  if (course && getReg(course.key)) action = '<a class="ev-rsvp ev-go" href="' + course.url + '">Continue the course</a>';
   return (
     '<div class="ev-row" data-row="' + esc(ev.id) + '">' +
     '<div class="ev-cadence">' + whenText(ev) + "</div>" +
     '<div><div class="ev-name">' + esc(ev.title) + "</div>" +
     (ev.shortDescription ? '<p class="ev-desc">' + esc(ev.shortDescription) + "</p>" : "") +
-    '<button type="button" class="ev-more" data-id="' + esc(ev.id) + '" aria-expanded="false" aria-controls="det-' + esc(ev.id) + '">Date, place and details</button></div>' +
+    '<button type="button" class="ev-more" data-id="' + esc(ev.id) + '" aria-expanded="false" aria-controls="det-' + esc(ev.id) + '">' + (course ? "About this course" : "Date, place and details") + "</button></div>" +
     '<div class="ev-cadence">' + whereText(ev) + "</div>" +
     action +
     "</div>" +
@@ -119,7 +132,7 @@ function detailsHtml(ev, full) {
     "<dt>Where</dt><dd>" + esc(whereLine(ev)) + mapLink(ev) + "</dd>" +
     "<dt>Cost</dt><dd>Free. Registration is needed.</dd>" +
     "</dl>" +
-    (about ? '<div class="ev-about"><h3>About this event</h3>' + about + "</div>" : "")
+    (about ? '<div class="ev-about"><h3>' + (COURSES[ev.slug] ? "About this course" : "About this event") + "</h3>" + about + "</div>" : "")
   );
 }
 
@@ -193,16 +206,17 @@ async function load() {
     events = res.events || [];
   } catch (e) {
     box.innerHTML = '<p class="reg-empty">The list of events could not be loaded just now. Please try again later, or phone 0401 690 954.</p>';
+    if (cbox) cbox.innerHTML = '<p class="reg-empty">The online courses could not be loaded just now. Please try again later, or phone 0401 690 954.</p>';
     return;
   }
-  if (!events.length) {
-    box.innerHTML = '<p class="reg-empty">No events are open for registration at the moment.</p>';
-    return;
-  }
-  box.innerHTML = events.map(rowHtml).join("");
+  const dated = events.filter((e) => !COURSES[e.slug]);
+  const order = Object.keys(COURSES);
+  const courses = events.filter((e) => COURSES[e.slug]).sort((x, y) => order.indexOf(x.slug) - order.indexOf(y.slug));
+  box.innerHTML = dated.length ? dated.map(rowHtml).join("") : '<p class="reg-empty">No events are open for registration at the moment.</p>';
+  if (cbox) cbox.innerHTML = courses.length ? courses.map(rowHtml).join("") : '<p class="reg-empty">The online courses are not open for registration at the moment.</p>';
 }
 
-box.addEventListener("click", async (e) => {
+listen("click", async (e) => {
   const moreBtn = e.target.closest(".ev-more");
   if (moreBtn) {
     const ev = events.find((x) => x.id === moreBtn.dataset.id);
@@ -245,7 +259,7 @@ box.addEventListener("click", async (e) => {
   }
 });
 
-box.addEventListener("submit", async (e) => {
+listen("submit", async (e) => {
   const form = e.target.closest(".reg-form");
   if (!form) return;
   e.preventDefault();
@@ -260,12 +274,13 @@ box.addEventListener("submit", async (e) => {
   }
   // Answers to the event's extra questions; unanswered optional ones are left out.
   const extraFields = {};
+  const answers = {};
   let missing = "";
   for (const el of form.querySelectorAll('.reg-fields [name^="x:"]')) {
     const key = el.name.slice(2);
     if (el.type === "radio" || el.type === "checkbox") continue;
     const v = el.value.trim();
-    if (v) extraFields[key] = v;
+    if (v) { extraFields[key] = v; answers[el.closest("label").firstChild.textContent.replace("(optional)", "").trim()] = v; }
     else if (el.required && !missing) missing = el.closest("label").firstChild.textContent.trim();
   }
   for (const set of form.querySelectorAll(".reg-choice")) {
@@ -281,9 +296,24 @@ box.addEventListener("submit", async (e) => {
   const btn = form.querySelector(".reg-submit");
   btn.disabled = true;
   btn.textContent = "Sending…";
+  const ev = events.find((x) => x.id === form.dataset.id);
+  const course = COURSES[ev.slug];
+  // A course registration is kept on this device: it unlocks the course and fills in the certificate.
+  const courseDone = (again) => {
+    const pick = (re) => { const k = Object.keys(answers).find((x) => re.test(x)); return k ? answers[k] : ""; };
+    const kept = setReg(course.key, { firstName, lastName, email, organisation: pick(/^organisation/i), position: pick(/position/i), paidOrVolunteer: pick(/paid/i), registered: new Date().toISOString() });
+    form.parentElement.innerHTML =
+      '<div class="reg-done" role="status"><b>' + (again ? "You were already registered." : "You are registered.") + "</b> Thank you, " + esc(firstName) + ". " +
+      (kept ? "You can start the course now. Your name and organisation will appear on your certificate." +
+          '<p style="margin:14px 0 0;"><a class="reg-submit" style="display:inline-block; text-decoration:none;" href="' + course.url + '">Start the course &rarr;</a></p>'
+        : "This browser would not save your registration, so the course cannot open here. Please allow site data (or leave private browsing) and register again.") +
+      "</div>";
+    const btn0 = document.querySelector('.ev-row[data-row="' + ev.id + '"] .reg-open');
+    if (kept && btn0) btn0.outerHTML = '<a class="ev-rsvp ev-go" href="' + course.url + '">Continue the course</a>';
+  };
   try {
     const rsvp = await createRsvp(form.dataset.id, { firstName, lastName, email, extraFields });
-    const ev = events.find((x) => x.id === form.dataset.id);
+    if (course) return courseDone(false);
     const waitlist = rsvp && rsvp.status === "WAITLIST";
     form.parentElement.innerHTML =
       '<div class="reg-done" role="status"><b>' + (waitlist ? "You are on the waiting list." : "You are registered.") + "</b> " +
@@ -291,6 +321,8 @@ box.addEventListener("submit", async (e) => {
       '<p class="reg-when" style="margin:10px 0 0;">' + esc(whenLine(ev)) + "<br>" + esc(whereLine(ev)) + "</p>" +
       "</div>";
   } catch (err) {
+    // Someone who registered before (say, on another device) is let straight in.
+    if (course && /already|duplicate|exists/i.test((err && err.message) || "")) return courseDone(true);
     msg.textContent = friendly(err);
     msg.hidden = false;
     btn.disabled = false;

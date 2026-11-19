@@ -183,5 +183,5 @@ HS.modules.push({ id: "finish", title: "What's next", short: "A short check, you
   { links: [["The Field Guide", HS.FG], ["Where to get help", HS.FG + "#help"]] },
   { h: "Tell us what you thought" },
   { links: [["Email your feedback to Onesimus", "mailto:info@onesimus.org.au?subject=Hidden%20Sentence%20online%20feedback"]] },
-  { flag: "To settle with the Wix arrangement: registration through a standing event, and collecting the certificate there. The Practitioner's Training link assumes the two courses sit side by side (../practitioner-training/). The certificate is made in the browser for now." }
+  { flag: "Registration is now through a standing event on the Events page; the name and organisation given there appear on the certificate. To settle: whether Onesimus wants a record of who completes the course. The Practitioner's Training link assumes the two courses sit side by side (../practitioner-training/). The certificate is still made in the browser." }
 ] });

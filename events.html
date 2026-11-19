@@ -125,6 +125,9 @@
   }
   /* REGISTRATION (events read live from Wix Events) */
   #wix-events .ev-row:first-child{border-top:1px solid var(--line);}
+  #wix-courses .ev-row:first-child{border-top:1px solid var(--line);}
+  a.ev-go{background:var(--sage); color:var(--white); border-color:var(--sage); text-decoration:none;}
+  #online-training{scroll-margin-top:90px;}
   button.ev-rsvp{cursor:pointer; font-family:inherit; background:var(--ink); color:var(--white); border-color:var(--ink);}
   button.ev-rsvp:hover, button.ev-rsvp:focus-visible{background:var(--sage); border-color:var(--sage);}
   .reg-empty{color:var(--slate); padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
@@ -240,6 +243,16 @@
     <p style="margin-top:12px;">Registration is free. Choose an event and fill in your details.</p>
   </div>
   <div id="wix-events" aria-live="polite"><p class="reg-empty">Loading events…</p></div>
+  <noscript><p class="reg-empty">To register, phone 0401 690 954 or email info@onesimus.org.au.</p></noscript>
+</section>
+
+<section class="section" id="online-training" style="padding-top:0;">
+  <div class="section-head">
+    <span class="eyebrow">Online training</span>
+    <h2>Online courses — start any time</h2>
+    <p style="margin-top:12px;">Two free courses to do at your own pace. Register for a course to open it; the details you give go on your certificate. Both courses are drafts for review.</p>
+  </div>
+  <div id="wix-courses" aria-live="polite"><p class="reg-empty">Loading courses…</p></div>
   <noscript><p class="reg-empty">To register, phone 0401 690 954 or email info@onesimus.org.au.</p></noscript>
 </section>
 
