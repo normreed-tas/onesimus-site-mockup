@@ -84,7 +84,8 @@ HS.modules.push({ id: "gate", title: "Inside the gate", short: "A tour of Risdon
   { h: "The complex from the air" },
   "Tap a numbered pin, or a name in the list, to see what each part of the prison is.",
   { map: true },
-  { h: "The walk in" },
+  { h: "The walk to the visit" },
+  "This is the way a child goes on a visit: from the road, through the Visitor Reception Centre and the gatehouse, to the visits room.",
   { tour: [
     { h: "Arriving" },
     { src: "t25", cap: "The road in. The first thing a family sees is a sign." },
@@ -107,7 +108,11 @@ HS.modules.push({ id: "gate", title: "Inside the gate", short: "A tour of Risdon
     { src: "t43", cap: "Families sit together at a table. There is a fenced play corner for small children." },
     { src: "t44", cap: "The officers' station in the visits room." },
     { src: "t45", cap: "An outdoor visits area." },
-    { src: "t46", cap: "A closed, or \"box\", visit. The visitor and the person in prison are separated by a screen." },
+    { src: "t46", cap: "A closed, or \"box\", visit. The visitor and the person in prison are separated by a screen." }
+  ] },
+  { h: "Other parts of the prison" },
+  "A visiting child does not go to these places. They are shown here because children ask about them.",
+  { tour: [
     { h: "Where people live", p: "Children ask: what is his bedroom like? Is he safe? What does he eat?" },
     { src: "t48", cap: "The walkway, known as the spine." },
     { src: "t49", cap: "A cell." },
@@ -122,7 +127,7 @@ HS.modules.push({ id: "gate", title: "Inside the gate", short: "A tour of Risdon
     { src: "t67", cap: "Inside a unit." },
     { src: "t69", cap: "A cell." }
   ] },
-  { reflect: { id: "g-tour", prompt: "Which part of that walk would be hardest for a six-year-old? What could an adult tell them beforehand?", pointsTitle: "What people said on the day", points: ["The dog, the scanner and the uniforms, if nobody has explained them.", "Leaving a favourite toy in the locker.", "Sitting at a fixed table for a long time with nothing to do.", "A closed visit: seeing Dad and not being able to touch him.", "Saying goodbye, and walking back out the same way."] } },
+  { reflect: { id: "g-tour", prompt: "What would be the hardest thing about visiting the prison for a six-year-old? What could an adult tell them beforehand?", pointsTitle: "What people said on the day", points: ["The dog, the scanner and the uniforms, if nobody has explained them.", "Leaving a favourite toy in the locker.", "Sitting at a fixed table for a long time with nothing to do.", "A closed visit: seeing Dad and not being able to touch him.", "Saying goodbye, and walking back out the same way."] } },
   { links: [["Tasmania Prison Service: visiting", "https://www.justice.tas.gov.au/prisonservice/contact-and-visits/visiting"], ["Taking a child to visit: the steps", HS.FG + "#visit"]] },
   { flag: "PHOTOGRAPHS: NONE IN THIS BUILD. The 2022 tour photographs are held back because they show security areas and are not cleared for release. Norm is talking with the Tasmania Prison Service about fresh photographs (17 Nov 2026). When they arrive: put them in img/ named as in js/content.js (t25.jpg and so on, or rename the src values), correct the captions, and remove noPhotos from the first line of content.js. To confirm with TPS: booking window (the slides say up to one week ahead), check-in time (the slides say at least half an hour before), clothing rules, and whether the photos still match the site." },
   { orig: "Virtual Prison Tour. Visitor Reception Centre: Visits can be booked up to one week ahead. Must check in at least half an hour before scheduled visit. Security checks for contraband. Nothing in / nothing out. Clothing restrictions. RPC Gate House. RPC Visits. Closed (Box) Visit. RPC Accommodation. Walk way or 'spine'. Ron Barwick Minimum Security Prison Family Visits. Southern Remand Centre." }
