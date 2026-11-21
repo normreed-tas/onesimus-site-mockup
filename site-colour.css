@@ -1,0 +1,82 @@
+/* Onesimus site: section colours, binder-style menu tabs and raised buttons.
+   Linked from every page AFTER the page's own styles. Each page says which section it is in:  <body data-sec="events">
+   Rules agreed with Norm, 22 November 2026:
+     - soft, dusty colours in keeping with the site's navy, sage, cream and brass
+     - colour goes on things you press (tabs, buttons) and small accents; boxes, cards and backgrounds stay as they are
+     - the top margin stays cream
+     - raised buttons only on things that do something */
+:root{
+  --t-about:#1B2A3A; --t-families:#4B7A5E; --t-prof:#4F6D8F; --t-research:#7A5C8A; --t-guides:#B8894A; --t-events:#A8566E;
+  --d-about:#0D1620; --d-families:#2F5440; --d-prof:#344B66; --d-research:#54406A; --d-guides:#7A5520; --d-events:#7A3A4E;
+  --p-about:#E6EAEF; --p-families:#E6EFE9; --p-prof:#E6ECF3; --p-research:#EEE8F1; --p-guides:#F3E9DA; --p-events:#F4E4E9;
+  --sec:var(--t-about); --sec-dark:var(--d-about);
+}
+body[data-sec="families"]{--sec:var(--t-families); --sec-dark:var(--d-families);}
+body[data-sec="prof"]{--sec:var(--t-prof); --sec-dark:var(--d-prof);}
+body[data-sec="research"]{--sec:var(--t-research); --sec-dark:var(--d-research);}
+body[data-sec="guides"]{--sec:var(--t-guides); --sec-dark:var(--d-guides);}
+body[data-sec="events"]{--sec:var(--t-events); --sec-dark:var(--d-events);}
+
+/* ---------- binder tabs: resting tabs are pale with a coloured top edge; the tab you are in is filled ---------- */
+header{background:var(--paper); border-bottom:5px solid var(--sec); -webkit-backdrop-filter:none; backdrop-filter:none;}
+.nav-wrap{align-items:flex-end; padding:14px 24px 0;}
+.nav-wrap > a:first-child{margin-bottom:12px;}
+.nav-cta{margin-bottom:12px;}
+nav > ul{gap:4px; align-items:flex-end;}
+nav > ul > li > a{display:block; opacity:1; color:var(--ink); font-weight:500; font-size:.86rem; padding:9px 15px 8px; border-radius:8px 8px 0 0; background:var(--tab-p); border-top:3px solid var(--tab); transition:background .12s ease, color .12s ease;}
+nav > ul > li:nth-child(1){--tab:var(--t-about); --tab-p:var(--p-about);}
+nav > ul > li:nth-child(2){--tab:var(--t-families); --tab-p:var(--p-families);}
+nav > ul > li:nth-child(3){--tab:var(--t-prof); --tab-p:var(--p-prof);}
+nav > ul > li:nth-child(4){--tab:var(--t-research); --tab-p:var(--p-research);}
+nav > ul > li:nth-child(5){--tab:var(--t-guides); --tab-p:var(--p-guides);}
+nav > ul > li:nth-child(6){--tab:var(--t-events); --tab-p:var(--p-events);}
+nav > ul > li > a:hover, nav > ul > li:focus-within > a{background:var(--tab); color:#fff;}
+nav > ul > li > a.current{background:var(--tab); color:#fff; border-bottom:none; padding:12px 16px 9px; font-weight:600;}
+nav .sub-toggle::after{opacity:.8;}
+nav .sub{padding-top:0;}
+nav .sub ul{border-top:3px solid var(--tab); border-radius:0 0 8px 8px;}
+nav .sub a{color:var(--ink);}
+nav .sub a:hover{background:var(--tab-p);}
+
+/* tablets and small laptops: keep the tabs, on a row of their own under the logo */
+@media (min-width:700px) and (max-width:1024px){
+  .menu-toggle{display:none;}
+  .nav-wrap{flex-wrap:wrap; padding:12px 18px 0;}
+  .nav-wrap > a:first-child, .nav-cta{margin-bottom:10px;}
+  nav{display:block; position:static; order:5; width:100%; background:none; border:none; box-shadow:none;}
+  nav > ul{display:flex; padding:0; gap:4px;}
+  nav > ul > li{border-bottom:none; position:relative;}
+  nav > ul > li > a{font-size:.78rem; padding:8px 10px 7px;}
+  nav > ul > li > a.current{font-size:.8rem; padding:10px 11px 8px; color:#fff;}
+  nav .sub{display:none; position:absolute; top:100%; left:0; padding:0; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; min-width:230px; padding:8px 0; border:1px solid var(--line); border-top:3px solid var(--tab); box-shadow:0 10px 30px rgba(27,42,58,.10); background:var(--white);}
+  nav .sub li{border-bottom:none;}
+  nav .sub a{display:block; padding:9px 16px;}
+  nav .sub-toggle::after{content:" \25BE";}
+}
+/* phones: the same colours as a stack of bars in the menu */
+@media (max-width:699px){
+  .nav-wrap{align-items:center; padding:14px 24px;}
+  .nav-wrap > a:first-child, .nav-cta{margin-bottom:0;}
+  nav > ul > li{border-bottom:none; margin:6px 0;}
+  nav > ul > li > a, nav > ul > li > a.current{border-radius:8px; padding:12px 14px; font-size:.95rem; border-top:none; border-left:5px solid var(--tab);}
+  nav .sub ul{border-top:none;}
+}
+
+/* ---------- small accents in the section colour (only on the cream page, never inside dark panels) ---------- */
+.page-head > .eyebrow, .section-head > .eyebrow{color:var(--sec-dark);}
+.section-head h2::after{content:""; display:block; width:54px; height:5px; border-radius:3px; background:var(--sec); margin-top:12px;}
+
+/* ---------- raised buttons: only on things that do something ---------- */
+.nav-cta, button.ev-rsvp.reg-open, .reg-submit, a.ev-go, a.raise, button.raise{
+  border:none !important; border-radius:12px !important; font-weight:700; color:#fff !important; text-decoration:none;
+  background:var(--btn, var(--sec)) !important; box-shadow:0 5px 0 var(--btn-dark, var(--sec-dark)); transform:translateY(0);
+  transition:transform .08s ease, box-shadow .08s ease; padding:11px 20px !important;
+}
+.nav-cta:hover, button.ev-rsvp.reg-open:hover, .reg-submit:hover, a.ev-go:hover, a.raise:hover, button.raise:hover{transform:translateY(2px); box-shadow:0 3px 0 var(--btn-dark, var(--sec-dark));}
+.nav-cta:active, button.ev-rsvp.reg-open:active, .reg-submit:active, a.ev-go:active, a.raise:active, button.raise:active{transform:translateY(5px); box-shadow:none;}
+.nav-cta{--btn:#B8894A; --btn-dark:#7A5520;}
+a.ev-go{--btn:#4B7A5E; --btn-dark:#2F5440;}
+#wix-courses button.ev-rsvp.reg-open{--btn:#4F6D8F; --btn-dark:#344B66;}
+@media print{ header{border-bottom:none;} }
