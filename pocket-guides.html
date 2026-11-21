@@ -121,7 +121,7 @@
 <style>
   /* Navigating the Justice System */
   .mapwrap{overflow-x:auto; background:var(--white); border:1px solid var(--line); border-radius:6px; -webkit-overflow-scrolling:touch;}
-  .mapwrap svg{display:block; width:100%; min-width:1040px; height:auto;}
+  .mapwrap svg{display:block; width:100%; min-width:940px; height:auto;}
   .mapwrap svg text{font-family:'Inter',sans-serif;}
   .mapwrap svg a:hover .pill, .mapwrap svg a:focus-visible .pill{fill:#FFE58A;}
   .gbtn .face{transition:transform .08s ease;}
@@ -245,107 +245,107 @@
 
 <section class="section" id="map">
   <div class="mapwrap">
-<svg viewBox="0 0 1300 540" role="img" aria-label="Rail-style map of the justice system. Five coloured lines run side by side from arrest, around a square loop at court, to prison or the community, and on to getting out.">
+<svg viewBox="0 0 1182 540" role="img" aria-label="Rail-style map of the justice system. Five coloured lines run side by side from arrest, around a square loop at court, to prison or the community, and on to getting out.">
     <!-- soft areas -->
-    <rect x="676" y="12" width="376" height="202" rx="20" fill="#EFE9DD"/>
-    <text x="754" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For families</text>
-    <text x="876" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For practitioners</text>
-    <text x="694" y="202" font-size="12" font-weight="700" letter-spacing="2" fill="#6B6252">IN CUSTODY</text>
+    <rect x="581" y="12" width="376" height="202" rx="20" fill="#EFE9DD"/>
+    <text x="659" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For families</text>
+    <text x="781" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For practitioners</text>
+    <text x="599" y="202" font-size="12" font-weight="700" letter-spacing="2" fill="#6B6252">IN CUSTODY</text>
     <text x="24" y="512" font-size="12" font-weight="700" letter-spacing="2" fill="#6B6252">IN THE COMMUNITY</text>
 
     <g fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
       <!-- family violence or restraint order: the whole length, round the bottom of the court square -->
-      <path stroke="#D6246E" d="M92 327 H430 Q455 327 455 352 V389 Q455 425 491 425 H629 Q665 425 665 389 V352 Q665 327 690 327 H1150"/>
+      <path stroke="#D6246E" d="M92 327 H335 Q360 327 360 352 V389 Q360 425 396 425 H534 Q570 425 570 389 V352 Q570 327 595 327 H1030"/>
       <!-- community corrections: cuts in at sentence -->
-      <path stroke="#1FA347" d="M704 341 H1150"/>
+      <path stroke="#1FA347" d="M609 341 H1030"/>
       <!-- police: from arrest to the first time at court -->
-      <path stroke="#1E6FD9" d="M92 313 H442"/>
+      <path stroke="#1E6FD9" d="M92 313 H347"/>
       <!-- custody: cuts in at the first time at court (remand), round the top of the square, out to prison, back at getting out -->
-      <path stroke="#D7262E" d="M455 318 V251 Q455 215 491 215 H640 L720 135 H880 L1058 313 H1075"/>
-      <path stroke="#D7262E" d="M620 215 H629 Q665 215 665 251 V318"/>
+      <path stroke="#D7262E" d="M360 318 V251 Q360 215 396 215 H545 L625 135 H765 L943 313 H958"/>
+      <path stroke="#D7262E" d="M525 215 H534 Q570 215 570 251 V318"/>
       <!-- court: the loop. Round again until it is decided. -->
-      <rect stroke="#F28C1E" x="470" y="230" width="180" height="180" rx="36"/>
+      <rect stroke="#F28C1E" x="375" y="230" width="180" height="180" rx="36"/>
     </g>
 
-    <text x="560" y="312" text-anchor="middle" font-size="24" font-weight="800" fill="#B5620A" letter-spacing="1">COURT</text>
-    <text x="560" y="336" text-anchor="middle" font-size="14" fill="#7A4A12">Adjourned?</text>
-    <text x="560" y="354" text-anchor="middle" font-size="14" fill="#7A4A12">Round again.</text>
+    <text x="465" y="312" text-anchor="middle" font-size="24" font-weight="800" fill="#B5620A" letter-spacing="1">COURT</text>
+    <text x="465" y="336" text-anchor="middle" font-size="14" fill="#7A4A12">Adjourned?</text>
+    <text x="465" y="354" text-anchor="middle" font-size="14" fill="#7A4A12">Round again.</text>
 
     <!-- line names, as words -->
     <g font-size="12.5" font-weight="700" fill="#fff">
       <rect x="14" y="296" width="66" height="20" rx="6" fill="#1E6FD9"/><text x="47" y="310" text-anchor="middle">Police</text>
       <rect x="14" y="320" width="66" height="20" rx="6" fill="#D6246E"/><text x="47" y="334" text-anchor="middle">Order</text>
-      <rect x="1168" y="303" width="118" height="20" rx="6" fill="#D6246E"/><text x="1227" y="317" text-anchor="middle">Order</text>
-      <rect x="1168" y="329" width="118" height="20" rx="6" fill="#1FA347"/><text x="1227" y="343" text-anchor="middle">Corrections</text>
-      <rect x="772" y="152" width="76" height="20" rx="6" fill="#D7262E"/><text x="810" y="166" text-anchor="middle">Custody</text>
+      <rect x="1048" y="303" width="118" height="20" rx="6" fill="#D6246E"/><text x="1107" y="317" text-anchor="middle">Order</text>
+      <rect x="1048" y="329" width="118" height="20" rx="6" fill="#1FA347"/><text x="1107" y="343" text-anchor="middle">Corrections</text>
+      <rect x="657" y="152" width="76" height="20" rx="6" fill="#D7262E"/><text x="695" y="166" text-anchor="middle">Custody</text>
     </g>
 
     <!-- stops -->
     <g font-size="15" font-weight="700" fill="#1B2A3A" text-anchor="middle">
       <a href="#arrest"><rect class="pill" x="93" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="100" y="364">Arrest</text></a>
-      <a href="#arrest"><rect class="pill" x="208" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="215" y="364">Charged</text></a>
-      <a href="#bail"><rect class="pill" x="323" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="330" y="364">Bail</text></a>
-      <a href="#court"><rect class="pill" x="444" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="438" y="294" text-anchor="end">First time at court</text></a>
-      <a href="#bail"><text x="440" y="250" text-anchor="end" fill="#A81B22">Remand</text><text x="440" y="266" text-anchor="end" font-size="12" font-weight="400" fill="#A81B22">held from day one</text></a>
-      <a href="#court"><rect class="pill" x="552" y="205" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="560" y="194">Plea</text></a>
-      <a href="#court"><rect class="pill" x="552" y="400" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="560" y="458">Hearing or trial</text></a>
-      <a href="#sentence"><rect class="pill" x="638" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="684" y="302" text-anchor="start">Sentence</text></a>
-      <a href="#prison"><circle class="pill" cx="770" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="770" y="116">Prison</text></a>
-      <a href="#out"><circle class="pill" cx="850" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="850" y="116">Parole</text></a>
-      <a href="#sentence"><rect class="pill" x="763" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="770" y="376">Community</text><text x="770" y="394">order</text></a>
-      <a href="#sentence"><rect class="pill" x="858" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="865" y="376">Home</text><text x="865" y="394">detention</text></a>
-      <a href="#orders"><rect class="pill" x="953" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="960" y="376">Living under</text><text x="960" y="394">an order</text></a>
-      <a href="#out"><rect class="pill" x="1068" y="303" width="14" height="48" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="1092" y="376">Getting out</text></a>
-      <a href="#out"><rect class="pill" x="1143" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="1196" y="376">Life after</text></a>
+      <a href="#arrest"><rect class="pill" x="178" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="185" y="364">Charged</text></a>
+      <a href="#bail"><rect class="pill" x="263" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="270" y="364">Bail</text></a>
+      <a href="#court"><rect class="pill" x="349" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="343" y="294" text-anchor="end">First time at court</text></a>
+      <a href="#bail"><text x="345" y="250" text-anchor="end" fill="#A81B22">Remand</text><text x="345" y="266" text-anchor="end" font-size="12" font-weight="400" fill="#A81B22">held from day one</text></a>
+      <a href="#court"><rect class="pill" x="457" y="205" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="465" y="194">Plea</text></a>
+      <a href="#court"><rect class="pill" x="457" y="400" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="465" y="458">Hearing or trial</text></a>
+      <a href="#sentence"><rect class="pill" x="543" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="589" y="302" text-anchor="start">Sentence</text></a>
+      <a href="#prison"><circle class="pill" cx="655" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="655" y="116">Prison</text></a>
+      <a href="#out"><circle class="pill" cx="735" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="735" y="116">Parole</text></a>
+      <a href="#sentence"><rect class="pill" x="663" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="670" y="376">Community</text><text x="670" y="394">order</text></a>
+      <a href="#sentence"><rect class="pill" x="743" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="750" y="376">Home</text><text x="750" y="394">detention</text></a>
+      <a href="#orders"><rect class="pill" x="823" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="830" y="376">On an</text><text x="830" y="394">order</text></a>
+      <a href="#out"><rect class="pill" x="951" y="303" width="14" height="48" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="964" y="376">Getting out</text></a>
+      <a href="#out"><rect class="pill" x="1023" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="1080" y="376">Life after</text></a>
     </g>
 
     <!-- change here for a guide: raised buttons, each marked POCKET GUIDE -->
     <g fill="#fff" text-anchor="middle">
       <a class="gbtn" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener" aria-label="Pocket guide: Court guide">
-        <rect x="482" y="477" width="156" height="42" rx="12" fill="#1F3864"/><rect x="482" y="477" width="156" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="482" y="472" width="156" height="42" rx="12" fill="#1F3864" stroke="#fff" stroke-width="1.5"/>
-        <rect x="486" y="475" width="148" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="560" y="487" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="560" y="505" font-size="14.5" font-weight="800">Court guide</text></g></a>
+        <rect x="387" y="477" width="156" height="42" rx="12" fill="#1F3864"/><rect x="387" y="477" width="156" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="387" y="472" width="156" height="42" rx="12" fill="#1F3864" stroke="#fff" stroke-width="1.5"/>
+        <rect x="391" y="475" width="148" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="465" y="487" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="465" y="505" font-size="14.5" font-weight="800">Court guide</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener" aria-label="Pocket guide: Stay Connected">
-        <rect x="690" y="49" width="128" height="42" rx="12" fill="#6A4BB3"/><rect x="690" y="49" width="128" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="690" y="44" width="128" height="42" rx="12" fill="#6A4BB3" stroke="#fff" stroke-width="1.5"/>
-        <rect x="694" y="47" width="120" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="754" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="754" y="77" font-size="14.5" font-weight="800">Stay Connected</text></g></a>
+        <rect x="595" y="49" width="128" height="42" rx="12" fill="#6A4BB3"/><rect x="595" y="49" width="128" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="595" y="44" width="128" height="42" rx="12" fill="#6A4BB3" stroke="#fff" stroke-width="1.5"/>
+        <rect x="599" y="47" width="120" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="659" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="659" y="77" font-size="14.5" font-weight="800">Stay Connected</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener" aria-label="Pocket guide: Field Guide">
-        <rect x="824" y="49" width="104" height="42" rx="12" fill="#2F7D5B"/><rect x="824" y="49" width="104" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="824" y="44" width="104" height="42" rx="12" fill="#2F7D5B" stroke="#fff" stroke-width="1.5"/>
-        <rect x="828" y="47" width="96" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="876" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="876" y="77" font-size="14.5" font-weight="800">Field Guide</text></g></a>
+        <rect x="729" y="49" width="104" height="42" rx="12" fill="#2F7D5B"/><rect x="729" y="49" width="104" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="729" y="44" width="104" height="42" rx="12" fill="#2F7D5B" stroke="#fff" stroke-width="1.5"/>
+        <rect x="733" y="47" width="96" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="781" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="781" y="77" font-size="14.5" font-weight="800">Field Guide</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener" aria-label="Pocket guide: In custody">
-        <rect x="934" y="49" width="106" height="42" rx="12" fill="#21574d"/><rect x="934" y="49" width="106" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="934" y="44" width="106" height="42" rx="12" fill="#21574d" stroke="#fff" stroke-width="1.5"/>
-        <rect x="938" y="47" width="98" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="987" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="987" y="77" font-size="14.5" font-weight="800">In custody</text></g></a>
+        <rect x="839" y="49" width="106" height="42" rx="12" fill="#21574d"/><rect x="839" y="49" width="106" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="839" y="44" width="106" height="42" rx="12" fill="#21574d" stroke="#fff" stroke-width="1.5"/>
+        <rect x="843" y="47" width="98" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="892" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="892" y="77" font-size="14.5" font-weight="800">In custody</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener" aria-label="Pocket guide: Living With an Order">
-        <rect x="866" y="413" width="186" height="42" rx="12" fill="#1F6B75"/><rect x="866" y="413" width="186" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="866" y="408" width="186" height="42" rx="12" fill="#1F6B75" stroke="#fff" stroke-width="1.5"/>
-        <rect x="870" y="411" width="178" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="959" y="423" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="959" y="441" font-size="14.5" font-weight="800">Living With an Order</text></g></a>
+        <rect x="730" y="413" width="186" height="42" rx="12" fill="#1F6B75"/><rect x="730" y="413" width="186" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="730" y="408" width="186" height="42" rx="12" fill="#1F6B75" stroke="#fff" stroke-width="1.5"/>
+        <rect x="734" y="411" width="178" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="823" y="423" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="823" y="441" font-size="14.5" font-weight="800">Living With an Order</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener" aria-label="Pocket guide: Getting Out">
-        <rect x="1064" y="397" width="122" height="42" rx="12" fill="#0A84C6"/><rect x="1064" y="397" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="1064" y="392" width="122" height="42" rx="12" fill="#0A84C6" stroke="#fff" stroke-width="1.5"/>
-        <rect x="1068" y="395" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="1125" y="407" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="1125" y="425" font-size="14.5" font-weight="800">Getting Out</text></g></a>
+        <rect x="952" y="397" width="122" height="42" rx="12" fill="#0A84C6"/><rect x="952" y="397" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="952" y="392" width="122" height="42" rx="12" fill="#0A84C6" stroke="#fff" stroke-width="1.5"/>
+        <rect x="956" y="395" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="1013" y="407" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="1013" y="425" font-size="14.5" font-weight="800">Getting Out</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener" aria-label="Pocket guide: Blokes' Book">
-        <rect x="1064" y="449" width="122" height="42" rx="12" fill="#B4521E"/><rect x="1064" y="449" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="1064" y="444" width="122" height="42" rx="12" fill="#B4521E" stroke="#fff" stroke-width="1.5"/>
-        <rect x="1068" y="447" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="1125" y="459" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="1125" y="477" font-size="14.5" font-weight="800">Blokes&#8217; Book</text></g></a>
+        <rect x="952" y="449" width="122" height="42" rx="12" fill="#B4521E"/><rect x="952" y="449" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="952" y="444" width="122" height="42" rx="12" fill="#B4521E" stroke="#fff" stroke-width="1.5"/>
+        <rect x="956" y="447" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="1013" y="459" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="1013" y="477" font-size="14.5" font-weight="800">Blokes&#8217; Book</text></g></a>
     </g>
-    <text x="1210" y="250" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">Almost everyone</text>
-    <text x="1210" y="270" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">comes home.</text>
+    <text x="1107" y="250" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">Almost everyone</text>
+    <text x="1107" y="270" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">comes home.</text>
   </svg>
   </div>
   <p class="swipe">Swipe sideways to see the whole map.</p>
