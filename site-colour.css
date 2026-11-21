@@ -69,14 +69,26 @@ nav .sub a:hover{background:var(--tab-p);}
 .section-head h2::after{content:""; display:block; width:54px; height:5px; border-radius:3px; background:var(--sec); margin-top:12px;}
 
 /* ---------- raised buttons: only on things that do something ---------- */
-.nav-cta, button.ev-rsvp.reg-open, .reg-submit, a.ev-go, a.raise, button.raise{
+.nav-cta, button.ev-rsvp.reg-open, .reg-submit, a.ev-go, a.raise, button.raise,
+.submit-btn, .give-btn, a.status-pill.live, a.btn, a.btn-dark, a.band-btn, a.open, a.feat-cta{
+  display:inline-block; cursor:pointer; font-family:inherit; line-height:1.3;
   border:none !important; border-radius:12px !important; font-weight:700; color:#fff !important; text-decoration:none;
   background:var(--btn, var(--sec)) !important; box-shadow:0 5px 0 var(--btn-dark, var(--sec-dark)); transform:translateY(0);
   transition:transform .08s ease, box-shadow .08s ease; padding:11px 20px !important;
 }
-.nav-cta:hover, button.ev-rsvp.reg-open:hover, .reg-submit:hover, a.ev-go:hover, a.raise:hover, button.raise:hover{transform:translateY(2px); box-shadow:0 3px 0 var(--btn-dark, var(--sec-dark));}
-.nav-cta:active, button.ev-rsvp.reg-open:active, .reg-submit:active, a.ev-go:active, a.raise:active, button.raise:active{transform:translateY(5px); box-shadow:none;}
-.nav-cta{--btn:#B8894A; --btn-dark:#7A5520;}
+.nav-cta:hover, button.ev-rsvp.reg-open:hover, .reg-submit:hover, a.ev-go:hover, a.raise:hover, button.raise:hover,
+.submit-btn:hover, .give-btn:hover, a.status-pill.live:hover, a.btn:hover, a.btn-dark:hover, a.band-btn:hover, a.open:hover, a.feat-cta:hover{transform:translateY(2px); box-shadow:0 3px 0 var(--btn-dark, var(--sec-dark));}
+.nav-cta:active, button.ev-rsvp.reg-open:active, .reg-submit:active, a.ev-go:active, a.raise:active, button.raise:active,
+.submit-btn:active, .give-btn:active, a.status-pill.live:active, a.btn:active, a.btn-dark:active, a.band-btn:active, a.open:active, a.feat-cta:active{transform:translateY(5px); box-shadow:none;}
+.nav-cta, .give-btn, a.feat-cta{--btn:#B8894A; --btn-dark:#7A5520;}
+/* a button that opens a pocket guide takes that guide's colour, as on the map */
+a[href*="pocketguides.org.au/court/"].open{--btn:#1F3864; --btn-dark:#12213B;}
+a[href*="pocketguides.org.au/stay-connected/"].open{--btn:#6A4BB3; --btn-dark:#473078;}
+a[href*="pocketguides.org.au/field-guide/"].open{--btn:#2F7D5B; --btn-dark:#1D5039;}
+a[href*="pocketguides.org.au/custody-expectations/"].open{--btn:#21574D; --btn-dark:#143830;}
+a[href*="pocketguides.org.au/getting-out/"].open{--btn:#0A84C6; --btn-dark:#075A87;}
+a[href*="pocketguides.org.au/blokes-book/"].open{--btn:#B4521E; --btn-dark:#7A3713;}
+a[href*="pocketguides.org.au/living-with-an-order/"].open{--btn:#1F6B75; --btn-dark:#13454B;}
 a.ev-go{--btn:#4B7A5E; --btn-dark:#2F5440;}
 #wix-courses button.ev-rsvp.reg-open{--btn:#4F6D8F; --btn-dark:#344B66;}
 @media print{ header{border-bottom:none;} }
