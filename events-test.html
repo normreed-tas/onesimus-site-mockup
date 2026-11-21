@@ -247,11 +247,22 @@
   .nav-cta{--btn:#B8894A; --btn-dark:#7A5520;}
   a.ev-go{--btn:#4B7A5E; --btn-dark:#2F5440;}
   #wix-courses button.ev-rsvp.reg-open{--btn:#4F6D8F; --btn-dark:#344B66;}
+  /* v5: the top margin takes the section colour; the tab you are in is cream and joins the page */
+  header{background:var(--sec); border-bottom:none;}
+  .logo{color:#fff;}
+  .logo-mark{border-color:rgba(255,255,255,.6);}
+  nav > ul > li > a{border-top-color:transparent;}
+  nav > ul > li > a:hover, nav > ul > li:focus-within > a{background:#fff; color:var(--ink);}
+  nav > ul > li > a.current{background:var(--paper); color:var(--ink);}
+  .menu-toggle{color:#fff; border-color:rgba(255,255,255,.7);}
+  .nav-cta{--btn:#F6F3ED; --btn-dark:rgba(0,0,0,.28); color:var(--ink) !important;}
+  @media (min-width:700px) and (max-width:1024px){ nav > ul > li > a.current{color:var(--ink);} }
+  @media (max-width:699px){ header nav{background:var(--paper);} nav > ul > li > a.current{background:var(--tab); color:#fff;} }
   .testbar{background:#FFF3C4; color:#5B4500; font-size:.82rem; text-align:center; padding:6px 12px;}
 </style>
 </head>
 <body>
-<div class="testbar">Test page, version 4: softer tabs in the tones of the site, raised buttons. Compare with the current <a href="events.html">Events page</a>. Not linked from the menu.</div>
+<div class="testbar">Test page, version 5: the top margin in the section colour. Compare with <a href="events-test-v4.html">version 4</a> (cream top) and the current <a href="events.html">Events page</a>. Not linked from the menu.</div>
 
 <header>
   <div class="nav-wrap">
