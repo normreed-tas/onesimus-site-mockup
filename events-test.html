@@ -201,7 +201,7 @@
   nav > ul > li > a.current{border-bottom:none; padding:15px 17px 10px; box-shadow:none; font-size:.92rem;}
   nav .sub-toggle::after{opacity:.9;}
   nav .sub{padding-top:0;}
-  nav .sub ul{border-top:5px solid var(--tab); border-radius:0 0 8px 8px; background:var(--tab-p);}
+  nav .sub ul{border-top:5px solid var(--tab); border-radius:0 0 8px 8px;}
   nav .sub a{color:var(--ink);}
   nav .sub a:hover{background:rgba(255,255,255,.7);}
 
@@ -217,7 +217,7 @@
     nav > ul > li > a.current{font-size:.84rem; padding:12px 12px 9px; color:#fff;}
     nav .sub{display:none; position:absolute; top:100%; left:0; padding:0; z-index:60;}
     nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
-    nav .sub ul{display:block; min-width:230px; padding:8px 0; border:1px solid var(--line); border-top:5px solid var(--tab); box-shadow:0 10px 30px rgba(27,42,58,.10); background:var(--tab-p);}
+    nav .sub ul{display:block; min-width:230px; padding:8px 0; border:1px solid var(--line); border-top:5px solid var(--tab); box-shadow:0 10px 30px rgba(27,42,58,.10); background:var(--white);}
     nav .sub li{border-bottom:none;}
     nav .sub a{display:block; padding:9px 16px;}
     nav .sub-toggle::after{content:" \25BE";}
@@ -228,31 +228,22 @@
     .nav-wrap > a:first-child, .nav-cta{margin-bottom:0;}
     nav > ul > li{border-bottom:none; margin:6px 0;}
     nav > ul > li > a, nav > ul > li > a.current{border-radius:8px; padding:12px 14px; box-shadow:none; font-size:.95rem;}
-    nav .sub ul{border-top:none; background:var(--tab-p); border-radius:0 0 8px 8px; padding:4px 12px 8px;}
+    nav .sub ul{border-top:none;}
   }
 
-  /* the section colour on the page, in pastel for the items */
+  /* the section colour on the page: small accents only. Boxes and cards stay as they are (white, cream or navy). */
   .eyebrow{color:var(--sec-dark);}
+  .feat-body .eyebrow{color:var(--brass);}
   .section-head h2::after{content:""; display:block; width:54px; height:5px; border-radius:3px; background:var(--sec); margin-top:12px;}
-  .feat-card{background:var(--sec-tint) !important; color:var(--ink) !important; border:1px solid #F1C6D6;}
-  .feat-card *{color:var(--ink) !important;}
-  .feat-card .feat-date{border-right-color:#E9B3C7 !important;}
-  .feat-card .feat-cta{color:#fff !important;}
-  .feat-card .ph-img{background:rgba(255,255,255,.55) !important; border-color:#E9B3C7 !important;}
-  .ev-row{background:var(--sec-tint); border:none !important; border-radius:12px; padding:18px 20px !important; margin-bottom:10px;}
-  #wix-courses .ev-row{background:var(--p-prof);}
-  #wix-courses .ev-row:first-child{border-top:none;}
-  .more-box, .rsvp-note{background:var(--p-about); border-radius:10px;}
-  .reg-panel{border-radius:0 0 12px 12px; margin:-10px 0 10px; border-color:#F1C6D6;}
 
   /* raised buttons: only on things that do something */
-  button.ev-rsvp.reg-open, .reg-submit, a.ev-go, .nav-cta, .feat-cta{
+  button.ev-rsvp.reg-open, .reg-submit, a.ev-go, .nav-cta{
     border:none !important; border-radius:12px !important; font-weight:700; color:#fff !important;
     background:var(--btn, var(--sec)) !important; box-shadow:0 5px 0 var(--btn-dark, var(--sec-dark)); transform:translateY(0);
     transition:transform .08s ease, box-shadow .08s ease; padding:11px 20px !important;
   }
-  button.ev-rsvp.reg-open:hover, .reg-submit:hover, a.ev-go:hover, .nav-cta:hover, .feat-cta:hover{transform:translateY(2px); box-shadow:0 3px 0 var(--btn-dark, var(--sec-dark));}
-  button.ev-rsvp.reg-open:active, .reg-submit:active, a.ev-go:active, .nav-cta:active, .feat-cta:active{transform:translateY(5px); box-shadow:none;}
+  button.ev-rsvp.reg-open:hover, .reg-submit:hover, a.ev-go:hover, .nav-cta:hover{transform:translateY(2px); box-shadow:0 3px 0 var(--btn-dark, var(--sec-dark));}
+  button.ev-rsvp.reg-open:active, .reg-submit:active, a.ev-go:active, .nav-cta:active{transform:translateY(5px); box-shadow:none;}
   .nav-cta{--btn:#B8894A; --btn-dark:#7A5520;}
   a.ev-go{--btn:#1F7A4D; --btn-dark:#12502F;}
   #wix-courses button.ev-rsvp.reg-open{--btn:#1E5FBF; --btn-dark:#123F85;}
@@ -260,7 +251,7 @@
 </style>
 </head>
 <body>
-<div class="testbar">Test page, version 2: binder tabs, pastel items and raised buttons. Compare with the current <a href="events.html">Events page</a>. Not linked from the menu.</div>
+<div class="testbar">Test page, version 3: binder tabs and raised buttons; boxes left as they were. Compare with the current <a href="events.html">Events page</a>. Not linked from the menu.</div>
 
 <header>
   <div class="nav-wrap">
