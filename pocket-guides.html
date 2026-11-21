@@ -264,6 +264,8 @@
       <!-- custody: cuts in at the first time at court (remand), round the top of the square, out to prison, back at getting out -->
       <path stroke="#D7262E" d="M360 318 V251 Q360 215 396 215 H545 L625 135 H765 L943 313 H958"/>
       <path stroke="#D7262E" d="M525 215 H534 Q570 215 570 251 V318"/>
+      <!-- the off ramp: the case ends at court with nothing further -->
+      <path stroke="#F28C1E" d="M544 399 L637 492 H667"/>
       <!-- court: the loop. Round again until it is decided. -->
       <rect stroke="#F28C1E" x="375" y="230" width="180" height="180" rx="36"/>
     </g>
@@ -290,6 +292,7 @@
       <a href="#bail"><text x="345" y="250" text-anchor="end" fill="#A81B22">Remand</text><text x="345" y="266" text-anchor="end" font-size="12" font-weight="400" fill="#A81B22">held from day one</text></a>
       <a href="#court"><rect class="pill" x="457" y="205" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="465" y="194">Plea</text></a>
       <a href="#court"><rect class="pill" x="457" y="400" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="465" y="458">Hearing or trial</text></a>
+      <a href="#court"><circle class="pill" cx="667" cy="492" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="683" y="489" text-anchor="start">No further action</text><text x="683" y="506" text-anchor="start" font-size="12" font-weight="400" fill="#566270">dismissed, or nothing to answer</text></a>
       <a href="#sentence"><rect class="pill" x="543" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="589" y="302" text-anchor="start">Sentence</text></a>
       <a href="#prison"><circle class="pill" cx="655" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="655" y="116">Prison</text></a>
       <a href="#out"><circle class="pill" cx="735" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="735" y="116">Parole</text></a>
@@ -303,11 +306,11 @@
     <!-- change here for a guide: raised buttons, each marked POCKET GUIDE -->
     <g fill="#fff" text-anchor="middle">
       <a class="gbtn" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener" aria-label="Pocket guide: Court guide">
-        <rect x="387" y="477" width="156" height="42" rx="12" fill="#1F3864"/><rect x="387" y="477" width="156" height="42" rx="12" fill="#000" opacity=".42"/>
-        <g class="face"><rect x="387" y="472" width="156" height="42" rx="12" fill="#1F3864" stroke="#fff" stroke-width="1.5"/>
-        <rect x="391" y="475" width="148" height="15" rx="9" fill="#fff" opacity=".17"/>
-        <text x="465" y="487" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
-        <text x="465" y="505" font-size="14.5" font-weight="800">Court guide</text></g></a>
+        <rect x="365" y="477" width="156" height="42" rx="12" fill="#1F3864"/><rect x="365" y="477" width="156" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="365" y="472" width="156" height="42" rx="12" fill="#1F3864" stroke="#fff" stroke-width="1.5"/>
+        <rect x="369" y="475" width="148" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="443" y="487" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="443" y="505" font-size="14.5" font-weight="800">Court guide</text></g></a>
       <a class="gbtn" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener" aria-label="Pocket guide: Stay Connected">
         <rect x="595" y="49" width="128" height="42" rx="12" fill="#6A4BB3"/><rect x="595" y="49" width="128" height="42" rx="12" fill="#000" opacity=".42"/>
         <g class="face"><rect x="595" y="44" width="128" height="42" rx="12" fill="#6A4BB3" stroke="#fff" stroke-width="1.5"/>
