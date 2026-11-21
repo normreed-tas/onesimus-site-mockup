@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Navigating the Justice System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.1;}
+  p{line-height:1.65; color:var(--slate);}
+  svg{display:block;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:#fff url(onesimus-logo.png) center/cover no-repeat;border:1px solid var(--line);flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:30px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+          letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+          background:var(--sage-tint); color:var(--sage); white-space:nowrap;}
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+
+  /* GUIDE CARDS */
+  .guide{display:grid; grid-template-columns:168px 1fr; gap:26px; align-items:start;
+         background:var(--white); border:1px solid var(--line); border-radius:2px;
+         padding:28px 30px; margin-bottom:14px;}
+  .guide .qrcol{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .guide .qrcol svg{border:1px solid var(--line); padding:7px; background:var(--white);}
+  .guide .qrcol .scan{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em;
+                      text-transform:uppercase; color:var(--slate); text-align:center;}
+  .guide h3{font-size:1.35rem;}
+  .guide .strap{margin-top:7px; font-size:.95rem; color:var(--slate);}
+  .guide .who{margin-top:16px; display:grid; gap:7px; font-size:.86rem;}
+  .guide .who div{display:flex; gap:9px;}
+  .guide .who b{font-family:'IBM Plex Mono',monospace; font-size:.63rem; letter-spacing:.07em;
+                text-transform:uppercase; color:var(--sage); min-width:92px; padding-top:2px;}
+  .guide .who span{color:var(--ink); opacity:.84;}
+  .guide .open{display:inline-flex; align-items:center; gap:7px; margin-top:18px;
+               background:var(--ink); color:var(--white); text-decoration:none;
+               padding:10px 19px; border-radius:100px; font-size:.83rem; font-weight:600;}
+  .guide.soon{background:var(--paper); border-style:dashed;}
+  .guide.soon .qrcol{justify-content:center; min-height:140px;}
+  .guide .pending{width:128px; height:128px; border:1px dashed var(--line); border-radius:2px;
+                  display:flex; align-items:center; justify-content:center; text-align:center;
+                  font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--slate);
+                  letter-spacing:.06em; padding:10px;}
+  @media (max-width:640px){ .guide{grid-template-columns:minmax(0,1fr);} .guide .status{white-space:normal; line-height:1.5;} .guide .qrcol{align-items:flex-start;} }
+
+  /* OFFER */
+  .offer{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
+         border:1px solid var(--line); margin-top:4px;}
+  .offer > div{background:var(--white); padding:26px 28px;}
+  .offer h3{font-size:1.05rem; margin-bottom:14px;}
+  .offer ul{margin:0; padding-left:19px; font-size:.9rem; color:var(--slate); line-height:1.75;}
+  .offer li{margin-bottom:8px;}
+  @media (max-width:700px){ .offer{grid-template-columns:1fr;} }
+
+  .terms{background:var(--sage-tint); border-left:4px solid var(--sage); padding:22px 26px; margin-top:26px;}
+  .terms h3{font-size:1.05rem;}
+  .terms ul{margin:12px 0 0; padding-left:19px; font-size:.93rem; line-height:1.75; color:var(--ink);}
+  .terms li{margin-bottom:7px;}
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
+</style>
+<link rel="stylesheet" href="draft.css">
+<style>
+  /* Navigating the Justice System */
+  .mapwrap{overflow-x:auto; background:var(--white); border:1px solid var(--line); border-radius:6px; -webkit-overflow-scrolling:touch;}
+  .mapwrap svg{display:block; width:100%; min-width:1040px; height:auto;}
+  .mapwrap svg text{font-family:'Inter',sans-serif;}
+  .mapwrap svg a:hover .pill, .mapwrap svg a:focus-visible .pill{fill:#FFE58A;}
+  .gbtn .face{transition:transform .08s ease;}
+  .gbtn:hover .face, .gbtn:focus-visible .face{transform:translateY(2px);}
+  .gbtn:active .face{transform:translateY(5px);}
+  .swipe{display:none; font-size:.86rem; color:var(--slate); margin:8px 2px 0;}
+  @media (max-width:1080px){ .swipe{display:block;} }
+  .key{display:flex; flex-wrap:wrap; gap:8px 20px; margin:14px 0 0; font-size:.88rem; color:var(--ink);}
+  .key span{display:inline-flex; align-items:center; gap:8px;}
+  .key i{display:inline-block; width:34px; height:12px; border-radius:6px;}
+  .key .kb{background:#1F3864; color:#fff; font-weight:700; font-size:.68rem; letter-spacing:.08em; padding:5px 9px; border-radius:8px; box-shadow:0 4px 0 #101d36;}
+  .legal{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--brass); padding:14px 18px; margin-top:22px; font-size:.95rem; max-width:860px;}
+  .legal a{font-weight:600;}
+
+  details.stage{background:var(--white); border:1px solid var(--line); border-radius:6px; margin-bottom:10px; scroll-margin-top:90px;}
+  details.stage > summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:16px; padding:16px 20px;}
+  details.stage > summary::-webkit-details-marker{display:none;}
+  details.stage > summary::after{content:"+"; margin-left:auto; font-size:1.6rem; line-height:1; color:var(--sage); font-weight:300;}
+  details.stage[open] > summary::after{content:"\2212";}
+  details.stage[open] > summary{border-bottom:1px solid var(--line);}
+  .num{flex:none; width:42px; height:42px; border-radius:50%; background:var(--ink); color:var(--white); display:flex; align-items:center; justify-content:center; font-weight:600; font-size:1.05rem;}
+  details.side .num{background:var(--brass);}
+  .st b{display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.3rem; line-height:1.2; color:var(--ink);}
+  .st span{display:block; color:var(--slate); font-size:.92rem; margin-top:2px;}
+  .stage-body{padding:18px 20px 22px;}
+  .stage-body .lead{font-size:1.05rem; color:var(--ink); margin:0 0 16px; max-width:760px;}
+  .four{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .four > div{border:1px solid var(--line); border-radius:6px; padding:16px 18px 6px; background:var(--paper);}
+  .four > div.fam{background:var(--sage-tint); border-color:#C9D9CE;}
+  .four h3{font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; margin:0 0 10px; color:var(--ink);}
+  .four p, .four li, .four dd{color:var(--ink); font-size:.95rem; line-height:1.6;}
+  .four p{margin:0 0 10px;}
+  .four ul{margin:0 0 10px; padding-left:19px;}
+  .four li{margin-bottom:6px;}
+  .four a{font-weight:600;}
+  dl.meet{margin:0 0 10px;}
+  dl.meet dt{font-weight:600; font-size:.95rem; color:var(--ink); margin-top:10px;}
+  dl.meet dt:first-child{margin-top:0;}
+  dl.meet dd{margin:1px 0 0; color:var(--slate);}
+  @media (max-width:760px){ .four{grid-template-columns:1fr;} }
+  .deeper-h{font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; margin:20px 0 10px;}
+  .deeper{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px;}
+  a.gbtn2{display:block; text-decoration:none; color:#fff; background:var(--ink); border-radius:12px; padding:12px 16px 14px; box-shadow:0 5px 0 #0d1620; transition:transform .08s ease, box-shadow .08s ease;}
+  a.gbtn2:hover, a.gbtn2:focus-visible{transform:translateY(2px); box-shadow:0 3px 0 #0d1620;}
+  a.gbtn2:active{transform:translateY(5px); box-shadow:none;}
+  a.gbtn2 small{display:block; font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.8;}
+  a.gbtn2 b{display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.1rem; line-height:1.25; margin-top:2px;}
+  a.gbtn2 span{display:block; font-size:.86rem; opacity:.88; margin-top:3px; line-height:1.4;}
+  .shelf{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .helpnums{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px;}
+  .helpnums div{background:var(--white); border:1px solid var(--line); border-radius:6px; padding:14px 16px;}
+  .helpnums b{display:block; font-size:.95rem;}
+  .helpnums a{display:block; font-size:1.3rem; font-weight:600; color:var(--sage); text-decoration:none; margin:2px 0;}
+  .helpnums span{display:block; font-size:.85rem; color:var(--slate); line-height:1.45;}
+  dl.words{margin:0; columns:2; column-gap:36px;}
+  dl.words div{break-inside:avoid; padding:9px 0; border-bottom:1px solid var(--line);}
+  dl.words dt{font-weight:600; font-size:.95rem;}
+  dl.words dd{margin:2px 0 0; color:var(--slate); font-size:.92rem; line-height:1.5;}
+  @media (max-width:760px){ dl.words{columns:1;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html">Resources for Families</a></li>
+              <li><a href="survey.html">The Survey</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html">Practitioner's Guide</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li class="has-sub">
+          <a href="pocket-guides.html" class="sub-toggle current" aria-haspopup="true">Pocket Guides</a>
+          <div class="sub">
+            <ul>
+              <li><a href="pocket-guides.html" class="current">Navigating the Justice System</a></li>
+              <li><a href="https://pocketguides.org.au/court/" target="_blank" rel="noopener">Navigating the Court System &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Stay Connected (families) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener">Field Guide (practitioners) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener">How you should be treated in custody &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener">Getting Out &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener">The Blokes&rsquo; Book &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener">Living With an Order &#8599;</a></li>
+              <li><a href="phone-guides.html">About the guides</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Pocket Guides</span>
+  <h1 style="margin-top:14px;">Finding your way through the justice system in Tasmania</h1>
+  <p>When someone is arrested, nobody hands you a map. This guide is the map. Find where you are, see what comes next, and go to the guide that covers it in detail.</p>
+</section>
+
+<section class="section" id="map">
+  <div class="mapwrap">
+<svg viewBox="0 0 1300 540" role="img" aria-label="Rail-style map of the justice system. Five coloured lines run side by side from arrest, around a square loop at court, to prison or the community, and on to getting out.">
+    <!-- soft areas -->
+    <rect x="676" y="12" width="376" height="202" rx="20" fill="#EFE9DD"/>
+    <text x="754" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For families</text>
+    <text x="876" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2A3A">For practitioners</text>
+    <text x="694" y="202" font-size="12" font-weight="700" letter-spacing="2" fill="#6B6252">IN CUSTODY</text>
+    <text x="24" y="512" font-size="12" font-weight="700" letter-spacing="2" fill="#6B6252">IN THE COMMUNITY</text>
+
+    <g fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <!-- family violence or restraint order: the whole length, round the bottom of the court square -->
+      <path stroke="#D6246E" d="M92 327 H430 Q455 327 455 352 V389 Q455 425 491 425 H629 Q665 425 665 389 V352 Q665 327 690 327 H1150"/>
+      <!-- community corrections: cuts in at sentence -->
+      <path stroke="#1FA347" d="M704 341 H1150"/>
+      <!-- police: from arrest to the first time at court -->
+      <path stroke="#1E6FD9" d="M92 313 H442"/>
+      <!-- custody: cuts in at the first time at court (remand), round the top of the square, out to prison, back at getting out -->
+      <path stroke="#D7262E" d="M455 318 V251 Q455 215 491 215 H640 L720 135 H880 L1058 313 H1075"/>
+      <path stroke="#D7262E" d="M620 215 H629 Q665 215 665 251 V318"/>
+      <!-- court: the loop. Round again until it is decided. -->
+      <rect stroke="#F28C1E" x="470" y="230" width="180" height="180" rx="36"/>
+    </g>
+
+    <text x="560" y="312" text-anchor="middle" font-size="24" font-weight="800" fill="#B5620A" letter-spacing="1">COURT</text>
+    <text x="560" y="336" text-anchor="middle" font-size="14" fill="#7A4A12">Adjourned?</text>
+    <text x="560" y="354" text-anchor="middle" font-size="14" fill="#7A4A12">Round again.</text>
+
+    <!-- line names, as words -->
+    <g font-size="12.5" font-weight="700" fill="#fff">
+      <rect x="14" y="296" width="66" height="20" rx="6" fill="#1E6FD9"/><text x="47" y="310" text-anchor="middle">Police</text>
+      <rect x="14" y="320" width="66" height="20" rx="6" fill="#D6246E"/><text x="47" y="334" text-anchor="middle">Order</text>
+      <rect x="1168" y="303" width="118" height="20" rx="6" fill="#D6246E"/><text x="1227" y="317" text-anchor="middle">Order</text>
+      <rect x="1168" y="329" width="118" height="20" rx="6" fill="#1FA347"/><text x="1227" y="343" text-anchor="middle">Corrections</text>
+      <rect x="772" y="152" width="76" height="20" rx="6" fill="#D7262E"/><text x="810" y="166" text-anchor="middle">Custody</text>
+    </g>
+
+    <!-- stops -->
+    <g font-size="15" font-weight="700" fill="#1B2A3A" text-anchor="middle">
+      <a href="#arrest"><rect class="pill" x="93" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="100" y="364">Arrest</text></a>
+      <a href="#arrest"><rect class="pill" x="208" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="215" y="364">Charged</text></a>
+      <a href="#bail"><rect class="pill" x="323" y="303" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="330" y="364">Bail</text></a>
+      <a href="#court"><rect class="pill" x="444" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="438" y="294" text-anchor="end">First time at court</text></a>
+      <a href="#bail"><text x="440" y="250" text-anchor="end" fill="#A81B22">Remand</text><text x="440" y="266" text-anchor="end" font-size="12" font-weight="400" fill="#A81B22">held from day one</text></a>
+      <a href="#court"><rect class="pill" x="552" y="205" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="560" y="194">Plea</text></a>
+      <a href="#court"><rect class="pill" x="552" y="400" width="16" height="35" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="560" y="458">Hearing or trial</text></a>
+      <a href="#sentence"><rect class="pill" x="638" y="312" width="38" height="16" rx="8" fill="#fff" stroke="#111" stroke-width="3"/><text x="684" y="302" text-anchor="start">Sentence</text></a>
+      <a href="#prison"><circle class="pill" cx="770" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="770" y="116">Prison</text></a>
+      <a href="#out"><circle class="pill" cx="850" cy="135" r="9" fill="#fff" stroke="#111" stroke-width="3"/><text x="850" y="116">Parole</text></a>
+      <a href="#sentence"><rect class="pill" x="763" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="770" y="376">Community</text><text x="770" y="394">order</text></a>
+      <a href="#sentence"><rect class="pill" x="858" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="865" y="376">Home</text><text x="865" y="394">detention</text></a>
+      <a href="#orders"><rect class="pill" x="953" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="960" y="376">Living under</text><text x="960" y="394">an order</text></a>
+      <a href="#out"><rect class="pill" x="1068" y="303" width="14" height="48" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="1092" y="376">Getting out</text></a>
+      <a href="#out"><rect class="pill" x="1143" y="317" width="14" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3"/><text x="1196" y="376">Life after</text></a>
+    </g>
+
+    <!-- change here for a guide: raised buttons, each marked POCKET GUIDE -->
+    <g fill="#fff" text-anchor="middle">
+      <a class="gbtn" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener" aria-label="Pocket guide: Court guide">
+        <rect x="482" y="477" width="156" height="42" rx="12" fill="#1F3864"/><rect x="482" y="477" width="156" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="482" y="472" width="156" height="42" rx="12" fill="#1F3864" stroke="#fff" stroke-width="1.5"/>
+        <rect x="486" y="475" width="148" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="560" y="487" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="560" y="505" font-size="14.5" font-weight="800">Court guide</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener" aria-label="Pocket guide: Stay Connected">
+        <rect x="690" y="49" width="128" height="42" rx="12" fill="#6A4BB3"/><rect x="690" y="49" width="128" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="690" y="44" width="128" height="42" rx="12" fill="#6A4BB3" stroke="#fff" stroke-width="1.5"/>
+        <rect x="694" y="47" width="120" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="754" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="754" y="77" font-size="14.5" font-weight="800">Stay Connected</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener" aria-label="Pocket guide: Field Guide">
+        <rect x="824" y="49" width="104" height="42" rx="12" fill="#2F7D5B"/><rect x="824" y="49" width="104" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="824" y="44" width="104" height="42" rx="12" fill="#2F7D5B" stroke="#fff" stroke-width="1.5"/>
+        <rect x="828" y="47" width="96" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="876" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="876" y="77" font-size="14.5" font-weight="800">Field Guide</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener" aria-label="Pocket guide: In custody">
+        <rect x="934" y="49" width="106" height="42" rx="12" fill="#21574d"/><rect x="934" y="49" width="106" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="934" y="44" width="106" height="42" rx="12" fill="#21574d" stroke="#fff" stroke-width="1.5"/>
+        <rect x="938" y="47" width="98" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="987" y="59" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="987" y="77" font-size="14.5" font-weight="800">In custody</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener" aria-label="Pocket guide: Living With an Order">
+        <rect x="866" y="413" width="186" height="42" rx="12" fill="#1F6B75"/><rect x="866" y="413" width="186" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="866" y="408" width="186" height="42" rx="12" fill="#1F6B75" stroke="#fff" stroke-width="1.5"/>
+        <rect x="870" y="411" width="178" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="959" y="423" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="959" y="441" font-size="14.5" font-weight="800">Living With an Order</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener" aria-label="Pocket guide: Getting Out">
+        <rect x="1064" y="397" width="122" height="42" rx="12" fill="#0A84C6"/><rect x="1064" y="397" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="1064" y="392" width="122" height="42" rx="12" fill="#0A84C6" stroke="#fff" stroke-width="1.5"/>
+        <rect x="1068" y="395" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="1125" y="407" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="1125" y="425" font-size="14.5" font-weight="800">Getting Out</text></g></a>
+      <a class="gbtn" href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener" aria-label="Pocket guide: Blokes' Book">
+        <rect x="1064" y="449" width="122" height="42" rx="12" fill="#B4521E"/><rect x="1064" y="449" width="122" height="42" rx="12" fill="#000" opacity=".42"/>
+        <g class="face"><rect x="1064" y="444" width="122" height="42" rx="12" fill="#B4521E" stroke="#fff" stroke-width="1.5"/>
+        <rect x="1068" y="447" width="114" height="15" rx="9" fill="#fff" opacity=".17"/>
+        <text x="1125" y="459" font-size="9.5" font-weight="700" letter-spacing="1.4" opacity=".95">POCKET GUIDE</text>
+        <text x="1125" y="477" font-size="14.5" font-weight="800">Blokes&#8217; Book</text></g></a>
+    </g>
+    <text x="1210" y="250" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">Almost everyone</text>
+    <text x="1210" y="270" text-anchor="middle" font-size="15" font-style="italic" fill="#6B6252">comes home.</text>
+  </svg>
+  </div>
+  <p class="swipe">Swipe sideways to see the whole map.</p>
+  <div class="key">
+    <span><i style="background:#1E6FD9"></i>Police</span>
+    <span><i style="background:#F28C1E"></i>Court</span>
+    <span><i style="background:#D7262E"></i>Custody: remand and prison</span>
+    <span><i style="background:#D6246E"></i>Family violence or restraint order</span>
+    <span><i style="background:#1FA347"></i>Community Corrections</span>
+    <span><b class="kb">POCKET GUIDE</b>A raised button opens a guide</span>
+  </div>
+  <p style="margin-top:14px; font-size:.95rem;">Follow a coloured line. Tap a stop to read what happens there. <a href="#young" style="font-weight:600;">Under 18? A different route</a> &middot; <a href="#wrong" style="font-weight:600;">Something&rsquo;s not right</a> &middot; <a href="#help" style="font-weight:600;">Help now</a></p>
+  <div class="legal"><b>This is not legal advice.</b> This guide explains how things generally work. Talk to a lawyer about your own situation. Tasmania Legal Aid gives free legal information on <a href="tel:1300366611">1300 366 611</a>.</div>
+</section>
+
+<section class="section" style="padding-top:0;" id="stages">
+  <div class="section-head">
+    <span class="eyebrow">The journey</span>
+    <h2>Stage by stage</h2>
+    <p>Not everyone goes through every stage. Many cases end at court with a fine or an order, and nobody goes to prison. Tap any stage to see what happens there.</p>
+  </div>
+
+  <details class="stage" id="arrest">
+    <summary><span class="num">1</span><span class="st"><b>Arrest and the police</b><span>The first hours</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">The first hours are confusing, and families are often told very little. Here is what is going on.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p>Police can arrest a person they believe has broken the law. The person is usually taken to a police station.</p>
+<p>Police can hold them for a reasonable time to ask questions. After that, police must either let them go or take them to a court as soon as they practically can. The law doesn’t set a number of hours.</p>
+<p>Then one of these things happens:</p>
+<ul><li>Police give them a summons, or release them on bail, with a date to come to court.</li><li>Police keep them in custody and bring them to court. The court then decides about bail.</li></ul>
+<p>If they aren’t given bail, they are taken to a reception prison in Hobart or Launceston.</p></div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>Police officers</dt><dd>They arrest, ask questions and decide whether to charge.</dd><dt>A lawyer</dt><dd>Tasmania Legal Aid, the Tasmanian Aboriginal Legal Service or a private lawyer. Their job is to look after the person arrested.</dd><dt>A magistrate or justice</dt><dd>If police don’t give bail, this is the person who decides whether they can go home until court.</dd></dl></div>
+        <div><h3>What you can do</h3><p>If you have been arrested:</p>
+<ul><li>Give your name and address. Apart from that, you don’t have to say anything.</li><li>Ask to speak to a lawyer before you answer questions. Tasmania Legal Aid’s advice is not to answer more questions until you have talked with one.</li><li>Police must tell you that you can contact a friend or relative, and a lawyer.</li><li>If you need an interpreter, say so. Police must wait for the interpreter before they question you.</li><li>If you are under 18, you should have a parent, guardian or another responsible adult with you when police question you.</li><li>If you are Aboriginal or Torres Strait Islander, tell police and ask for the Tasmanian Aboriginal Legal Service (TALS). TALS has lawyers on call day and night for people in police custody: <a href="tel:1800595162">1800 595 162</a>.</li><li>Ask for bail.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>Ring the police station, or the reception prison, to ask where they are. Expect to be told very little. There are privacy rules. It is not a judgement about you.</li><li>Write down the date, who you spoke to and what you were told.</li><li>Find out who their lawyer is. If they don’t have one, ring Tasmania Legal Aid on <a href="tel:1300366611">1300 366 611</a>.</li><li>Look after yourself and the children tonight. Most questions can wait until morning.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/stay-connected/#arrest" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected: They’ve been arrested &rarr;</b><span>For families. What happens first, the reception prisons, and what you can do now.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#magistrates.s-first" target="_blank" rel="noopener"><small>Pocket guide</small><b>The first time at court &rarr;</b><span>The first appearance, with the words to say.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="bail">
+    <summary><span class="num">2</span><span class="st"><b>Bail or remand</b><span>Home, or held, until court</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">After a person is charged, the question is where they wait for court: at home on bail, or in custody on remand.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p><b>Bail</b> is a promise to come back to court on a set date. It often comes with rules, such as living at a certain address, reporting to police or keeping a curfew.</p>
+<p>Police can give bail. So can a magistrate. Only the Supreme Court can give bail on a charge of murder.</p>
+<p>Breaking a bail rule is serious. The person can be arrested and brought back to court, and it is an offence.</p>
+<p>The court may ask for a surety. That is someone who promises the court money if the person breaks bail.</p>
+<p>If bail is refused, the person is held on <b>remand</b>. Remand means waiting. They haven’t been found guilty of anything. Their lawyer can ask for bail again at a later court date, or ask the Supreme Court.</p>
+<p>People on remand are held in prison. Men in the south are usually held at the Southern Remand Centre at Risdon Vale.</p>
+<p>Bail is harder to get on a family violence charge. The court or police must be satisfied that release would not put the other person or any child at risk.</p>
+</div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>A duty lawyer</dt><dd>A free lawyer at court on the day. If the person is in custody, a Legal Aid duty lawyer sees them before court and can ask for bail.</dd><dt>A magistrate</dt><dd>Decides whether to give bail, and on what rules.</dd><dt>A police prosecutor</dt><dd>Tells the court whether police agree to bail.</dd></dl></div>
+        <div><h3>What you can do</h3><ul><li>Tell your lawyer where you can live, who can support you, and about your work or family. It helps the court decide.</li><li>If you get bail, read the rules before you leave court. Ask about anything you don’t understand.</li><li>Put your next court date in your phone. Missing court can mean a warrant for your arrest.</li><li>If you can’t keep a bail rule, tell your lawyer straight away. A court can change the rules. You can’t change them yourself.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>If they are kept in custody at court, ask the lawyer three things before you leave: the next court date, whether they will ask for bail, and how you can stay in touch.</li><li>You may be asked whether they can live with you. Be honest about what you can manage.</li><li>If you are asked to be a surety, only agree if you are confident they will keep the rules. You may lose the money you promise.</li><li>If they are on remand, they can ring you once your number is on their list. You can’t ring them.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/court/#magistrates.s-bail" target="_blank" rel="noopener"><small>Pocket guide</small><b>Bail and being a surety &rarr;</b><span>What bail is and what a surety is promising.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#court-day.cd-custody" target="_blank" rel="noopener"><small>Pocket guide</small><b>If they are kept in custody &rarr;</b><span>Three things to ask before you leave the court.</span></a><a class="gbtn2" href="https://pocketguides.org.au/stay-connected/#court.remand" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected: What remand means &rarr;</b><span>For families, while you wait for court.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="court">
+    <summary><span class="num">3</span><span class="st"><b>Court</b><span>Where the case is decided</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">Most cases start and finish in the Magistrates Court. Only the most serious go to the Supreme Court.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p>The <b>Magistrates Court</b> sits in Hobart, Launceston, Devonport and Burnie. A magistrate decides the case. There is no jury.</p>
+<p>At the first appearance the charge is read out. The person can ask for an adjournment to get legal advice, plead guilty, or plead not guilty.</p>
+<p>If they plead guilty, the magistrate hears what happened and decides the sentence, that day or later.</p>
+<p>If they plead not guilty, the case is put off to a hearing. The prosecution has to prove the charge.</p>
+<p>The most serious charges go to the <b>Supreme Court</b>, where a judge sits and a jury of twelve decides at a trial. These cases start in the Magistrates Court and often take many months.</p>
+<p>Court dates often move, sometimes at short notice. A case can come back to court several times before it is finished.</p>
+<p>Some people whose offending is linked to drug or alcohol use may be offered a treatment order in place of prison. This is called Court Mandated Diversion.</p></div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>A magistrate or judge</dt><dd>Runs the court and decides the sentence. Called ‘Your Honour’.</dd><dt>A prosecutor</dt><dd>The lawyer or police officer who presents the case against the person charged.</dd><dt>A duty lawyer</dt><dd>A free lawyer at the Magistrates Court on the day, for people who don’t have their own.</dd><dt>Court staff</dt><dd>They can tell you which courtroom to go to. They can’t give legal advice.</dd><dt>A court support worker</dt><dd>Free support for victims of family violence, through the Court Support and Liaison Service. An Aboriginal Court Support Officer is available.</dd></dl></div>
+        <div><h3>What you can do</h3><ul><li>Get legal advice before the day if you can. Tasmania Legal Aid: <a href="tel:1300366611">1300 366 611</a>.</li><li>The first time you go to court, you can ask for an adjournment so you can get legal advice.</li><li>Turn up, and turn up early. If you miss court, a warrant may be issued for your arrest, or the case may be heard without you.</li><li>Ask the court registry ahead of time if you need an interpreter. It is free.</li><li>If you are Aboriginal or Torres Strait Islander, TALS has liaison officers who can come to court with you.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>You can usually sit in the public seats. You don’t have to go.</li><li>The lawyer is your best source of news. Ask them what happened and what the next date is.</li><li>Check with the court before you take a child.</li><li>Children usually know something is wrong. A simple, true explanation from someone they trust is kinder than silence.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Navigating the Court System &rarr;</b><span>Each court step by step, with court words explained.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#court-day" target="_blank" rel="noopener"><small>Pocket guide</small><b>Your court day &rarr;</b><span>The night before, the morning, and afterwards.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#children" target="_blank" rel="noopener"><small>Pocket guide</small><b>Talking with children about court &rarr;</b><span>Words to borrow, with pictures.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="sentence">
+    <summary><span class="num">4</span><span class="st"><b>Sentencing</b><span>What the court can decide</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">If a person pleads guilty or is found guilty, the court decides the sentence. Prison is one option among several.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p>Before deciding, the court may ask for a pre-sentence report about the person’s background. Their lawyer speaks for them about their life and what led to the offence.</p>
+<p>These are the main sentences a court can give an adult in Tasmania.</p>
+<ul><li><b>No penalty.</b> The court can dismiss the charge or let the person go without further punishment.</li><li><b>A good behaviour undertaking.</b> The person promises to stay out of trouble for a set time, up to five years.</li><li><b>A fine.</b> Money to pay as a penalty. It can be paid in instalments.</li><li><b>A community correction order.</b> A sentence served in the community, for up to three years. It can include supervision by a probation officer, programs and unpaid community work.</li><li><b>A home detention order.</b> A sentence served at home under strict rules, for up to 18 months, usually wearing an electronic tag.</li><li><b>A drug and alcohol treatment order.</b> Treatment and close supervision in place of prison, for some people whose offending is linked to drugs or alcohol. The person has to agree to it.</li><li><b>A suspended sentence.</b> A prison sentence that isn’t served unless the person offends again or breaks its rules.</li><li><b>Prison.</b> The court sets how long.</li></ul>
+<p>The court can also take away a driver licence for driving offences, and can make a family violence order at the same time as the sentence.</p>
+<p>When a court sends someone to prison, it can set a <b>non-parole period</b>. That is the part of the sentence that must be served in prison before the person can apply for parole. It can’t be less than half the sentence. If the court sets no such period, the person isn’t eligible for parole.</p></div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>The magistrate or judge</dt><dd>Decides the sentence and explains it in court.</dd><dt>Your lawyer</dt><dd>Speaks for the person about their life and circumstances, and explains the sentence afterwards.</dd><dt>A Community Corrections officer</dt><dd>May write the pre-sentence report, and supervises most sentences served in the community.</dd></dl></div>
+        <div><h3>What you can do</h3><ul><li>Tell your lawyer about your work, family, health and anything you are doing to change. They can only tell the court what they know.</li><li>Before you leave court, make sure you know exactly what you have to do, by when, and who you report to.</li><li>If you can’t pay a fine at once, ask about paying by instalments.</li><li>If you think the sentence is wrong, ask your lawyer about an appeal straight away. Time limits are short.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>Ask the lawyer whether a letter of support from family or an employer would help.</li><li>If they are sent to prison, ask the lawyer where they are being taken and how long the non-parole period is.</li><li>People often serve less time inside than the sentence they are given. Part may be served in the community on parole. The lawyer is the best person to ask.</li><li>Children need to hear something true. It might be: ‘The judge decided Dad has to go to prison for a while. It is not your fault.’</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/court/#magistrates" target="_blank" rel="noopener"><small>Pocket guide</small><b>Magistrates Court: outcomes &rarr;</b><span>What can happen at the end of a case.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#supreme" target="_blank" rel="noopener"><small>Pocket guide</small><b>Supreme Court &rarr;</b><span>Trial, sentence and appeal for the most serious charges.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="prison">
+    <summary><span class="num">5</span><span class="st"><b>Prison</b><span>Where they are and how to stay in touch</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">Whether someone is on remand or sentenced, the first days are the hardest, for them and for you.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p>The Tasmania Prison Service runs every adult prison in the state. It is part of the Department of Justice.</p>
+<p>People usually go first to a reception prison: Hobart Reception Prison or Launceston Reception Prison.</p>
+<p>The other four prisons are on one site at Risdon Vale, near Hobart:</p>
+<ul><li>Risdon Prison Complex: men, higher security</li><li>Ron Barwick Prison: men, lower security</li><li>Mary Hutchinson Women’s Prison: women</li><li>Southern Remand Centre: men waiting for court</li></ul>
+
+<p>Apart from Launceston Reception Prison, there is no prison in the north or north-west. Families there travel to Risdon Vale to visit.</p>
+<p>On arrival there is a health check, belongings are stored, and the person is given a security rating that decides where they are placed. If you haven’t heard anything on the first day, that is normal.</p>
+<p>Health care in prison is run by the Department of Health, not the prison.</p></div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>Correctional officers</dt><dd>The uniformed staff who run each unit day to day.</dd><dt>Health staff</dt><dd>Nurses and doctors from Correctional Primary Health Services.</dd><dt>A Planning Officer or Case Officer</dt><dd>Helps the person plan their time inside and their release.</dd><dt>Visitor Reception Centre staff</dt><dd>The people families deal with when they book and arrive for a visit.</dd><dt>Aboriginal support workers</dt><dd>TALS lawyers and wellbeing workers visit the prison.</dd></dl></div>
+        <div><h3>What you can do</h3><p>If you are inside:</p>
+<ul><li>Put the people you want to ring on your phone list as soon as you can. The prison checks each number first.</li><li>Ask to see health staff about any medicine you were taking outside.</li><li>Ask about work, education and programs. Joining in can help your security rating and your parole.</li><li>If you are Aboriginal or Torres Strait Islander, ask to see TALS or an Aboriginal wellbeing worker.</li><li>If something isn’t right, there are people outside the prison you can tell. See <a href="#wrong">Something’s not right</a>.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>You can’t ring them. They ring you, once your number is on their list.</li><li>To visit, you first fill in a visitor form and register. Then you book each visit ahead.</li><li>You can put money in their prison account for phone calls and the canteen.</li><li>You can write. Letters are opened and checked.</li><li>If you are worried about their safety or health, tell the prison. You don’t need proof.</li><li>Look after the household too: money, rent and the children’s school. Stay Connected covers each of these.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/stay-connected/#first" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected &rarr;</b><span>For families: the first days, phone calls, money, visiting and children.</span></a><a class="gbtn2" href="https://pocketguides.org.au/stay-connected/#visiting" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected: Visiting &rarr;</b><span>The two steps before a first visit, and what happens on the day.</span></a><a class="gbtn2" href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Field Guide &rarr;</b><span>For workers supporting children and families.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="out">
+    <summary><span class="num">6</span><span class="st"><b>Parole and getting out</b><span>Release, and the first week</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">Getting out is a stage of its own. It goes better when planning starts months ahead.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p>Some people are released at the end of their sentence. Others are released earlier on <b>parole</b>, and serve the rest of the sentence in the community under supervision.</p>
+<p>Parole is not automatic. A person has to apply, and the Parole Board decides.</p>
+<p>This is how it works.</p>
+<ul><li>The Parole Board sends the person an application form at least six months before the date they can first be considered.</li><li>Their case coordinator in the prison can help fill it in.</li><li>Community Corrections writes a report for the Board about where the person would live and what support they would have.</li><li>The person goes before the Board at a hearing.</li><li>The Board can say yes, with rules, or no. After a no, the Board can’t look at it again for three months.</li></ul>
+<p>The Board looks at how likely the person is to offend again, and at the safety of the public. Victims on the register can have a say.</p>
+<p>A person can’t be released on parole before the end of their non-parole period, or before they have served six months, whichever is longer.</p>
+</div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>A Planning Officer or case coordinator</dt><dd>Helps with the release plan and the parole application.</dd><dt>The Parole Board</dt><dd>An independent board that decides who is released on parole, and on what rules.</dd><dt>A probation officer</dt><dd>From Community Corrections. Supervises a person on parole after release.</dd><dt>Health staff</dt><dd>Arrange medicines and appointments for the first days out.</dd></dl></div>
+        <div><h3>What you can do</h3><ul><li>Start early. Getting Out has a checklist that begins six months before release.</li><li>Talk to your Planning Officer about parole, and about where you will live. The Board will want an address.</li><li>Sort out ID, Medicare, a bank account and Centrelink before you leave if you can.</li><li>Ask health staff what medicine you will leave with, and who your doctor will be outside.</li><li>If there is a family violence or restraint order, check your planned address against it. If you are on parole as well, you have two sets of rules. Keep both.</li><li>If you used drugs before prison, your body can’t take what it used to. The risk of overdose is highest in the first days out.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>Community Corrections may ring or visit to ask whether the person can live with you. Say what is true for you. It is fine to say no.</li><li>Release dates can move. Tell children only what you know for sure.</li><li>Talk before they come home about what has changed: the house rules, the children, money.</li><li>Coming home is hard for everyone, even when it is wanted. Give it time.</li><li>If you are afraid of the release, tell someone. The Family Violence Response and Referral Line is <a href="tel:1800633937">1800 633 937</a>.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/getting-out/#before" target="_blank" rel="noopener"><small>Pocket guide</small><b>Getting Out: Before I leave &rarr;</b><span>The exit plan, appointments, medicines and ID.</span></a><a class="gbtn2" href="https://pocketguides.org.au/getting-out/#first" target="_blank" rel="noopener"><small>Pocket guide</small><b>Getting Out: My first days out &rarr;</b><span>What to do first, in order.</span></a><a class="gbtn2" href="https://pocketguides.org.au/blokes-book/#first" target="_blank" rel="noopener"><small>Pocket guide</small><b>The Blokes’ Book &rarr;</b><span>For men: a first-week-out checklist and where to find support.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage" id="orders">
+    <summary><span class="num">7</span><span class="st"><b>Living under an order or supervision</b><span>Rules in the community</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">Many people in the justice system never go to prison. They live in the community under an order. So do people on parole.</p>
+      <div class="four">
+        <div><h3>What happens here</h3><p><b>Community Corrections</b> supervises people on parole, community correction orders, home detention orders and drug and alcohol treatment orders. It has offices in Hobart, Glenorchy, Launceston, Devonport and Burnie.</p>
+<p>The person is given a probation officer. Together they make a plan that sets how often the person reports and what they have to do, such as programs, treatment or community work.</p>
+<p>A <b>breach</b> means breaking a rule of the order. What happens depends on the order:</p>
+<ul><li>On a court order, the person can be taken back to court, and the court can change the order or give a different sentence.</li><li>On parole, the Parole Board can warn the person, change the rules, or cancel parole and send them back to prison. Time spent on parole may then not count towards the sentence.</li></ul>
+<p><b>Family violence orders and restraint orders</b> are different. They are made to protect another person. They are not a punishment and not a conviction. But breaking one is a criminal offence, and police can arrest without a warrant.</p>
+<ul><li>A police family violence order is made by police on the spot.</li><li>A family violence order is made by a magistrate.</li><li>A restraint order is for people who aren’t partners or former partners.</li></ul>
+<p>The protected person can’t give permission to ignore an order. Only a court can change it.</p></div>
+        <div><h3>Who you&rsquo;ll meet</h3><dl class="meet"><dt>A probation officer</dt><dd>Your main contact at Community Corrections. Sees you regularly and reports on how the order is going.</dd><dt>Program staff</dt><dd>Run courses on things like family violence, drugs and alcohol.</dd><dt>Police</dt><dd>Enforce family violence and restraint orders.</dd><dt>The Parole Board</dt><dd>Decides what happens if parole rules are broken.</dd></dl></div>
+        <div><h3>What you can do</h3><ul><li>Know who you report to, when and where. Put it in your phone now.</li><li>Read your order. If you don’t understand a rule, ask your probation officer or a lawyer what it means in practice.</li><li>If you are going to miss an appointment, ring before it, not after.</li><li>If a rule has become impossible to keep, ask for it to be changed. Don’t just stop following it.</li><li>If you have broken a rule, get legal advice quickly. Tasmania Legal Aid: <a href="tel:1300366611">1300 366 611</a>.</li></ul></div>
+        <div class="fam"><h3>What family can do</h3><ul><li>Learn the rules too, especially any curfew, address or no-contact rule. You can help them keep the rules. You can’t keep the rules for them.</li><li>Don’t pass messages between two people where there is a no-contact order. That can itself break the order.</li><li>If you are the person the order protects and you feel unsafe, call 000, or the Family Violence Response and Referral Line on <a href="tel:1800633937">1800 633 937</a>.</li><li>Supervision usually ends on a set date. Ask what support continues after that.</li></ul></div>
+      </div>
+      <h3 class="deeper-h">Go deeper</h3>
+      <div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Living With an Order &rarr;</b><span>For men with a family violence or restraint order: understand it, keep to it, get help to change.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#orders" target="_blank" rel="noopener"><small>Pocket guide</small><b>Family violence and restraint orders at court &rarr;</b><span>Getting an order, or having one made against you.</span></a><a class="gbtn2" href="https://pocketguides.org.au/getting-out/#legal" target="_blank" rel="noopener"><small>Pocket guide</small><b>Getting Out: Legal, parole and rights &rarr;</b><span>Community Corrections offices and free legal help.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage side" id="young">
+    <summary><span class="num">+</span><span class="st"><b>Young people</b><span>Under 18: a different path</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">The justice system works differently for anyone who was under 18 at the time. This page is for a young person, and for a parent or carer.</p>
+      <div class="four"><div><h3>What is different</h3><ul><li>In Tasmania a child aged 10 or over can be charged with an offence. The Government has said it will raise this age to 14.</li><li>Police don’t have to send a young person to court. For less serious matters they can give a formal caution or arrange a community conference.</li><li>Police should not question a young person without a parent, guardian or another responsible adult there.</li><li>Cases go to the Youth Justice Court, which is part of the Magistrates Court. It is usually closed. The public and the media aren’t allowed in.</li><li>A duty lawyer is free. The lawyer acts for the young person, not for the parent.</li></ul></div><div><h3>What the court can decide</h3><p>The court can dismiss the charge, with or without a warning. It can release the young person with rules, order a fine, send them to a community conference, or order probation or community service.</p>
+<p>The most serious outcome is detention.</p>
+<p>Young people in detention are held at Ashley Youth Detention Centre, near Deloraine. It is run by the Department for Education, Children and Young People, not the prison service.</p></div><div><h3>If you are the young person</h3><ul><li>You don’t have to answer police questions. Give your name and address, and ask for a lawyer and for an adult you trust.</li><li>Tell your lawyer the truth. What you tell them is private.</li><li>If you are in detention and something isn’t right, you can contact the Commissioner for Children and Young People yourself. An advocate from the Commissioner’s office visits Ashley regularly. Phone <a href="tel:0361661366">(03) 6166 1366</a>.</li><li>Kids Helpline is free, any time: <a href="tel:1800551800">1800 55 1800</a>.</li></ul></div><div class="fam"><h3>If it’s your child</h3><ul><li>Go to the police station and to court with them. A parent or guardian is expected to be there.</li><li>Ring Tasmania Legal Aid on <a href="tel:1300366611">1300 366 611</a> before the first court date if you can.</li><li>The lawyer takes instructions from your child, even if you disagree. That can be hard. It is how the law protects young people.</li><li>Keep school in the loop if you can. Staying at school is one of the things that helps most.</li></ul></div></div>
+      <h3 class="deeper-h">Go deeper</h3><div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/court/#youth" target="_blank" rel="noopener"><small>Pocket guide</small><b>Youth Justice Court &rarr;</b><span>Step by step, for young people and their parents.</span></a><a class="gbtn2" href="https://pocketguides.org.au/court/#children" target="_blank" rel="noopener"><small>Pocket guide</small><b>Talking with children about court &rarr;</b><span>For younger brothers and sisters too.</span></a></div>
+    </div>
+  </details>
+
+  <details class="stage side" id="wrong">
+    <summary><span class="num">!</span><span class="st"><b>Something’s not right</b><span>How to raise a concern or complain</span></span></summary>
+    <div class="stage-body">
+      <p class="lead">People in custody have rights, and so do their families. If something is wrong, you are allowed to say so. Start with the nearest step and go further if you need to.</p>
+      <div class="four"><div class="fam"><h3>If you are worried about someone’s safety right now</h3><p>Tell the prison. You don’t need proof. The Tasmania Prison Service switchboard is <a href="tel:0361657400">(03) 6165 7400</a>.</p>
+<p>If someone’s life is in danger, call 000.</p></div><div><h3>1. Raise it with the prison</h3><p>A person inside can ask to speak to a senior officer. Anyone, including family, can make a written complaint to the Tasmania Prison Service on its complaint form. The service aims to answer within 30 days.</p>
+<p>Complaints about health care in prison go to the Department of Health’s Correctional Primary Health Services.</p></div><div><h3>2. Talk to an Official Visitor</h3><p>Official Visitors are members of the community, independent of the prison. They visit prisons, listen to complaints from people in custody and look into them. A person inside can ask to see one.</p></div><div><h3>3. Go to the Ombudsman</h3><p>The Ombudsman is independent of the Government and can investigate complaints about how people in prison are treated. It is free. Phone <a href="tel:1800001170">1800 001 170</a>.</p></div><div><h3>Others who can help</h3><ul><li><b>The Custodial Inspector</b> checks how prisons and youth detention are run and reports publicly. The Inspector does not take up individual complaints.</li><li><b>The Integrity Commission</b> deals with serious misconduct by public officers, such as an officer using excessive force.</li><li><b>Equal Opportunity Tasmania</b> deals with discrimination, including because of a criminal record that isn’t relevant. Phone <a href="tel:1300305062">1300 305 062</a>.</li><li><b>The Commissioner for Children and Young People</b> speaks up for young people in detention. Phone <a href="tel:0361661366">(03) 6166 1366</a>.</li><li><b>A lawyer.</b> If the problem is about the case, bail or the sentence, the person’s lawyer is the right place to start.</li></ul></div><div><h3>Tips that help</h3><ul><li>Write down dates, names and what happened as soon as you can.</li><li>Keep copies of anything you send.</li><li>Say what you want to happen.</li><li>It is all right to ask someone to help you write it. Advocacy Tasmania can help: <a href="tel:1800005131">1800 005 131</a>.</li></ul></div></div>
+      <h3 class="deeper-h">Go deeper</h3><div class="deeper"><a class="gbtn2" href="https://pocketguides.org.au/getting-out/#legal.rights" target="_blank" rel="noopener"><small>Pocket guide</small><b>Getting Out: Rights and advocacy &rarr;</b><span>Advocacy, discrimination and the Ombudsman.</span></a><a class="gbtn2" href="https://pocketguides.org.au/stay-connected/#urgent.worried" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected: Worried about them &rarr;</b><span>What to do if you are worried about the person inside.</span></a></div>
+    </div>
+  </details>
+</section>
+
+<section class="section" style="padding-top:0;" id="guides">
+  <div class="section-head">
+    <span class="eyebrow">The pocket guides</span>
+    <h2>A guide for each part of the journey</h2>
+    <p>Each guide is built for a phone, works with no signal, and collects nothing about the people who use it. They live at <a href="https://pocketguides.org.au/" target="_blank" rel="noopener" style="font-weight:600;">pocketguides.org.au</a>.</p>
+  </div>
+  <div class="shelf">
+    <a class="gbtn2" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Navigating the Court System &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Stay Connected (families) &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Field Guide (practitioners) &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener"><small>Pocket guide</small><b>How you should be treated in custody &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Getting Out &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener"><small>Pocket guide</small><b>The Blokes&rsquo; Book &rarr;</b></a>
+    <a class="gbtn2" href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener"><small>Pocket guide</small><b>Living With an Order &rarr;</b></a>
+  </div>
+  <p style="margin-top:18px; font-size:.95rem;"><a href="phone-guides.html" style="font-weight:600;">About the guides, and how another organisation can have one &rarr;</a></p>
+</section>
+
+<section class="section" style="padding-top:0;" id="words">
+  <details class="stage">
+    <summary><span class="num" style="background:var(--sage);">Aa</span><span class="st"><b>Words you&rsquo;ll hear</b><span>Court and prison words in plain language</span></span></summary>
+    <div class="stage-body"><dl class="words"><div><dt>Adjournment</dt><dd>Putting the case off to another day. The case is then ‘adjourned’.</dd></div><div><dt>Bail</dt><dd>A promise to come back to court on a set date, often with conditions to follow while you wait.</dd></div><div><dt>Breach</dt><dd>Breaking a condition of bail, an order or a sentence.</dd></div><div><dt>Charge</dt><dd>The offence police say a person has committed.</dd></div><div><dt>Committal</dt><dd>When a magistrate sends a serious case to the Supreme Court for trial or sentence.</dd></div><div><dt>Community Corrections</dt><dd>The government service that supervises people on parole and on sentences served in the community.</dd></div><div><dt>Community correction order</dt><dd>A sentence served in the community with conditions, such as supervision, programs or community service.</dd></div><div><dt>Custody</dt><dd>Being held by police or in prison.</dd></div><div><dt>Duty lawyer</dt><dd>A free lawyer at the court on the day who can give advice and may speak for you on simple matters.</dd></div><div><dt>Home detention order</dt><dd>A sentence served at home under strict conditions, usually with electronic monitoring.</dd></div><div><dt>Magistrate</dt><dd>The person who hears and decides cases in the Magistrates Court. Called ‘Your Honour’.</dd></div><div><dt>Non-parole period</dt><dd>The part of a prison sentence that must be served in prison before a person can apply for parole.</dd></div><div><dt>Parole</dt><dd>Release from prison before the end of a sentence, to serve the rest in the community under supervision and rules.</dd></div><div><dt>Parole Board</dt><dd>The independent board that decides who is released on parole and what happens if parole rules are broken.</dd></div><div><dt>Plea</dt><dd>The answer to the charge: guilty or not guilty.</dd></div><div><dt>Pre-sentence report</dt><dd>A report about a person’s background and circumstances, prepared for the court before sentencing.</dd></div><div><dt>Probation officer</dt><dd>The Community Corrections worker who supervises a person on parole or on an order.</dd></div><div><dt>Prosecutor</dt><dd>The lawyer or police officer who presents the case against the defendant.</dd></div><div><dt>Reception prison</dt><dd>A small prison where people go first. There is one in Hobart and one in Launceston.</dd></div><div><dt>Remand</dt><dd>Being kept in custody while waiting for the case to be finished.</dd></div><div><dt>Sentence</dt><dd>The penalty the court gives a person who pleaded guilty or was found guilty.</dd></div><div><dt>Summons</dt><dd>An official paper telling you that you must go to court, and when and where.</dd></div><div><dt>Surety</dt><dd>A person who promises the court money if the defendant breaks bail or does not come to court.</dd></div><div><dt>Suspended sentence</dt><dd>A prison sentence that is not served unless the person breaks its conditions or offends again.</dd></div><div><dt>Warrant</dt><dd>A court document that allows police to arrest a person.</dd></div></dl></div>
+  </details>
+</section>
+
+<section class="section" style="padding-top:0;" id="help">
+  <div class="section-head">
+    <span class="eyebrow">Help now</span>
+    <h2>Someone to talk to</h2>
+    <p>In an emergency call <a href="tel:000" style="font-weight:600;">000</a>.</p>
+  </div>
+  <div class="helpnums">
+    <div><b>Lifeline</b><a href="tel:131114">13 11 14</a><span>24 hours, 7 days.</span></div>
+    <div><b>13YARN</b><a href="tel:139276">13 92 76</a><span>For Aboriginal and Torres Strait Islander people. 24 hours, 7 days.</span></div>
+    <div><b>Kids Helpline</b><a href="tel:1800551800">1800 55 1800</a><span>For anyone aged 5 to 25. Free, any time.</span></div>
+    <div><b>MensLine Australia</b><a href="tel:1300789978">1300 789 978</a><span>Counselling and support for men. 24 hours, 7 days.</span></div>
+    <div><b>Tasmania Legal Aid</b><a href="tel:1300366611">1300 366 611</a><span>Free legal information for anyone. Monday to Friday, business hours. Duty lawyers at the Magistrates Court.</span></div>
+    <div><b>Tasmanian Aboriginal Legal Service (TALS)</b><a href="tel:1800595162">1800 595 162</a><span>Free legal help for Aboriginal and Torres Strait Islander people, including after hours and for people in police custody.</span></div>
+    <div><b>Family Violence Response and Referral Line</b><a href="tel:1800633937">1800 633 937</a><span>24 hours, 7 days.</span></div>
+  </div>
+  <p class="note"><strong>Mockup note for Norm.</strong> The wording on this page is the draft written on 20 November 2026 from public Tasmanian sources. It has not been checked by a lawyer, Tasmania Legal Aid, the Tasmania Prison Service, Community Corrections or the Tasmanian Aboriginal Legal Service. The 43 points marked for checking are listed in the working draft, not shown here. With thanks to Clinks, whose guide for England and Wales gave us the idea.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+<script>
+/* A stop on the map, or any link to a stage, opens that stage. */
+(function () {
+  function openFromHash() {
+    var el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === "DETAILS") { el.open = true; setTimeout(function () { el.scrollIntoView(); }, 60); }
+  }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
+})();
+</script>
+</body>
+</html>
