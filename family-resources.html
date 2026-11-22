@@ -55,6 +55,16 @@
   .leg ul{margin:4px 0 0; padding-left:18px; color:var(--slate); font-size:.88rem; line-height:1.7;}
   .leg ul li{margin-bottom:4px;}
   .leg .status{margin-top:auto;}
+  .leg ul.leglinks{list-style:none; padding-left:0; color:var(--ink); font-size:.92rem; line-height:1.45;}
+  .leglinks li{margin:0; padding:10px 0; border-top:1px solid var(--line);}
+  .leglinks li:first-child{border-top:none;}
+  .leglinks a{color:var(--ink); font-weight:500; text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px;}
+  .leglinks a:hover, .leglinks a:focus-visible{text-decoration-color:var(--ink);}
+  .leglinks .in{display:block; margin-top:3px; font-size:.74rem; color:var(--slate);}
+  .leglinks .in i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background:var(--line); vertical-align:0;}
+  .leglinks li.tocome{color:var(--slate);}
+  .legbtns{margin-top:auto; padding-top:10px; display:flex; flex-wrap:wrap; gap:10px 10px;}
+  .legbtns a.raise{font-size:.86rem; padding:10px 15px !important;}
   .kid-card .status{margin-top:auto;}
   @media (max-width:860px){ .journey{grid-template-columns:1fr;} }
 
@@ -223,43 +233,43 @@
       <span class="when">First</span>
       <h3>Court, remand and the first days</h3>
       <p>The period when least is known and most is decided.</p>
-      <ul>
-        <li>What happens at court, and what you can expect to be told</li>
-        <li>Where someone goes first, and how to find out</li>
-        <li>The first phone call — when it comes and what it costs</li>
-        <li>Who to tell, including school, and what you are not obliged to say</li>
-        <li>Money, bills and Centrelink in the first fortnight</li>
+      <ul class="leglinks">
+        <li><a href="https://pocketguides.org.au/court/#court-day" target="_blank" rel="noopener">What happens at court, and what you can expect to be told</a><span class="in"><i style="background:#1F3864"></i>In the court guide</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#arrest.where" target="_blank" rel="noopener">Where someone goes first, and how to find out</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#contact.phone" target="_blank" rel="noopener">The first phone call &mdash; when it comes and what it costs</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
+        <li><a href="telling-the-children.html#who-else-to-tell">Who to tell, including school, and what you are not obliged to say</a><span class="in"><i style="background:#4B7A5E"></i>On this site</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#household.money" target="_blank" rel="noopener">Money, bills and Centrelink in the first fortnight</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
       </ul>
-      <span class="status dev">In development</span>
+      <div class="legbtns"><a class="raise" style="--btn:#6A4BB3; --btn-dark:#473078;" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Open Stay Connected &rarr;</a><a class="raise" style="--btn:#1F3864; --btn-dark:#12213B;" href="https://pocketguides.org.au/court/" target="_blank" rel="noopener">Open the court guide &rarr;</a></div>
     </div>
     <div class="leg">
       <span class="when">Then</span>
       <h3>Visiting and keeping in touch</h3>
       <p>The practical business of staying a family across a wall.</p>
-      <ul>
-        <li>Getting on the visitor list, booking, and what to bring</li>
-        <li>Getting to Risdon, and what the trip costs from the north and north-west</li>
-        <li>What a visit is actually like, including the search</li>
-        <li>Taking children — what helps, and what to tell them first</li>
-        <li>Video visits, phone calls, letters and what children can send</li>
+      <ul class="leglinks">
+        <li><a href="https://pocketguides.org.au/stay-connected/#visiting.approved" target="_blank" rel="noopener">Getting on the visitor list, booking, and what to bring</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
+        <li class="tocome">Getting to Risdon, and what the trip costs from the north and north-west<span class="in"><i></i>Still to come</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#visiting.there" target="_blank" rel="noopener">What a visit is actually like, including the search</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#children.bringing" target="_blank" rel="noopener">Taking children &mdash; what helps, and what to tell them first</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
+        <li><a href="https://pocketguides.org.au/stay-connected/#contact" target="_blank" rel="noopener">Video visits, phone calls, letters and what children can send</a><span class="in"><i style="background:#6A4BB3"></i>In Stay Connected</span></li>
       </ul>
-      <span class="status check">Checking current detail with TPS</span>
+      <div class="legbtns"><a class="raise" style="--btn:#6A4BB3; --btn-dark:#473078;" href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Open Stay Connected &rarr;</a></div>
     </div>
     <div class="leg">
       <span class="when">Later</span>
       <h3>Coming home</h3>
       <p>The stage families are least prepared for, and the one most likely to go wrong.</p>
-      <ul>
-        <li>What release conditions can mean for your household</li>
-        <li>Housing, work and money in the first months</li>
-        <li>Children and a returning parent — what is normal, and what takes time</li>
-        <li>If you are not looking forward to it: who you can talk to</li>
+      <ul class="leglinks">
+        <li><a href="pocket-guides.html#out">What release conditions can mean for your household</a><span class="in"><i style="background:#4B7A5E"></i>On this site</span></li>
+        <li><a href="https://pocketguides.org.au/getting-out/#first" target="_blank" rel="noopener">Housing, work and money in the first months</a><span class="in"><i style="background:#0A84C6"></i>In Getting Out</span></li>
+        <li><a href="https://pocketguides.org.au/getting-out/#family.children" target="_blank" rel="noopener">Children and a returning parent &mdash; what is normal, and what takes time</a><span class="in"><i style="background:#0A84C6"></i>In Getting Out</span></li>
+        <li class="tocome">If you are not looking forward to it: who you can talk to<span class="in"><i></i>Still to come</span></li>
       </ul>
-      <span class="status check">Checking current detail with TPS</span>
+      <div class="legbtns"><a class="raise" style="--btn:#0A84C6; --btn-dark:#075A87;" href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener">Open Getting Out &rarr;</a><a class="raise" style="--btn:#B4521E; --btn-dark:#7A3713;" href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener">Open The Blokes&rsquo; Book &rarr;</a></div>
     </div>
   </div>
 
-  <p class="note"><strong>Mockup note.</strong> Each of these opens into a short, plain-language page built on the <em>Getting Out</em> pattern — phone-first, searchable, with a "help now" route. Content is drawn from Onesimus's Practitioner's Guide and from the Churchill Fellowship findings, with Tasmanian detail confirmed with Tasmania Prison Service before publication.</p>
+  <p class="note"><strong>Mockup note.</strong> Each line above now opens the part of a pocket guide that covers it, so the detail lives in one place. Two lines are marked &ldquo;Still to come&rdquo; because no guide covers them yet: the cost of getting to Risdon from the north and north-west, and who a family member can talk to if they are not looking forward to someone coming home. The guides themselves are drafts, still being checked with the Tasmania Prison Service and the other organisations named on each one.</p>
 </section>
 
 <section class="section" style="padding-top:0;">
