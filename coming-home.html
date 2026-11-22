@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Coming home</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.1;}
+  p{line-height:1.65; color:var(--slate);}
+  svg{display:block;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:#fff url(onesimus-logo.png) center/cover no-repeat;border:1px solid var(--line);flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:30px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+          letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+          background:var(--sage-tint); color:var(--sage); white-space:nowrap;}
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+
+  /* GUIDE CARDS */
+  .guide{display:grid; grid-template-columns:168px 1fr; gap:26px; align-items:start;
+         background:var(--white); border:1px solid var(--line); border-radius:2px;
+         padding:28px 30px; margin-bottom:14px;}
+  .guide .qrcol{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .guide .qrcol svg{border:1px solid var(--line); padding:7px; background:var(--white);}
+  .guide .qrcol .scan{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em;
+                      text-transform:uppercase; color:var(--slate); text-align:center;}
+  .guide h3{font-size:1.35rem;}
+  .guide .strap{margin-top:7px; font-size:.95rem; color:var(--slate);}
+  .guide .who{margin-top:16px; display:grid; gap:7px; font-size:.86rem;}
+  .guide .who div{display:flex; gap:9px;}
+  .guide .who b{font-family:'IBM Plex Mono',monospace; font-size:.63rem; letter-spacing:.07em;
+                text-transform:uppercase; color:var(--sage); min-width:92px; padding-top:2px;}
+  .guide .who span{color:var(--ink); opacity:.84;}
+  .guide .open{display:inline-flex; align-items:center; gap:7px; margin-top:18px;
+               background:var(--ink); color:var(--white); text-decoration:none;
+               padding:10px 19px; border-radius:100px; font-size:.83rem; font-weight:600;}
+  .guide.soon{background:var(--paper); border-style:dashed;}
+  .guide.soon .qrcol{justify-content:center; min-height:140px;}
+  .guide .pending{width:128px; height:128px; border:1px dashed var(--line); border-radius:2px;
+                  display:flex; align-items:center; justify-content:center; text-align:center;
+                  font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--slate);
+                  letter-spacing:.06em; padding:10px;}
+  @media (max-width:640px){ .guide{grid-template-columns:minmax(0,1fr);} .guide .status{white-space:normal; line-height:1.5;} .guide .qrcol{align-items:flex-start;} }
+
+  /* OFFER */
+  .offer{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
+         border:1px solid var(--line); margin-top:4px;}
+  .offer > div{background:var(--white); padding:26px 28px;}
+  .offer h3{font-size:1.05rem; margin-bottom:14px;}
+  .offer ul{margin:0; padding-left:19px; font-size:.9rem; color:var(--slate); line-height:1.75;}
+  .offer li{margin-bottom:8px;}
+  @media (max-width:700px){ .offer{grid-template-columns:1fr;} }
+
+  .terms{background:var(--sage-tint); border-left:4px solid var(--sage); padding:22px 26px; margin-top:26px;}
+  .terms h3{font-size:1.05rem;}
+  .terms ul{margin:12px 0 0; padding-left:19px; font-size:.93rem; line-height:1.75; color:var(--ink);}
+  .terms li{margin-bottom:7px;}
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
+</style>
+<link rel="stylesheet" href="draft.css">
+<style>
+  /* family pieces: fold-out sections so the page never looks like a wall of text */
+  .intro{max-width:760px;}
+  .intro p{font-size:1.05rem; color:var(--ink); margin:0 0 12px;}
+  blockquote{margin:0 0 20px; padding:16px 20px; background:var(--white); border-left:4px solid var(--sage);}
+  blockquote p{font-family:'Fraunces',serif; font-size:1.15rem; line-height:1.45; color:var(--ink); margin:0;}
+  blockquote cite{display:block; margin-top:8px; font-style:normal; font-size:.82rem; color:var(--slate);}
+  details.fold{background:var(--white); border:1px solid var(--line); border-radius:6px; margin-bottom:10px; scroll-margin-top:90px; max-width:860px;}
+  details.fold > summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:17px 20px; font-family:'Fraunces',serif; font-weight:500; font-size:1.25rem; line-height:1.25; color:var(--ink);}
+  details.fold > summary::-webkit-details-marker{display:none;}
+  details.fold > summary::after{content:"+"; margin-left:auto; font-family:'Inter',sans-serif; font-size:1.6rem; line-height:1; color:var(--sage); font-weight:300;}
+  details.fold[open] > summary::after{content:"\2212";}
+  details.fold[open] > summary{border-bottom:1px solid var(--line);}
+  .fold-body{padding:16px 20px 8px;}
+  .fold-body p, .fold-body li{color:var(--ink); font-size:1rem; line-height:1.65;}
+  .fold-body p{margin:0 0 12px;}
+  .fold-body p.lead{font-size:1.12rem; font-weight:600; background:var(--sage-tint); border-radius:6px; padding:12px 16px; margin-bottom:16px;}
+  .fold-body ul, .fold-body ol{margin:0 0 14px; padding-left:21px;}
+  .fold-body li{margin-bottom:8px;}
+  .fold-body h3{font-family:'Inter',sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; margin:20px 0 8px; padding-top:14px; border-top:1px solid var(--line); color:var(--sec-dark, var(--sage));}
+  .fold-body h3:first-child{border-top:none; padding-top:0; margin-top:0;}
+  .fold-body a{font-weight:600;}
+  a.tel{white-space:nowrap;}
+  .nextup{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; max-width:860px; margin-top:26px;}
+  .nextup a small{display:block; font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.85;}
+  .nextup a b{display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.12rem; margin-top:2px;}
+  .nextup a span{display:block; font-size:.86rem; font-weight:400; opacity:.9; margin-top:3px;}
+  .nextup a.raise{text-align:left; padding:13px 18px 15px !important;}
+</style>
+<link rel="stylesheet" href="site-colour.css">
+</head>
+<body data-sec="families">
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle current" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html" class="current">Resources for Families</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html">Practitioner's Guide</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="research.html" class="sub-toggle" aria-haspopup="true">Research</a>
+          <div class="sub">
+            <ul>
+              <li><a href="research.html">Research overview</a></li>
+              <li><a href="research.html#singapore">Singapore: an international model</a></li>
+              <li><a href="justice-figures.html">Tasmanian justice figures</a></li>
+              <li><a href="figures-register.html">Where the figures come from</a></li>
+              <li><a href="research.html#reports">Local reports</a></li>
+              <li><a href="https://npm.tas.gov.au/" target="_blank" rel="noopener">Custodial Inspector reports &#8599;</a></li>
+              <li><a href="https://www.pc.gov.au/ongoing/report-on-government-services/justice/corrective-services/" target="_blank" rel="noopener">Report on Government Services &#8599;</a></li>
+              <li><a href="https://www.parliament.tas.gov.au/__data/assets/pdf_file/0022/92506/FINAL-GAB-Report-Adult-Imprisonment-and-Youth-Detention-as-at-24-March-2025.pdf" target="_blank" rel="noopener">Parliamentary Inquiry report &#8599;</a></li>
+              <li><a href="key-documents.html">Key documents</a></li>
+              <li><a href="family-community.html#chain">Where this research began</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="survey.html">The Survey</a></li>
+        <li class="has-sub">
+          <a href="pocket-guides.html" class="sub-toggle" aria-haspopup="true">Pocket Guides</a>
+          <div class="sub">
+            <ul>
+              <li><a href="pocket-guides.html">Navigating the Justice System</a></li>
+              <li><a href="https://pocketguides.org.au/court/" target="_blank" rel="noopener">Navigating the Court System &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Stay Connected (families) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener">Field Guide (practitioners) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener">How you should be treated in custody &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener">Getting Out &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener">The Blokes&rsquo; Book &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener">Living With an Order &#8599;</a></li>
+              <li><a href="phone-guides.html">About the guides</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Resources for Families &middot; For the family at home</span>
+  <h1 style="margin-top:14px;">Coming home</h1>
+  <p class="note" style="max-width:760px; margin-top:16px;"><strong>Draft for review.</strong> This page has not yet been checked. The section on safety must be read by someone who works in family violence before it is published.</p>
+  <div class="intro" style="margin-top:18px;"><p>Someone is coming home from prison. It might be your partner, your son or daughter, your mum or dad. This page says "they". Swap in the right word for you.</p><p>You might be counting the days. You might be dreading it. You might be both on the same afternoon. All of that is normal, and none of it means you are doing it wrong.</p><p>This page is for you, the one who has kept things going at home.</p></div>
+</section>
+
+<section class="section">
+  <details class="fold" id="before-they-come-home">
+    <summary>Before they come home</summary>
+    <div class="fold-body"><p class="lead">You are allowed to say what is true for you. That includes "no" and "not yet".</p><p>You may be asked whether they can live with you. Take your time. You do not have to answer on the spot.</p><ul><li>"Yes" is a fair answer.</li><li>"Yes, but these things have to be sorted first" is a fair answer.</li><li>"No" is a fair answer. It does not make you a bad partner or a bad mother.</li></ul><p>If they have applied for parole, Community Corrections writes a report for the Parole Board. Nobody has yet confirmed to us how the household is asked.</p><p><b>Talk before the day, if you can.</b> A visit, a phone call or a letter. Some things worth sorting out first:</p><ul><li><b>House rules.</b> What is okay in your home now, and what is not.</li><li><b>Money.</b> Who pays for what. What you can and cannot afford.</li><li><b>The children's routines.</b> Bedtimes, school, who does pick-up.</li><li><b>What has changed.</b> You, the kids, the house, the people around you.</li></ul><p><b>Words you can borrow:</b></p><ul><li>"I want this to work. So I need us to talk about a few things first."</li><li>"A lot has changed here. I need you to come in slowly."</li><li>"I can't say yes yet. I need more time to think."</li><li>"You can't come back here. I will still help you work out somewhere else."</li></ul><p><b>Release dates move.</b> Don't plan a party around a date until it is certain. Tell the children only what you know for sure.</p></div>
+  </details>
+  <details class="fold" id="what-the-rules-might-mean-for-your-household">
+    <summary>What the rules might mean for your household</summary>
+    <div class="fold-body"><p class="lead">If they come home on parole or an order, some of their rules will be felt by everyone in the house. Ask to see the rules in writing.</p><p>Rules are different for each person. They might include things like:</p><ul><li>living only at an address that has been approved</li><li>being home by a set time</li><li>reporting to an officer</li><li>an officer coming to the house</li><li>no alcohol or drugs</li><li>people or places they must stay away from.</li></ul><p><b>How it can land on you:</b></p><ul><li>A curfew can mean you do all the evening driving.</li><li>A home visit means a stranger in your lounge room. You are allowed to ask who they are and why they have come.</li><li>A rule about alcohol or visitors can change what happens in your own home.</li></ul><p><b>The rules are theirs to keep, not yours.</b> You can help. You cannot keep the rules for them, and nobody should ask you to.</p><p><b>Words you can borrow:</b></p><ul><li>"Show me the paper. I need to know what the rules are if you're living here."</li><li>"I'll back you. I won't lie for you."</li></ul><p>For how parole and orders work, see the <a href="pocket-guides.html"><i>Navigating the Justice System</i></a> page (stages 6 and 7). If there is a family violence order or restraint order, see <a href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener"><i>Living With an Order</i></a>.</p></div>
+  </details>
+  <details class="fold" id="the-first-days-and-weeks">
+    <summary>The first days and weeks</summary>
+    <div class="fold-body"><p class="lead">It is often good at first, and then harder. That dip is common. It does not mean it has failed.</p><p><b>Things that are normal:</b></p><ul><li><b>They are jumpy, quiet or flat.</b> Prison is loud, and every day is run by someone else. Home is a shock.</li><li><b>They sleep badly,</b> or at odd hours.</li><li><b>Small things are hard.</b> A new phone. A self-serve checkout. A form. Choosing what to eat.</li><li><b>They want to do everything at once,</b> or nothing at all.</li><li><b>They don't want to talk about it.</b> Or they talk about nothing else.</li></ul><p><b>What helps:</b></p><ul><li>Go slowly. One thing a day is plenty.</li><li>Keep the first days quiet. Not everyone needs to visit in week one.</li><li>Let them do things for themselves, even badly.</li><li>Keep your own routine. Yours and the children's lives do not stop.</li></ul><p><b>What to leave alone:</b></p><ul><li>You don't have to hear everything that happened inside.</li><li>You don't have to fix their mood.</li><li>You don't have to watch them. That is not your job.</li></ul><p><b>Words you can borrow:</b></p><ul><li>"You don't have to talk about it. I'm here when you want to."</li><li>"I can see this is hard. I'm finding it hard too."</li><li>To yourself: "This is week two. It won't always feel like week two."</li></ul><p><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener"><i>Getting Out</i></a> has a checklist for the person coming home: where to go first, identification, Centrelink, a doctor. <a href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener"><i>The Blokes&rsquo; Book</i></a> has a first-week list for men. Those jobs are theirs. You can point to the list. You do not have to do it for them.</p></div>
+  </details>
+  <details class="fold" id="you-have-changed-too">
+    <summary>You have changed too</summary>
+    <div class="fold-body"><p class="lead">You ran everything on your own. You don't have to hand it all back, and you don't have to keep carrying all of it.</p><p>While they were away you paid the bills, made the decisions and got the kids through. You may be proud of that. You may be worn out. Probably both.</p><p>Now someone walks in and wants a say. That can feel like help. It can also feel like being pushed aside in your own home.</p><p>They may feel like a visitor in the house. They may try too hard, or step back and leave it all to you.</p><p>There is no right way to share it out. Go a bit at a time.</p><p><b>Words you can borrow:</b></p><ul><li>"I've been doing this by myself for a long time. I can't just switch that off."</li><li>"Can you take over school drop-off? I'll keep doing the money for now."</li><li>"I need you to ask me before you change something the kids are used to."</li><li>"I'm not the same as when you left. Neither are you. Let's find out who we are now."</li></ul></div>
+  </details>
+  <details class="fold" id="children-and-a-returning-parent">
+    <summary>Children and a returning parent</summary>
+    <div class="fold-body"><p class="lead">Children need time. Let them come to the parent at their own speed, and don't make the returning parent the boss on day one.</p><p>Children often wait until they feel safe before the big feelings come out. That can be weeks later.</p><p><b>What you might see:</b></p><ul><li><b>Under 5:</b> They may not know this person. They may cling to you, or hide. Don't push cuddles.</li><li><b>5 to 8:</b> Very excited, then clingy. Scared the parent will go again. Following them from room to room.</li><li><b>9 to 12:</b> Testing. "You can't tell me what to do." Lots of questions, or none.</li><li><b>Teenagers:</b> Cool, or angry, or out a lot. They have grown up while the parent was away. They may have been the "man of the house" or your main helper, and will not like losing that.</li></ul><p>Any child might be angry about the time that was missed. That anger is fair.</p><p><b>What helps:</b></p><ul><li><b>Tell them before the day,</b> once the date is sure. Say who is coming, when, and where everyone will sleep.</li><li><b>Keep their routines.</b> Same bedtime, same school run, same rules.</li><li><b>You stay in charge of discipline at first.</b> A parent who has been away needs to earn their place again. That takes months, not days.</li><li><b>Small time together.</b> A walk to the shop. A kick of the footy. Reading a book. Not a big holiday.</li><li><b>Let them not want to.</b> A child who says "I don't want to hug Dad" is not being rude.</li></ul><p><b>Words you can borrow, for the children:</b></p><ul><li>Before: "Dad is coming home on Friday. It might feel a bit strange at first, for all of us. That's okay."</li><li>"You don't have to hug him if you don't feel like it. You can wave."</li><li>"Nothing changes about bedtime. I'm still doing it."</li><li>After: "How is it going, having Mum home? You can tell me the good bits and the hard bits."</li><li>If they ask "Will he go away again?": "I don't know. I hope not. Whatever happens, I'm staying right here."</li></ul><p><b>Words for the parent coming home:</b></p><ul><li>"They need to get to know you again. Let them come to you."</li><li>"Leave the telling-off to me for now."</li><li>"Just tell them you love them. That's the main thing they want."</li></ul><p>If your child is frightened about the parent coming home, take that seriously. Read the section <a href="#if-you-are-worried-about-safety">&ldquo;If you are worried about safety&rdquo;</a>.</p><p>See also <a href="telling-the-children.html"><i>Telling the children</i></a> and <a href="questions-children-ask.html"><i>The questions children ask</i></a>.</p></div>
+  </details>
+  <details class="fold" id="money-housing-and-work">
+    <summary>Money, housing and work</summary>
+    <div class="fold-body"><p class="lead">Tell Centrelink when someone moves in. Your own payment can change, and it is better to tell them early than to owe money later.</p><ul><li><b>They will have very little money at first.</b> That can put pressure on yours. It is fine to say what you can and can't cover.</li><li><b>Your lease.</b> If you rent, check before someone moves in. Ask your landlord or housing provider what the rules are.</li><li><b>Work can take a long time.</b> A long search is normal after prison.</li><li><b>Old debts and fines</b> may turn up. They are theirs, not yours. Don't sign anything you don't understand.</li></ul><p><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener"><i>Getting Out</i></a> covers Centrelink, housing, identification and work for the person coming home. For free legal advice, ring Tasmania Legal Aid on <a class="tel" href="tel:1300366611">1300 366 611</a>.</p></div>
+  </details>
+  <details class="fold" id="if-you-are-not-looking-forward-to-it">
+    <summary>If you are not looking forward to it</summary>
+    <div class="fold-body"><p class="lead">Mixed feelings are common. They are not disloyal. You are allowed to need time, and you are allowed to say no.</p><p>Maybe life got calmer while they were away. Maybe you like who you have become. Maybe you are tired of starting again. Maybe you love them and still do not want them back in the house.</p><p>You are not the only one who has felt this. Most people just don't say it out loud.</p><ul><li><b>You do not have to have them back.</b> Not because of the children, or their mother, or because you stuck by them this long.</li><li><b>It does not have to be all or nothing.</b> Some families start with them living somewhere else and visiting.</li><li><b>You can change your mind,</b> in either direction.</li><li><b>You don't owe anyone a reason.</b></li></ul><p><b>Words you can borrow:</b></p><ul><li>To yourself: "I can care about them and still not be ready."</li><li>To them: "I'm not saying never. I'm saying not yet."</li><li>To family who push: "This is my decision. Please don't ask me again."</li></ul><p><b>People you can talk to.</b> None of them will tell you what to do.</p><ul><li><b>Onesimus Foundation, <a class="tel" href="tel:+61401690954">0401 690 954</a>.</b> We have talked with many families at this point.</li><li><b>Parentline Tasmania, <a class="tel" href="tel:1300808178">1300 808 178</a>.</b> If it is mostly about the children.</li><li><b>Lifeline, <a class="tel" href="tel:131114">13 11 14</a>.</b> Any time.</li><li><b>13YARN, <a class="tel" href="tel:139276">13 92 76</a>.</b> For Aboriginal and Torres Strait Islander people, any time.</li><li><b>MensLine Australia, <a class="tel" href="tel:1300789978">1300 789 978</a>.</b> Any time. For dads, grandfathers and partners at home too.</li><li>Your GP.</li></ul><p>If part of the reason is that you are afraid of them, read the next section.</p></div>
+  </details>
+  <details class="fold" id="if-you-are-worried-about-safety">
+    <summary>If you are worried about safety</summary>
+    <div class="fold-body"><p class="lead">Family Violence Response and Referral Line: <a class="tel" href="tel:1800633937">1800 633 937</a>, any time, day or night. In an emergency, call <a class="tel" href="tel:000">000</a>.</p><p>This section is for you if the person coming home has hurt you or the children before, or you think they might.</p><p>You can ring that number before the release date. You don't need to be sure. You don't need proof. You can just say, "Someone is getting out and I'm worried."</p><p><b>Things you can do before the date:</b></p><ul><li><b>Tell someone official that you are afraid.</b> You can tell the prison, Community Corrections or the police. That is allowed. It is not dobbing. It is looking after yourself and your children.</li><li><b>Say you do not agree to them living at your address.</b> It is your home.</li><li><b>Check any family violence order or restraint order.</b> An order does not stop because someone is in prison. But orders have an end date. Find out when yours ends, before they are out.</li><li><b>Ask about getting, changing or extending an order.</b> Tasmania Legal Aid: <a class="tel" href="tel:1300366611">1300 366 611</a>.</li><li><b>Make a plan with someone who does this every day.</b> The Family Violence line can help you work out what to do on the day and after.</li></ul><p><b>Things to hold on to:</b></p><ul><li><b>Your safety and the children's safety come first.</b> Before keeping the peace. Before giving it another go. Before a child's wish to see their parent.</li><li><b>Their parole or their order is theirs to keep.</b> It is never your job to make them keep it, and it is never your fault if they don't.</li><li><b>Only a court can change an order.</b> You can't give permission to ignore one, and nobody should pressure you to.</li><li><b>You don't have to pass on messages,</b> or be the go-between.</li></ul><p><b>Words you can borrow:</b></p><ul><li>To an officer or the police: "I'm worried about my safety when they get out. Who do I talk to?"</li><li>"I do not agree to them living at my address."</li><li>To yourself: "I'm not causing trouble. I'm keeping us safe."</li></ul><p>If you share a phone, you can ring from a friend's phone, or from a library or neighbourhood house.</p><p><b>For the children:</b> Kids Helpline, <a class="tel" href="tel:1800551800">1800 55 1800</a>. Free, any time, ages 5 to 25.</p></div>
+  </details>
+  <details class="fold" id="if-it-goes-wrong">
+    <summary>If it goes wrong</summary>
+    <div class="fold-body"><p class="lead">It is not your fault, and it was never your job to supervise them.</p><p>Many people who come out of prison have a setback. Some go back. That says nothing about how hard you tried.</p><p><b>If they slip</b> (drinking, drugs, old friends, missing an appointment):</p><ul><li>You can say what you see. You don't have to fix it.</li><li>You don't have to cover for them. If an officer asks you something, you can tell the truth.</li><li>If they have used drugs after a long break and you can't wake them, call <a class="tel" href="tel:000">000</a> straight away. The body can't take what it used to.</li></ul><p><b>If they are arrested or sent back to prison:</b></p><ul><li>Look after yourself and the children first.</li><li>Tell the children the truth, in small words. <a href="telling-the-children.html"><i>Telling the children</i></a> has words for this.</li><li>You decide again, from the start, how much contact you want. You don't have to do it all a second time.</li><li>For legal help: Tasmania Legal Aid, <a class="tel" href="tel:1300366611">1300 366 611</a>.</li></ul><p><b>If the relationship ends:</b></p><ul><li>That is not a failure. Sometimes it is the right ending.</li><li>The children can still have a relationship with that parent, when it is safe.</li><li>If you become unsafe, go back to the section <a href="#if-you-are-worried-about-safety">&ldquo;If you are worried about safety&rdquo;</a>.</li></ul><p><b>Words you can borrow:</b></p><ul><li>"I can't do this for you."</li><li>"I love you, and I'm not going down with you."</li><li>To the children: "Dad has gone back to prison. It is not because of anything you did. And it is not because of anything I did."</li><li>To yourself: "I did my part. The rest was theirs."</li></ul></div>
+  </details>
+  <details class="fold" id="looking-after-yourself">
+    <summary>Looking after yourself</summary>
+    <div class="fold-body"><p class="lead">You have been holding everyone up. Somebody needs to ask how you are, and it is fine if that somebody is a stranger on a phone line.</p><ul><li><b>Keep one thing that is yours.</b> A friend, a walk, church, a show. Don't give it up because they are home.</li><li><b>Tell one person the truth</b> about how it is really going.</li><li><b>See your GP</b> if you are not sleeping, or you feel flat or panicky.</li><li><b>You are allowed to be tired.</b> Waiting is tiring. So is the waiting being over.</li></ul><p><b>People you can ring:</b></p><ul><li><b>Onesimus Foundation, <a class="tel" href="tel:+61401690954">0401 690 954</a>.</b></li><li><b>Lifeline, <a class="tel" href="tel:131114">13 11 14</a>.</b> Any time.</li><li><b>13YARN, <a class="tel" href="tel:139276">13 92 76</a>.</b> For Aboriginal and Torres Strait Islander people, any time.</li><li><b>Parentline Tasmania, <a class="tel" href="tel:1300808178">1300 808 178</a>.</b></li><li><b>MensLine Australia, <a class="tel" href="tel:1300789978">1300 789 978</a>.</b> Any time.</li><li><b>Kids Helpline, <a class="tel" href="tel:1800551800">1800 55 1800</a>.</b> For children and young people, any time.</li><li><b>Family Violence Response and Referral Line, <a class="tel" href="tel:1800633937">1800 633 937</a>.</b> Any time.</li><li><b>Tasmania Legal Aid, <a class="tel" href="tel:1300366611">1300 366 611</a>.</b> Free legal information.</li><li><b>000</b> in an emergency.</li></ul></div>
+  </details>
+
+  <div class="nextup">
+    <a class="raise" href="telling-the-children.html"><small>Read next</small><b>Telling the children &rarr;</b><span>What to say, and words you can borrow</span></a>
+    <a class="raise" href="books/my-diary.html"><small>For the child</small><b>My Diary &rarr;</b><span>A story to read together, and a diary to fill in</span></a>
+    <a class="raise" href="family-resources.html"><small>Back to</small><b>Resources for Families &rarr;</b><span>Books, guides and where to get help</span></a>
+  </div>
+
+  <p class="note"><strong>Mockup note for Norm.</strong> Draft for review, 22 November 2026, written by the Family and Children drafting project from the Practitioner's Guide (2018 edition). Not yet checked with the Tasmania Prison Service, a lawyer or a clinician. The points marked for checking are kept in the working draft and are not shown on this page. The section &ldquo;If you are worried about safety&rdquo; must be read by a family violence practitioner before this page is published; Community Corrections, Tasmania Legal Aid or Safe at Home, and Jo Jumper are the other suggested readers.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+<script>
+/* A link to a section opens it. */
+(function () {
+  function openFromHash() { var el = document.getElementById(location.hash.slice(1)); if (el && el.tagName === "DETAILS") { el.open = true; setTimeout(function () { el.scrollIntoView(); }, 60); } }
+  window.addEventListener("hashchange", openFromHash); openFromHash();
+})();
+</script>
+</body>
+</html>
