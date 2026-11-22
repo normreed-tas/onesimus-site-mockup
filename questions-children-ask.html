@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — The questions children ask</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.1;}
+  p{line-height:1.65; color:var(--slate);}
+  svg{display:block;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:#fff url(onesimus-logo.png) center/cover no-repeat;border:1px solid var(--line);flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:30px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+          letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+          background:var(--sage-tint); color:var(--sage); white-space:nowrap;}
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+
+  /* GUIDE CARDS */
+  .guide{display:grid; grid-template-columns:168px 1fr; gap:26px; align-items:start;
+         background:var(--white); border:1px solid var(--line); border-radius:2px;
+         padding:28px 30px; margin-bottom:14px;}
+  .guide .qrcol{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .guide .qrcol svg{border:1px solid var(--line); padding:7px; background:var(--white);}
+  .guide .qrcol .scan{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em;
+                      text-transform:uppercase; color:var(--slate); text-align:center;}
+  .guide h3{font-size:1.35rem;}
+  .guide .strap{margin-top:7px; font-size:.95rem; color:var(--slate);}
+  .guide .who{margin-top:16px; display:grid; gap:7px; font-size:.86rem;}
+  .guide .who div{display:flex; gap:9px;}
+  .guide .who b{font-family:'IBM Plex Mono',monospace; font-size:.63rem; letter-spacing:.07em;
+                text-transform:uppercase; color:var(--sage); min-width:92px; padding-top:2px;}
+  .guide .who span{color:var(--ink); opacity:.84;}
+  .guide .open{display:inline-flex; align-items:center; gap:7px; margin-top:18px;
+               background:var(--ink); color:var(--white); text-decoration:none;
+               padding:10px 19px; border-radius:100px; font-size:.83rem; font-weight:600;}
+  .guide.soon{background:var(--paper); border-style:dashed;}
+  .guide.soon .qrcol{justify-content:center; min-height:140px;}
+  .guide .pending{width:128px; height:128px; border:1px dashed var(--line); border-radius:2px;
+                  display:flex; align-items:center; justify-content:center; text-align:center;
+                  font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--slate);
+                  letter-spacing:.06em; padding:10px;}
+  @media (max-width:640px){ .guide{grid-template-columns:minmax(0,1fr);} .guide .status{white-space:normal; line-height:1.5;} .guide .qrcol{align-items:flex-start;} }
+
+  /* OFFER */
+  .offer{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
+         border:1px solid var(--line); margin-top:4px;}
+  .offer > div{background:var(--white); padding:26px 28px;}
+  .offer h3{font-size:1.05rem; margin-bottom:14px;}
+  .offer ul{margin:0; padding-left:19px; font-size:.9rem; color:var(--slate); line-height:1.75;}
+  .offer li{margin-bottom:8px;}
+  @media (max-width:700px){ .offer{grid-template-columns:1fr;} }
+
+  .terms{background:var(--sage-tint); border-left:4px solid var(--sage); padding:22px 26px; margin-top:26px;}
+  .terms h3{font-size:1.05rem;}
+  .terms ul{margin:12px 0 0; padding-left:19px; font-size:.93rem; line-height:1.75; color:var(--ink);}
+  .terms li{margin-bottom:7px;}
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
+</style>
+<link rel="stylesheet" href="draft.css">
+<style>
+  /* family pieces: fold-out sections so the page never looks like a wall of text */
+  .intro{max-width:760px;}
+  .intro p{font-size:1.05rem; color:var(--ink); margin:0 0 12px;}
+  blockquote{margin:0 0 20px; padding:16px 20px; background:var(--white); border-left:4px solid var(--sage);}
+  blockquote p{font-family:'Fraunces',serif; font-size:1.15rem; line-height:1.45; color:var(--ink); margin:0;}
+  blockquote cite{display:block; margin-top:8px; font-style:normal; font-size:.82rem; color:var(--slate);}
+  details.fold{background:var(--white); border:1px solid var(--line); border-radius:6px; margin-bottom:10px; scroll-margin-top:90px; max-width:860px;}
+  details.fold > summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:17px 20px; font-family:'Fraunces',serif; font-weight:500; font-size:1.25rem; line-height:1.25; color:var(--ink);}
+  details.fold > summary::-webkit-details-marker{display:none;}
+  details.fold > summary::after{content:"+"; margin-left:auto; font-family:'Inter',sans-serif; font-size:1.6rem; line-height:1; color:var(--sage); font-weight:300;}
+  details.fold[open] > summary::after{content:"\2212";}
+  details.fold[open] > summary{border-bottom:1px solid var(--line);}
+  .fold-body{padding:16px 20px 8px;}
+  .fold-body p, .fold-body li{color:var(--ink); font-size:1rem; line-height:1.65;}
+  .fold-body p{margin:0 0 12px;}
+  .fold-body p.lead{font-size:1.12rem; font-weight:600; background:var(--sage-tint); border-radius:6px; padding:12px 16px; margin-bottom:16px;}
+  .fold-body ul, .fold-body ol{margin:0 0 14px; padding-left:21px;}
+  .fold-body li{margin-bottom:8px;}
+  .fold-body h3{font-family:'Inter',sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; margin:20px 0 8px; padding-top:14px; border-top:1px solid var(--line); color:var(--sec-dark, var(--sage));}
+  .fold-body h3:first-child{border-top:none; padding-top:0; margin-top:0;}
+  .fold-body a{font-weight:600;}
+  a.tel{white-space:nowrap;}
+  .nextup{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; max-width:860px; margin-top:26px;}
+  .nextup a small{display:block; font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.85;}
+  .nextup a b{display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.12rem; margin-top:2px;}
+  .nextup a span{display:block; font-size:.86rem; font-weight:400; opacity:.9; margin-top:3px;}
+  .nextup a.raise{text-align:left; padding:13px 18px 15px !important;}
+</style>
+<link rel="stylesheet" href="site-colour.css">
+</head>
+<body data-sec="families">
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle current" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html" class="current">Resources for Families</a></li>
+              <li><a href="survey.html">The Survey</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html">Practitioner's Guide</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li class="has-sub">
+          <a href="pocket-guides.html" class="sub-toggle" aria-haspopup="true">Pocket Guides</a>
+          <div class="sub">
+            <ul>
+              <li><a href="pocket-guides.html">Navigating the Justice System</a></li>
+              <li><a href="https://pocketguides.org.au/court/" target="_blank" rel="noopener">Navigating the Court System &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Stay Connected (families) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener">Field Guide (practitioners) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener">How you should be treated in custody &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener">Getting Out &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener">The Blokes&rsquo; Book &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener">Living With an Order &#8599;</a></li>
+              <li><a href="phone-guides.html">About the guides</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Resources for Families &middot; For the adult</span>
+  <h1 style="margin-top:14px;">The questions children ask</h1>
+  <div class="intro" style="margin-top:18px;"><p>Children ask the hardest questions at the worst moments: in the car, at bedtime, in the shop.</p><p>You don't need a perfect answer. You need a short, true one. If you get caught out, you can say: "That's a really good question. Let me think, and I'll tell you after tea." Then do.</p><p>Swap in Mum, Pop, your sister, or whoever it is.</p></div>
+</section>
+
+<section class="section">
+  <details class="fold" id="is-it-my-fault">
+    <summary>Is it my fault?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "No. Nothing you did, or said, or thought made this happen. This is about a choice a grown-up made."</p><p><b>What may be behind it:</b> Many children quietly decide they caused it: by being naughty, by a fight they remember, by something they wished. They may never ask out loud. Say this one even if they don't ask, and say it again.</p></div>
+  </details>
+  <details class="fold" id="when-is-he-coming-home">
+    <summary>When is he coming home?</summary>
+    <div class="fold-body"><p class="lead">You could say:</p><ul><li>If you know: "Not for a long time. After your next birthday, and the one after that." Use birthdays, Christmases or school terms for young children, not months or years.</li><li>If you don't know: "I don't know yet. The court decides. I will tell you as soon as I know."</li></ul><p><b>Don't say</b> "soon" unless it is. Dates change, and a broken promise hurts more than "I don't know".</p><p><b>What may be behind it:</b> "Will things ever be normal again?" and "Who looks after me until then?" Tell them what stays the same.</p><p>For some children, the person coming home is a frightening thought. If your child goes quiet when you talk about it, ask gently: "How do you feel about Dad coming home one day?"</p></div>
+  </details>
+  <details class="fold" id="where-is-he-what-is-it-like-there">
+    <summary>Where is he? What is it like there?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "He is in a prison. In Tasmania most people are at Risdon, near Hobart. He has a bed, meals, and things to do in the day. There are officers whose job is to keep everyone safe."</p><p><b>What may be behind it:</b> "Is he okay? Is he scared? Is he being hurt?" Children get their picture of prison from TV. If you have spoken to him, tell them something ordinary he said: what he had for tea, what he is reading.</p></div>
+  </details>
+  <details class="fold" id="is-he-in-a-cage">
+    <summary>Is he in a cage?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "No. He has a room, called a cell, with a bed in it. The doors are locked at night. In the day he can come out, see other people and go outside."</p><p><b>What may be behind it:</b> A scary picture in their head. Ask, "What do you think it looks like?" and then you can fix the bits that are wrong. <a href="books/visiting-my-dad.html"><i>Visiting My Dad in Prison</i></a> has real photographs from inside Risdon.</p></div>
+  </details>
+  <details class="fold" id="can-i-ring-him">
+    <summary>Can I ring him?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "We can't ring him. He has to ring us. When he does, you can talk to him."</p><p><b>What may be behind it:</b> They miss his voice. Calls can come at awkward times and end suddenly, which can upset a child. It helps to keep a list on the fridge of things to tell him, so they're ready when the phone goes.</p><p>How calls work, and what they cost, is in <a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener"><i>Stay Connected</i></a> under "They ring you. You cannot ring them". Check there for the current rule.</p></div>
+  </details>
+  <details class="fold" id="can-i-see-him-can-i-hug-him">
+    <summary>Can I see him? Can I hug him?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "I'm going to find out. If we can visit, I'll tell you exactly what it will be like before we go."</p><p><b>Don't promise</b> a visit or a hug until you know. Whether you can touch depends on the kind of visit, and that can change.</p><p><b>If they can't visit:</b> "The rules say we can't visit right now. That is not because of anything you did. You can still write to him and draw for him."</p><p><b>What may be behind it:</b> "Is he still my dad? Does he still want me?"</p><p>The kinds of visit, booking, and identification for children are in <a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener"><i>Stay Connected</i></a>. Video visits may be possible if you live a long way away.</p></div>
+  </details>
+  <details class="fold" id="can-i-send-him-something">
+    <summary>Can I send him something?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "Yes. You can write him a letter or do him a drawing, and we'll post it."</p><p><b>What may be behind it:</b> Wanting to do something. Children feel better when there is a job they can do. Check the rules first, so they don't spend an afternoon on something that gets sent back. Nothing can usually be handed over at a visit.</p></div>
+  </details>
+  <details class="fold" id="did-he-do-something-bad-is-he-a-bad-person">
+    <summary>Did he do something bad? Is he a bad person?</summary>
+    <div class="fold-body"><p class="lead">You could say:</p><ul><li>Young children: "He did something that is against the law. That was wrong. He is still your dad and he still loves you."</li><li>Older children: "He did a bad thing. That doesn't mean he is all bad. People are more than the worst thing they've done."</li><li>If the court has not decided: "The police think he broke the law. The court is working that out."</li></ul><p>The Practitioner's Guide suggests words like "good people sometimes do bad things" or "people make mistakes" (2018, p. 44).</p><p><b>What may be behind it:</b> "Am I allowed to still love him?" The answer is yes. They are also allowed to be angry with him. Both at once is normal.</p></div>
+  </details>
+  <details class="fold" id="am-i-bad-like-him">
+    <summary>Am I bad like him?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "No. You are you. You make your own choices. Here are three things I love about you…"</p><p><b>What may be behind it:</b> Shame, or something another child or adult has said. Children feel the judgment that falls on the family. Name the things they are good at, often.</p></div>
+  </details>
+  <details class="fold" id="will-the-police-take-you-too-will-they-take-me">
+    <summary>Will the police take you too? Will they take me?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "No. I'm not going anywhere. I'm here, and I'm looking after you. Police don't take children to prison."</p><p><b>What may be behind it:</b> If one parent can vanish, why not the other? This fear is strongest in children who saw the arrest. They may cling, or not want to go to school. Tell them each morning who is picking them up, and be there.</p><p>If your child saw the arrest and is having nightmares or is very frightened weeks later, talk to your GP or ring Kids Helpline with them.</p></div>
+  </details>
+  <details class="fold" id="what-do-i-tell-my-friends-what-if-they-find-out">
+    <summary>What do I tell my friends? What if they find out?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "You get to choose. You can say 'That's private.' You can say 'My dad's away for a while.' Or you can tell a friend you really trust. None of those is a lie."</p><p><b>What may be behind it:</b> Fear of being teased or left out. Practise the words together so they have them ready. If someone is unkind, they should tell you or a teacher. In <a href="books/waiting-for-dad.html"><i>Waiting for Dad</i></a>, Josh tells his mate Max, and Max stays. It is a good one to read together.</p></div>
+  </details>
+  <details class="fold" id="does-he-still-love-me-does-he-think-about-me">
+    <summary>Does he still love me? Does he think about me?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "Yes. Being in prison doesn't stop him loving you. He can't be here, and that is because of the rules, not because of you."</p><p><b>If he is not ringing or writing:</b> "I don't know why he hasn't been in touch. I do know it is not because of you. Some people find it very hard to know what to say."</p><p><b>What may be behind it:</b> "Did he leave because I'm not worth staying for?" Don't make promises on his behalf. Do keep telling them who loves them here and now.</p></div>
+  </details>
+  <details class="fold" id="why-did-you-lie-to-me">
+    <summary>Why did you lie to me?</summary>
+    <div class="fold-body"><p>For families who started with a different story.</p><p><b>You could say:</b> "I told you he was away for work because I didn't know how to tell you the truth, and I wanted to protect you. That was a mistake. I'm sorry. I'll tell you the truth from now on."</p><p><b>What may be behind it:</b> "Can I trust what you tell me now?" Say sorry once, plainly. Don't explain for too long. Then prove it by answering their next question honestly.</p></div>
+  </details>
+  <details class="fold" id="what-happens-at-court-can-i-come">
+    <summary>What happens at court? Can I come?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "Court is a place where people work out whether someone broke the law, and what should happen next. It can take a long time and there is a lot of waiting."</p><p><b>What may be behind it:</b> Wanting to see him, or to know what is being decided about their own life. The court guide has a section, <a href="https://pocketguides.org.au/court/#children" target="_blank" rel="noopener">&ldquo;Talking with children about court&rdquo;</a>, with words and pictures for this. Check with the court before taking a child.</p></div>
+  </details>
+  <details class="fold" id="what-will-it-be-like-when-he-comes-home">
+    <summary>What will it be like when he comes home?</summary>
+    <div class="fold-body"><p><b>You could say:</b> "I don't know exactly. It might feel a bit strange at first, for all of us. We'll work it out slowly, and you can tell me how it's going."</p><p><b>What may be behind it:</b> Excitement and worry at once. "Will he go away again? Will he be different? Will the rules at home change?" You can't promise how it will go. You can promise to keep listening.</p></div>
+  </details>
+  <details class="fold" id="questions-with-no-good-answer">
+    <summary>Questions with no good answer</summary>
+    <div class="fold-body"><p class="lead">"Why did he do it?" "Why us?" "Will he do it again?" "Is he sorry?"</p><p>Sometimes there isn't an answer, or you don't have it.</p><p><b>You could say:</b></p><ul><li>"I don't know. I wish I did."</li><li>"I wonder about that too."</li><li>"That's one you might want to ask him yourself one day. I can help you write it down."</li><li>"I can't answer that. But I can sit here with you."</li></ul><p>A child who gets an honest "I don't know" learns they can keep asking you. A child who gets a made-up answer learns to stop.</p></div>
+  </details>
+  <details class="fold" id="if-you-re-worried-about-how-your-child-is-going">
+    <summary>If you're worried about how your child is going</summary>
+    <div class="fold-body"><p>Trouble sleeping, wetting the bed, anger, going quiet, not wanting to go to school: these are common when someone goes to prison, and they often settle when the child is told the truth and things at home feel steady.</p><p>If they don't settle, or you are frightened by something your child says:</p><ul><li><b>Kids Helpline, <a class="tel" href="tel:1800551800">1800 55 1800</a>.</b> Free, any time, ages 5 to 25. They can ring or chat online.</li><li><b>Parentline Tasmania, <a class="tel" href="tel:1300808178">1300 808 178</a>.</b> For you.</li><li><b>13YARN, <a class="tel" href="tel:139276">13 92 76</a>.</b> For Aboriginal and Torres Strait Islander people, any time.</li><li><b>Lifeline, <a class="tel" href="tel:131114">13 11 14</a>.</b> Any time.</li><li><b>Onesimus Foundation, <a class="tel" href="tel:+61401690954">0401 690 954</a>.</b></li><li>Your GP, or your child's school.</li></ul><p>If a child is in danger, call <a class="tel" href="tel:000">000</a>.</p></div>
+  </details>
+
+  <div class="nextup">
+    <a class="raise" href="telling-the-children.html"><small>Read next</small><b>Telling the children &rarr;</b><span>What to say, and words you can borrow</span></a>
+    <a class="raise" href="books/my-diary.html"><small>For the child</small><b>My Diary &rarr;</b><span>A story to read together, and a diary to fill in</span></a>
+    <a class="raise" href="family-resources.html"><small>Back to</small><b>Resources for Families &rarr;</b><span>Books, guides and where to get help</span></a>
+  </div>
+
+  <p class="note"><strong>Mockup note for Norm.</strong> Draft for review, 22 November 2026, written by the Family and Children drafting project from the Practitioner's Guide (2018 edition). Not yet checked with the Tasmania Prison Service, a lawyer or a clinician. The points marked for checking are kept in the working draft and are not shown on this page.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+<script>
+/* A link to a section opens it. */
+(function () {
+  function openFromHash() { var el = document.getElementById(location.hash.slice(1)); if (el && el.tagName === "DETAILS") { el.open = true; setTimeout(function () { el.scrollIntoView(); }, 60); } }
+  window.addEventListener("hashchange", openFromHash); openFromHash();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>My Diary (draft for review)</title>
+<!--
+  MY DIARY: two concepts in one file, for review. Onesimus Foundation, draft 22 November 2026.
+  Concept A, "Charlie's diary": a story diary to read together. A new Tasmanian retelling that follows the
+    seven-day shape and voice of "My Diary" (Families Outside, Scotland, 2016). Not the original text.
+  Concept B, "My own diary": pages a child fills in.
+  Self-contained: no outside files, no network requests. Nothing a child writes is sent anywhere.
+  PRIVACY SWITCH (decision for Norm): KEEP_DEFAULT below. false = nothing is kept when the page closes.
+  The "For grown-ups" page lets an adult turn keeping on for that phone only. See the covering note.
+-->
+<style>
+:root{--navy:#1F3864;--teal:#2E75B6;--pale:#D6E4F0;--grey:#595959;--paper:#fffdf7;--sun:#f4b942;--line:#c9d6e3}
+*{box-sizing:border-box}
+html{font-size:20px;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#1b2430;background:var(--pale);line-height:1.5}
+.wrap{max-width:640px;margin:0 auto;padding:12px 14px 90px}
+.draft{background:#7a4d00;color:#fff;text-align:center;font-size:.65rem;padding:4px;letter-spacing:.05em}
+h1{font-size:1.7rem;color:var(--navy);margin:.4em 0 .2em;line-height:1.2}
+h2{font-size:1.25rem;color:var(--navy);margin:.2em 0 .5em;line-height:1.25}
+p{margin:.5em 0}
+.card{background:var(--paper);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 2px 0 var(--line);border:2px solid #fff}
+.big{display:block;width:100%;text-align:left;font:inherit;font-size:1.1rem;font-weight:bold;color:#fff;background:var(--teal);border:0;border-radius:16px;padding:18px;margin:12px 0;cursor:pointer;box-shadow:0 4px 0 var(--navy)}
+.big small{display:block;font-weight:normal;font-size:.8rem;margin-top:4px}
+.big.alt{background:var(--navy);box-shadow:0 4px 0 #0e1c36}
+.big.soft{background:#fff;color:var(--navy);box-shadow:0 3px 0 var(--line);font-size:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{font:inherit;font-size:.9rem;padding:10px 14px;border-radius:999px;border:2px solid var(--teal);background:#fff;color:var(--navy);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--teal);color:#fff}
+.face{display:flex;flex-direction:column;align-items:center;width:76px;padding:8px 2px;border-radius:14px;border:2px solid var(--line);background:#fff;font:inherit;font-size:.65rem;cursor:pointer;color:#1b2430}
+.face span{font-size:1.9rem;line-height:1.2}
+.face[aria-pressed="true"]{border-color:var(--teal);background:var(--pale)}
+label{display:block;font-weight:bold;margin:14px 0 4px;color:var(--navy)}
+input[type=text],textarea{width:100%;font:inherit;padding:10px;border:2px solid var(--line);border-radius:12px;background:#fff;color:#1b2430}
+textarea{min-height:4.6em;resize:none;overflow:hidden;background-image:repeating-linear-gradient(#fff,#fff 1.45em,#e6edf4 1.45em,#e6edf4 1.5em);line-height:1.5}
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--line);display:flex;gap:8px;padding:8px 10px;align-items:center}
+.nav button{font:inherit;font-size:.9rem;font-weight:bold;padding:12px 14px;border-radius:12px;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer;flex:1}
+.nav button.go{background:var(--navy);color:#fff}
+.nav button:disabled{opacity:.35}
+.nav .home{flex:0 0 auto}
+.count{font-size:.7rem;color:var(--grey);text-align:center;margin:0}
+.day{font-size:.8rem;font-weight:bold;color:#fff;background:var(--teal);display:inline-block;padding:3px 12px;border-radius:999px}
+.story p{font-size:1.05rem}
+.story b{color:var(--navy);letter-spacing:.02em}
+.turn{background:var(--pale);border-radius:14px;padding:12px;margin-top:14px;font-size:.9rem}
+.turn b{color:var(--navy)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:8px 0}
+.cal div{font-size:.6rem;text-align:center;color:var(--grey)}
+.cal button{font:inherit;font-size:.8rem;aspect-ratio:1;border-radius:10px;border:2px solid var(--line);background:#fff;cursor:pointer;color:#1b2430;padding:0}
+.cal button[aria-pressed="true"]{background:var(--sun);border-color:#b98311;font-weight:bold}
+.cal button.today{border-color:var(--navy)}
+canvas{width:100%;height:300px;border:2px dashed var(--teal);border-radius:14px;background:#fff;touch-action:none;display:block}
+.dots{display:flex;gap:8px;margin:8px 0;align-items:center}
+.dot{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--line);cursor:pointer;padding:0}
+.dot[aria-pressed="true"]{box-shadow:0 0 0 3px var(--navy)}
+.note{font-size:.75rem;color:var(--grey)}
+.help{background:var(--navy);color:#fff;border-radius:14px;padding:14px;margin-top:12px}
+.help a{color:#fff;font-weight:bold;font-size:1.2rem}
+.saved{border-left:6px solid var(--sun);padding:6px 10px;margin:8px 0;background:#fff;border-radius:8px;font-size:.85rem}
+.flag{background:#fff4d6;color:#7a4d00;font-size:.7rem;padding:6px 8px;border-radius:8px;margin:8px 0;display:none}
+body.review .flag{display:block}
+.switch{display:flex;gap:10px;align-items:flex-start;font-weight:normal;color:#1b2430}
+.switch input{width:28px;height:28px;flex:0 0 auto;margin-top:2px}
+[hidden]{display:none!important}
+.printonly{display:none}
+@media print{
+  html{font-size:14pt} body{background:#fff}
+  .nav,.draft,.noprint,.flag{display:none!important}
+  .printonly{display:block}
+  .wrap{max-width:none;padding:0}
+  .card{box-shadow:none;border:1.5pt solid #999;break-inside:avoid;page-break-inside:avoid;margin:0 0 10mm}
+  .pg{display:block!important;break-after:page;page-break-after:always}
+  .pg:last-child{break-after:auto;page-break-after:auto}
+  textarea{min-height:32mm;border:1pt solid #999}
+  canvas{height:120mm;border:1.5pt dashed #666}
+  .chip[aria-pressed="false"],.dots{display:none}
+  .face,.cal button{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="draft">DRAFT FOR REVIEW · NOT YET PUBLISHED · <a href="#" id="revToggle" style="color:#fff">reviewer notes</a></div>
+<div class="wrap" id="app"></div>
+<div class="nav noprint" id="nav" hidden>
+  <button class="home" id="bHome" aria-label="Back to the start">⌂</button>
+  <button id="bPrev">← Back</button>
+  <button class="go" id="bNext">Next →</button>
+</div>
+
+<script>
+(function(){
+"use strict";
+var KEEP_DEFAULT = false;              /* decision for Norm: see covering note */
+var KEY = "onesimus.mydiary.v1";
+var S = { who:"dad", other:"", keep:KEEP_DEFAULT, f:{}, faces:{}, ticks:{}, days:[], draw:"" };
+var view = "home", idx = 0, printing = false;
+
+/* ---------- keeping (only if a grown-up turned it on, on this device) ---------- */
+function load(){ try{ var r = localStorage.getItem(KEY); if(r){ var o = JSON.parse(r); if(o && o.keep){ S = o; } } }catch(e){} }
+function save(){ try{ if(S.keep){ localStorage.setItem(KEY, JSON.stringify(S)); } else { localStorage.removeItem(KEY); } }catch(e){} }
+function wipe(){ S = { who:"dad", other:"", keep:false, f:{}, faces:{}, ticks:{}, days:[], draw:"" }; try{ localStorage.removeItem(KEY); }catch(e){} }
+
+/* ---------- who is away ---------- */
+var WHO = {
+  dad:{N:"Dad",he:"he",him:"him",his:"his"},
+  mum:{N:"Mum",he:"she",him:"her",his:"her"},
+  brother:{N:"my brother",he:"he",him:"him",his:"his"},
+  sister:{N:"my sister",he:"she",him:"her",his:"her"},
+  other:{N:"",he:"they",him:"them",his:"their"}
+};
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function w(){ var o = WHO[S.who] || WHO.dad, n = o.N; if(S.who==="other"){ n = (S.other||"").trim() || "my person"; }
+  return { n:esc(n), N:esc(cap(n)), he:o.he, He:cap(o.he), him:o.him, his:o.his, His:cap(o.his) }; }
+function T(s){ var x = w(); return s.replace(/\{(n|N|he|He|him|his|His)\}/g,function(_,k){return x[k];}); }
+
+/* ---------- Concept A: Charlie's diary (a new retelling; see header comment) ---------- */
+var STORY = [
+ { d:"Day 1", t:"The truth", p:[
+   "This is my diary. Nobody reads it but me. So I can say <b>WHATEVER I WANT</b>.",
+   "{N} went away four weeks ago. First I was told it was a work trip. That was <b>NOT TRUE</b>.",
+   "{N} is in prison. Now I know. I am cross about the fib. I am also a bit glad somebody told me, because I <b>knew</b> something was wrong.",
+   "Angry. Then scared. Then sad. All in one day!",
+   "My head is full of questions. Is {n} okay? Is the food yuck? Is it scary in there? Did <b>I</b> do something wrong?" ],
+   q:"What questions are buzzing in your head?" },
+ { d:"Day 2", t:"The secret", p:[
+   "School felt weird today. Same teacher. Same room. Same oval. But <b>I</b> feel different.",
+   "It is like carrying a giant invisible backpack. Nobody can see it. It is <b>SO</b> heavy.",
+   "I can't sleep properly, so I yawned all day. Mr Tan asked if I was all right. I wanted to shout <b>NO!</b> I said, \"Yeah, fine.\"",
+   "What if people laugh at me? What if Billie doesn't want to be my friend any more?",
+   "I want to see {n}. And sometimes I don't. Is that bad? I think prison might be dark and scary. Maybe I'm wrong." ],
+   q:"Is there something you are carrying that nobody can see?" },
+ { d:"Day 3", t:"I told Billie", p:[
+   "One good thing. I told Billie. It just fell out of my mouth at lunch.",
+   "Billie looked surprised. Then Billie said, \"That must be really hard.\" And gave me half a sandwich.",
+   "Billie promised not to tell. Billie thinks I should tell Mr Tan too.",
+   "Somebody else knows now. The backpack feels a bit lighter." ],
+   q:"Who is one person you could tell?" },
+ { d:"Day 4", t:"My birthday", p:[
+   "Happy birthday to me. Is it happy? Not sure.",
+   "On my birthday {n} always sings to me. Really badly. Not this year.",
+   "There was a card from {him}. I read it four times. I would still rather have {him} here.",
+   "I didn't want a party. We got pizza instead, me and Billie. Next year I am having the <b>BIGGEST</b> party.",
+   "Nan says some things are different for now, and that is okay. We can make some new things too." ],
+   q:"What do you miss doing together?" },
+ { d:"Day 5", t:"The assembly", p:[
+   "Today should have been good. It went a bit wrong.",
+   "My class sang at assembly. When I sing I forget about everything. Lots of families came.",
+   "Then a kid said, \"Where's your {n}?\" My face went <b>RED</b>. I didn't know what to say.",
+   "And I saw Nan had tears in her eyes when we sang.",
+   "I am scared of being the different one. Billie says, \"You're still just you.\"" ],
+   q:"What could you say if someone asks? (\"That's private\" is a real answer.)" },
+ { d:"Day 6", t:"I told my teacher", p:[
+   "Something happened. Mr Tan said, \"Is everything okay?\" And it all came out. Like a <b>VOLCANO</b>.",
+   "He looked surprised. Then he said, \"Thank you for telling me. This is not your fault.\"",
+   "He said I can talk to him any time. Or someone else at school if that is easier. I can tell him when I have a visit.",
+   "Maybe I won't get in trouble for yawning now.",
+   "I feel a bit less on my own." ],
+   q:"Which grown-up at school feels safe to you?" },
+ { d:"Day 7", t:"I saw {N}!", p:[
+   "<b>I SAW {N} TODAY!</b>",
+   "There was a lot of waiting. There were big doors. I felt wobbly going in.",
+   "But the people were kinder than I thought. And then I saw {n}.",
+   "We laughed, like before. The jokes are still <b>terrible</b>.",
+   "Some of it was boring, because the grown-ups talked. Boring is better than scary!",
+   "Saying goodbye was the hard bit. I cried in the car. Nan said that's okay.",
+   "A lot of the things I worried about didn't even happen. Now I know where {n} is. That helps." ],
+   q:"What do you want to know about a visit?",
+   flag:"Check with TPS: nothing in Day 7 should describe a visit that could not happen at Risdon. No specific facilities are named on purpose." },
+ { d:"The end of my first week", t:"Angry, scared, sad, glad. All in seven days!", p:[
+   "A whole week in my diary. It feels good to let it <b>OUT</b>.",
+   "I have started a box of things to show {n} one day. My birthday card. The song sheet. A photo of me and Billie and a <b>HUGE</b> pizza.",
+   "I think I'll keep writing." ],
+   q:"Now it's your turn. What would you put in your diary?" }
+];
+
+/* ---------- Concept B: my own diary ---------- */
+var FACES = [["happy","😀"],["okay","🙂"],["sad","😢"],["angry","😠"],["worried","😟"],["mixed up","😵‍💫"],["tired","😴"],["proud","🤩"]];
+function faces(k){ return '<div class="chips">'+FACES.map(function(f){ var on = !!(S.faces[k]&&S.faces[k][f[0]]);
+  return '<button type="button" class="face" data-face="'+k+'|'+f[0]+'" aria-pressed="'+on+'"><span aria-hidden="true">'+f[1]+'</span>'+f[0]+'</button>'; }).join("")+'</div>'; }
+function ta(k,lab,ph){ return '<label for="f_'+k+'">'+T(lab)+'</label><textarea id="f_'+k+'" data-k="'+k+'" placeholder="'+(ph||"")+'">'+esc(S.f[k]||"")+'</textarea>'; }
+function tx(k,lab){ return '<label for="f_'+k+'">'+T(lab)+'</label><input type="text" id="f_'+k+'" data-k="'+k+'" value="'+esc(S.f[k]||"")+'">'; }
+function chips(k,opts){ return '<div class="chips">'+opts.map(function(o){ return '<button type="button" class="chip" data-chip="'+k+'|'+o+'" aria-pressed="'+(S.f[k]===o)+'">'+o+'</button>'; }).join("")+'</div>'; }
+function cal(){ var now = new Date(), y = now.getFullYear(), m = now.getMonth(), first = new Date(y,m,1).getDay(), n = new Date(y,m+1,0).getDate();
+  var h = '<p><b>'+now.toLocaleDateString("en-AU",{month:"long",year:"numeric"})+'</b></p><div class="cal">'+["S","M","T","W","T","F","S"].map(function(d){return "<div>"+d+"</div>";}).join("");
+  for(var i=0;i<first;i++){ h += "<span></span>"; }
+  for(var d=1;d<=n;d++){ var k = y+"-"+(m+1)+"-"+d; h += '<button type="button" data-tick="'+k+'" aria-pressed="'+!!S.ticks[k]+'"'+(d===now.getDate()?' class="today"':'')+'>'+d+'</button>'; }
+  return h+"</div>"; }
+var PAGES = [
+ { t:"This is me", h:function(){ return tx("name","My name is")+tx("age","I am this many years old")+ta("like","Things I like")+ta("good","Things I am good at"); } },
+ { t:"My family", h:function(){ return ta("home","Who lives at my house")+ta("love","People who love me")+ta("pets","Pets, and other important ones"); } },
+ { t:"Where {n} is", h:function(){ return T('<p>{N} is in a place called <b>prison</b>. {N} can\'t come home yet.</p><p>It is <b>not</b> because of anything I did.</p>')+ta("know","What I know about it")+ta("wonder","What I wonder about"); } },
+ { t:"Counting the days", h:function(){ return '<p>Tap a day when it is done. You could also colour in a day on paper.</p>'+cal()+ta("forward","Something I am looking forward to")
+   +'<p class="flag">Reviewer: this counts days gone by, not days until release. Release dates move, so a countdown would set a child up for a broken promise.</p>'; } },
+ { t:"Today", h:function(){ return '<p>How do I feel today? Pick as many as you like.</p>'+faces("today")+ta("tgood","A good thing today")+ta("thard","A hard thing today")
+   +'<button type="button" class="big soft noprint" id="keepDay">Put today in my diary ＋</button><div id="days">'+S.days.map(function(d){ return '<div class="saved"><b>'+esc(d.date)+'</b> '+esc(d.faces)+'<br>'+esc(d.good)+(d.hard?'<br>'+esc(d.hard):'')+'</div>'; }).join("")+'</div>'; } },
+ { t:"When I saw or heard from {n}", h:function(){ return chips("ckind",["A visit","A phone call","A video call","A letter"])+ta("saw","What I saw or heard")+'<p><b>How I felt</b></p>'+faces("visit")+ta("best","The best bit")+ta("hardbit","The hard bit"); } },
+ { t:"Things I want to tell {n}", h:function(){ return '<p>Keep a list here. Then you are ready when the phone rings.</p>'+ta("tell","I want to tell {him}…"); } },
+ { t:"Things I want to ask", h:function(){ return ta("askg","Questions for a grown-up at home")+ta("askp","Questions for {n}")+'<p class="note">Some questions don\'t have an answer yet. You can still write them down.</p>'; } },
+ { t:"My drawing page", h:function(){ return '<div class="dots noprint">'+["#1b2430","#d42a1c","#2E75B6","#2e8b57","#f4b942"].map(function(c,i){ return '<button type="button" class="dot" data-col="'+c+'" style="background:'+c+'" aria-pressed="'+(i===0)+'" aria-label="colour '+(i+1)+'"></button>'; }).join("")
+   +'<button type="button" class="chip" id="clr">Start again</button></div><canvas id="cv" aria-label="Drawing space"></canvas><p class="note">Draw with your finger. Or print this page and use pencils.</p>'; } },
+ { t:"People I can talk to", h:function(){ return tx("p1","At home")+tx("p2","At school")+tx("p3","Someone else")
+   +'<div class="help"><p><b>Kids Helpline</b><br>Free. Any time, day or night. For kids and teenagers.</p><p><a href="tel:1800551800">1800 55 1800</a></p></div>'; } }
+];
+
+/* ---------- drawing ---------- */
+var col = "#1b2430";
+function setupCanvas(){ var c = document.getElementById("cv"); if(!c) return; var r = c.getBoundingClientRect(); c.width = Math.max(300,Math.round(r.width))*2; c.height = 600;
+  var g = c.getContext("2d"); g.lineWidth = 8; g.lineCap = "round"; g.lineJoin = "round";
+  if(S.draw){ var im = new Image(); im.onload = function(){ g.drawImage(im,0,0,c.width,c.height); }; im.src = S.draw; }
+  var down = false;
+  function pt(e){ var b = c.getBoundingClientRect(); return [(e.clientX-b.left)*c.width/b.width,(e.clientY-b.top)*c.height/b.height]; }
+  c.onpointerdown = function(e){ down = true; try{ c.setPointerCapture(e.pointerId); }catch(x){} var p = pt(e); g.strokeStyle = col; g.beginPath(); g.moveTo(p[0],p[1]); g.lineTo(p[0]+0.1,p[1]+0.1); g.stroke(); e.preventDefault(); };
+  c.onpointermove = function(e){ if(!down) return; var p = pt(e); g.lineTo(p[0],p[1]); g.stroke(); };
+  c.onpointerup = c.onpointercancel = function(){ if(!down) return; down = false; try{ S.draw = c.toDataURL("image/png"); save(); }catch(x){} };
+}
+
+/* ---------- views ---------- */
+var app = document.getElementById("app"), nav = document.getElementById("nav");
+function home(){
+  var opts = [["dad","Dad"],["mum","Mum"],["brother","My brother"],["sister","My sister"],["other","Someone else"]];
+  return '<h1>My Diary</h1><p>For when someone in your family is away in prison.</p>'
+   +'<div class="card"><h2>Who is away?</h2><div class="chips">'+opts.map(function(o){ return '<button type="button" class="chip" data-who="'+o[0]+'" aria-pressed="'+(S.who===o[0])+'">'+o[1]+'</button>'; }).join("")+'</div>'
+   +'<div id="otherBox"'+(S.who==="other"?"":" hidden")+'><label for="other">What do you call them?</label><input type="text" id="other" maxlength="30" value="'+esc(S.other)+'" placeholder="Pop, Aunty, my stepdad…"></div></div>'
+   +'<button class="big" data-go="story">📖 Read Charlie\'s diary<small>A story. Charlie\'s first week after finding out.</small></button>'
+   +'<button class="big alt" data-go="mine">✏️ Write my own diary<small>Pages for you to fill in and draw on.</small></button>'
+   +'<button class="big soft" data-go="grown">For grown-ups: read this first</button>'
+   +'<p class="flag">Reviewer: two concepts in one file. A = story diary (new retelling after Families Outside, 2016). B = fill-in diary (from the brief\'s page list). They can ship together, as here, or separately.</p>';
+}
+function story(i){ var s = STORY[i];
+  return '<div class="card story pg"><span class="day">'+s.d+'</span><h2>'+T(s.t)+'</h2>'+s.p.map(function(x){ return "<p>"+T(x)+"</p>"; }).join("")
+   +'<div class="turn"><b>Talk about it:</b> '+T(s.q)+'</div>'+(s.flag?'<p class="flag">'+s.flag+'</p>':'')+'</div>';
+}
+function page(i){ var p = PAGES[i]; return '<div class="card pg"><h2>'+T(p.t)+'</h2>'+p.h()+'</div>'; }
+function grown(){
+  return '<h1>For grown-ups</h1><div class="card"><h2>How to use this</h2><p><b>Charlie\'s diary</b> is a story to read together. It suits children of about 7 to 11. Stop at the "Talk about it" line on each day.</p>'
+   +'<p><b>My own diary</b> is for your child to fill in. Younger children can tell you what to write, or just draw.</p><p>Don\'t read their diary unless they ask you to. Do tell them they can show you any page, any time.</p></div>'
+   +'<div class="card"><h2>Is it private?</h2><p>Nothing your child writes here is sent anywhere. It stays on this phone or tablet.</p>'
+   +'<p>Unless you tick the box below, it is <b>not kept</b>. When this page closes, the writing is gone. Print it first if you want a copy.</p>'
+   +'<label class="switch"><input type="checkbox" id="keep"'+(S.keep?" checked":"")+'><span><b>Keep the diary on this phone.</b> Anyone who uses this phone could open it and read it. Only tick this if that is okay.</span></label>'
+   +'<button type="button" class="big soft" id="wipe">Wipe the diary from this phone</button><p class="note" id="wiped" hidden>Done. Everything has been removed.</p></div>'
+   +'<div class="card"><h2>Print it</h2><p>Paper is the most private diary. Print the blank pages and keep them in a folder.</p>'
+   +'<button type="button" class="big soft" data-print="mine">Print my own diary</button><button type="button" class="big soft" data-print="story">Print Charlie\'s diary</button></div>'
+   +'<div class="card"><h2>If you are worried about your child</h2><p>Kids Helpline <a href="tel:1800551800">1800 55 1800</a> · Parentline <a href="tel:1300808178">1300 808 178</a> · Onesimus <a href="tel:0401690954">0401 690 954</a></p>'
+   +'<p class="note">Charlie\'s diary is a new story written for Tasmanian families. It follows the idea and shape of <i>My Diary</i>, © Families Outside (Scotland) 2016, with thanks.</p>'
+   +'<p class="flag">Reviewer: confirm the Families Outside permission in writing covers an adapted retelling, and agree the credit line. Parentline hours to confirm.</p></div>';
+}
+function render(){
+  var list = view==="story" ? STORY : view==="mine" ? PAGES : null, h;
+  if(printing){ h = (printing==="story" ? '<h1>Charlie\'s diary</h1>'+STORY.map(function(_,i){return story(i);}).join("") : '<h1 class="printonly">My Diary</h1>'+PAGES.map(function(_,i){return page(i);}).join("")); }
+  else if(view==="home"){ h = home(); } else if(view==="grown"){ h = grown(); }
+  else { h = (view==="story"?story(idx):page(idx))+'<p class="count">'+(idx+1)+" of "+list.length+'</p>'; }
+  app.innerHTML = h;
+  nav.hidden = (view==="home");
+  document.getElementById("bPrev").style.visibility = list ? "visible":"hidden";
+  document.getElementById("bNext").style.visibility = list ? "visible":"hidden";
+  if(list){ document.getElementById("bPrev").disabled = idx===0; document.getElementById("bNext").textContent = idx===list.length-1 ? (view==="story"?"Write my own →":"Finish ✓") : "Next →"; }
+  Array.prototype.forEach.call(app.querySelectorAll("textarea"),grow);
+  setupCanvas();
+  if(!printing){ window.scrollTo(0,0); }
+}
+function grow(t){ t.style.height = "auto"; t.style.height = Math.max(t.scrollHeight,90)+"px"; }
+function go(v,i){ view = v; idx = i||0; render(); }
+
+/* ---------- events ---------- */
+app.addEventListener("input",function(e){ var t = e.target;
+  if(t.dataset.k){ S.f[t.dataset.k] = t.value; if(t.tagName==="TEXTAREA") grow(t); save(); }
+  if(t.id==="other"){ S.other = t.value; save(); }
+});
+app.addEventListener("change",function(e){ if(e.target.id==="keep"){ S.keep = e.target.checked; save(); } });
+app.addEventListener("click",function(e){ var b = e.target.closest("button"); if(!b) return; var d = b.dataset;
+  if(d.who){ S.who = d.who; save(); render(); if(d.who==="other"){ var o = document.getElementById("other"); if(o) o.focus(); } }
+  else if(d.go){ go(d.go,0); }
+  else if(d.face){ var a = d.face.split("|"); S.faces[a[0]] = S.faces[a[0]]||{}; S.faces[a[0]][a[1]] = !S.faces[a[0]][a[1]]; b.setAttribute("aria-pressed",S.faces[a[0]][a[1]]); save(); }
+  else if(d.chip){ var c = d.chip.split("|"); S.f[c[0]] = (S.f[c[0]]===c[1]?"":c[1]); save(); render(); }
+  else if(d.tick){ S.ticks[d.tick] = !S.ticks[d.tick]; b.setAttribute("aria-pressed",S.ticks[d.tick]); save(); }
+  else if(d.col){ col = d.col; Array.prototype.forEach.call(app.querySelectorAll(".dot"),function(x){ x.setAttribute("aria-pressed",x===b); }); }
+  else if(b.id==="clr"){ S.draw = ""; save(); setupCanvas(); var cv = document.getElementById("cv"); cv.getContext("2d").clearRect(0,0,cv.width,cv.height); }
+  else if(b.id==="keepDay"){ var f = S.faces.today||{}, fs = FACES.filter(function(x){return f[x[0]];}).map(function(x){return x[1];}).join(" ");
+    if(fs || S.f.tgood || S.f.thard){ S.days.unshift({ date:new Date().toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"long"}), faces:fs, good:S.f.tgood||"", hard:S.f.thard||"" });
+      S.faces.today = {}; S.f.tgood = ""; S.f.thard = ""; save(); render(); } }
+  else if(b.id==="wipe"){ wipe(); render(); document.getElementById("wiped").hidden = false; }
+  else if(d.print){ doPrint(d.print); }
+});
+document.getElementById("bHome").onclick = function(){ go("home"); };
+document.getElementById("bPrev").onclick = function(){ if(idx>0){ idx--; render(); } };
+document.getElementById("bNext").onclick = function(){ var list = view==="story"?STORY:PAGES;
+  if(idx<list.length-1){ idx++; render(); } else if(view==="story"){ go("mine",0); } else { go("home"); } };
+document.getElementById("revToggle").onclick = function(e){ e.preventDefault(); document.body.classList.toggle("review"); };
+function doPrint(which){ printing = which; render(); setTimeout(function(){ window.print(); },150); }
+window.addEventListener("afterprint",function(){ if(printing){ printing = false; render(); } });
+
+load(); render();
+})();
+</script>
+</body>
+</html>

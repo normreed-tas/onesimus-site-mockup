@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onesimus Foundation — Telling the children</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A3A; --sage:#4B7A5E; --paper:#F6F3ED; --brass:#B8894A;
+    --slate:#6B7280; --line:#DDD6C9; --white:#FFFFFF; --sage-tint:#EAF0EB; --brass-tint:#F3E9DA;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); font-weight:500;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; margin:0; line-height:1.1;}
+  p{line-height:1.65; color:var(--slate);}
+  svg{display:block;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(246,243,237,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:#fff url(onesimus-logo.png) center/cover no-repeat;border:1px solid var(--line);flex:none;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{font-size:.88rem; font-weight:500; text-decoration:none; color:var(--ink); opacity:.75;}
+  nav a.current{opacity:1; border-bottom:2px solid var(--brass); padding-bottom:2px;}
+  .nav-cta{background:var(--ink); color:var(--white)!important; opacity:1!important; padding:9px 18px; border-radius:100px; font-size:.82rem;}
+
+  .page-head{max-width:1180px; margin:0 auto; padding:56px 24px 40px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.9rem); max-width:760px;}
+  .page-head p{margin-top:18px; max-width:640px; font-size:1.05rem;}
+
+  .section{max-width:1180px; margin:0 auto; padding:0 24px 72px;}
+  .section-head{max-width:680px; margin-bottom:30px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:.98rem;}
+
+  .status{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+          letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px;
+          background:var(--sage-tint); color:var(--sage); white-space:nowrap;}
+  .status.dev{background:var(--brass-tint); color:var(--brass);}
+
+  /* GUIDE CARDS */
+  .guide{display:grid; grid-template-columns:168px 1fr; gap:26px; align-items:start;
+         background:var(--white); border:1px solid var(--line); border-radius:2px;
+         padding:28px 30px; margin-bottom:14px;}
+  .guide .qrcol{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .guide .qrcol svg{border:1px solid var(--line); padding:7px; background:var(--white);}
+  .guide .qrcol .scan{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.07em;
+                      text-transform:uppercase; color:var(--slate); text-align:center;}
+  .guide h3{font-size:1.35rem;}
+  .guide .strap{margin-top:7px; font-size:.95rem; color:var(--slate);}
+  .guide .who{margin-top:16px; display:grid; gap:7px; font-size:.86rem;}
+  .guide .who div{display:flex; gap:9px;}
+  .guide .who b{font-family:'IBM Plex Mono',monospace; font-size:.63rem; letter-spacing:.07em;
+                text-transform:uppercase; color:var(--sage); min-width:92px; padding-top:2px;}
+  .guide .who span{color:var(--ink); opacity:.84;}
+  .guide .open{display:inline-flex; align-items:center; gap:7px; margin-top:18px;
+               background:var(--ink); color:var(--white); text-decoration:none;
+               padding:10px 19px; border-radius:100px; font-size:.83rem; font-weight:600;}
+  .guide.soon{background:var(--paper); border-style:dashed;}
+  .guide.soon .qrcol{justify-content:center; min-height:140px;}
+  .guide .pending{width:128px; height:128px; border:1px dashed var(--line); border-radius:2px;
+                  display:flex; align-items:center; justify-content:center; text-align:center;
+                  font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--slate);
+                  letter-spacing:.06em; padding:10px;}
+  @media (max-width:640px){ .guide{grid-template-columns:minmax(0,1fr);} .guide .status{white-space:normal; line-height:1.5;} .guide .qrcol{align-items:flex-start;} }
+
+  /* OFFER */
+  .offer{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
+         border:1px solid var(--line); margin-top:4px;}
+  .offer > div{background:var(--white); padding:26px 28px;}
+  .offer h3{font-size:1.05rem; margin-bottom:14px;}
+  .offer ul{margin:0; padding-left:19px; font-size:.9rem; color:var(--slate); line-height:1.75;}
+  .offer li{margin-bottom:8px;}
+  @media (max-width:700px){ .offer{grid-template-columns:1fr;} }
+
+  .terms{background:var(--sage-tint); border-left:4px solid var(--sage); padding:22px 26px; margin-top:26px;}
+  .terms h3{font-size:1.05rem;}
+  .terms ul{margin:12px 0 0; padding-left:19px; font-size:.93rem; line-height:1.75; color:var(--ink);}
+  .terms li{margin-bottom:7px;}
+
+  .note{max-width:760px; margin-top:28px; font-size:.86rem; color:var(--slate); border-left:3px solid var(--brass); padding-left:16px;}
+
+  footer{border-top:1px solid var(--line); padding:48px 24px 32px;}
+  .footer-inner{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.85rem; color:var(--slate);}
+  .footer-inner strong{color:var(--ink);}
+
+  nav li.has-sub{position:relative;}
+  nav .sub-toggle{cursor:default;}
+  nav .sub-toggle::after{content:" \25BE"; font-size:.7em; opacity:.7;}
+  nav .sub{display:none; position:absolute; top:100%; left:-18px; padding-top:14px; z-index:60;}
+  nav li.has-sub:hover .sub, nav li.has-sub:focus-within .sub{display:block;}
+  nav .sub ul{display:block; background:var(--white); border:1px solid var(--line); border-radius:2px; box-shadow:0 10px 30px rgba(27,42,58,.10); min-width:240px; padding:8px 0;}
+  nav .sub a{display:block; padding:10px 18px; opacity:.85; border-bottom:none;}
+  nav .sub a:hover{background:var(--sage-tint); opacity:1;}
+  nav .sub a.current{opacity:1; border-bottom:none; box-shadow:inset 3px 0 0 var(--brass);}
+
+  .menu-toggle{display:none; margin-left:auto; margin-right:12px; background:none; border:1px solid var(--line); border-radius:100px; padding:8px 16px; font:500 .85rem 'Inter',sans-serif; color:var(--ink); cursor:pointer;}
+  @media (max-width:1024px){
+    .menu-toggle{display:inline-block;}
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(27,42,58,.08);}
+    header.menu-open nav{display:block;}
+    nav ul{display:block; padding:4px 24px 16px;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block; padding:13px 0; opacity:.85;}
+    nav a.current{border-bottom:none; padding-bottom:13px; color:var(--sage); opacity:1;}
+    nav .sub{display:block; position:static; padding:0 0 8px 16px;}
+    nav .sub ul{border:none; box-shadow:none; background:none; padding:0; min-width:0;}
+    nav .sub li{border-bottom:none;}
+    nav .sub a{padding:8px 0;}
+    nav .sub a.current{box-shadow:none;}
+    nav .sub-toggle::after{content:"";}
+  }
+</style>
+<link rel="stylesheet" href="draft.css">
+<style>
+  /* family pieces: fold-out sections so the page never looks like a wall of text */
+  .intro{max-width:760px;}
+  .intro p{font-size:1.05rem; color:var(--ink); margin:0 0 12px;}
+  blockquote{margin:0 0 20px; padding:16px 20px; background:var(--white); border-left:4px solid var(--sage);}
+  blockquote p{font-family:'Fraunces',serif; font-size:1.15rem; line-height:1.45; color:var(--ink); margin:0;}
+  blockquote cite{display:block; margin-top:8px; font-style:normal; font-size:.82rem; color:var(--slate);}
+  details.fold{background:var(--white); border:1px solid var(--line); border-radius:6px; margin-bottom:10px; scroll-margin-top:90px; max-width:860px;}
+  details.fold > summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:17px 20px; font-family:'Fraunces',serif; font-weight:500; font-size:1.25rem; line-height:1.25; color:var(--ink);}
+  details.fold > summary::-webkit-details-marker{display:none;}
+  details.fold > summary::after{content:"+"; margin-left:auto; font-family:'Inter',sans-serif; font-size:1.6rem; line-height:1; color:var(--sage); font-weight:300;}
+  details.fold[open] > summary::after{content:"\2212";}
+  details.fold[open] > summary{border-bottom:1px solid var(--line);}
+  .fold-body{padding:16px 20px 8px;}
+  .fold-body p, .fold-body li{color:var(--ink); font-size:1rem; line-height:1.65;}
+  .fold-body p{margin:0 0 12px;}
+  .fold-body p.lead{font-size:1.12rem; font-weight:600; background:var(--sage-tint); border-radius:6px; padding:12px 16px; margin-bottom:16px;}
+  .fold-body ul, .fold-body ol{margin:0 0 14px; padding-left:21px;}
+  .fold-body li{margin-bottom:8px;}
+  .fold-body h3{font-family:'Inter',sans-serif; font-weight:600; font-size:.95rem; letter-spacing:.02em; margin:20px 0 8px; padding-top:14px; border-top:1px solid var(--line); color:var(--sec-dark, var(--sage));}
+  .fold-body h3:first-child{border-top:none; padding-top:0; margin-top:0;}
+  .fold-body a{font-weight:600;}
+  a.tel{white-space:nowrap;}
+  .nextup{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; max-width:860px; margin-top:26px;}
+  .nextup a small{display:block; font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.85;}
+  .nextup a b{display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.12rem; margin-top:2px;}
+  .nextup a span{display:block; font-size:.86rem; font-weight:400; opacity:.9; margin-top:3px;}
+  .nextup a.raise{text-align:left; padding:13px 18px 15px !important;}
+</style>
+<link rel="stylesheet" href="site-colour.css">
+</head>
+<body data-sec="families">
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="logo"><span class="logo-mark"></span> Onesimus</div></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="has-sub">
+          <a href="family-community.html" class="sub-toggle current" aria-haspopup="true">For Families</a>
+          <div class="sub">
+            <ul>
+              <li><a href="family-community.html">Family &amp; Community</a></li>
+              <li><a href="family-resources.html" class="current">Resources for Families</a></li>
+              <li><a href="survey.html">The Survey</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="has-sub">
+          <a href="collaboration.html" class="sub-toggle" aria-haspopup="true">For Professionals</a>
+          <div class="sub">
+            <ul>
+              <li><a href="collaboration.html">Collaboration</a></li>
+              <li><a href="practitioners-guide.html">Practitioner's Guide</a></li>
+              <li><a href="training.html">Resourcing &amp; Training</a></li>
+              <li><a href="youth-justice.html">Youth Justice</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li class="has-sub">
+          <a href="pocket-guides.html" class="sub-toggle" aria-haspopup="true">Pocket Guides</a>
+          <div class="sub">
+            <ul>
+              <li><a href="pocket-guides.html">Navigating the Justice System</a></li>
+              <li><a href="https://pocketguides.org.au/court/" target="_blank" rel="noopener">Navigating the Court System &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener">Stay Connected (families) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/field-guide/" target="_blank" rel="noopener">Field Guide (practitioners) &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/custody-expectations/" target="_blank" rel="noopener">How you should be treated in custody &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/getting-out/" target="_blank" rel="noopener">Getting Out &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/blokes-book/" target="_blank" rel="noopener">The Blokes&rsquo; Book &#8599;</a></li>
+              <li><a href="https://pocketguides.org.au/living-with-an-order/" target="_blank" rel="noopener">Living With an Order &#8599;</a></li>
+              <li><a href="phone-guides.html">About the guides</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" onclick="var h=this.closest('header');var o=h.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
+    <a href="donate.html" class="nav-cta">Donate</a>
+  </div>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">Resources for Families &middot; For the adult</span>
+  <h1 style="margin-top:14px;">Telling the children</h1>
+  <div class="intro" style="margin-top:18px;"><blockquote><p>"I didn't know when he was going to prison. I saw it in the newspaper and came home and found out."</p><cite>14 year old girl, quoted in the Practitioner's Guide (2018), p. 32</cite></blockquote><p>Most people's first thought is to say nothing, to protect the child. This page is about why a small, true answer is usually kinder, and what words you can use tonight.</p><p>You do not have to do this perfectly. You only have to make sure your child is not left to work it out alone.</p></div>
+</section>
+
+<section class="section">
+  <details class="fold" id="should-i-tell-them">
+    <summary>Should I tell them?</summary>
+    <div class="fold-body"><p class="lead">Usually, yes. Something small and true, and soon.</p><p>It is your choice. You know your child best.</p><p>Here is why most families find the truth works better than silence:</p><ul><li><b>Children notice.</b> They see you upset or stressed. They hear the phone calls. They know someone is missing.</li><li><b>They fill the gap.</b> When nobody explains, children make up their own story. It is often worse than the truth. Many decide it is their fault.</li><li><b>They find out anyway.</b> From other kids, the news, social media, or something they overhear. It is better coming from you.</li><li><b>You can stop pretending.</b> Keeping a secret from a child is hard work. It is one less thing to carry.</li><li><b>They can get help.</b> A child can only be comforted about something they are allowed to know.</li></ul><p>The Practitioner's Guide puts it this way: "Children may create their own stories (that could be much worse) about why a family member is no longer there." (2018, p. 33)</p><p>You do not have to tell them everything. You do have to tell them something true.</p></div>
+  </details>
+  <details class="fold" id="before-you-start">
+    <summary>Before you start</summary>
+    <div class="fold-body"><p class="lead">Pick a quiet time, keep it short, and expect to do it more than once.</p><ul><li><b>Choose your moment.</b> Somewhere familiar and private. Not just before school or bed if you can help it. Leave time afterwards for a cuddle or a question.</li><li><b>Work out your few sentences first.</b> Say them out loud to yourself, or to a friend. Three sentences is enough to start.</li><li><b>Be ready for any reaction.</b> Tears, anger, silence, or "Can I go and play now?" All of these are normal. Some children are relieved. That is normal too.</li><li><b>It is fine to say "I don't know."</b> Follow it with "I will tell you as soon as I do."</li><li><b>It is fine to be upset yourself.</b> You can say, "I'm sad about it too. We'll get through it together."</li><li><b>More than one child?</b> Each one needs words that fit their age. You can tell them together and then talk to the older ones again on their own.</li><li><b>Expect it to come up again.</b> In the car. At bedtime. In the shop. Weeks later. That is how children make sense of things. Answer it again each time.</li></ul></div>
+  </details>
+  <details class="fold" id="words-you-can-borrow">
+    <summary>Words you can borrow</summary>
+    <div class="fold-body"><p class="lead">Use your own words if you can. These are here for when you can't find any.</p><p>Swap in Mum, Pop, your brother, or whoever it is.</p><h3>Under 5</h3><p>One or two short sentences. Then keep the day as normal as you can.</p><ul><li>"Dad can't live at home for now. He is staying at a place called prison."</li><li>"It is not because of anything you did."</li><li>"I am here. I am looking after you."</li></ul><p>Very small children will not understand, but they feel the change. Keep talking about the person. Keep a photo where they can see it.</p><h3>5 to 8</h3><p>Simple facts, and room for questions.</p><ul><li>"Dad broke a rule called a law. A law is a very important rule. When grown-ups break a law, sometimes they have to go to prison for a while."</li><li>"Prison is a place where he has to stay. He has a bed and food, and people there whose job is to keep everyone safe."</li><li>"He did not want to leave you. He loves you. This is not your fault."</li><li>"I don't know yet how long it will be. I will tell you when I know."</li></ul><h3>9 to 12</h3><p>More detail. They will ask harder questions, and they may already know more than you think. Ask first: "What have you heard?"</p><ul><li>"I want to tell you something true, because you are old enough to know. Dad has been sent to prison because he broke the law."</li><li>"The court decides how long. Right now it is … / Right now we don't know."</li><li>"You might feel angry, or sad, or embarrassed, or all of them. That's okay. You can still love him."</li><li>"You can ask me anything. If I don't know, I'll say so."</li></ul><h3>Teenagers</h3><p>Be straight with them. They can look things up, and they will.</p><ul><li>"I'd rather you heard this from me than from someone else."</li><li>"Here's what I know, and here's what I don't know yet."</li><li>"You get a say in this. Whether you visit, who you tell, how much you want to know."</li><li>"I'm not going to pretend it's fine. But we are going to be okay."</li></ul><h3>If they are waiting for court</h3><ul><li>"The police think Dad broke the law. A court is working out what happened. Until they decide, he has to stay in prison. We don't know yet what will happen."</li></ul></div>
+  </details>
+  <details class="fold" id="what-children-most-need-to-hear">
+    <summary>What children most need to hear</summary>
+    <div class="fold-body"><p class="lead">Four things. Say them more than once.</p><ol><li><b>"It is not your fault."</b> Nothing you did, said or thought made this happen.</li><li><b>"You are loved."</b> By me. And being in prison does not stop Dad loving you.</li><li><b>"You will be looked after."</b> Say who is picking them up, where they will sleep, and what stays the same: school, home, bedtime.</li><li><b>"You can ask me anything."</b> Now, or next week, or in the middle of the night.</li></ol><p>It also helps to say: "The grown-ups are sorting this out. It is not your job to fix it."</p></div>
+  </details>
+  <details class="fold" id="if-you-have-already-told-them-something-different">
+    <summary>If you have already told them something different</summary>
+    <div class="fold-body"><p class="lead">You can put it right. Children forgive a late truth far more easily than a long secret.</p><p>Plenty of families start with "he's working away" or "she's in hospital". You said it to protect them. That is nothing to be ashamed of.</p><p>You could say:</p><ul><li>"Remember I said Dad was away for work? That wasn't true. I said it because I didn't know how to tell you. I'm sorry."</li><li>"The truth is Dad is in prison. I'm going to tell you the truth from now on."</li></ul><p>They may be cross about the fib. Let them be. Say sorry once, simply, and then answer their questions.</p></div>
+  </details>
+  <details class="fold" id="if-it-is-hard-to-say-what-happened">
+    <summary>If it is hard to say what happened</summary>
+    <div class="fold-body"><p class="lead">You can be truthful without giving every detail.</p><ul><li><b>You don't have to explain the whole thing.</b> "He hurt someone" or "He took things that weren't his" is true, and enough for a young child.</li><li><b>If it has been in the news or online,</b> older children will probably see it. Tell them yourself first, in your words.</li><li><b>If the person in prison hurt you or the children,</b> your child may feel relieved, or scared about them coming back, or still love them, or all three. Tell them: "It is okay to feel safe now. It is okay to miss him too."</li><li><b>If the person in prison has asked you not to tell,</b> it is still your decision. You are the one at home with the child.</li><li><b>If you can't find the words at all,</b> ring someone and talk it through first. See "Looking after yourself" below.</li></ul></div>
+  </details>
+  <details class="fold" id="who-else-to-tell">
+    <summary>Who else to tell</summary>
+    <div class="fold-body"><p class="lead">You decide. You are not obliged to tell anyone.</p><ul><li><b>School.</b> You don't have to tell them. But a teacher who knows can quietly look out for your child, and is usually glad to be told. You can ask them to keep it private.</li><li><b>Family and close friends.</b> Pick one or two people your child can also talk to. Children often hide their worries from you to protect you.</li><li><b>Help your child with what to say.</b> They can choose. "That's private" is a full answer. So is "My dad's away at the moment." So is telling one friend they trust.</li><li><b>Private is not the same as secret.</b> Private means it's our family's business and you choose who knows. Secret means you must never tell. Don't ask a child to keep a secret from everyone. It is too heavy.</li></ul></div>
+  </details>
+  <details class="fold" id="if-they-are-going-to-visit-or-don-t-want-to">
+    <summary>If they are going to visit, or don't want to</summary>
+    <div class="fold-body"><p class="lead">Ask what they want. Never force a visit, and never promise one before you know it can happen.</p><ul><li><b>Tell them the truth before a visit.</b> A child who thinks they are going to "Dad's work" will be frightened by the gates and the search.</li><li><b>Walk them through it first.</b> Read <a href="books/visiting-my-dad.html"><i>Visiting My Dad in Prison</i></a> together. It shows a visit at Risdon step by step.</li><li><b>If they don't want to go, that's allowed.</b> They can write, draw, or wait until they are ready. Ask again another time.</li><li><b>If visits are not allowed,</b> tell them clearly that this is not their fault.</li></ul><p>For booking, identification for children and what you can bring, see <a href="https://pocketguides.org.au/stay-connected/" target="_blank" rel="noopener"><i>Stay Connected</i></a>. The rules change, so check there or with the prison each time.</p></div>
+  </details>
+  <details class="fold" id="looking-after-yourself-while-you-do-this">
+    <summary>Looking after yourself while you do this</summary>
+    <div class="fold-body"><p class="lead">You are carrying a lot. You are allowed to get help with this conversation.</p><ul><li><b>Say it to an adult first.</b> A friend, your mum, a worker. The second time is easier.</li><li><b>You can ask someone to be there</b> when you tell the children.</li><li><b>You won't get it perfect.</b> If it comes out wrong, you can try again tomorrow. "I didn't say that very well yesterday. Can I have another go?"</li></ul><p><b>People you can ring:</b></p><ul><li><b>Parentline Tasmania, <a class="tel" href="tel:1300808178">1300 808 178</a>.</b> For parents and carers. Ring if you don't know what to tell the children.</li><li><b>Onesimus Foundation, <a class="tel" href="tel:+61401690954">0401 690 954</a>.</b> We can talk it through with you.</li><li><b>Kids Helpline, <a class="tel" href="tel:1800551800">1800 55 1800</a>.</b> Free, any time, for anyone aged 5 to 25. Your child can ring or chat online themselves.</li><li><b>13YARN, <a class="tel" href="tel:139276">13 92 76</a>.</b> For Aboriginal and Torres Strait Islander people, any time.</li><li><b>Lifeline, <a class="tel" href="tel:131114">13 11 14</a>.</b> Any time, if it all gets too much.</li></ul></div>
+  </details>
+
+  <div class="nextup">
+    <a class="raise" href="questions-children-ask.html"><small>Read next</small><b>The questions children ask &rarr;</b><span>Short, true answers to the hard ones</span></a>
+    <a class="raise" href="books/my-diary.html"><small>For the child</small><b>My Diary &rarr;</b><span>A story to read together, and a diary to fill in</span></a>
+    <a class="raise" href="family-resources.html"><small>Back to</small><b>Resources for Families &rarr;</b><span>Books, guides and where to get help</span></a>
+  </div>
+
+  <p class="note"><strong>Mockup note for Norm.</strong> Draft for review, 22 November 2026, written by the Family and Children drafting project from the Practitioner's Guide (2018 edition). Not yet checked with the Tasmania Prison Service, a lawyer or a clinician. The points marked for checking are kept in the working draft and are not shown on this page.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Onesimus Foundation Ltd</strong><br>550 East Derwent Hwy, Risdon Vale, TAS 7016</div>
+    <div>0401 690 954<br>info@onesimus.org.au</div>
+    <div>ABN 89 610 863 280<br>Registered charity &amp; approved DGR</div>
+  </div>
+</footer>
+
+<script>
+/* A link to a section opens it. */
+(function () {
+  function openFromHash() { var el = document.getElementById(location.hash.slice(1)); if (el && el.tagName === "DETAILS") { el.open = true; setTimeout(function () { el.scrollIntoView(); }, 60); } }
+  window.addEventListener("hashchange", openFromHash); openFromHash();
+})();
+</script>
+</body>
+</html>
