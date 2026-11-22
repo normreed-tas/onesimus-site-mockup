@@ -6,9 +6,9 @@
      - the top margin stays cream
      - raised buttons only on things that do something */
 :root{
-  --t-about:#1B2A3A; --t-families:#4B7A5E; --t-prof:#4F6D8F; --t-research:#7A5C8A; --t-guides:#B8894A; --t-events:#A8566E;
-  --d-about:#0D1620; --d-families:#2F5440; --d-prof:#344B66; --d-research:#54406A; --d-guides:#7A5520; --d-events:#7A3A4E;
-  --p-about:#E6EAEF; --p-families:#E6EFE9; --p-prof:#E6ECF3; --p-research:#EEE8F1; --p-guides:#F3E9DA; --p-events:#F4E4E9;
+  --t-about:#1B2A3A; --t-families:#4B7A5E; --t-prof:#4F6D8F; --t-research:#7A5C8A; --t-guides:#B8894A; --t-events:#A8566E; --t-survey:#3F7C80;
+  --d-about:#0D1620; --d-families:#2F5440; --d-prof:#344B66; --d-research:#54406A; --d-guides:#7A5520; --d-events:#7A3A4E; --d-survey:#2A575A;
+  --p-about:#E6EAEF; --p-families:#E6EFE9; --p-prof:#E6ECF3; --p-research:#EEE8F1; --p-guides:#F3E9DA; --p-events:#F4E4E9; --p-survey:#E2EEEE;
   --sec:var(--t-about); --sec-dark:var(--d-about);
 }
 body[data-sec="families"]{--sec:var(--t-families); --sec-dark:var(--d-families);}
@@ -16,6 +16,7 @@ body[data-sec="prof"]{--sec:var(--t-prof); --sec-dark:var(--d-prof);}
 body[data-sec="research"]{--sec:var(--t-research); --sec-dark:var(--d-research);}
 body[data-sec="guides"]{--sec:var(--t-guides); --sec-dark:var(--d-guides);}
 body[data-sec="events"]{--sec:var(--t-events); --sec-dark:var(--d-events);}
+body[data-sec="survey"]{--sec:var(--t-survey); --sec-dark:var(--d-survey);}
 
 /* ---------- binder tabs: resting tabs are pale with a coloured top edge; the tab you are in is filled ---------- */
 header{background:var(--paper); border-bottom:5px solid var(--sec); -webkit-backdrop-filter:none; backdrop-filter:none;}
@@ -23,15 +24,16 @@ header{background:var(--paper); border-bottom:5px solid var(--sec); -webkit-back
 .nav-wrap > a:first-child{margin-bottom:12px;}
 .nav-cta{margin-bottom:12px;}
 nav > ul{gap:4px; align-items:flex-end;}
-nav > ul > li > a{display:block; opacity:1; color:var(--ink); font-weight:500; font-size:.86rem; padding:9px 15px 8px; border-radius:8px 8px 0 0; background:var(--tab-p); border-top:3px solid var(--tab); transition:background .12s ease, color .12s ease;}
+nav > ul > li > a{display:block; opacity:1; color:var(--ink); font-weight:500; font-size:.84rem; padding:9px 12px 8px; white-space:nowrap; border-radius:8px 8px 0 0; background:var(--tab-p); border-top:3px solid var(--tab); transition:background .12s ease, color .12s ease;}
 nav > ul > li:nth-child(1){--tab:var(--t-about); --tab-p:var(--p-about);}
 nav > ul > li:nth-child(2){--tab:var(--t-families); --tab-p:var(--p-families);}
 nav > ul > li:nth-child(3){--tab:var(--t-prof); --tab-p:var(--p-prof);}
 nav > ul > li:nth-child(4){--tab:var(--t-research); --tab-p:var(--p-research);}
-nav > ul > li:nth-child(5){--tab:var(--t-guides); --tab-p:var(--p-guides);}
-nav > ul > li:nth-child(6){--tab:var(--t-events); --tab-p:var(--p-events);}
+nav > ul > li:nth-child(5){--tab:var(--t-survey); --tab-p:var(--p-survey);}
+nav > ul > li:nth-child(6){--tab:var(--t-guides); --tab-p:var(--p-guides);}
+nav > ul > li:nth-child(7){--tab:var(--t-events); --tab-p:var(--p-events);}
 nav > ul > li > a:hover, nav > ul > li:focus-within > a{background:var(--tab); color:#fff;}
-nav > ul > li > a.current{background:var(--tab); color:#fff; border-bottom:none; padding:12px 16px 9px; font-weight:600;}
+nav > ul > li > a.current{background:var(--tab); color:#fff; border-bottom:none; padding:12px 13px 9px; font-weight:600;}
 nav .sub-toggle::after{opacity:.8;}
 nav .sub{padding-top:0;}
 nav .sub ul{border-top:3px solid var(--tab); border-radius:0 0 8px 8px;}
@@ -44,7 +46,7 @@ nav .sub a:hover{background:var(--tab-p);}
   .nav-wrap{flex-wrap:wrap; padding:12px 18px 0;}
   .nav-wrap > a:first-child, .nav-cta{margin-bottom:10px;}
   nav{display:block; position:static; order:5; width:100%; background:none; border:none; box-shadow:none;}
-  nav > ul{display:flex; padding:0; gap:4px;}
+  nav > ul{display:flex; flex-wrap:wrap; padding:0; gap:4px;}
   nav > ul > li{border-bottom:none; position:relative;}
   nav > ul > li > a{font-size:.78rem; padding:8px 10px 7px;}
   nav > ul > li > a.current{font-size:.8rem; padding:10px 11px 8px; color:#fff;}
