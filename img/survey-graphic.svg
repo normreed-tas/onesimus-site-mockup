@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 330" role="img" aria-labelledby="t d">
+  <title id="t">Guess, then see the answer</title>
+  <desc id="d">Two cards. On the first, a question with three choices and one of them picked. An arrow leads to the second card, where a bar chart shows the answer.</desc>
+  <!-- Original artwork for the Onesimus Foundation survey page. No figures are shown on purpose. -->
+  <g font-family="Inter, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="12" letter-spacing="1.6">
+    <text x="34" y="58" fill="#2F5440">YOUR GUESS</text>
+    <text x="300" y="30" fill="#7A5520">THE ANSWER</text>
+  </g>
+
+  <!-- the answer card (behind) -->
+  <rect x="246" y="48" width="196" height="246" rx="18" fill="#1B2A3A" opacity=".10"/>
+  <rect x="240" y="42" width="196" height="246" rx="18" fill="#FFFFFF" stroke="#DDD6C9" stroke-width="2"/>
+  <line x1="268" y1="250" x2="410" y2="250" stroke="#1B2A3A" stroke-width="3" stroke-linecap="round"/>
+  <rect x="278" y="186" width="30" height="62" rx="5" fill="#DDD6C9"/>
+  <rect x="324" y="120" width="30" height="128" rx="5" fill="#4B7A5E"/>
+  <rect x="370" y="158" width="30" height="90" rx="5" fill="#DDD6C9"/>
+  <circle cx="339" cy="92" r="17" fill="#B8894A"/>
+  <path d="M331 92l6 6 11-12" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- the question card (in front) -->
+  <rect x="40" y="78" width="214" height="228" rx="18" fill="#1B2A3A" opacity=".14"/>
+  <rect x="32" y="70" width="214" height="228" rx="18" fill="#FFFFFF" stroke="#1B2A3A" stroke-width="2.5"/>
+  <circle cx="64" cy="104" r="17" fill="#1B2A3A"/>
+  <text x="64" y="111" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#FFFFFF">?</text>
+  <rect x="92" y="94" width="126" height="9" rx="4.5" fill="#1B2A3A" opacity=".75"/>
+  <rect x="92" y="110" width="92" height="9" rx="4.5" fill="#1B2A3A" opacity=".35"/>
+
+  <rect x="52" y="142" width="174" height="36" rx="18" fill="#F6F3ED" stroke="#DDD6C9" stroke-width="2"/>
+  <circle cx="72" cy="160" r="7" fill="#FFFFFF" stroke="#566270" stroke-width="2"/>
+  <rect x="90" y="155" width="84" height="9" rx="4.5" fill="#566270" opacity=".45"/>
+
+  <rect x="52" y="190" width="174" height="36" rx="18" fill="#4B7A5E"/>
+  <rect x="52" y="195" width="174" height="36" rx="18" fill="#2F5440" opacity="0"/>
+  <circle cx="72" cy="208" r="7" fill="#FFFFFF"/>
+  <circle cx="72" cy="208" r="3.5" fill="#2F5440"/>
+  <rect x="90" y="203" width="96" height="9" rx="4.5" fill="#FFFFFF" opacity=".9"/>
+  <path d="M199 208l5 5 9-10" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="52" y="238" width="174" height="36" rx="18" fill="#F6F3ED" stroke="#DDD6C9" stroke-width="2"/>
+  <circle cx="72" cy="256" r="7" fill="#FFFFFF" stroke="#566270" stroke-width="2"/>
+  <rect x="90" y="251" width="66" height="9" rx="4.5" fill="#566270" opacity=".45"/>
+
+  <!-- from the guess to the answer -->
+  <path d="M150 52 C 190 14, 250 10, 284 30" fill="none" stroke="#B8894A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M272 20l13 10-15 6" fill="none" stroke="#B8894A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
