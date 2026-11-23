@@ -70,7 +70,14 @@
 
   /* ===== HERO / FORK ===== */
   .hero{max-width:1180px; margin:0 auto; padding:64px 24px 0;}
-  .hero-top{max-width:640px; margin-bottom:44px;}
+  .hero-row{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:28px 48px; margin-bottom:44px;}
+  .hero-top{max-width:640px; flex:1 1 480px;}
+  .stats-box{flex:0 1 400px; background:var(--white); border:1px solid var(--line); border-top:3px solid var(--brass); border-radius:4px; padding:24px 26px 26px;}
+  .stats-box h2{font-size:1.38rem; line-height:1.25; margin:8px 0 0;}
+  .stats-box p{font-size:.95rem; margin:10px 0 0;}
+  .stats-box .hero-link{display:inline-block; margin-top:18px; padding:11px 20px; border:1px solid var(--ink); border-radius:100px; background:var(--ink); color:#fff; font-weight:600; font-size:.92rem; text-decoration:none;}
+  .stats-box .hero-link:hover, .stats-box .hero-link:focus-visible{background:var(--white); color:var(--ink);}
+  @media (max-width:980px){ .stats-box{flex:1 1 100%; max-width:640px;} }
   .hero-top h1{font-size:clamp(2.2rem,4.4vw,3.4rem); letter-spacing:-.01em;}
   .hero-top p{font-size:1.08rem; margin-top:18px; max-width:520px;}
   .hero-top .hero-link{display:inline-block; margin-top:22px; padding:11px 20px; border:1px solid var(--ink); border-radius:100px; color:var(--ink); font-weight:600; font-size:.92rem; text-decoration:none;}
@@ -315,11 +322,18 @@
 </header>
 
 <section class="hero">
+  <div class="hero-row">
   <div class="hero-top">
     <span class="eyebrow">Onesimus Foundation · Risdon Vale, Tasmania</span>
     <h1 style="margin-top:14px;">Creating healthy relationships. Transforming lives. Changing communities.</h1>
     <p>We work alongside people in the justice system, their families, and the professionals who support them — nurturing connection during incarceration and building a path back into community life.</p>
-    <a class="hero-link" href="justice-figures.html">See the Tasmanian justice statistics &rarr;</a>
+  </div>
+  <aside class="stats-box" aria-label="Tasmanian justice statistics">
+    <span class="eyebrow">Tasmanian justice statistics</span>
+    <h2>How many Tasmanians are in prison? How many come back?</h2>
+    <p>We have put 37 questions about prisons, community corrections, policing and youth justice to the official reports, and set out the answers in plain words. Each one says what the number really counts and links to the report it came from.</p>
+    <a class="hero-link" href="justice-figures.html">See the statistics &rarr;</a>
+  </aside>
   </div>
 
   <div class="fork">
