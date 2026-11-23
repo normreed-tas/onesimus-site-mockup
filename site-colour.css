@@ -32,6 +32,7 @@ nav > ul > li:nth-child(4){--tab:var(--t-research); --tab-p:var(--p-research);}
 nav > ul > li:nth-child(5){--tab:var(--t-survey); --tab-p:var(--p-survey);}
 nav > ul > li:nth-child(6){--tab:var(--t-guides); --tab-p:var(--p-guides);}
 nav > ul > li:nth-child(7){--tab:var(--t-events); --tab-p:var(--p-events);}
+nav > ul > li:nth-child(8){--tab:var(--t-about); --tab-p:var(--p-about);}
 nav > ul > li > a:hover, nav > ul > li:focus-within > a{background:var(--tab); color:#fff;}
 nav > ul > li > a.current{background:var(--tab); color:#fff; border-bottom:none; padding:12px 13px 9px; font-weight:600;}
 nav .sub-toggle::after{opacity:.8;}
