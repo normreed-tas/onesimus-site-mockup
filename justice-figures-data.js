@@ -511,7 +511,7 @@ function sentences(t){
 /* "Latest Tasmanian figures" — a newer Tasmania-only figure, with the Custodial
    Inspector's commentary folded in behind a disclosure rather than a fourth tab. */
 function latestBlock(L,lv){
-  var h='<div class="latest"><span class="eyebrow">Latest Tasmanian figures</span>';
+  var h='<div class="latest"><span class="eyebrow">Latest Tasmanian statistics</span>';
   if(L.fig)h+='<span class="lfig">'+L.fig+'</span>';
   h+=L.note.map(function(t,i){return '<p>'+lvPill((lv.l||'').charAt(i))+t+'</p>';}).join('');
   h+='<p class="lsrc">'+L.src+'</p>';

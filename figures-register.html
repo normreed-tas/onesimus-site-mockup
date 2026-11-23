@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Onesimus Foundation — Justice Figures: Sources and Checks</title>
+<title>Onesimus Foundation — Justice Statistics: Sources and Checks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -282,9 +282,9 @@
 
 <section class="page-head">
   <div class="crumb"><a href="research.html">&larr; Research</a></div>
-  <span class="eyebrow">Tasmanian justice figures</span>
+  <span class="eyebrow">Tasmanian justice statistics</span>
   <h1 style="margin-top:14px;">Sources and checks.</h1>
-  <p>Every figure on our <a href="justice-figures.html" style="text-decoration:underline;">adult</a> and <a href="youth-justice.html#figures" style="text-decoration:underline;">youth</a> justice figures pages, with where it comes from, who it counts, the period it covers, whether the source says it can be compared between states, and when we last checked it against the original.</p>
+  <p>Every figure on our <a href="justice-figures.html" style="text-decoration:underline;">adult</a> and <a href="youth-justice.html#figures" style="text-decoration:underline;">youth</a> justice statistics pages, with where it comes from, who it counts, the period it covers, whether the source says it can be compared between states, and when we last checked it against the original.</p>
 </section>
 
 <section class="section">
@@ -316,7 +316,7 @@
 </footer>
 
 <script src="justice-figures-records.js?v=20261109a"></script>
-<script src="justice-figures-data.js?v=20261109a"></script>
+<script src="justice-figures-data.js?v=20261124a"></script>
 <script>
 /* Builds the register from the same data and records the figures pages use. */
 (function(){
@@ -341,7 +341,7 @@
           +cell('Last checked',r.checked||pending)
           +'</tr>';
       }).join('');
-    return '<div class="reg-group"><span class="eyebrow">'+g.title+'</span><h2>'+g.title+' &mdash; '+Q.filter(function(d){return (d.age==='youth'?'youth':'adult')===g.age;}).length+' figures</h2><p>'+g.intro+' Select a question to open its answer.</p>'
+    return '<div class="reg-group"><span class="eyebrow">'+g.title+'</span><h2>'+g.title+' &mdash; '+Q.filter(function(d){return (d.age==='youth'?'youth':'adult')===g.age;}).length+' statistics</h2><p>'+g.intro+' Select a question to open its answer.</p>'
       +'<table class="reg"><thead><tr><th>Question</th><th>Figure</th><th>Source</th><th>Who and when</th><th>Comparable between states?</th><th>Last checked</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
   }).join('');
 })();
